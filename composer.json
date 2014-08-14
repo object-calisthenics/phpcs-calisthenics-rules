@@ -1,0 +1,40 @@
+{
+    "name": "object-calisthenics/phpcs-calisthenics-rules",
+    "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/object-calisthenics/phpcs-calisthenics-rules",
+    "keywords": [
+        "phpcs",
+        "cs",
+        "code",
+        "coding",
+        "standard",
+        "standards",
+        "style",
+        "sniff",
+        "sniffs",
+        "sniffer",
+        "rule",
+        "rules"
+    ],
+    "authors": [
+        {
+            "name": "Guilherme Blanco",
+            "email": "guilhermeblanco@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "~5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2",
+        "squizlabs/php_codesniffer": "2.0.x-dev"
+    },
+    "target-dir": "ObjectCalisthenics",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
