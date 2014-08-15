@@ -1,11 +1,11 @@
 <?php
 
 /**
- * No "else" rule unit test
+ * One level of indentation rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_ControlStructures_OneIndentationLevelUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -18,11 +18,8 @@ class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends Abstract
     public function getErrorList()
     {
         return array(
-            4  => 1,
-            8  => 1,
-            12 => 1,
-            13 => 1,
-            14 => 1,
+            5  => 1,
+            23 => 1,
         );
     }
 

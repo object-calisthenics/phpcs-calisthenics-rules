@@ -15,9 +15,9 @@ class ObjectCalisthenics_Sniffs_ControlStructures_NoElseSniff implements PHP_Cod
     public $supportedTokenizers = array('PHP');
 
     /**
-     * Retrieve the list of tokens this sniff wants to subscribe for processing.
+     * Registers the tokens that this sniff wants to listen for.
      *
-     * @return array
+     * @return int[]
      */
     public function register()
     {
@@ -30,8 +30,9 @@ class ObjectCalisthenics_Sniffs_ControlStructures_NoElseSniff implements PHP_Cod
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile
-     * @param int                   $stackPtr
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

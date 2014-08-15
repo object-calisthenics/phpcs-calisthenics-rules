@@ -6,5 +6,6 @@
     <rule ref="PSR2"/>
 
     <!-- ControlStructures -->
+    <rule ref="ObjectCalisthenics.ControlStructures.OneIndentationLevel"/>
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 </ruleset>
