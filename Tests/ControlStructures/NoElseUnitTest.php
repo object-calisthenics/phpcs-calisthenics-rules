@@ -17,7 +17,13 @@ class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends Abstract
      */
     public function getErrorList()
     {
-        return array();
+        return array(
+            4  => 1,
+            8  => 1,
+            12 => 1,
+            13 => 1,
+            14 => 1
+        );
     }
 
     /**
