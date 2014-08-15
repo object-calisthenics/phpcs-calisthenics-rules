@@ -5,7 +5,11 @@
     <!-- Import PSR-2 coding standard (base) -->
     <rule ref="PSR2"/>
 
-    <!-- ControlStructures -->
-    <rule ref="ObjectCalisthenics.ControlStructures.OneIndentationLevel"/>
+    <!-- Rule #1: Only one indentation level per function/method -->
+    <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel"/>
+
+    <!-- Rule #2: There is no "else" -->
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
+
+    <!-- Rule #3: Encapsulate all primitive types and strings -->
 </ruleset>
