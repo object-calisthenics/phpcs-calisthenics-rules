@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="ObjectCalisthenics">
+    <description>Object Calisthenics coding standard.</description>
+
+    <!-- Import PSR-2 coding standard (base) -->
+    <rule ref="PSR2"/>
+
+    <!-- ControlStructures -->
+    <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
+</ruleset>
