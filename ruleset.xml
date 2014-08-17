@@ -12,4 +12,21 @@
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 
     <!-- Rule #3: Encapsulate all primitive types and strings -->
+    <!-- Cannot be implemented, since it requires to be encapsulated ONLY if they have behavior -->
+
+    <!-- Rule #4: Only one object operator (->) per line -->
+    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
+
+    <!-- Rule #5: Do not abbreviate -->
+    <!--rule ref="ObjectCalisthenics.NamingConventions.DoNotAbbreviate"/-->
+
+    <!-- Rule #6: Keep your classes small -->
+
+    <!-- Rule #7: Limit the number of object instances per class (2 to 5) -->
+
+    <!-- Rule #8: Use first class Collections -->
+
+    <!-- Rule #9: Use getters/setter -->
+
+    <!-- Rule #10: Document your code -->
 </ruleset>
