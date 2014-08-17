@@ -21,6 +21,15 @@
     <!--rule ref="ObjectCalisthenics.NamingConventions.DoNotAbbreviate"/-->
 
     <!-- Rule #6: Keep your classes small -->
+    <!-- 15 classes per namespace -->
+    <!-- 200 LOC for interfaces, classes and traits -->
+    <rule ref="ObjectCalisthenics.Files.InterfaceLength"/>
+    <rule ref="ObjectCalisthenics.Files.ClassLength"/>
+    <rule ref="ObjectCalisthenics.Files.TraitLength"/>
+    <!-- 10 methods per class -->
+    <!--rule ref="ObjectCalisthenics.Files.ClassMethodAmount"/-->
+    <!-- 20 LOC for methods -->
+    <rule ref="ObjectCalisthenics.Files.FunctionLength"/>
 
     <!-- Rule #7: Limit the number of object instances per class (2 to 5) -->
 
