@@ -27,7 +27,7 @@
     <rule ref="ObjectCalisthenics.Files.ClassLength"/>
     <rule ref="ObjectCalisthenics.Files.TraitLength"/>
     <!-- 10 methods per class -->
-    <!--rule ref="ObjectCalisthenics.Files.ClassMethodAmount"/-->
+    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit"/>
     <!-- 20 LOC for methods -->
     <rule ref="ObjectCalisthenics.Files.FunctionLength"/>
 
