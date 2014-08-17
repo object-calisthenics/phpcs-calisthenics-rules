@@ -48,18 +48,9 @@ abstract class ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff implemen
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens       = $phpcsFile->getTokens();
-        $token        = $tokens[$stackPtr];
-
-        // Skip function without body.
-        if (isset($token['scope_opener']) === false) {
-            return;
-        }
-
-        $firstToken = $tokens[$token['scope_opener']];
-        $lastToken  = $tokens[$token['scope_closer']];
-        $tokenType  = strtolower(substr($token['type'], 2));
-        $length     = $lastToken['line'] - $firstToken['line'];
+        $tokens    = $phpcsFile->getTokens();
+        $tokenType = strtolower(substr($token['type'], 2));
+        $length    = $this->getStructureLength($phpcsFile, $stackPtr);
 
         switch (true) {
             case ($length > $this->absoluteMaxLength):
@@ -78,5 +69,26 @@ abstract class ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff implemen
 
                 break;
         }
+    }
+
+    /**
+     * Retrieve the data structure LOC.
+     *
+     * @return integer
+     */
+    private function getStructureLength(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+        $token  = $tokens[$stackPtr];
+
+        // Skip function without body.
+        if (isset($token['scope_opener']) === false) {
+            return 0;
+        }
+
+        $firstToken = $tokens[$token['scope_opener']];
+        $lastToken  = $tokens[$token['scope_closer']];
+        
+        return $lastToken['line'] - $firstToken['line'];
     }
 }
