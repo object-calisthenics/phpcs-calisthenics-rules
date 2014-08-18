@@ -109,3 +109,94 @@ Small objects like this can make programs more maintainable, since it isn't poss
 So go ahead and wrap primitives whenever feasible. Small objects will also give you an obvious place to put behavior that otherwise would have been littered around other classes.
 
 > This rule will be regarded as a guideline, as opposed to a strict rule. So basically, if a variable of a primitive type has behavior, consider creating a class for it.
+
+#### Benefits:
+
+- Type hinting
+- Better encapsulation
+- Prevent code duplication
+
+
+### Use only object operator per line
+
+- Status: **Implemented**
+
+> **NOTE**
+>
+> When considering class own's members (`$this`), we have to accept 2 object operators per statement/line. Otherwise, this would be considered invalid:
+>
+> * $this->property->method();
+
+When object operators are connected, your object is digging deeply into another object (or even a series of objects). 
+These multiple dots indicate that you're conceptually violating encapsulation. Try asking that object to do something for you, rather than poking around its insides. 
+A major part of encapsulation is not reaching across class boundaries into types that you shouldn't necessarily know about.
+
+Also, multiple dots in a single line of code might result in several issues when it comes to debugging, logging and exception handling, since you won't be able to isolate the bug, or the atomic action, properly.
+
+The [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter) ("Only talk to your friends") is a good place to start, but think about it this way: You can play with your toys, toys that you make and toys that someone gives you. You don't ever, ever play with your toy's toys.
+
+> This rule got adapted to accept chaining the same object via [Fluent Interfaces](http://en.wikipedia.org/wiki/Fluent_interface) is fine, but please apply this technique carefully, as described in this [blog post](http://devzone.zend.com/article/1362).
+
+#### Benefits:
+
+* Law of Demeter
+* Readability
+* Increases testability
+* Easier to debug
+
+
+### Do not abbreviate
+
+- Status: **Not yet implemented**
+
+It's often tempting to abbreviate in the names of classes, methods or variables. Resist the temptation. Abbreviations can be confusing, and the tend to hide larger problems.
+
+Think about why you want to abbreviate.
+
+* Is it because you are typing the same word over and over again? If that's the case, perhaps your method is used too heavily, and you're missing opportunities to remove duplication.
+* Is it because your method names are getting long? This might be a sign of a misplaced responsibility or a missing class.
+
+Try to keep class and method names to one to two words, and avoid names that duplicate the context. 
+If the class is an `Order`, the method doesn't need to be called shipOrder()`. Simply name the method `ship()` so that clients call `$order->ship()` - a simple and clear representation of what's happening.
+
+For this exercise, all members should have a name that is one or two words, with no abbreviations.
+
+#### Benefits:
+
+* Increases readability
+* Better communication
+* Maintainability
+* Good problem indicator of encapsulation problem and code duplication
+
+
+### Keep your classes small
+
+- Status: **Partially Implemented**
+
+This means no class that's more than 200 lines, and no package that's more than 15 classes.
+
+The original rule by Jeff Bay dictated 50-line classes. However, there was nothing in that rule related to inline comments, doc-blocks, blank lines or control structure closing lines. Thus, it makes sense for our team to extend this rule in order to allow for 100 lines of code per class, including all extra metadata mentioned here, which can easily take over 50% of file length.
+
+Classes of more than 200 lines usually do more than one thing, which makes them harder to understand and harder to reuse. 200-line classes have the added benefit of being visible with little scrolling, which makes them easier to grasp quickly.
+Additionally, methods that are bigger than 20 lines of code also indicates they are doing more than a single atomic operation. Consider also up to 10 methods per class.
+
+What's challenging about creating such small classes is that there are often groups of behaviors that make logical sense together. This is where we need to leverage packages. As your classes become smaller and have fewer responsibilities and as you limit package size, you'll start to see that packages represent clusters of related classes that work together to achieve a goal. Packages, like classes, should be cohesive and have a purpose. Keeping those packages small forces them to have real identity.
+
+In a nutshell, we want a higher number of smaller packages, with skinny classes inside them.
+
+#### Benefits:
+
+* Single Responsibility Principle ("S" in SOLID)
+* Clear methods and their objectives
+* Better code segregation
+* Cleaner namespaces
+
+
+### Use first-class collections
+
+- Status: **Not yet implemented**
+
+
+### Do not use classes with several instance variables
+
+- Status: **Not yet implemented**
