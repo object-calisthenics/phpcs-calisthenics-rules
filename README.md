@@ -63,7 +63,7 @@ As you work with methods that do exactly one thing, expressed within classes doi
 - Benefits reusability
 
 
-### Do not use "else" keyword
+### Rule #2: Do not use "else" keyword
 
 - Status: **Implemented**
 
@@ -98,7 +98,7 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 - Reduce [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
-### Wrap primitive types and strings
+### Rule #3: Wrap primitive types and strings
 
 - Status: **Cannot implement**
 
@@ -117,7 +117,7 @@ So go ahead and wrap primitives whenever feasible. Small objects will also give 
 - Prevent code duplication
 
 
-### Use only object operator per line
+### Rule #4: Use only object operator per line
 
 - Status: **Implemented**
 
@@ -145,7 +145,7 @@ The [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter) ("Only talk to
 * Easier to debug
 
 
-### Do not abbreviate
+### Rule #5: Do not abbreviate
 
 - Status: **Not yet implemented**
 
@@ -169,7 +169,7 @@ For this exercise, all members should have a name that is one or two words, with
 * Good problem indicator of encapsulation problem and code duplication
 
 
-### Keep your classes small
+### Rule #6: Keep your classes small
 
 - Status: **Partially Implemented**
 
@@ -192,11 +192,11 @@ In a nutshell, we want a higher number of smaller packages, with skinny classes 
 * Cleaner namespaces
 
 
-### Use first-class collections
+### Rule #7: Use first-class collections
 
 - Status: **Not yet implemented**
 
 
-### Do not use classes with several instance variables
+### Rule #8: Do not use classes with several instance variables
 
 - Status: **Not yet implemented**
