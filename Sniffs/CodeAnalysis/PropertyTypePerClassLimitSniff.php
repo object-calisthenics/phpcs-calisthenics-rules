@@ -1,9 +1,5 @@
 <?php
 
-if (class_exists('PHP_CodeSniffer_CommentParser_MemberCommentParser', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_MemberCommentParser not found');
-}
-
 /**
  * Check for property type per class limit, part of "Use first class collections" OC rule.
  *
