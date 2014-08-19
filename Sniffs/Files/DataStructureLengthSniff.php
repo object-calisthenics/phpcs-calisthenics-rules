@@ -49,6 +49,7 @@ abstract class ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff implemen
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
+        $token     = $tokens[$stackPtr];
         $tokenType = strtolower(substr($token['type'], 2));
         $length    = $this->getStructureLength($phpcsFile, $stackPtr);
 

@@ -18,10 +18,14 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- Rule #5: Do not abbreviate -->
-    <!--rule ref="ObjectCalisthenics.NamingConventions.DoNotAbbreviate"/-->
+    <rule ref="ObjectCalisthenics.NamingConventions.VariableLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.FunctionLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.ConstantLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.ClassLength"/>
 
     <!-- Rule #6: Keep your classes small -->
     <!-- 15 classes per namespace -->
+    <!-- Cannot be implemented, since PHPCS can only be executed over files -->
     <!-- 200 LOC for interfaces, classes and traits -->
     <rule ref="ObjectCalisthenics.Files.InterfaceLength"/>
     <rule ref="ObjectCalisthenics.Files.ClassLength"/>
