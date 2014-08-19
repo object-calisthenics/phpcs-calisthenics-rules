@@ -74,6 +74,10 @@ abstract class ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff implemen
     /**
      * Retrieve the data structure LOC.
      *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer               $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
+     *
      * @return integer
      */
     private function getStructureLength(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
