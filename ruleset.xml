@@ -40,6 +40,7 @@
     <!-- Rule #8: Use first class Collections -->
 
     <!-- Rule #9: Use getters/setter -->
+    <rule ref="ObjectCalisthenics.Classes.PropertyVisibility"/>
 
     <!-- Rule #10: Document your code -->
 </ruleset>
