@@ -36,6 +36,7 @@
     <rule ref="ObjectCalisthenics.Files.FunctionLength"/>
 
     <!-- Rule #7: Limit the number of object instances per class (2 to 5) -->
+    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
 
     <!-- Rule #8: Use first class Collections -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit"/>

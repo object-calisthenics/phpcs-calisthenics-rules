@@ -97,6 +97,16 @@ abstract class ObjectCalisthenics_Sniffs_CodeAnalysis_PropertyTypePerClassLimitS
     }
 
     /**
+     * Retrieve the untracked string representation.
+     *
+     * @return string
+     */
+    protected function getUntrackedPropertyType()
+    {
+        return 'untracked';
+    }
+
+    /**
      * Check for tracked class properties amount.
      *
      * @param array $propertyList
@@ -157,8 +167,8 @@ abstract class ObjectCalisthenics_Sniffs_CodeAnalysis_PropertyTypePerClassLimitS
         $untrackedPropertyAmount = count($untrackedPropertyList);
 
         if ($untrackedPropertyAmount > $this->untrackedAbsoluteMaxCount) {
-            $message = 'You have %d properties declared of untracked type(s), must be less or equals than %d properties in total';
-            $error   = sprintf($message, $untrackedPropertyAmount, $this->untrackedAbsoluteMaxCount);
+            $message = 'You have %d properties declared of %s type, must be less or equals than %d properties in total';
+            $error   = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedAbsoluteMaxCount);
 
             return $error;
         }
