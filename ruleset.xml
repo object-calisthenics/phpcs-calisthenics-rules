@@ -46,7 +46,7 @@
 
     <!-- Rule #10: Document your code -->
     <rule ref="Squiz.Commenting.DocCommentAlignment"/>
-    <rule ref="Squiz.Commenting.ClassComment"/>
+    <!--rule ref="Squiz.Commenting.ClassComment"/-->
     <rule ref="Squiz.Commenting.VariableComment"/>
     <rule ref="Squiz.Commenting.FunctionComment"/>
 </ruleset>
