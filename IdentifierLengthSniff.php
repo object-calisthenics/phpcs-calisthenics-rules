@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_Sniffs_NamingConventions_IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class ObjectCalisthenics_IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Token string representation.

@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_Sniffs_CodeAnalysis_PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
+abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Tracked property type maximum amount.

@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_CodeAnalysis_InstancePropertyPerClassLimitSniff extends ObjectCalisthenics_Sniffs_CodeAnalysis_PropertyTypePerClassLimitSniff
+class ObjectCalisthenics_Sniffs_CodeAnalysis_InstancePropertyPerClassLimitSniff extends ObjectCalisthenics_PropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}

@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_Files_FunctionLengthSniff extends ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff
+class ObjectCalisthenics_Sniffs_Files_FunctionLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}

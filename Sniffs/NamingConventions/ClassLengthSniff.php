@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_NamingConventions_ClassLengthSniff extends ObjectCalisthenics_Sniffs_NamingConventions_IdentifierLengthSniff
+class ObjectCalisthenics_Sniffs_NamingConventions_ClassLengthSniff extends ObjectCalisthenics_IdentifierLengthSniff
 {
     /**
      * {@inheritdoc}

@@ -9,7 +9,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_Sniffs_Files_DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class ObjectCalisthenics_DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.
