@@ -38,7 +38,7 @@
     <!-- Rule #7: Limit the number of object instances per class (2 to 5) -->
 
     <!-- Rule #8: Use first class Collections -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.PropertyTypePerClassLimit"/>
+    <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit"/>
 
     <!-- Rule #9: Use getters/setter -->
     <rule ref="ObjectCalisthenics.Classes.PropertyVisibility"/>

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Property type per class limit, part of "Use first class collections" OC rule.
+ * Array property per class limit, part of "Use first class collections" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_PropertyTypePerClassLimitUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_CodeAnalysis_ArrayPropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -18,8 +18,8 @@ class ObjectCalisthenics_Tests_CodeAnalysis_PropertyTypePerClassLimitUnitTest ex
     public function getErrorList()
     {
         return array(
-            13 => 1,
-            34 => 1,
+            3  => 1,
+            24 => 1,
         );
     }
 
