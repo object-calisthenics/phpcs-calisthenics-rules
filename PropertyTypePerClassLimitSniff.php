@@ -78,11 +78,11 @@ abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_
 
         if ($errorList) {
             array_map(
-                $errorList,
                 function ($error) use ($phpcsFile, $stackPtr)
                 {
                     $phpcsFile->addError($error, $stackPtr, 'TooManyPropertiesOfType');
-                }
+                },
+                $errorList
             );
 
             return;
@@ -294,6 +294,11 @@ abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_
         }
 
         $varDoc = $comment->getVar();
+
+        if ( ! $varDoc) {
+            // Var tag could not be processed, we should throw error
+            return null;
+        }
 
         return array(
             'token'     => $property,
