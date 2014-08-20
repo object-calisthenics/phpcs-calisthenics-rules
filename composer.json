@@ -32,6 +32,11 @@
         "squizlabs/php_codesniffer": "dev-master"
     },
     "target-dir": "ObjectCalisthenics",
+    "autoload": {
+        "classmap": [
+            "ObjectCalisthenics/Sniffs/"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
