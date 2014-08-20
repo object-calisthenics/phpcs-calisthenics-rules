@@ -240,39 +240,19 @@ In a nutshell, we want a higher number of smaller packages, with skinny classes 
 * Cleaner namespaces
 
 
-### Rule #7: Use first-class collections
+### Rule #7: Do not use classes with several instance variables
 
 - Status: **Implemented**
 
-The application of this rule is simple: any class that contains a collection should contain no other member variables.
-
-A collection gets wrapped in its own class, so now behaviors related to the collection have a home. 
-You may find that filters become part of this new class. Filters may also become function objects in their own right. 
-Also, your new class can handle activities such as joining two group together or applying a rule to each element of the group. 
-This is an obvious extension of the rule "Do not use classes with several instance variables" (next topic), but it is important for its own sake as well. 
-A collection is really a type of very useful primitive. It has many behaviors but little semantic intent or clues for either the next programmer or the maintainer.
-
-#### Benefits:
-
-* Single Responsibility Principle ("S" in SOLID)
-* Operations over collections are implemented inside of collection
-* Easy to group collections without bothering about its member behavior
-* Filtering, ordering, mapping and merging are good method examples
-
-
-### Rule #8: Do not use classes with several instance variables
-
-- Status: **Implemented**
-
-Decomposing objects from a set of attributes into a hierarchy of collaborating objects leads much more directly to an effective object model. 
-Prior to understanding this rule, one can spend many hours trying to follow data flows through large objects. 
-It is possible to tweeze out an object model, but it is a painstaking process to understand the related groups of behavior and see the result. 
-In contrast, the recursive application of this rule has led to a very quick decomposition of complex large objects into a much simpler objects. 
-Behavior naturally follows the instance variables into the appropriate place - the compiler and the rules on encapsulation won't allow otherwise. 
+Decomposing objects from a set of attributes into a hierarchy of collaborating objects leads much more directly to an effective object model.
+Prior to understanding this rule, one can spend many hours trying to follow data flows through large objects.
+It is possible to tweeze out an object model, but it is a painstaking process to understand the related groups of behavior and see the result.
+In contrast, the recursive application of this rule has led to a very quick decomposition of complex large objects into a much simpler objects.
+Behavior naturally follows the instance variables into the appropriate place - the compiler and the rules on encapsulation won't allow otherwise.
 If you get stuck, work downward by splitting objects into related halves or upward by picking any two instance variables and making an object out of them.
 
-The original rule of Jeff Bay kept any given entity from having more than 2 class instance attributes. However, this seems to be a bit over the edge, and not really practical measure. 
-Probably, a maximum number of 5 instance variables will equally contribute to higher levels of cohesiveness and encapsulation. 
+The original rule of Jeff Bay kept any given entity from having more than 2 class instance attributes. However, this seems to be a bit over the edge, and not really practical measure.
+Probably, a maximum number of 5 instance variables will equally contribute to higher levels of cohesiveness and encapsulation.
 The majority of rules in this exercise also contribute to the same set of positive outcomes.
 
 #### Benefits:
@@ -281,6 +261,26 @@ The majority of rules in this exercise also contribute to the same set of positi
 * Loose coupling
 * Better encapsulation
 * Testability
+
+
+### Rule #8: Use first-class collections
+
+- Status: **Implemented**
+
+The application of this rule is simple: any class that contains a collection should contain no other member variables.
+
+A collection gets wrapped in its own class, so now behaviors related to the collection have a home. 
+You may find that filters become part of this new class. Filters may also become function objects in their own right. 
+Also, your new class can handle activities such as joining two group together or applying a rule to each element of the group. 
+This is an obvious extension of the rule "Do not use classes with several instance variables" (previous topic), but it is important for its own sake as well. 
+A collection is really a type of very useful primitive. It has many behaviors but little semantic intent or clues for either the next programmer or the maintainer.
+
+#### Benefits:
+
+* Single Responsibility Principle ("S" in SOLID)
+* Operations over collections are implemented inside of collection
+* Easy to group collections without bothering about its member behavior
+* Filtering, ordering, mapping and merging are good method examples
 
 
 ### Rule #9: Use getters and setters
