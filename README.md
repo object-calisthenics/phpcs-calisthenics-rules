@@ -15,9 +15,19 @@ Or alternatively, include a dependency for `object-calisthenics/phpcs-calistheni
 
     {
         "require-dev": {
+            "squizlabs/php_codesniffer": "dev-master",
             "object-calisthenics/phpcs-calisthenics-rules": "dev-master"
         }
     }
+
+Finally, enable it as part of your project code sniffer ruleset (ie. phpcs.xml in root project directory):
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <ruleset name="Project">
+        <description>Project Coding Standard</description>
+
+        <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml"/>
+    </ruleset>
 
 
 # Object Calisthenics
