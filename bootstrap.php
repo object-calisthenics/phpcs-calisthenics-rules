@@ -83,7 +83,11 @@ mkdir($calisthenicsStandardDir);
 mkdir($calisthenicsStandardDir . '/Sniffs');
 mkdir($calisthenicsStandardDir . '/Tests');
 
+copy(__DIR__ . '/LICENSE', $calisthenicsStandardDir . '/LICENSE');
 copy(__DIR__ . '/ruleset.xml', $calisthenicsStandardDir . '/ruleset.xml');
+copy(__DIR__ . '/DataStructureLengthSniff.php', $calisthenicsStandardDir . '/DataStructureLengthSniff.php');
+copy(__DIR__ . '/IdentifierLengthSniff.php', $calisthenicsStandardDir . '/IdentifierLengthSniff.php');
+copy(__DIR__ . '/PropertyTypePerClassLimitSniff.php', $calisthenicsStandardDir . '/PropertyTypePerClassLimitSniff.php');
 
 copyDirectory(__DIR__ . '/Sniffs', $calisthenicsStandardDir . '/Sniffs');
 copyDirectory(__DIR__ . '/Tests', $calisthenicsStandardDir . '/Tests');
