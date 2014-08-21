@@ -295,10 +295,11 @@ abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_
 
         $varDoc = $comment->getVar();
 
+        // If var tag in docblock couldnt be properly read (ie. inheritdoc), error should be added.
         if ( ! $varDoc) {
             $error = sprintf('Unable to retrieve data type of property "%s"', $property['content']);
 
-            $phpcsFile->addError($error, $stackPtr, 'InvalidProeprtyType');
+            $phpcsFile->addError($error, $stackPtr, 'InvalidPropertyType');
 
             return null;
         }

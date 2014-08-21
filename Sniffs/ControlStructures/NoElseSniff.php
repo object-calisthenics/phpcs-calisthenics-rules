@@ -22,8 +22,8 @@ class ObjectCalisthenics_Sniffs_ControlStructures_NoElseSniff implements PHP_Cod
     public function register()
     {
         return array(
-            T_ELSE, 
-            T_ELSEIF
+            T_ELSE,
+            T_ELSEIF,
         );
     }
 
@@ -33,13 +33,15 @@ class ObjectCalisthenics_Sniffs_ControlStructures_NoElseSniff implements PHP_Cod
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
+     *
+     * @return void
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $phpcsFile->addError(
-            'Do not use "else" or "elseif" tokens', 
-            $stackPtr, 
+            'Do not use "else" or "elseif" tokens',
+            $stackPtr,
             'NoElse'
         );
-    } 
+    }
 }
