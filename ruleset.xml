@@ -2,8 +2,8 @@
 <ruleset name="ObjectCalisthenics">
     <description>Object Calisthenics coding standard.</description>
 
-    <!-- Import PSR-2 coding standard (base) -->
-    <rule ref="PSR2"/>
+    <!-- Import PSR-1 coding standard (base) -->
+    <rule ref="PSR1"/>
 
     <!-- Rule #1: Only one indentation level per function/method -->
     <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel"/>
