@@ -210,7 +210,7 @@ Think about why you want to abbreviate.
 * Is it because your method names are getting long? This might be a sign of a misplaced responsibility or a missing class.
 
 Try to keep class and method names to one to two words, and avoid names that duplicate the context. 
-If the class is an `Order`, the method doesn't need to be called shipOrder()`. 
+If the class is an `Order`, the method doesn't need to be called `shipOrder()`. 
 Simply name the method `ship()` so that clients call `$order->ship()` - a simple and clear representation of what's happening.
 
 For this exercise, all members should have a name that is one or two words, with no abbreviations.
