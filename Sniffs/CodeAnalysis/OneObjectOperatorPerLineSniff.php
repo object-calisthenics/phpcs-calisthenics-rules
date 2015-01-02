@@ -30,6 +30,14 @@ class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff imple
      */
     public $supportedTokenizers = array('PHP');
 
+    private $tokens;
+
+    private $isOwnCall;
+
+    private $pointer;
+
+    private $callerTokens;
+
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -51,67 +59,14 @@ class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff imple
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens       = $phpcsFile->getTokens();
-        $token        = $tokens[$stackPtr];
-        $isOwnCall    = ($token['content'] === '$this');
-        $pointer      = $this->ignoreWhitespace($tokens, $stackPtr + 1);
-        $callerTokens = array();
+        $this->tokens = $phpcsFile->getTokens();
+        $this->isOwnCall = $this->tokens[$stackPtr]['content'] === '$this';
+        $this->pointer = $this->ignoreWhitespace($this->tokens, $stackPtr + 1);
 
-        while ($tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
-            $tmpToken     = $tokens[++$pointer];
-            $pointer      = $this->ignoreWhitespace($tokens, $pointer + 1);
-            $tmpTokenType = ($tokens[$pointer]['code'] === T_OPEN_PARENTHESIS)
-                ? 'method' 
-                : 'property';
+        $this->callerTokens = array();
 
-            // Look for second object operator token on same statement
-            if ($callerTokens) {
-                $memberTokenCount = count($callerTokens);
-                $memberToken      = end($callerTokens);
-                $memberTokenType  = $memberToken['type'];
-
-                // Handle $object situation (you cannot have 2 object operators)
-                if ( ! $isOwnCall) {
-                    $phpcsFile->addError('Only one object operator per line.', $stackPtr);
-
-                    return;
-                }
-
-                // Fluent interface over method chaining on $this:
-                // Should work:
-                // - $this -> Property -> Method
-                // - $this -> Method -> AnotherMethod
-                // - $this -> Method -> Method
-                // - $this -> Method -> AnotherMethod -> AnotherMethod
-                // Should fail:
-                // - $this -> Property -> Property
-                // - $this -> Method -> Property
-                // - $this -> Method -> AnotherMethod -> YetAnotherMethod
-                if (
-                    ($memberTokenType === 'property' && $tmpTokenType === 'property') ||
-                    ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
-                    ($memberTokenType === 'method' && $tmpTokenType === 'method' && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'])
-                ) {
-                    $phpcsFile->addError('Only one object operator per line.', $stackPtr);
-
-                    return;
-                }
-            }
-
-            // Ignore "(" ... ")" in a method call by moving pointer after close parenthesis token
-            if ($tokens[$pointer]['code'] === T_OPEN_PARENTHESIS) {
-                $pointer = $tokens[$pointer]['parenthesis_closer'] + 1;
-            }
-
-            $pointer = $this->ignoreWhitespace($tokens, $pointer);
-
-            array_push(
-                $callerTokens,
-                array(
-                    'token' => $tmpToken,
-                    'type'  => $tmpTokenType,
-                )
-            );
+        while ($this->tokens[$this->pointer]['code'] === T_OBJECT_OPERATOR) {
+            $this->processNext($phpcsFile, $stackPtr);
         }
     }
 
@@ -125,4 +80,60 @@ class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff imple
 
         return $pointer;
     }
+
+    private function processNext(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tmpToken = $this->tokens[++$this->pointer];
+        $this->pointer = $this->ignoreWhitespace($this->tokens, $this->pointer + 1);
+        $tmpTokenType = ($this->tokens[$this->pointer]['code'] === T_OPEN_PARENTHESIS)
+            ? 'method'
+            : 'property';
+
+        // Look for second object operator token on same statement
+        if ($this->callerTokens) {
+            $memberTokenCount = count($this->callerTokens);
+            $memberToken      = end($callerTokens);
+            $memberTokenType  = $memberToken['type'];
+
+            // Handle $object situation (you cannot have 2 object operators)
+            if ( ! $this->isOwnCall) {
+                $phpcsFile->addError('Only one object operator per line.', $stackPtr);
+
+                return;
+            }
+
+            // Fluent interface over method chaining on $this:
+            // Should work:
+            // - $this -> Property -> Method
+            // - $this -> Method -> AnotherMethod
+            // - $this -> Method -> Method
+            // - $this -> Method -> AnotherMethod -> AnotherMethod
+            // Should fail:
+            // - $this -> Property -> Property
+            // - $this -> Method -> Property
+            // - $this -> Method -> AnotherMethod -> YetAnotherMethod
+            if (
+                ($memberTokenType === 'property' && $tmpTokenType === 'property') ||
+                ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
+                ($memberTokenType === 'method' && $tmpTokenType === 'method' && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'])
+            ) {
+                $phpcsFile->addError('Only one object operator per line.', $stackPtr);
+
+                return;
+            }
+        }
+
+        // Ignore "(" ... ")" in a method call by moving pointer after close parenthesis token
+        if ($this->tokens[$this->pointer]['code'] === T_OPEN_PARENTHESIS) {
+            $this->pointer = $this->tokens[$this->pointer]['parenthesis_closer'] + 1;
+        }
+
+        $this->pointer = $this->ignoreWhitespace($this->tokens, $this->pointer);
+
+        $this->callerTokens[] = array(
+            'token' => $tmpToken,
+            'type'  => $tmpTokenType,
+        );
+    }
+
 }
