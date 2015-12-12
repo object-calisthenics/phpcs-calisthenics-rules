@@ -12,11 +12,8 @@ php:
   - 7.0
 
 install:
-  - composer install --prefer-source
-
-before_script:
   - composer selfupdate
-  - composer update --prefer-dist
+  - composer install --prefer-source
 
 script:
   - phpunit
