@@ -1,5 +1,8 @@
 # PHPCS-Calisthenics-Rules
 
+[![Build Status](https://img.shields.io/travis/TomasVotruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/TomasVotruba/phpcs-calisthenics-rules)
+
+
 A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to verify Object Calisthenics rules.
 
 
