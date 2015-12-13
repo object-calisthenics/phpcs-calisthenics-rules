@@ -28,11 +28,11 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
     public $trackedAbsoluteMaxCount = 1;
 
     /**
-     * Untracked property absolute maximum amount.
+     * Untracked property maximum amount.
      *
      * @var int
      */
-    public $untrackedAbsoluteMaxCount = 0;
+    public $untrackedMaxCount = 0;
 
     /**
      * Retrieve the list of tracked property types.
@@ -77,7 +77,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
             return;
         }
 
-        // Check for untracked property type absolute amount
+        // Check for untracked property type amount
         if (($error = $this->checkUntrackedClassPropertyAmount($propertyList)) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
 
@@ -141,9 +141,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         $untrackedPropertyList = $this->getUntrackedClassPropertyList($propertyList);
         $untrackedPropertyAmount = count($untrackedPropertyList);
 
-        if ($untrackedPropertyAmount > $this->untrackedAbsoluteMaxCount) {
+        if ($untrackedPropertyAmount > $this->untrackedMaxCount) {
             $message = 'You have %d properties declared of %s type, must be less or equals than %d properties in total';
-            $error = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedAbsoluteMaxCount);
+            $error = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedMaxCount);
 
             return $error;
         }

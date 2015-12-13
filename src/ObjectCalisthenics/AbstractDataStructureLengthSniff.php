@@ -17,7 +17,7 @@ use PHP_CodeSniffer_Sniff;
 abstract class AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * Maximum data structure length for warning.
+     * Maximum data structure length.
      *
      * @var int
      */
