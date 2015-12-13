@@ -249,7 +249,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
             'token' => $property,
             'pointer' => $stackPtr,
             'type' => $comment,
-            'modifiers$comment' => $phpcsFile->getMemberProperties($stackPtr),
+            'modifiers' => $phpcsFile->getMemberProperties($stackPtr),
         ];
     }
 
