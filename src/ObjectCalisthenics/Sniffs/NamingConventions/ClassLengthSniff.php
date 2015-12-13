@@ -2,13 +2,13 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\IdentifierLengthSniff;
+use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 
 /**
  * {@inheritdoc}
  */
-final class ClassLengthSniff extends IdentifierLengthSniff
+final class ClassLengthSniff extends AbstractIdentifierLengthSniff
 {
     /**
      * {@inheritdoc}

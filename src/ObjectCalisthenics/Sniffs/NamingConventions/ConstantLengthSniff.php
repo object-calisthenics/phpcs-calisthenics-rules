@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\IdentifierLengthSniff;
+use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 
 /**
@@ -10,7 +10,7 @@ use PHP_CodeSniffer_File;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ConstantLengthSniff extends IdentifierLengthSniff
+final class ConstantLengthSniff extends AbstractIdentifierLengthSniff
 {
     /**
      * {@inheritdoc}

@@ -11,7 +11,7 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
+abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Tracked property type maximum amount.

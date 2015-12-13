@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\Files;
 
-use ObjectCalisthenics\DataStructureLengthSniff;
+use ObjectCalisthenics\AbstractDataStructureLengthSniff;
 
 /**
  * Trait length sniffer, part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class TraitLengthSniff extends DataStructureLengthSniff
+final class TraitLengthSniff extends AbstractDataStructureLengthSniff
 {
     /**
      * {@inheritdoc}

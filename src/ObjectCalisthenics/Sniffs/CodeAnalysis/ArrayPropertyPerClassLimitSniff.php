@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics\PropertyTypePerClassLimitSniff;
+use ObjectCalisthenics\AbstractPropertyTypePerClassLimitSniff;
 
 /**
  * Array property per class limist, part of "Use first class collections" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ArrayPropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
+final class ArrayPropertyPerClassLimitSniff extends AbstractPropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}

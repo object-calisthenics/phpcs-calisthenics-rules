@@ -10,7 +10,7 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Token string representation.
