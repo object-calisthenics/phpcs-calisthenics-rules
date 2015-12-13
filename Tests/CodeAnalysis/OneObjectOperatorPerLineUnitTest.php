@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

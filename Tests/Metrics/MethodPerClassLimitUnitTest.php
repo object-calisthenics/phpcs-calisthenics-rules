@@ -5,7 +5,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_Metrics_MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_Metrics_MethodPerClassLimitUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -19,7 +19,7 @@ class ObjectCalisthenics_Tests_Metrics_MethodPerClassLimitUnitTest extends Abstr
     {
         return array(
             6   => 1,
-            67  => 1, 
+            67  => 1,
             150 => 1,
         );
     }
