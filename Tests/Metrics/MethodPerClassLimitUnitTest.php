@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\Metrics;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * Methods per class limit, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_Metrics_MethodPerClassLimitUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

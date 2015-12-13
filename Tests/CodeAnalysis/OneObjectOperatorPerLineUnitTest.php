@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\CodeAnalysis;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * One object operator (->) per line.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

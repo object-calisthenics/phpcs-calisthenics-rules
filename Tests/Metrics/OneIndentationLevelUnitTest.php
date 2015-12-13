@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\Metrics;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * One level of indentation rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_Metrics_OneIndentationLevelUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class OneIndentationLevelUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Identifier length checker, part of "Do not abbreviate" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Token string representation.
@@ -47,7 +51,7 @@ abstract class ObjectCalisthenics_IdentifierLengthSniff implements PHP_CodeSniff
      *
      * @var integer
      */
-    public $absoluteMaxLength = 32; 
+    public $absoluteMaxLength = 32;
 
     /**
      * Supported list of tokenizers supported by this sniff.
@@ -86,7 +90,7 @@ abstract class ObjectCalisthenics_IdentifierLengthSniff implements PHP_CodeSniff
             return;
         }
 
-        $length = strlen($token['content']) - $this->tokenTypeLengthFactor;        
+        $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
 
         switch (true) {
             case ($length > $this->absoluteMaxLength):

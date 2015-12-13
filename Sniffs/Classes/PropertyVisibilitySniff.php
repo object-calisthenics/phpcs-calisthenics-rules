@@ -1,5 +1,9 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\Classes;
+
+use PHP_CodeSniffer_Standards_AbstractVariableSniff;
+
 /**
  * Check for proterty visibility, part of "Use getter/setter methods" OC rule.
  *
@@ -7,7 +11,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_Classes_PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.

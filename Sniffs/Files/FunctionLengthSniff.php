@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\Files;
+
+use ObjectCalisthenics_DataStructureLengthSniff;
+
 /**
  * Function/CLass method length sniffer, part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_Files_FunctionLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
+class FunctionLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -15,7 +19,7 @@ class ObjectCalisthenics_Sniffs_Files_FunctionLengthSniff extends ObjectCalisthe
     /**
      * {@inheritdoc}
      */
-    public $absoluteMaxLength = 20; 
+    public $absoluteMaxLength = 20;
 
     /**
      * {@inheritdoc}
@@ -23,5 +27,5 @@ class ObjectCalisthenics_Sniffs_Files_FunctionLengthSniff extends ObjectCalisthe
     public function register()
     {
         return array(T_FUNCTION);
-    }    
+    }
 }

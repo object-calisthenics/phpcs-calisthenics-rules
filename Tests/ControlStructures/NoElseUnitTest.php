@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\ControlStructures;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * No "else" rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

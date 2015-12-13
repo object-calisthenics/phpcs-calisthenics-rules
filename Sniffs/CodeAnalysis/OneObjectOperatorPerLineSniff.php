@@ -1,12 +1,16 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Only one object operator per line.
  *
  * However, this rule applies explicetly to Java, where there is no need to use
  * this when calling class members. Based on PHP's nature, it is enforced that
  * you use $this, this rule then contains some exceptions.
- * You can have more than one object operator, if your code contains one of the 
+ * You can have more than one object operator, if your code contains one of the
  * following sitations:
  *
  * - $this->property->method();
@@ -21,7 +25,7 @@
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
+class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.
@@ -38,7 +42,7 @@ class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff imple
     public function register()
     {
         return array(
-            T_VARIABLE, 
+            T_VARIABLE,
         );
     }
 
@@ -61,7 +65,7 @@ class ObjectCalisthenics_Sniffs_CodeAnalysis_OneObjectOperatorPerLineSniff imple
             $tmpToken     = $tokens[++$pointer];
             $pointer      = $this->ignoreWhitespace($tokens, $pointer + 1);
             $tmpTokenType = ($tokens[$pointer]['code'] === T_OPEN_PARENTHESIS)
-                ? 'method' 
+                ? 'method'
                 : 'property';
 
             // Look for second object operator token on same statement

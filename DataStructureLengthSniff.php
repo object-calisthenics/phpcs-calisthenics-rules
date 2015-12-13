@@ -1,15 +1,19 @@
 <?php
 
+namespace ObjectCalisthenics;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Data structure length code sniffer.
  *
- * This sniff is the base for class, interface, trait, function and method 
+ * This sniff is the base for class, interface, trait, function and method
  * length checks as part of "Keep your classes small" object calisthenics
  * rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.
@@ -93,7 +97,7 @@ abstract class ObjectCalisthenics_DataStructureLengthSniff implements PHP_CodeSn
 
         $firstToken = $tokens[$token['scope_opener']];
         $lastToken  = $tokens[$token['scope_closer']];
-        
+
         return $lastToken['line'] - $firstToken['line'];
     }
 }

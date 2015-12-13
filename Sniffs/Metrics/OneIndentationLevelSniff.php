@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\Metrics;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Only one indentation level per method.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_Metrics_OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
+class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * {@inheritdoc}
@@ -93,7 +97,7 @@ class ObjectCalisthenics_Sniffs_Metrics_OneIndentationLevelSniff implements PHP_
 
                     if ($nestingLevel < $level) {
                         $nestingLevel = $level;
-                    } 
+                    }
             }
         }
 

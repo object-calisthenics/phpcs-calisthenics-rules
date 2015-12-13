@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\ControlStructures;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Do not use "else" or "elseif" tokens.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_ControlStructures_NoElseSniff implements PHP_CodeSniffer_Sniff
+class NoElseSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.

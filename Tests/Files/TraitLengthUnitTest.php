@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\Files;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * Trait length, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_Files_TraitLengthUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class TraitLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

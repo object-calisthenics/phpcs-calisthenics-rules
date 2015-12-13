@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\NamingConventions;
+
+use ObjectCalisthenics_IdentifierLengthSniff;
+
 /**
  * Class length sniffer, part of "Do not abbreviate" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_NamingConventions_ClassLengthSniff extends ObjectCalisthenics_IdentifierLengthSniff
+class ClassLengthSniff extends ObjectCalisthenics_IdentifierLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -25,7 +29,7 @@ class ObjectCalisthenics_Sniffs_NamingConventions_ClassLengthSniff extends Objec
     /**
      * {@inheritdoc}
      */
-    public $absoluteMinLength = 3; 
+    public $absoluteMinLength = 3;
 
     /**
      * {@inheritdoc}
@@ -43,7 +47,7 @@ class ObjectCalisthenics_Sniffs_NamingConventions_ClassLengthSniff extends Objec
     public function register()
     {
         return array(T_STRING);
-    }    
+    }
 
     /**
      * {@inheritdoc}

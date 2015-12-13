@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Sniffs\Files;
+
+use ObjectCalisthenics_DataStructureLengthSniff;
+
 /**
  * Trait length sniffer, part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Sniffs_Files_TraitLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
+class TraitLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -15,7 +19,7 @@ class ObjectCalisthenics_Sniffs_Files_TraitLengthSniff extends ObjectCalisthenic
     /**
      * {@inheritdoc}
      */
-    public $absoluteMaxLength = 200; 
+    public $absoluteMaxLength = 200;
 
     /**
      * {@inheritdoc}
@@ -23,5 +27,5 @@ class ObjectCalisthenics_Sniffs_Files_TraitLengthSniff extends ObjectCalisthenic
     public function register()
     {
         return array(T_TRAIT);
-    }    
+    }
 }

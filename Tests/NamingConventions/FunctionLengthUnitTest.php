@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\NamingConventions;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * Function length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_NamingConventions_FunctionLengthUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class FunctionLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

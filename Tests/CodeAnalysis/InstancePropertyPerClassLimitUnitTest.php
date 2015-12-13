@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics\Tests\CodeAnalysis;
+
+use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+
 /**
  * Instance property per class limit, part of "Use first class collections" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_InstancePropertyPerClassLimitUnitTest extends ObjectCalisthenics_Tests_AbstractSniffUnitTest
+class InstancePropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
