@@ -8,7 +8,7 @@ use PHP_CodeSniffer_File;
 /**
  * {@inheritdoc}
  */
-final class ClassElementLengthSniff extends AbstractIdentifierLengthSniff
+final class ClassLengthSniff extends AbstractIdentifierLengthSniff
 {
     /**
      * {@inheritdoc}
