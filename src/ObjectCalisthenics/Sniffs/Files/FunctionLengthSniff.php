@@ -19,11 +19,6 @@ final class FunctionLengthSniff extends AbstractDataStructureLengthSniff
     /**
      * {@inheritdoc}
      */
-    public $absoluteMaxLength = 20;
-
-    /**
-     * {@inheritdoc}
-     */
     public function register()
     {
         return [T_FUNCTION];

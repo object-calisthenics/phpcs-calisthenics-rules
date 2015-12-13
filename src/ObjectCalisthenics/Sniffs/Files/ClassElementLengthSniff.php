@@ -20,11 +20,6 @@ final class ClassElementLengthSniff extends AbstractDataStructureLengthSniff
     /**
      * {@inheritdoc}
      */
-    public $absoluteMaxLength = 200;
-
-    /**
-     * {@inheritdoc}
-     */
     public function register()
     {
         return [T_CLASS, T_INTERFACE, T_TRAIT];

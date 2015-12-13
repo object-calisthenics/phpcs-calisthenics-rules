@@ -24,13 +24,6 @@ abstract class AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
     public $maxLength = 200;
 
     /**
-     * Absolute maximum data structure length for error.
-     *
-     * @var int
-     */
-    public $absoluteMaxLength = 200;
-
-    /**
      * {@inheritdoc}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
@@ -40,14 +33,10 @@ abstract class AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
         $tokenType = strtolower(substr($token['type'], 2));
         $length = $this->getStructureLength($phpcsFile, $stackPtr);
 
-        if ($length > $this->absoluteMaxLength) {
+        if ($length > $this->maxLength) {
             $message = 'Keep your %s small (currently using %d lines, must be less or equals than %d lines)';
-            $error = sprintf($message, $tokenType, $length, $this->absoluteMaxLength);
+            $error = sprintf($message, $tokenType, $length, $this->maxLength);
             $phpcsFile->addError($error, $stackPtr, sprintf('%sTooBig', ucfirst($tokenType)));
-        } elseif ($length > $this->maxLength) {
-            $message = 'Your %s is too big, consider refactoring (currently using %d lines, should be less or equals than %d lines)';
-            $warning = sprintf($message, $tokenType, $length, $this->maxLength);
-            $phpcsFile->addWarning($warning, $stackPtr, sprintf('%sTooBig', ucfirst($tokenType)));
         }
     }
 
