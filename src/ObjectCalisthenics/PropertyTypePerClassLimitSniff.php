@@ -35,13 +35,6 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     public $untrackedAbsoluteMaxCount = 0;
 
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * Retrieve the list of tracked property types.
      *
      * @return array

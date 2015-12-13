@@ -18,13 +18,6 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     public $maxNestingLevel = 1;
 
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * {@inheritdoc}
      */
     public function register()

@@ -27,13 +27,6 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     public $absoluteMaxCount = 10;
 
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * {@inheritdoc}
      */
     public function register()

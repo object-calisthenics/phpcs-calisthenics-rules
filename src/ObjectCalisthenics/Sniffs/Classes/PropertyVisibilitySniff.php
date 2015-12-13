@@ -16,13 +16,6 @@ use PHP_CodeSniffer_Tokens;
 final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * {@inheritdoc}
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
