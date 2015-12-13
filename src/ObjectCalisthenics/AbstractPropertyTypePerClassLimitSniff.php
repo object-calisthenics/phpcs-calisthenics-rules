@@ -56,7 +56,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
     {
         $propertyList = $this->getClassPropertyList($phpcsFile, $stackPtr);
 
-        // Check for tracked property type absolute amount
+        // Check for tracked property type amount
         if (($error = $this->checkTrackedClassPropertyAmount($propertyList)) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyTrackedProperties');
 
@@ -101,9 +101,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         $trackedPropertyList = $this->getTrackedClassPropertyList($propertyList);
         $trackedPropertyAmount = count($trackedPropertyList);
 
-        if ($trackedPropertyAmount > $this->trackedAbsoluteMaxCount) {
+        if ($trackedPropertyAmount > $this->trackedMaxCount) {
             $message = 'You have %d properties declared of "%s" type(s), must be less or equals than %d properties in total';
-            $error = sprintf($message, $trackedPropertyAmount, implode('", "', $this->getTrackedPropertyTypeList()), $this->trackedAbsoluteMaxCount);
+            $error = sprintf($message, $trackedPropertyAmount, implode('", "', $this->getTrackedPropertyTypeList()), $this->trackedMaxCount);
 
             return $error;
         }
