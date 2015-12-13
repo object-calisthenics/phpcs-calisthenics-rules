@@ -172,7 +172,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
     // Segregate property types and amount used in class, then loop through and validate.
 
     /**
-     * @return array     *
+     * @return array
      */
     private function getTrackedClassPropertyList(array $propertyList)
     {
@@ -274,6 +274,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         $docCommentPosition = $phpcsFile->findPrevious(T_DOC_COMMENT_STRING, $stackPtr, $stackPtr - 10);
         if ($docCommentPosition) {
             $docCommentToken = $phpcsFile->getTokens()[$docCommentPosition];
+
             return $docCommentToken['content'];
         }
 
