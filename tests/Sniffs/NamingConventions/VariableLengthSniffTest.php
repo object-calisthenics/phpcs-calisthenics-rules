@@ -6,17 +6,17 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Variable length, part of "Do not abbreviate" OC rule test.
+ * @covers ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class VariableLengthUnitTest extends PHPUnit_Framework_TestCase
+final class VariableLengthSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/VariableLengthUnitTest.inc',
+            __DIR__.'/VariableLengthSniffTest.inc',
             'ObjectCalisthenics.NamingConventions.VariableLength'
         );
 

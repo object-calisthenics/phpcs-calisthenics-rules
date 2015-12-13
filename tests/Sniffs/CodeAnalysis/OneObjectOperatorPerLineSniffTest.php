@@ -6,18 +6,18 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Array property per class limit, part of "Use first class collections" OC rule.
+ * @covers ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ArrayPropertyPerClassLimitUnitTest extends PHPUnit_Framework_TestCase
+final class OneObjectOperatorPerLineSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ArrayPropertyPerClassLimitUnitTest.inc',
-            'ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit'
+            __DIR__.'/OneObjectOperatorPerLineSniffTest.inc',
+            'ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine'
         );
 
         $this->assertSame(2, $errorCount);

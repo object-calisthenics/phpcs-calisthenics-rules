@@ -6,20 +6,20 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * One level of indentation rule unit test.
+ * @covers ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class OneIndentationLevelUnitTest extends PHPUnit_Framework_TestCase
+final class MethodPerClassLimitSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/OneIndentationLevelUnitTest.inc',
-            'ObjectCalisthenics.Metrics.OneIndentationLevel'
+            __DIR__.'/MethodPerClassLimitSniffTest.inc',
+            'ObjectCalisthenics.Metrics.MethodPerClassLimit'
         );
 
-        $this->assertSame(5, $errorCount);
+        $this->assertSame(3, $errorCount);
     }
 }
