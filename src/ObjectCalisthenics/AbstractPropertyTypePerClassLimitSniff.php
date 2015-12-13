@@ -18,14 +18,14 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
      *
      * @var int
      */
-    public $trackedMaxCount = 1;
+    protected $trackedMaxCount = 1;
 
     /**
      * Untracked property maximum amount.
      *
      * @var int
      */
-    public $untrackedMaxCount = 0;
+    protected $untrackedMaxCount = 0;
 
     /**
      * Retrieve the list of tracked property types.
@@ -71,6 +71,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         }
 
         // Check for untracked property type amount
+
         if (($error = $this->checkUntrackedClassPropertyAmount($propertyList)) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
 
@@ -114,7 +115,6 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
 
         foreach ($segregatedPropertyList as $propertyType => $propertyOfTypeList) {
             $propertyOfTypeAmount = count($propertyOfTypeList);
-
             if ($propertyOfTypeAmount > $this->trackedMaxCount) {
                 $message = 'You have %d properties of "%s" type, must be less or equals than %d properties in total';
                 $error = sprintf($message, $propertyOfTypeAmount, $propertyType, $this->trackedMaxCount);
@@ -241,16 +241,11 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         }
 
         $comment = $this->processMemberComment($phpcsFile, $stackPtr);
-        if ($comment === null) {
+        if ($comment === null || $comment === '') {
             return;
         }
 
-        return [
-            'token' => $property,
-            'pointer' => $stackPtr,
-            'type' => $comment,
-            'modifiers' => $phpcsFile->getMemberProperties($stackPtr),
-        ];
+        return ['type' => $comment];
     }
 
     /**
@@ -267,8 +262,12 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         $docCommentPosition = $phpcsFile->findPrevious(T_DOC_COMMENT_STRING, $stackPtr, $stackPtr - 10);
         if ($docCommentPosition) {
             $docCommentToken = $phpcsFile->getTokens()[$docCommentPosition];
+            $docComment = $docCommentToken['content'];
+            if (false !== strpos($docComment, 'inheritdoc')) {
+                return '';
+            }
 
-            return $docCommentToken['content'];
+            return $docComment;
         }
 
         return '';
