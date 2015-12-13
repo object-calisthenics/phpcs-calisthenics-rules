@@ -9,10 +9,8 @@
         "rule", "rules"
     ],
     "authors": [
-        {
-            "name": "Guilherme Blanco",
-            "email": "guilhermeblanco@hotmail.com"
-        }
+        { "name": "Guilherme Blanco", "email": "guilhermeblanco@hotmail.com" },
+        { "name": "Tomas Votruba", "email": "info@tomasvotruba.cz" }
     ],
     "require": {
         "php": "~5.5|~7.0",
