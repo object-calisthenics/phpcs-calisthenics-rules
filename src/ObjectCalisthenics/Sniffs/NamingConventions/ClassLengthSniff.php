@@ -25,6 +25,11 @@ final class ClassLengthSniff extends AbstractIdentifierLengthSniff
     /**
      * {@inheritdoc}
      */
+    protected $maxLength = 48;
+
+    /**
+     * {@inheritdoc}
+     */
     protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         return $phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1), null, false, null, true) !== false;
