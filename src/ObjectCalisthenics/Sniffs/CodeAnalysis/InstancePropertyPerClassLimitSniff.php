@@ -47,7 +47,7 @@ final class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimit
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     protected function getUntrackedPropertyType()
     {

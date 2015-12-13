@@ -20,6 +20,6 @@ final class InstancePropertyPerClassLimitUnitTest extends PHPUnit_Framework_Test
             'ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit'
         );
 
-        $this->assertCount(2, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }
