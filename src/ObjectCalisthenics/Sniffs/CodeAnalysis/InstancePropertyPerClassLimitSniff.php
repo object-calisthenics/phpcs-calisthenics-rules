@@ -24,7 +24,7 @@ final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerCl
     /**
      * {@inheritdoc}
      */
-    public $untrackedAbsoluteMaxCount = 5;
+    public $untrackedMaxCount = 5;
 
     /**
      * {@inheritdoc}
