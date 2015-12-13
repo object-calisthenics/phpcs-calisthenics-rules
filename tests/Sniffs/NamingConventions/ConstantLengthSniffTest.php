@@ -20,6 +20,6 @@ final class ConstantLengthSniffTest extends PHPUnit_Framework_TestCase
             'ObjectCalisthenics.NamingConventions.ConstantLength'
         );
 
-        $this->assertSame(1, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }

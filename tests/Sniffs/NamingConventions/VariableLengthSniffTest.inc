@@ -6,6 +6,8 @@ class Test
 
     public $te = 0;
 
+    public $veryLongPropertyNameVeryLongPropertyName = 2;
+
     public function __construct($t)
     {
         $this->te = $t;
@@ -20,5 +22,7 @@ class Test
         for ($i = 0; $i < range(0, 9); $i++) {
             echo $i;
         }
+
+        $veryLongPropertyNameVeryLongPropertyName = 3;
     }
 }

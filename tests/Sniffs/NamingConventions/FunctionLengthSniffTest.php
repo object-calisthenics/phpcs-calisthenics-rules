@@ -20,6 +20,6 @@ final class FunctionLengthSniffTest extends PHPUnit_Framework_TestCase
             'ObjectCalisthenics.NamingConventions.FunctionLength'
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(4, $errorCount);
     }
 }
