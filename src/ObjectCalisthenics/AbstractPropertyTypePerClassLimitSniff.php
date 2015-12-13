@@ -21,13 +21,6 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
     public $trackedMaxCount = 1;
 
     /**
-     * Tracked property absolute maximum amount.
-     *
-     * @var int
-     */
-    public $trackedAbsoluteMaxCount = 1;
-
-    /**
      * Untracked property maximum amount.
      *
      * @var int
