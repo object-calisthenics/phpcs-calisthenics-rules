@@ -25,6 +25,6 @@ final class NoElseSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $phpcsFile->addError('Do not use "else" or "elseif" tokens', $stackPtr, 'NoElse');
+        $phpcsFile->addError('Do not use "else" or "elseif" tokens', $stackPtr);
     }
 }

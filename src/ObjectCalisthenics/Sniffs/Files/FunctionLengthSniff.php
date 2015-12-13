@@ -5,7 +5,8 @@ namespace ObjectCalisthenics\Sniffs\Files;
 use ObjectCalisthenics\AbstractDataStructureLengthSniff;
 
 /**
- * Function/CLass method length sniffer, part of "Keep your classes small" object calisthenics rule.
+ * Function/CLass method length sniffer,
+ * part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
