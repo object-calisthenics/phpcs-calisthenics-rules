@@ -13,13 +13,6 @@ use PHP_CodeSniffer_Sniff;
 final class NoElseSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * {@inheritdoc}
      */
     public function register()

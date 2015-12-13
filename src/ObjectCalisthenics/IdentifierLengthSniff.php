@@ -55,13 +55,6 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     public $absoluteMaxLength = 32;
 
     /**
-     * Supported list of tokenizers supported by this sniff.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * Registers the tokens that this sniff wants to listen for.
      *
      * @return int[]
