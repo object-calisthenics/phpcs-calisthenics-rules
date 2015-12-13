@@ -24,9 +24,7 @@
     <!-- 15 classes per namespace -->
     <!-- Cannot be implemented, since PHPCS can only be executed over files -->
     <!-- 200 LOC for interfaces, classes and traits -->
-    <rule ref="ObjectCalisthenics.Files.InterfaceLength"/>
-    <rule ref="ObjectCalisthenics.Files.ClassLength"/>
-    <rule ref="ObjectCalisthenics.Files.TraitLength"/>
+    <rule ref="ObjectCalisthenics.Files.ClassElementLength"/>
     <!-- 10 methods per class -->
     <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit"/>
     <!-- 20 LOC for methods -->

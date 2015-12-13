@@ -17,7 +17,7 @@ final class TraitLengthSniffTest extends PHPUnit_Framework_TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/TraitLengthSniffTest.inc',
-            'ObjectCalisthenics.Files.TraitLength'
+            'ObjectCalisthenics.Files.ClassElementLength'
         );
 
         $this->assertSame(1, $errorCount);
