@@ -5,18 +5,8 @@
     "license": "MIT",
     "homepage": "https://github.com/object-calisthenics/phpcs-calisthenics-rules",
     "keywords": [
-        "phpcs",
-        "cs",
-        "code",
-        "coding",
-        "standard",
-        "standards",
-        "style",
-        "sniff",
-        "sniffs",
-        "sniffer",
-        "rule",
-        "rules"
+        "phpcs", "cs", "code", "coding", "standard", "standards", "style", "sniff", "sniffs", "sniffer",
+        "rule", "rules"
     ],
     "authors": [
         {
@@ -33,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ObjectCalisthenics\\": "src"
+            "ObjectCalisthenics\\": "src/ObjectCalisthenics"
         }
     },
     "autoload-dev": {
