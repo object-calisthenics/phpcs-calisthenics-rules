@@ -31,10 +31,5 @@
         "psr-4": {
             "ObjectCalisthenics\\Tests\\": "tests"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
     }
 }
