@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Trait length, part of "Keep your classes small" OC rule test.
+ * Class length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class TraitLengthUnitTest extends AbstractSniffUnitTest
+class ClassLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,7 +22,7 @@ class TraitLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            6 => 1,
+            7 => 1,
         );
     }
 

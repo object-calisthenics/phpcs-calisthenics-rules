@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\CodeAnalysis;
+namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Array property per class limit, part of "Use first class collections" OC rule.
+ * Interface length, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ArrayPropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
+class InterfaceLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,7 @@ class ArrayPropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            3  => 1,
-            24 => 1,
+            6 => 1,
         );
     }
 

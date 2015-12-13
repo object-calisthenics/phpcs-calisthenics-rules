@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics_PropertyTypePerClassLimitSniff;
+use ObjectCalisthenics\PropertyTypePerClassLimitSniff;
 
 /**
  * Instance property per class limit, part of "Do not use classes with several instance variables" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InstancePropertyPerClassLimitSniff extends ObjectCalisthenics_PropertyTypePerClassLimitSniff
+class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}

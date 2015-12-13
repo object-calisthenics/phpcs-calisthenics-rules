@@ -32,9 +32,14 @@
         "phpunit/phpunit": "~4.2|~5.0"
     },
     "autoload": {
-        "classmap": [
-            "ObjectCalisthenics/Sniffs/"
-        ]
+        "psr-4": {
+            "ObjectCalisthenics\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ObjectCalisthenics\\Tests\\": "tests"
+        }
     },
     "extra": {
         "branch-alias": {

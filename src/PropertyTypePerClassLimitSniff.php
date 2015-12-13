@@ -1,11 +1,15 @@
 <?php
 
+namespace ObjectCalisthenics;
+
+use PHP_CodeSniffer_Sniff;
+
 /**
  * Track the limit of properties of a given set of types per class. Check for untracked property types per class limit too.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
+abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Tracked property type maximum amount.
@@ -135,7 +139,7 @@ abstract class ObjectCalisthenics_PropertyTypePerClassLimitSniff implements PHP_
      *
      * @return array
      */
-    protected function checkTrackedClassPropertyTypeAmount(array $propertyList) 
+    protected function checkTrackedClassPropertyTypeAmount(array $propertyList)
     {
         $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
         $errorList              = array();

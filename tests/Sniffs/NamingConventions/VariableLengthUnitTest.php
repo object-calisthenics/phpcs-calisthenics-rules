@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Interface length, part of "Keep your classes small" OC rule test.
+ * Variable length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InterfaceLengthUnitTest extends AbstractSniffUnitTest
+class VariableLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,7 +22,12 @@ class InterfaceLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            6 => 1,
+            7  => 1,
+            9  => 1,
+            11 => 1,
+            18 => 1,
+            20 => 3,
+            21 => 1,
         );
     }
 

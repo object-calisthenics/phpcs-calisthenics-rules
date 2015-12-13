@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\NamingConventions;
+namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Function length, part of "Do not abbreviate" OC rule test.
+ * Property visibility, part of "Use getters and setters" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class FunctionLengthUnitTest extends AbstractSniffUnitTest
+class PropertyVisibilityUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,8 @@ class FunctionLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            9  => 1,
-            18 => 1,
+            5 => 2,
+            7 => 1,
         );
     }
 

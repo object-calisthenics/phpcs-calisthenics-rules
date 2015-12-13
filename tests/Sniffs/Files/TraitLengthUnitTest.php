@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Metrics;
+namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Methods per class limit, part of "Keep your classes small" OC rule test.
+ * Trait length, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
+class TraitLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,9 +22,7 @@ class MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            6   => 1,
-            67  => 1,
-            150 => 1,
+            6 => 1,
         );
     }
 

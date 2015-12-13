@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Classes;
+namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Property visibility, part of "Use getters and setters" OC rule test.
+ * Methods per class limit, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class PropertyVisibilityUnitTest extends AbstractSniffUnitTest
+class MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,9 @@ class PropertyVisibilityUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            5 => 2,
-            7 => 1,
+            6   => 1,
+            67  => 1,
+            150 => 1,
         );
     }
 

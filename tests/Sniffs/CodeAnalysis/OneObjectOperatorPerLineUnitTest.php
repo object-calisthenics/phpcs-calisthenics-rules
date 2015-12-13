@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\ControlStructures;
+namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * No "else" rule unit test
+ * One object operator (->) per line.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,11 +22,8 @@ class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends Abstract
     public function getErrorList()
     {
         return array(
-            4  => 1,
-            8  => 1,
-            12 => 1,
-            13 => 1,
-            14 => 1,
+            37 => 1,
+            61 => 1,
         );
     }
 

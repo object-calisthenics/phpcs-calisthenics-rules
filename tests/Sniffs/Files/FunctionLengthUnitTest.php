@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\CodeAnalysis;
+namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * One object operator (->) per line.
+ * Function length, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends AbstractSniffUnitTest
+class FunctionLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,8 @@ class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest ext
     public function getErrorList()
     {
         return array(
-            37 => 1,
-            61 => 1,
+            9  => 1,
+            83 => 1,
         );
     }
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\NamingConventions;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Variable length, part of "Do not abbreviate" OC rule test.
+ * Constant length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class VariableLengthUnitTest extends AbstractSniffUnitTest
+class ConstantLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,12 +22,7 @@ class VariableLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            7  => 1,
-            9  => 1,
-            11 => 1,
-            18 => 1,
-            20 => 3,
-            21 => 1,
+            9 => 1,
         );
     }
 

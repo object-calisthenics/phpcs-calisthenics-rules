@@ -1,12 +1,19 @@
 <?php
 
+namespace ObjectCalisthenics\Tests;
+
+use PHP_CodeSniffer;
+use PHP_CodeSniffer_Exception;
+use PHP_CodeSniffer_File;
+use PHPUnit_Framework_TestCase;
+
 /**
  * Mirror to https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/tests/Standards/AbstractSniffUnitTest.php
  * to prevent dependency on PHP_CodeSniffer's tests.
  *
  * Just simpler.
  */
-abstract class ObjectCalisthenics_Tests_AbstractSniffUnitTest extends PHPUnit_Framework_TestCase
+abstract class AbstractSniffUnitTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var PHP_CodeSniffer
@@ -26,21 +33,21 @@ abstract class ObjectCalisthenics_Tests_AbstractSniffUnitTest extends PHPUnit_Fr
         $sniffName = $this->detectSniffName();
         $this->phpcs->initStandard('../../../../..', [$sniffName]);
 
-//        $failureMessages = array();
-//        foreach ($testFiles as $testFile) {
-//            $filename = basename($testFile);
-//
-//            try {
-//                $cliValues = $this->getCliValues($filename);
-//                self::$phpcs->cli->setCommandLineValues($cliValues);
-//                $phpcsFile = self::$phpcs->processFile($testFile);
-//            } catch (Exception $e) {
-//                $this->fail('An unexpected exception has been caught: '.$e->getMessage());
-//            }
+        $failureMessages = array();
+        foreach ($testFiles as $testFile) {
+            $filename = basename($testFile);
 
-//            $failures        = $this->generateFailureMessages($phpcsFile);
-//            $failureMessages = array_merge($failureMessages, $failures);
-//        }
+            try {
+                $cliValues = $this->getCliValues($filename);
+                $this->phpcs->cli->setCommandLineValues($cliValues);
+                $phpcsFile = self::$phpcs->processFile($testFile);
+            } catch (Exception $e) {
+                $this->fail('An unexpected exception has been caught: '.$e->getMessage());
+            }
+
+            $failures        = $this->generateFailureMessages($phpcsFile);
+            $failureMessages = array_merge($failureMessages, $failures);
+        }
 
         if (empty($failureMessages) === false) {
             $this->fail(implode(PHP_EOL, $failureMessages));

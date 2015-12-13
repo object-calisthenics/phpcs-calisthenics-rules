@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Class length, part of "Keep your classes small" OC rule test.
+ * One level of indentation rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ClassLengthUnitTest extends AbstractSniffUnitTest
+class OneIndentationLevelUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,7 +22,11 @@ class ClassLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            6 => 1,
+            5  => 1,
+            23 => 1,
+            41 => 1,
+            60 => 1,
+            90 => 1,
         );
     }
 

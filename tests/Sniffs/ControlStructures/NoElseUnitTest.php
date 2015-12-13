@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Function length, part of "Keep your classes small" OC rule test.
+ * No "else" rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class FunctionLengthUnitTest extends AbstractSniffUnitTest
+class ObjectCalisthenics_Tests_ControlStructures_NoElseUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,11 @@ class FunctionLengthUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            9  => 1,
-            83 => 1,
+            4  => 1,
+            8  => 1,
+            12 => 1,
+            13 => 1,
+            14 => 1,
         );
     }
 

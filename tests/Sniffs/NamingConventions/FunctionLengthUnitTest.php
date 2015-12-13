@@ -1,15 +1,15 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\CodeAnalysis;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
 
 /**
- * Instance property per class limit, part of "Use first class collections" OC rule.
+ * Function length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InstancePropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
+class FunctionLengthUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -22,8 +22,8 @@ class InstancePropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            3   => 1,
-            109 => 1,
+            9  => 1,
+            18 => 1,
         );
     }
 
