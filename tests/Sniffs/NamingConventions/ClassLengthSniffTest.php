@@ -17,7 +17,7 @@ final class ClassLengthSniffTest extends PHPUnit_Framework_TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassLengthSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.ClassElementLength'
+            'ObjectCalisthenics.NamingConventions.ClassLength'
         );
 
         $this->assertSame(1, $errorCount);
