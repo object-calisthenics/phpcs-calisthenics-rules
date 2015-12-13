@@ -26,12 +26,11 @@
     ],
     "require": {
         "php": "~5.5|~7.0",
-        "squizlabs/php_codesniffer": "~1.5"
+        "squizlabs/php_codesniffer": "^2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.2|~5.0"
     },
-    "target-dir": "ObjectCalisthenics",
     "autoload": {
         "classmap": [
             "ObjectCalisthenics/Sniffs/"
