@@ -21,7 +21,7 @@ Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in
 <ruleset name="Project">
     <description>Project Coding Standard</description>
 
-    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml"/>
+    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
 </ruleset>
 ```
 
