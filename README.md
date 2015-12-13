@@ -1,6 +1,10 @@
 # PHPCS-Calisthenics-Rules
 
 [![Build Status](https://img.shields.io/travis/TomasVotruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/TomasVotruba/phpcs-calisthenics-rules)
+[![Quality Score](https://img.shields.io/scrutinizer/g/TomasVotruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/TomasVotruba/phpcs-calisthenics-rules)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/TomasVotruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/TomasVotruba/phpcs-calisthenics-rules)
+[![Downloads](https://img.shields.io/packagist/dt/tomas-votruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/tomas-votruba/phpcs-calisthenics-rules)
+[![Latest stable](https://img.shields.io/packagist/v/tomas-votruba/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/tomas-votruba/phpcs-calisthenics-rules)
 
 
 A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to verify Object Calisthenics rules.
