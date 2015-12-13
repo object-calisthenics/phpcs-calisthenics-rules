@@ -6,18 +6,18 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
+ * @covers ObjectCalisthenics\Sniffs\NamingConventions\ClassElementLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ClassLengthSniffTest extends PHPUnit_Framework_TestCase
+final class ClassElementLengthSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassLengthSniffTest.inc',
-            'ObjectCalisthenics.Files.ClassLength'
+            __DIR__.'/ClassElementLengthSniffTest.inc',
+            'ObjectCalisthenics.Files.ClassElementLength'
         );
 
         $this->assertSame(1, $errorCount);

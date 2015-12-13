@@ -17,7 +17,7 @@ final class InterfaceLengthSniffTest extends PHPUnit_Framework_TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/InterfaceLengthSniffTest.inc',
-            'ObjectCalisthenics.Files.InterfaceLength'
+            'ObjectCalisthenics.Files.ClassElementLength'
         );
 
         $this->assertSame(1, $errorCount);

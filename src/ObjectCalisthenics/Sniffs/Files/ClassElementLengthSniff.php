@@ -5,11 +5,12 @@ namespace ObjectCalisthenics\Sniffs\Files;
 use ObjectCalisthenics\AbstractDataStructureLengthSniff;
 
 /**
- * Interface length sniffer, part of "Keep your classes small" object calisthenics rule.
+ * Class, interface and trait length sniffer,
+ * part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class InterfaceLengthSniff extends AbstractDataStructureLengthSniff
+final class ClassElementLengthSniff extends AbstractDataStructureLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -26,6 +27,6 @@ final class InterfaceLengthSniff extends AbstractDataStructureLengthSniff
      */
     public function register()
     {
-        return [T_INTERFACE];
+        return [T_CLASS, T_INTERFACE, T_TRAIT];
     }
 }
