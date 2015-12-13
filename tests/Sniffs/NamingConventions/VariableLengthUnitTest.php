@@ -2,32 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Variable length, part of "Do not abbreviate" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class VariableLengthUnitTest extends AbstractSniffUnitTest
+class VariableLengthUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            7  => 1,
-            9  => 1,
-            11 => 1,
-            18 => 1,
-            20 => 3,
-            21 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/VariableLengthUnitTest.inc',
+            'ObjectCalisthenics.NamingConventions.VariableLength'
         );
+
+        $this->assertSame(8, $errorCount);
     }
 }

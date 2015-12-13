@@ -2,28 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Function length, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class FunctionLengthUnitTest extends AbstractSniffUnitTest
+class FunctionLengthUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            9  => 1,
-            83 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/FunctionLengthUnitTest.inc',
+            'ObjectCalisthenics.Files.FunctionLength'
         );
+
+        $this->assertSame(2, $errorCount);
     }
 }

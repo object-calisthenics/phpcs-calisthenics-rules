@@ -2,29 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Methods per class limit, part of "Keep your classes small" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class MethodPerClassLimitUnitTest extends AbstractSniffUnitTest
+class MethodPerClassLimitUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            6   => 1,
-            67  => 1,
-            150 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/MethodPerClassLimitUnitTest.inc',
+            'ObjectCalisthenics.Metrics.MethodPerClassLimit'
         );
+
+        $this->assertSame(3, $errorCount);
     }
 }

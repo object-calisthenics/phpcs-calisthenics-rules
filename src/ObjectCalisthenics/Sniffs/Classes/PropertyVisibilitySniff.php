@@ -2,7 +2,9 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Standards_AbstractVariableSniff;
+use PHP_CodeSniffer_Tokens;
 
 /**
  * Check for proterty visibility, part of "Use getter/setter methods" OC rule.
@@ -23,7 +25,7 @@ class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariable
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      */

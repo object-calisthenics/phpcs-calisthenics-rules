@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\Files;
 
-use ObjectCalisthenics_DataStructureLengthSniff;
+use ObjectCalisthenics\DataStructureLengthSniff;
 
 /**
  * Function/CLass method length sniffer, part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class FunctionLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
+class FunctionLengthSniff extends DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}

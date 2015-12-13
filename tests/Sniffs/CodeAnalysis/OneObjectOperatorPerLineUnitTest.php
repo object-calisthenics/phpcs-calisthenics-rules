@@ -2,28 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * One object operator (->) per line.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ObjectCalisthenics_Tests_CodeAnalysis_OneObjectOperatorPerLineUnitTest extends AbstractSniffUnitTest
+class OneObjectOperatorPerLineUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            37 => 1,
-            61 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/OneObjectOperatorPerLineUnitTest.inc',
+            'ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine'
         );
+
+        $this->assertSame(2, $errorCount);
     }
 }

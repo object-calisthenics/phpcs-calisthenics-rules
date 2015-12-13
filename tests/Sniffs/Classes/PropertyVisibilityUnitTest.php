@@ -2,28 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Property visibility, part of "Use getters and setters" OC rule test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class PropertyVisibilityUnitTest extends AbstractSniffUnitTest
+final class PropertyVisibilityUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            5 => 2,
-            7 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/PropertyVisibilityUnitTest.inc',
+            'ObjectCalisthenics.Classes.PropertyVisibility'
         );
+
+        $this->assertSame(3, $errorCount);
     }
 }

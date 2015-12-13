@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\Files;
 
-use ObjectCalisthenics_DataStructureLengthSniff;
+use ObjectCalisthenics\DataStructureLengthSniff;
 
 /**
  * Interface length sniffer, part of "Keep your classes small" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InterfaceLengthSniff extends ObjectCalisthenics_DataStructureLengthSniff
+class InterfaceLengthSniff extends DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}

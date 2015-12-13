@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\ControlStructures;
 
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 /**
@@ -34,7 +35,7 @@ class NoElseSniff implements PHP_CodeSniffer_Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *

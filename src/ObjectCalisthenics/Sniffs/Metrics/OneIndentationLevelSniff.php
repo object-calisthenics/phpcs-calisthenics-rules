@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 /**
@@ -41,7 +42,7 @@ class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
      *
      * {@internal Implementation based on Generic.Metrics.NestingLevel code}
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      */

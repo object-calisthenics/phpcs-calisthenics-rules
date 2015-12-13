@@ -2,14 +2,14 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics_PropertyTypePerClassLimitSniff;
+use ObjectCalisthenics\PropertyTypePerClassLimitSniff;
 
 /**
  * Array property per class limist, part of "Use first class collections" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ArrayPropertyPerClassLimitSniff extends ObjectCalisthenics_PropertyTypePerClassLimitSniff
+class ArrayPropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}
@@ -31,6 +31,6 @@ class ArrayPropertyPerClassLimitSniff extends ObjectCalisthenics_PropertyTypePer
      */
     protected function getTrackedPropertyTypeList()
     {
-        return array('array');
+        return ['array'];
     }
 }

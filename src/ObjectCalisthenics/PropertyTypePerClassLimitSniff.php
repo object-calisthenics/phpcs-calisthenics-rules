@@ -2,10 +2,12 @@
 
 namespace ObjectCalisthenics;
 
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 /**
- * Track the limit of properties of a given set of types per class. Check for untracked property types per class limit too.
+ * Track the limit of properties of a given set of types per class.
+ * Check for untracked property types per class limit too.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
@@ -62,7 +64,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      */
@@ -247,7 +249,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Retrieve all declared class properties.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *
@@ -276,7 +278,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Create a given declared class property metadata.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *
@@ -319,7 +321,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Process docblock of property and returns its processed information.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param integer               $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *

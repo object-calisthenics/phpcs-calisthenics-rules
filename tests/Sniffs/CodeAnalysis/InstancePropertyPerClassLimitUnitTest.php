@@ -2,28 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Instance property per class limit, part of "Use first class collections" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InstancePropertyPerClassLimitUnitTest extends AbstractSniffUnitTest
+class InstancePropertyPerClassLimitUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            3   => 1,
-            109 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/InstancePropertyPerClassLimitUnitTest.inc',
+            'ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit'
         );
+
+        $this->assertCount(2, $errorCount);
     }
 }

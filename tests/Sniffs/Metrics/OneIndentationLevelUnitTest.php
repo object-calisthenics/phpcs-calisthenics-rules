@@ -2,31 +2,24 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
-use ObjectCalisthenics\Tests\AbstractSniffUnitTest;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
+use PHPUnit_Framework_TestCase;
 
 /**
  * One level of indentation rule unit test
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class OneIndentationLevelUnitTest extends AbstractSniffUnitTest
+class OneIndentationLevelUnitTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the lines where errors should occur.
-     *
-     * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
-     *
-     * @return array
-     */
-    public function getErrorList()
+    public function testSniff()
     {
-        return array(
-            5  => 1,
-            23 => 1,
-            41 => 1,
-            60 => 1,
-            90 => 1,
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/OneIndentationLevelUnitTest.inc',
+            'ObjectCalisthenics.Metrics.OneIndentationLevel'
         );
+
+        $this->assertSame(5, $errorCount);
     }
 }

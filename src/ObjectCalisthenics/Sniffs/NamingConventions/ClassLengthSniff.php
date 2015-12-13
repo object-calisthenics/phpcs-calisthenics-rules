@@ -2,14 +2,15 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use ObjectCalisthenics_IdentifierLengthSniff;
+use ObjectCalisthenics\IdentifierLengthSniff;
+use PHP_CodeSniffer_File;
 
 /**
  * Class length sniffer, part of "Do not abbreviate" object calisthenics rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ClassLengthSniff extends ObjectCalisthenics_IdentifierLengthSniff
+class ClassLengthSniff extends IdentifierLengthSniff
 {
     /**
      * {@inheritdoc}
