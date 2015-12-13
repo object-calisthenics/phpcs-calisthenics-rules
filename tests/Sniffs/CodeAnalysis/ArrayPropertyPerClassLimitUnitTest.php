@@ -20,6 +20,6 @@ final class ArrayPropertyPerClassLimitUnitTest extends PHPUnit_Framework_TestCas
             'ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit'
         );
 
-        $this->assertCount(2, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }

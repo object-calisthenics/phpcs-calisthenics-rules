@@ -86,8 +86,6 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Retrieve the untracked string representation.
-     *
      * @return string
      */
     protected function getUntrackedPropertyType()
@@ -96,13 +94,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Check for tracked class properties amount.
-     *
-     * @param array $propertyList
-     *
      * @return string
      */
-    protected function checkTrackedClassPropertyAmount(array $propertyList)
+    private function checkTrackedClassPropertyAmount(array $propertyList)
     {
         $trackedPropertyList = $this->getTrackedClassPropertyList($propertyList);
         $trackedPropertyAmount = count($trackedPropertyList);
@@ -118,13 +112,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Check for tracked class property types amount.
-     *
-     * @param array $propertyList
-     *
      * @return array
      */
-    protected function checkTrackedClassPropertyTypeAmount(array $propertyList)
+    private function checkTrackedClassPropertyTypeAmount(array $propertyList)
     {
         $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
         $errorList = [];
@@ -144,13 +134,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Check for untracked class properties amount.
-     *
-     * @param array $propertyList
-     *
      * @return string
      */
-    protected function checkUntrackedClassPropertyAmount(array $propertyList)
+    private function checkUntrackedClassPropertyAmount(array $propertyList)
     {
         $untrackedPropertyList = $this->getUntrackedClassPropertyList($propertyList);
         $untrackedPropertyAmount = count($untrackedPropertyList);
@@ -166,13 +152,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Retrieve class properties segregated by data type.
-     *
-     * @param array $propertyList
-     *
      * @return array
      */
-    protected function getClassPropertiesSegregatedByType(array $propertyList)
+    private function getClassPropertiesSegregatedByType(array $propertyList)
     {
         $segregatedPropertyList = [];
 
@@ -190,13 +172,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     // Segregate property types and amount used in class, then loop through and validate.
 
     /**
-     * Retrieve the list of tracked class properties.
-     *
-     * @param array $propertyList List of declared class properties.
-     *
-     * @return array
+     * @return array     *
      */
-    protected function getTrackedClassPropertyList(array $propertyList)
+    private function getTrackedClassPropertyList(array $propertyList)
     {
         $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
 
@@ -209,13 +187,9 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Retrieve the list of untracked class properties.
-     *
-     * @param array $propertyList List of declared class properties.
-     *
      * @return array
      */
-    protected function getUntrackedClassPropertyList(array $propertyList)
+    private function getUntrackedClassPropertyList(array $propertyList)
     {
         $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
 
@@ -228,15 +202,13 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * Retrieve all declared class properties.
-     *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
      *                                        in the stack passed in $tokens.
      *
      * @return array
      */
-    protected function getClassPropertyList(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function getClassPropertyList(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
@@ -275,27 +247,16 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        // If comment couldnt be properly parsed, error was already added.
-        if (($comment = $this->processMemberComment($phpcsFile, $stackPtr)) === null) {
-            return;
-        }
-
-        $varDoc = $comment->getVar();
-
-        // If var tag in docblock couldnt be properly read (ie. inheritdoc), error should be added.
-        if (!$varDoc) {
-            $error = sprintf('Unable to retrieve data type of property "%s"', $property['content']);
-
-            $phpcsFile->addError($error, $stackPtr, 'InvalidPropertyType');
-
+        $comment = $this->processMemberComment($phpcsFile, $stackPtr);
+        if ($comment === null) {
             return;
         }
 
         return [
             'token' => $property,
             'pointer' => $stackPtr,
-            'type' => $varDoc->getContent(),
-            'modifiers' => $phpcsFile->getMemberProperties($stackPtr),
+            'type' => $comment,
+            'modifiers$comment' => $phpcsFile->getMemberProperties($stackPtr),
         ];
     }
 
@@ -306,27 +267,16 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      * @param int                  $stackPtr  The position of the current token
      *                                        in the stack passed in $tokens.
      *
-     * @return null|\PHP_CodeSniffer_CommentParser_MemberCommentParser
+     * @return string
      */
     private function processMemberComment(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $commentEnd = $phpcsFile->findPrevious(T_DOC_COMMENT, ($stackPtr - 3));
-        $commentStart = $phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), null, true) + 1;
-        $commentString = $phpcsFile->getTokensAsString($commentStart, ($commentEnd - $commentStart + 1));
-
-        // Parse the header comment docblock.
-        try {
-            $commentParser = new PHP_CodeSniffer_CommentParser_MemberCommentParser($commentString, $phpcsFile);
-
-            $commentParser->parse();
-        } catch (PHP_CodeSniffer_CommentParser_ParserException $exception) {
-            $line = ($exception->getLineWithinComment() + $commentStart);
-
-            $phpcsFile->addError($exception->getMessage(), $line, 'ErrorParsing');
-
-            return;
+        $docCommentPosition = $phpcsFile->findPrevious(T_DOC_COMMENT_STRING, $stackPtr, $stackPtr - 10);
+        if ($docCommentPosition) {
+            $docCommentToken = $phpcsFile->getTokens()[$docCommentPosition];
+            return $docCommentToken['content'];
         }
 
-        return $commentParser;
+        return '';
     }
 }
