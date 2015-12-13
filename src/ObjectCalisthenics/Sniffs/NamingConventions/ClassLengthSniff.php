@@ -6,11 +6,9 @@ use ObjectCalisthenics\IdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 
 /**
- * Class length sniffer, part of "Do not abbreviate" object calisthenics rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
+ * {@inheritdoc}
  */
-class ClassLengthSniff extends IdentifierLengthSniff
+final class ClassLengthSniff extends IdentifierLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -47,7 +45,7 @@ class ClassLengthSniff extends IdentifierLengthSniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return [T_STRING];
     }
 
     /**

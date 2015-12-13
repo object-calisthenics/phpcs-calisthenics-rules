@@ -59,7 +59,7 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
      *
      * @var array
      */
-    public $supportedTokenizers = array('PHP');
+    public $supportedTokenizers = ['PHP'];
 
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -76,11 +76,7 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     abstract public function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr);
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * {@inheritdoc}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

@@ -39,7 +39,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      *
      * @var array
      */
-    public $supportedTokenizers = array('PHP');
+    public $supportedTokenizers = ['PHP'];
 
     /**
      * Retrieve the list of tracked property types.
@@ -49,24 +49,15 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     abstract protected function getTrackedPropertyTypeList();
 
     /**
-     * Registers the tokens that this sniff wants to listen for.
-     *
-     * @return integer[]
+     * {@inheritdoc}
      */
     public function register()
     {
-        return array(
-            T_CLASS,
-            T_TRAIT,
-        );
+        return [T_CLASS, T_TRAIT];
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * {@inheritdoc}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -144,7 +135,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     protected function checkTrackedClassPropertyTypeAmount(array $propertyList)
     {
         $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
-        $errorList              = array();
+        $errorList              = [];
 
         foreach ($segregatedPropertyList as $propertyType => $propertyOfTypeList) {
             $propertyOfTypeAmount = count($propertyOfTypeList);
@@ -191,11 +182,11 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     protected function getClassPropertiesSegregatedByType(array $propertyList)
     {
-        $segregatedPropertyList = array();
+        $segregatedPropertyList = [];
 
         foreach ($propertyList as $property) {
             if ( ! isset($segregatedPropertyList[$property['type']])) {
-                $segregatedPropertyList[$property['type']] = array();
+                $segregatedPropertyList[$property['type']] = [];
             }
 
             $segregatedPropertyList[$property['type']][] = $property;
@@ -260,7 +251,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
         $tokens       = $phpcsFile->getTokens();
         $token        = $tokens[$stackPtr];
         $pointer      = $token['scope_opener'];
-        $propertyList = array();
+        $propertyList = [];
 
         while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
             $property = $this->createProperty($phpcsFile, $pointer);
@@ -310,12 +301,12 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
             return null;
         }
 
-        return array(
+        return [
             'token'     => $property,
             'pointer'   => $stackPtr,
             'type'      => $varDoc->getContent(),
             'modifiers' => $phpcsFile->getMemberProperties($stackPtr),
-        );
+        ];
     }
 
     /**

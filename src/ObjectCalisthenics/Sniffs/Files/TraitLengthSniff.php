@@ -9,7 +9,7 @@ use ObjectCalisthenics\DataStructureLengthSniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class TraitLengthSniff extends DataStructureLengthSniff
+final class TraitLengthSniff extends DataStructureLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -26,6 +26,6 @@ class TraitLengthSniff extends DataStructureLengthSniff
      */
     public function register()
     {
-        return array(T_TRAIT);
+        return [T_TRAIT];
     }
 }

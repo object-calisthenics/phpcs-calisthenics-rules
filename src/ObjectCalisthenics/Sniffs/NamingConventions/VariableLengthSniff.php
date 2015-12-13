@@ -10,7 +10,7 @@ use PHP_CodeSniffer_File;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class VariableLengthSniff extends IdentifierLengthSniff
+final class VariableLengthSniff extends IdentifierLengthSniff
 {
     /**
      * {@inheritdoc}
@@ -47,7 +47,7 @@ class VariableLengthSniff extends IdentifierLengthSniff
      */
     public function register()
     {
-        return array(T_VARIABLE);
+        return [T_VARIABLE];
     }
 
     /**

@@ -9,7 +9,7 @@ use ObjectCalisthenics\PropertyTypePerClassLimitSniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
+final class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}
@@ -31,7 +31,7 @@ class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
      */
     protected function getTrackedPropertyTypeList()
     {
-        return array(
+        return [
             'array',
             'bool',
             'boolean',
@@ -43,9 +43,12 @@ class InstancePropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
             'integer',
             'resource',
             'string',
-        );
+        ];
     }
 
+    /**
+     * @return string
+     */
     protected function getUntrackedPropertyType()
     {
         return 'object instance';

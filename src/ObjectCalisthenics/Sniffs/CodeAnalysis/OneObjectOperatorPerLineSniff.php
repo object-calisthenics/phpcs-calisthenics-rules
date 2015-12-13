@@ -26,33 +26,25 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
+final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.
      *
      * @var array
      */
-    public $supportedTokenizers = array('PHP');
+    public $supportedTokenizers = ['PHP'];
 
     /**
-     * Registers the tokens that this sniff wants to listen for.
-     *
-     * @return integer[]
+     * {@inheritdoc}
      */
     public function register()
     {
-        return array(
-            T_VARIABLE,
-        );
+        return [T_VARIABLE];
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * {@inheritdoc}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -60,7 +52,7 @@ class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         $token        = $tokens[$stackPtr];
         $isOwnCall    = ($token['content'] === '$this');
         $pointer      = $this->ignoreWhitespace($tokens, $stackPtr + 1);
-        $callerTokens = array();
+        $callerTokens = [];
 
         while ($tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
             $tmpToken     = $tokens[++$pointer];
@@ -112,14 +104,20 @@ class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
             array_push(
                 $callerTokens,
-                array(
+                [
                     'token' => $tmpToken,
                     'type'  => $tmpTokenType,
-                )
+                ]
             );
         }
     }
 
+    /**
+     * @param array $tokens
+     * @param int $start
+     *
+     * @return string
+     */
     private function ignoreWhitespace(array $tokens, $start)
     {
         $pointer = $start;

@@ -10,7 +10,7 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
+final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * {@inheritdoc}
@@ -22,29 +22,18 @@ class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
      *
      * @var array
      */
-    public $supportedTokenizers = array('PHP');
+    public $supportedTokenizers = ['PHP'];
 
     /**
-     * Registers the tokens that this sniff wants to listen for.
-     *
-     * @return integer[]
+     * {@inheritdoc}
      */
     public function register()
     {
-        return array(
-            T_FUNCTION,
-            T_CLOSURE,
-        );
+        return [T_FUNCTION, T_CLOSURE];
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * {@internal Implementation based on Generic.Metrics.NestingLevel code}
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * {@inheritdoc}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -60,7 +49,7 @@ class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         $start             = $token['scope_opener'];
         $end               = $token['scope_closer'];
         $nestingLevel      = 0;
-        $ignoredScopeStack = array();
+        $ignoredScopeStack = [];
 
         // Find the maximum nesting level of any token in the function.
         for ($i = ($start + 1); $i < $end; $i++) {
@@ -107,7 +96,7 @@ class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 
         if ($nestingLevel > $this->maxNestingLevel) {
             $error = 'Only one indentation level per function/method. Found %s levels.';
-            $data  = array($nestingLevel);
+            $data  = [$nestingLevel];
 
             $phpcsFile->addError($error, $stackPtr, 'MaxExceeded', $data);
         }

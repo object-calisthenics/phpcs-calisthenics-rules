@@ -13,21 +13,17 @@ use PHP_CodeSniffer_Tokens;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
     /**
      * Supported list of tokenizers supported by this sniff.
      *
      * @var array
      */
-    public $supportedTokenizers = array('PHP');
+    public $supportedTokenizers = ['PHP'];
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * {@inheritdoc}
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

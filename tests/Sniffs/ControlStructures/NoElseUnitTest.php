@@ -10,7 +10,7 @@ use PHPUnit_Framework_TestCase;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class NoElseUnitTest extends PHPUnit_Framework_TestCase
+final class NoElseUnitTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {

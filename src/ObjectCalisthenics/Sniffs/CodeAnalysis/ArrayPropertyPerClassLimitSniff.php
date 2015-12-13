@@ -9,7 +9,7 @@ use ObjectCalisthenics\PropertyTypePerClassLimitSniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ArrayPropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
+final class ArrayPropertyPerClassLimitSniff extends PropertyTypePerClassLimitSniff
 {
     /**
      * {@inheritdoc}

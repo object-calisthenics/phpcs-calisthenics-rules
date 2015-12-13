@@ -4,7 +4,7 @@ class ObjectOriented
 {
     public function test()
     {
-        $a = array();
+        $a = [];
 
         if ($a === 2) {
             echo 'Test';
@@ -40,7 +40,7 @@ function nestingFive()
 
 function structural()
 {
-    $a = array();
+    $a = [];
 
     if ($a === 2) {
         echo 'Test';
