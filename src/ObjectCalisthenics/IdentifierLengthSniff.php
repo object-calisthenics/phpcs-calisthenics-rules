@@ -22,35 +22,35 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     /**
      * Token type length factor, reducing the actual size of token by a factor of value.
      *
-     * @var integer
+     * @var int
      */
     protected $tokenTypeLengthFactor = 1;
 
     /**
      * Minimum variable/method name length.
      *
-     * @var integer
+     * @var int
      */
     public $minLength = 3;
 
     /**
      * Absolute minimum variable/method name length.
      *
-     * @var integer
+     * @var int
      */
     public $absoluteMinLength = 3;
 
     /**
      * Maximum variable/method name length.
      *
-     * @var integer
+     * @var int
      */
     public $maxLength = 32;
 
     /**
      * Absolute maximum variable/method name length.
      *
-     * @var integer
+     * @var int
      */
     public $absoluteMaxLength = 32;
 
@@ -64,14 +64,14 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
-     * @return integer[]
+     * @return int[]
      */
     abstract public function register();
 
     /**
      * Whether if token is valid to be checked over using the current sniffer.
      *
-     * @return boolean
+     * @return bool
      */
     abstract public function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr);
 
@@ -81,24 +81,24 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
+        $token = $tokens[$stackPtr];
 
-        if ( ! $this->isValid($phpcsFile, $stackPtr)) {
+        if (!$this->isValid($phpcsFile, $stackPtr)) {
             return;
         }
 
         $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
 
         switch (true) {
-            case ($length > $this->absoluteMaxLength):
+            case $length > $this->absoluteMaxLength:
                 $message = 'Your %s is too long (currently %d chars, must be less or equals than %d chars)';
-                $error   = sprintf($message, $this->tokenString, $length, $this->absoluteMaxLength);
+                $error = sprintf($message, $this->tokenString, $length, $this->absoluteMaxLength);
 
                 $phpcsFile->addError($error, $stackPtr, sprintf('%sTooLong', ucfirst($this->tokenString)));
 
                 break;
 
-            case ($length > $this->maxLength):
+            case $length > $this->maxLength:
                 $message = 'Your %s is too long, consider refactoring (currently %d chars, should be less or equals than %d chars)';
                 $warning = sprintf($message, $this->tokenString, $length, $this->maxLength);
 
@@ -106,15 +106,15 @@ abstract class IdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 
                 break;
 
-            case ($length < $this->absoluteMinLength):
+            case $length < $this->absoluteMinLength:
                 $message = 'Your %s is too short (currently %d chars, must be more or equals than %d chars)';
-                $error   = sprintf($message, $this->tokenString, $length, $this->absoluteMinLength);
+                $error = sprintf($message, $this->tokenString, $length, $this->absoluteMinLength);
 
                 $phpcsFile->addError($error, $stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
 
                 break;
 
-            case ($length < $this->minLength):
+            case $length < $this->minLength:
                 $message = 'Your %s is too short, consider refactoring (currently %d chars, should be more or equals than %d chars)';
                 $warning = sprintf($message, $this->tokenString, $length, $this->minLength);
 

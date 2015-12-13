@@ -1,12 +1,12 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
+namespace ObjectCalisthenics\tests\Sniffs\Metrics;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * One level of indentation rule unit test
+ * One level of indentation rule unit test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */

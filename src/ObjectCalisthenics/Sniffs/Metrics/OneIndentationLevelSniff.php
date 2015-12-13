@@ -38,7 +38,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
+        $token = $tokens[$stackPtr];
 
         // Ignore abstract methods.
         if (isset($token['scope_opener']) === false) {
@@ -46,13 +46,13 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
 
         // Detect start and end of this function definition.
-        $start             = $token['scope_opener'];
-        $end               = $token['scope_closer'];
-        $nestingLevel      = 0;
+        $start = $token['scope_opener'];
+        $end = $token['scope_closer'];
+        $nestingLevel = 0;
         $ignoredScopeStack = [];
 
         // Find the maximum nesting level of any token in the function.
-        for ($i = ($start + 1); $i < $end; $i++) {
+        for ($i = ($start + 1); $i < $end; ++$i) {
             $nestedToken = $tokens[$i];
 
             switch ($nestedToken['code']) {
@@ -96,7 +96,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 
         if ($nestingLevel > $this->maxNestingLevel) {
             $error = 'Only one indentation level per function/method. Found %s levels.';
-            $data  = [$nestingLevel];
+            $data = [$nestingLevel];
 
             $phpcsFile->addError($error, $stackPtr, 'MaxExceeded', $data);
         }

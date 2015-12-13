@@ -48,15 +48,15 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens       = $phpcsFile->getTokens();
-        $token        = $tokens[$stackPtr];
-        $isOwnCall    = ($token['content'] === '$this');
-        $pointer      = $this->ignoreWhitespace($tokens, $stackPtr + 1);
+        $tokens = $phpcsFile->getTokens();
+        $token = $tokens[$stackPtr];
+        $isOwnCall = ($token['content'] === '$this');
+        $pointer = $this->ignoreWhitespace($tokens, $stackPtr + 1);
         $callerTokens = [];
 
         while ($tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
-            $tmpToken     = $tokens[++$pointer];
-            $pointer      = $this->ignoreWhitespace($tokens, $pointer + 1);
+            $tmpToken = $tokens[++$pointer];
+            $pointer = $this->ignoreWhitespace($tokens, $pointer + 1);
             $tmpTokenType = ($tokens[$pointer]['code'] === T_OPEN_PARENTHESIS)
                 ? 'method'
                 : 'property';
@@ -64,11 +64,11 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
             // Look for second object operator token on same statement
             if ($callerTokens) {
                 $memberTokenCount = count($callerTokens);
-                $memberToken      = end($callerTokens);
-                $memberTokenType  = $memberToken['type'];
+                $memberToken = end($callerTokens);
+                $memberTokenType = $memberToken['type'];
 
                 // Handle $object situation (you cannot have 2 object operators)
-                if ( ! $isOwnCall) {
+                if (!$isOwnCall) {
                     $phpcsFile->addError('Only one object operator per line.', $stackPtr);
 
                     return;
@@ -106,7 +106,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
                 $callerTokens,
                 [
                     'token' => $tmpToken,
-                    'type'  => $tmpTokenType,
+                    'type' => $tmpTokenType,
                 ]
             );
         }
@@ -114,7 +114,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param array $tokens
-     * @param int $start
+     * @param int   $start
      *
      * @return string
      */
@@ -123,7 +123,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         $pointer = $start;
 
         while ($tokens[$pointer]['code'] === T_WHITESPACE) {
-            $pointer++;
+            ++$pointer;
         }
 
         return $pointer;

@@ -1,10 +1,8 @@
 <?php
 
-namespace ObjectCalisthenics\Tests;
+namespace ObjectCalisthenics\tests;
 
 use PHP_CodeSniffer;
-use PHP_CodeSniffer_File;
-use PHPUnit_Framework_TestCase;
 
 final class CodeSnifferRunner
 {
@@ -21,6 +19,7 @@ final class CodeSnifferRunner
     /**
      * @param string $testedFile
      * @param string $sniffName
+     *
      * @return int
      */
     public function detectErrorCountInFileForSniff($testedFile, $sniffName)

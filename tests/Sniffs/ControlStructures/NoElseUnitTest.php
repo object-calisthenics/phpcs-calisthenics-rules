@@ -1,12 +1,12 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
+namespace ObjectCalisthenics\tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * No "else" rule unit test
+ * No "else" rule unit test.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */

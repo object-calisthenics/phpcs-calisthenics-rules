@@ -16,21 +16,21 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Tracked property type maximum amount.
      *
-     * @var integer
+     * @var int
      */
     public $trackedMaxCount = 1;
 
     /**
      * Tracked property absolute maximum amount.
      *
-     * @var integer
+     * @var int
      */
     public $trackedAbsoluteMaxCount = 1;
 
     /**
      * Untracked property absolute maximum amount.
      *
-     * @var integer
+     * @var int
      */
     public $untrackedAbsoluteMaxCount = 0;
 
@@ -75,8 +75,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 
         if ($errorList) {
             array_map(
-                function ($error) use ($phpcsFile, $stackPtr)
-                {
+                function ($error) use ($phpcsFile, $stackPtr) {
                     $phpcsFile->addError($error, $stackPtr, 'TooManyPropertiesOfType');
                 },
                 $errorList
@@ -112,12 +111,12 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     protected function checkTrackedClassPropertyAmount(array $propertyList)
     {
-        $trackedPropertyList   = $this->getTrackedClassPropertyList($propertyList);
+        $trackedPropertyList = $this->getTrackedClassPropertyList($propertyList);
         $trackedPropertyAmount = count($trackedPropertyList);
 
         if ($trackedPropertyAmount > $this->trackedAbsoluteMaxCount) {
             $message = 'You have %d properties declared of "%s" type(s), must be less or equals than %d properties in total';
-            $error   = sprintf($message, $trackedPropertyAmount, implode('", "', $this->getTrackedPropertyTypeList()), $this->trackedAbsoluteMaxCount);
+            $error = sprintf($message, $trackedPropertyAmount, implode('", "', $this->getTrackedPropertyTypeList()), $this->trackedAbsoluteMaxCount);
 
             return $error;
         }
@@ -135,14 +134,14 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
     protected function checkTrackedClassPropertyTypeAmount(array $propertyList)
     {
         $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
-        $errorList              = [];
+        $errorList = [];
 
         foreach ($segregatedPropertyList as $propertyType => $propertyOfTypeList) {
             $propertyOfTypeAmount = count($propertyOfTypeList);
 
             if ($propertyOfTypeAmount > $this->trackedMaxCount) {
                 $message = 'You have %d properties of "%s" type, must be less or equals than %d properties in total';
-                $error   = sprintf($message, $propertyOfTypeAmount, $propertyType, $this->trackedMaxCount);
+                $error = sprintf($message, $propertyOfTypeAmount, $propertyType, $this->trackedMaxCount);
 
                 $errorList[] = $error;
             }
@@ -160,12 +159,12 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     protected function checkUntrackedClassPropertyAmount(array $propertyList)
     {
-        $untrackedPropertyList   = $this->getUntrackedClassPropertyList($propertyList);
+        $untrackedPropertyList = $this->getUntrackedClassPropertyList($propertyList);
         $untrackedPropertyAmount = count($untrackedPropertyList);
 
         if ($untrackedPropertyAmount > $this->untrackedAbsoluteMaxCount) {
             $message = 'You have %d properties declared of %s type, must be less or equals than %d properties in total';
-            $error   = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedAbsoluteMaxCount);
+            $error = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedAbsoluteMaxCount);
 
             return $error;
         }
@@ -185,7 +184,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
         $segregatedPropertyList = [];
 
         foreach ($propertyList as $property) {
-            if ( ! isset($segregatedPropertyList[$property['type']])) {
+            if (!isset($segregatedPropertyList[$property['type']])) {
                 $segregatedPropertyList[$property['type']] = [];
             }
 
@@ -210,8 +209,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 
         return array_filter(
             $propertyList,
-            function ($property) use ($trackedPropertyTypeList)
-            {
+            function ($property) use ($trackedPropertyTypeList) {
                 return in_array($property['type'], $trackedPropertyTypeList);
             }
         );
@@ -230,9 +228,8 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 
         return array_filter(
             $propertyList,
-            function ($property) use ($trackedPropertyTypeList)
-            {
-                return ! in_array($property['type'], $trackedPropertyTypeList);
+            function ($property) use ($trackedPropertyTypeList) {
+                return !in_array($property['type'], $trackedPropertyTypeList);
             }
         );
     }
@@ -241,22 +238,22 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      * Retrieve all declared class properties.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param int                  $stackPtr  The position of the current token
+     *                                        in the stack passed in $tokens.
      *
      * @return array
      */
     protected function getClassPropertyList(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens       = $phpcsFile->getTokens();
-        $token        = $tokens[$stackPtr];
-        $pointer      = $token['scope_opener'];
+        $tokens = $phpcsFile->getTokens();
+        $token = $tokens[$stackPtr];
+        $pointer = $token['scope_opener'];
         $propertyList = [];
 
         while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
             $property = $this->createProperty($phpcsFile, $pointer);
 
-            if ( ! $property) {
+            if (!$property) {
                 continue;
             }
 
@@ -270,41 +267,41 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      * Create a given declared class property metadata.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param int                  $stackPtr  The position of the current token
+     *                                        in the stack passed in $tokens.
      *
      * @return array
      */
     private function createProperty(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens   = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
         $property = $tokens[$stackPtr];
 
         // Is it a property or a random variable?
-        if ( ! (count($property['conditions']) === 1 && in_array(reset($property['conditions']), $this->register()))) {
-            return null;
+        if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), $this->register()))) {
+            return;
         }
 
         // If comment couldnt be properly parsed, error was already added.
         if (($comment = $this->processMemberComment($phpcsFile, $stackPtr)) === null) {
-            return null;
+            return;
         }
 
         $varDoc = $comment->getVar();
 
         // If var tag in docblock couldnt be properly read (ie. inheritdoc), error should be added.
-        if ( ! $varDoc) {
+        if (!$varDoc) {
             $error = sprintf('Unable to retrieve data type of property "%s"', $property['content']);
 
             $phpcsFile->addError($error, $stackPtr, 'InvalidPropertyType');
 
-            return null;
+            return;
         }
 
         return [
-            'token'     => $property,
-            'pointer'   => $stackPtr,
-            'type'      => $varDoc->getContent(),
+            'token' => $property,
+            'pointer' => $stackPtr,
+            'type' => $varDoc->getContent(),
             'modifiers' => $phpcsFile->getMemberProperties($stackPtr),
         ];
     }
@@ -313,15 +310,15 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
      * Process docblock of property and returns its processed information.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param int                  $stackPtr  The position of the current token
+     *                                        in the stack passed in $tokens.
      *
      * @return null|\PHP_CodeSniffer_CommentParser_MemberCommentParser
      */
     private function processMemberComment(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $commentEnd    = $phpcsFile->findPrevious(T_DOC_COMMENT, ($stackPtr - 3));
-        $commentStart  = $phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), null, true) + 1;
+        $commentEnd = $phpcsFile->findPrevious(T_DOC_COMMENT, ($stackPtr - 3));
+        $commentStart = $phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), null, true) + 1;
         $commentString = $phpcsFile->getTokensAsString($commentStart, ($commentEnd - $commentStart + 1));
 
         // Parse the header comment docblock.
@@ -334,7 +331,7 @@ abstract class PropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 
             $phpcsFile->addError($exception->getMessage(), $line, 'ErrorParsing');
 
-            return null;
+            return;
         }
 
         return $commentParser;

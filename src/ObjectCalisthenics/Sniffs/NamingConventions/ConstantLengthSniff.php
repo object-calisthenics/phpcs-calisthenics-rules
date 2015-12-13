@@ -55,6 +55,6 @@ final class ConstantLengthSniff extends IdentifierLengthSniff
      */
     public function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        return ($phpcsFile->findPrevious(T_CONST, ($stackPtr - 1), null, false, null, true) !== false);
+        return $phpcsFile->findPrevious(T_CONST, ($stackPtr - 1), null, false, null, true) !== false;
     }
 }

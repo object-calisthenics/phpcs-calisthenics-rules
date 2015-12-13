@@ -1,6 +1,6 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
+namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;

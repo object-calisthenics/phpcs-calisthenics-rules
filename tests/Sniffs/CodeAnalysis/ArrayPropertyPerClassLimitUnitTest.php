@@ -1,6 +1,6 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
+namespace ObjectCalisthenics\tests\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;

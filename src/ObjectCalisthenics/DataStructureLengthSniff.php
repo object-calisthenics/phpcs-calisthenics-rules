@@ -24,23 +24,23 @@ abstract class DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
     public $supportedTokenizers = ['PHP'];
 
     /**
-     * Maximum data structure length for warning,
+     * Maximum data structure length for warning.
      *
-     * @var integer
+     * @var int
      */
     public $maxLength = 200;
 
     /**
      * Absolute maximum data structure length for error.
      *
-     * @var integer
+     * @var int
      */
     public $absoluteMaxLength = 200;
 
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
-     * @return integer[]
+     * @return int[]
      */
     abstract public function register();
 
@@ -49,21 +49,21 @@ abstract class DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $token     = $tokens[$stackPtr];
+        $tokens = $phpcsFile->getTokens();
+        $token = $tokens[$stackPtr];
         $tokenType = strtolower(substr($token['type'], 2));
-        $length    = $this->getStructureLength($phpcsFile, $stackPtr);
+        $length = $this->getStructureLength($phpcsFile, $stackPtr);
 
         switch (true) {
-            case ($length > $this->absoluteMaxLength):
+            case $length > $this->absoluteMaxLength:
                 $message = 'Keep your %s small (currently using %d lines, must be less or equals than %d lines)';
-                $error   = sprintf($message, $tokenType, $length, $this->absoluteMaxLength);
+                $error = sprintf($message, $tokenType, $length, $this->absoluteMaxLength);
 
                 $phpcsFile->addError($error, $stackPtr, sprintf('%sTooBig', ucfirst($tokenType)));
 
                 break;
 
-            case ($length > $this->maxLength):
+            case $length > $this->maxLength:
                 $message = 'Your %s is too big, consider refactoring (currently using %d lines, should be less or equals than %d lines)';
                 $warning = sprintf($message, $tokenType, $length, $this->maxLength);
 
@@ -77,15 +77,15 @@ abstract class DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
      * Retrieve the data structure LOC.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer               $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param int                  $stackPtr  The position of the current token
+     *                                        in the stack passed in $tokens.
      *
-     * @return integer
+     * @return int
      */
     private function getStructureLength(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
+        $token = $tokens[$stackPtr];
 
         // Skip function without body.
         if (isset($token['scope_opener']) === false) {
@@ -93,7 +93,7 @@ abstract class DataStructureLengthSniff implements PHP_CodeSniffer_Sniff
         }
 
         $firstToken = $tokens[$token['scope_opener']];
-        $lastToken  = $tokens[$token['scope_closer']];
+        $lastToken = $tokens[$token['scope_closer']];
 
         return $lastToken['line'] - $firstToken['line'];
     }
