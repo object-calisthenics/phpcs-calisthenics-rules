@@ -11,7 +11,7 @@ A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to v
 Install via [Composer](http://getcomposer.org/):
  
 ```sh
-composer require object-calisthenics/phpcs-calisthenics-rules --dev
+$ composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ``` 
 
 Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in root project directory):
