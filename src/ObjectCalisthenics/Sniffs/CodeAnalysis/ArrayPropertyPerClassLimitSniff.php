@@ -19,12 +19,7 @@ final class ArrayPropertyPerClassLimitSniff extends AbstractPropertyTypePerClass
     /**
      * {@inheritdoc}
      */
-    public $trackedAbsoluteMaxCount = 1;
-
-    /**
-     * {@inheritdoc}
-     */
-    public $untrackedAbsoluteMaxCount = 0;
+    public $untrackedMaxCount = 0;
 
     /**
      * {@inheritdoc}
