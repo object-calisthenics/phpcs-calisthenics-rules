@@ -1,6 +1,6 @@
 <?php
 
-namespace ObjectCalisthenics\tests\Sniffs\ControlStructures;
+namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;

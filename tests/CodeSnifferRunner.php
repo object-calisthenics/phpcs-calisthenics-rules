@@ -1,6 +1,6 @@
 <?php
 
-namespace ObjectCalisthenics\tests;
+namespace ObjectCalisthenics\Tests;
 
 use PHP_CodeSniffer;
 
