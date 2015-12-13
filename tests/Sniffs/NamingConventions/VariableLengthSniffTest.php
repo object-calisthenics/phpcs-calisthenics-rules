@@ -20,6 +20,6 @@ final class VariableLengthSniffTest extends PHPUnit_Framework_TestCase
             'ObjectCalisthenics.NamingConventions.VariableLength'
         );
 
-        $this->assertSame(8, $errorCount);
+        $this->assertSame(10, $errorCount);
     }
 }
