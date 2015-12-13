@@ -1,25 +1,25 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Interface length, part of "Keep your classes small" OC rule test.
+ * @covers ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class InterfaceLengthUnitTest extends PHPUnit_Framework_TestCase
+final class NoElseSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/InterfaceLengthUnitTest.inc',
-            'ObjectCalisthenics.Files.InterfaceLength'
+            __DIR__.'/NoElseSniffTest.inc',
+            'ObjectCalisthenics.ControlStructures.NoElse'
         );
 
-        $this->assertSame(1, $errorCount);
+        $this->assertSame(5, $errorCount);
     }
 }

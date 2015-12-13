@@ -1,23 +1,23 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
+namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Methods per class limit, part of "Keep your classes small" OC rule test.
+ * @covers ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class MethodPerClassLimitUnitTest extends PHPUnit_Framework_TestCase
+final class PropertyVisibilitySniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/MethodPerClassLimitUnitTest.inc',
-            'ObjectCalisthenics.Metrics.MethodPerClassLimit'
+            __DIR__.'/PropertyVisibilitySniffTest.inc',
+            'ObjectCalisthenics.Classes.PropertyVisibility'
         );
 
         $this->assertSame(3, $errorCount);

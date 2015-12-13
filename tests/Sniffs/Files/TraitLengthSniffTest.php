@@ -1,23 +1,23 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
+namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Constant length, part of "Do not abbreviate" OC rule test.
+ * @covers ObjectCalisthenics\Sniffs\Files\TraitLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ConstantLengthUnitTest extends PHPUnit_Framework_TestCase
+final class TraitLengthSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ConstantLengthUnitTest.inc',
-            'ObjectCalisthenics.NamingConventions.ConstantLength'
+            __DIR__.'/TraitLengthSniffTest.inc',
+            'ObjectCalisthenics.Files.TraitLength'
         );
 
         $this->assertSame(1, $errorCount);

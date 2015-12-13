@@ -6,20 +6,20 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Class length, part of "Do not abbreviate" OC rule test.
+ * @covers ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ClassLengthUnitTest extends PHPUnit_Framework_TestCase
+final class FunctionLengthSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassLengthUnitTest.inc',
-            'ObjectCalisthenics.NamingConventions.ClassLength'
+            __DIR__.'/FunctionLengthSniffTest.inc',
+            'ObjectCalisthenics.NamingConventions.FunctionLength'
         );
 
-        $this->assertSame(1, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }

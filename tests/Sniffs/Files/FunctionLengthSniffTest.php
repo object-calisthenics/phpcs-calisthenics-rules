@@ -1,23 +1,23 @@
 <?php
 
-namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
+namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Instance property per class limit, part of "Use first class collections" OC rule.
+ * @covers ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class InstancePropertyPerClassLimitUnitTest extends PHPUnit_Framework_TestCase
+final class FunctionLengthSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/InstancePropertyPerClassLimitUnitTest.inc',
-            'ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit'
+            __DIR__.'/FunctionLengthSniffTest.inc',
+            'ObjectCalisthenics.Files.FunctionLength'
         );
 
         $this->assertSame(2, $errorCount);
