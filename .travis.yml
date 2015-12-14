@@ -22,7 +22,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit $PHPUNIT_FLAGS
-  - if [[ $TRAVIS_PHP_VERSION = '5.5' ]]; then vendor/bin/phpcs src --colors -p -s; fi
+  - if [[ $TRAVIS_PHP_VERSION = '5.5' ]]; then vendor/bin/phpcs src tests --colors -p -s -extensions=php; fi
 
 after_script:
   - if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi
