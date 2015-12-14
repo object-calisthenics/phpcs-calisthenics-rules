@@ -15,7 +15,7 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">src</directory>
+            <directory suffix=".php">src/ObjectCalisthenics/Sniffs</directory>
         </whitelist>
     </filter>
 </phpunit>
