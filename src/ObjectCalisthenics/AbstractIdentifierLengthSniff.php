@@ -41,6 +41,16 @@ abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     protected $maxLength = 32;
 
     /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $phpcsFile;
+
+    /**
+     * @var int
+     */
+    private $stackPtr;
+
+    /**
      * {@inheritdoc}
      */
     public function register()
@@ -53,6 +63,9 @@ abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        $this->phpcsFile = $phpcsFile;
+        $this->stackPtr = $stackPtr;
+
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
 
@@ -62,17 +75,8 @@ abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 
         $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
 
-        if ($length > $this->maxLength) {
-            $message = 'Your %s is too long (currently %d chars, must be less or equals than %d chars)';
-            $error = sprintf($message, $this->tokenString, $length, $this->maxLength);
-
-            $phpcsFile->addError($error, $stackPtr, sprintf('%sTooLong', ucfirst($this->tokenString)));
-        } elseif ($length < $this->minLength) {
-            $message = 'Your %s is too short (currently %d chars, must be more or equals than %d chars)';
-            $error = sprintf($message, $this->tokenString, $length, $this->minLength);
-
-            $phpcsFile->addError($error, $stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
-        }
+        $this->handleMaxLength($length);
+        $this->handleMinLength($length);
     }
 
     /**
@@ -81,4 +85,38 @@ abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
      * @return bool
      */
     abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr);
+
+    /**
+     * @param int $length
+     */
+    private function handleMaxLength($length)
+    {
+        if ($length > $this->maxLength) {
+            $error = sprintf(
+                'Your %s is too long (currently %d chars, must be less or equals than %d chars)',
+                $this->tokenString,
+                $length,
+                $this->maxLength
+            );
+
+            $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooLong', ucfirst($this->tokenString)));
+        }
+    }
+
+    /**
+     * @param int $length
+     */
+    private function handleMinLength($length)
+    {
+        if ($length < $this->minLength) {
+            $error = sprintf(
+                'Your %s is too short (currently %d chars, must be more or equals than %d chars)',
+                $this->tokenString,
+                $length,
+                $this->minLength
+            );
+
+            $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
+        }
+    }
 }
