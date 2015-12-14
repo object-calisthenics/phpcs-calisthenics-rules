@@ -20,6 +20,6 @@ final class PropertyVisibilitySniffTest extends PHPUnit_Framework_TestCase
             'ObjectCalisthenics.Classes.PropertyVisibility'
         );
 
-        $this->assertSame(3, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }
