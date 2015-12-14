@@ -3,7 +3,6 @@
 namespace ObjectCalisthenics;
 
 use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
 
 /**
  * Track the limit of properties of a given set of types per class.
@@ -11,7 +10,7 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
+abstract class AbstractPropertyTypePerClassLimitSniff
 {
     /**
      * @var int
@@ -37,7 +36,8 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
     }
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

@@ -3,6 +3,7 @@
 namespace ObjectCalisthenics\Sniffs\Files;
 
 use ObjectCalisthenics\AbstractDataStructureLengthSniff;
+use PHP_CodeSniffer_Sniff;
 
 /**
  * Function/class method length sniffer,
@@ -10,7 +11,7 @@ use ObjectCalisthenics\AbstractDataStructureLengthSniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class FunctionLengthSniff extends AbstractDataStructureLengthSniff
+final class FunctionLengthSniff extends AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * {@inheritdoc}

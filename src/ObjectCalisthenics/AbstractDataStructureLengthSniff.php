@@ -3,7 +3,6 @@
 namespace ObjectCalisthenics;
 
 use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
 
 /**
  * Data structure length code sniffer.
@@ -14,7 +13,7 @@ use PHP_CodeSniffer_Sniff;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class AbstractDataStructureLengthSniff
 {
     /**
      * Maximum data structure length.
@@ -24,7 +23,8 @@ abstract class AbstractDataStructureLengthSniff implements PHP_CodeSniffer_Sniff
     protected $maxLength = 200;
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
