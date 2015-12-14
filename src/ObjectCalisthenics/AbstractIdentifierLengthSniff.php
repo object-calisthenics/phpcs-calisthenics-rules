@@ -3,14 +3,13 @@
 namespace ObjectCalisthenics;
 
 use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
 
 /**
  * Identifier length checker, part of "Do not abbreviate" OC rule.
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+abstract class AbstractIdentifierLengthSniff
 {
     /**
      * Token string representation.
@@ -59,7 +58,8 @@ abstract class AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

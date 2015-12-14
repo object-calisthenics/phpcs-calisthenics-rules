@@ -3,6 +3,7 @@
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Sniff;
 use PHP_CodeSniffer_Standards_AbstractVariableSniff;
 use PHP_CodeSniffer_Tokens;
 
@@ -13,7 +14,7 @@ use PHP_CodeSniffer_Tokens;
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var array
