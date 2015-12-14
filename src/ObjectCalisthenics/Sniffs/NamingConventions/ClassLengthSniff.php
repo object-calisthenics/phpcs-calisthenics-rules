@@ -32,6 +32,6 @@ final class ClassLengthSniff extends AbstractIdentifierLengthSniff
      */
     protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        return ($phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1), null, false, null, true) !== false);
+        return $phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1), null, false, null, true) !== false;
     }
 }

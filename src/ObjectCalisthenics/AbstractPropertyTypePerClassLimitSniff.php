@@ -14,25 +14,19 @@ use PHP_CodeSniffer_Sniff;
 abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * Tracked property type maximum amount.
-     *
      * @var int
      */
     protected $trackedMaxCount = 1;
 
     /**
-     * Untracked property maximum amount.
-     *
      * @var int
      */
     protected $untrackedMaxCount = 0;
 
     /**
-     * Retrieve the list of tracked property types.
-     *
-     * @return array
+     * @var array
      */
-    abstract protected function getTrackedPropertyTypeList();
+    private $propertyList;
 
     /**
      * {@inheritdoc}
@@ -47,17 +41,17 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $propertyList = $this->getClassPropertyList($phpcsFile, $stackPtr);
+        $this->propertyList = $this->getClassPropertyList($phpcsFile, $stackPtr);
 
         // Check for tracked property type amount
-        if (($error = $this->checkTrackedClassPropertyAmount($propertyList)) !== '') {
+        if (($error = $this->checkTrackedClassPropertyAmount($this->propertyList)) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyTrackedProperties');
 
             return;
         }
 
         // Check for each tracked property type amount
-        $errorList = $this->checkTrackedClassPropertyTypeAmount($propertyList);
+        $errorList = $this->checkTrackedClassPropertyTypeAmount($this->propertyList);
 
         if ($errorList) {
             array_map(
@@ -71,8 +65,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
         }
 
         // Check for untracked property type amount
-
-        if (($error = $this->checkUntrackedClassPropertyAmount($propertyList)) !== '') {
+        if (($error = $this->checkUntrackedClassPropertyAmount($this->propertyList)) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
 
             return;
@@ -104,6 +97,11 @@ abstract class AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer
 
         return '';
     }
+
+    /**
+     * @return array
+     */
+    abstract protected function getTrackedPropertyTypeList();
 
     /**
      * @return array
