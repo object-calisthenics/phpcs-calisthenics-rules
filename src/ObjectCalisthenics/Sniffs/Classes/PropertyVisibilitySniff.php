@@ -16,33 +16,37 @@ use PHP_CodeSniffer_Tokens;
 final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
     /**
+     * @var array
+     */
+    private $tokens;
+
+    /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $phpcsFile;
+
+    /**
+     * @var int
+     */
+    private $stackPtr;
+
+    /**
      * {@inheritdoc}
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $this->phpcsFile = $phpcsFile;
+        $this->stackPtr = $stackPtr;
+        $this->tokens = $phpcsFile->getTokens();
 
-        // Break if we find a VAR declaration
-        if (($previousPtr = $phpcsFile->findPrevious(T_VAR, ($stackPtr - 1), null, false, null, true)) !== false) {
-            $phpcsFile->addError('Burn in hell PHP 4 demon!', $previousPtr, 'BadPHP4Code');
-        }
-
-        // Avoid multiple variables declaration
-        if (($nextPtr = $phpcsFile->findNext(T_VARIABLE, ($stackPtr + 1), null, false, null, true)) !== false) {
-            $phpcsFile->addError('There must not be more than one property declared per statement', $nextPtr, 'MultiPropertyDecl');
-        }
+        $this->handleMultiPropertyDeclaration();
 
         $modifier = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, ($stackPtr - 1));
 
         // Check for no visibility declaration
-        if (($modifier === false) || ($tokens[$modifier]['line'] !== $tokens[$stackPtr]['line'])) {
-            $phpcsFile->addError(sprintf('Visibility must be declared on property "%s"', $tokens[$stackPtr]['content']), $stackPtr, 'ScopeMissing');
-        }
 
-        // If we find a public property, notify about the usage of getter/setters
-        if ($tokens[$modifier]['code'] === T_PUBLIC) {
-            $phpcsFile->addError('Use getters and setters for properties. Public visibility is discouraged.', $stackPtr, 'PublicProperty');
-        }
+        $this->handleVisibilityDeclaration($modifier);
+        $this->handlePublicProperty($modifier);
     }
 
     /**
@@ -59,5 +63,36 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // We don't care about normal variables.
+    }
+
+    private function handleMultiPropertyDeclaration()
+    {
+        if (($nextPtr = $this->phpcsFile->findNext(T_VARIABLE, ($this->stackPtr + 1), null, false, null, true)) !== false) {
+            $this->phpcsFile->addError('There must not be more than one property declared per statement', $this->stackPtr, 'MultiPropertyDecl');
+        }
+    }
+
+    /**
+     * @param string $modifier
+     */
+    private function handlePublicProperty($modifier)
+    {
+        if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
+            $this->phpcsFile->addError('Use getters and setters for properties. Public visibility is discouraged.', $this->stackPtr, 'PublicProperty');
+        }
+    }
+
+    /**
+     * @param string $modifier
+     */
+    private function handleVisibilityDeclaration($modifier)
+    {
+        if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->stackPtr]['line'])) {
+            $this->phpcsFile->addError(
+                sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->stackPtr]['content']),
+                $this->stackPtr,
+                'ScopeMissing'
+            );
+        }
     }
 }

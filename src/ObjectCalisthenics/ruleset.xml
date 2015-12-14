@@ -90,4 +90,8 @@
     <rule ref="Squiz.Commenting.FunctionComment.EmptyThrows">
         <severity>0</severity>
     </rule>
+    <!-- This sub-rule requires a doc comment, even if there is nothing to comment. Be free. -->
+    <rule ref="Squiz.Commenting.FunctionComment.Missing">
+        <severity>0</severity>
+    </rule>
 </ruleset>
