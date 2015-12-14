@@ -59,7 +59,7 @@ abstract class AbstractIdentifierLengthSniff
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
+     * @param int                  $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
