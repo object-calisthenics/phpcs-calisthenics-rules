@@ -52,7 +52,6 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
         try {
             $this->handleObjectOperators($tokens, $pointer, $isOwnCall);
-
         } catch (\Exception $exception) {
             return;
         }
@@ -77,6 +76,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param bool $isOwnCall
+     *
      * @throws \Exception
      */
     private function handleTwoObjectOperators($isOwnCall)
@@ -84,13 +84,14 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         if ($this->callerTokens && !$isOwnCall) {
             $this->phpcsFile->addError('Only one object operator per line.', $this->stackPtr);
 
-            throw new \Exception;
+            throw new \Exception();
         }
     }
 
     /**
-     * @param array $tmpToken
+     * @param array  $tmpToken
      * @param string $tmpTokenType
+     *
      * @throws \Exception
      */
     private function handleExcludedFluentInterfaces(array $tmpToken, $tmpTokenType)
@@ -110,14 +111,14 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         ) {
             $this->phpcsFile->addError('Only one object operator per line.', $this->stackPtr);
 
-            throw new \Exception;
+            throw new \Exception();
         }
     }
 
     /**
      * @param array $tokens
-     * @param int $pointer
-     * @param bool $isOwnCall
+     * @param int   $pointer
+     * @param bool  $isOwnCall
      */
     private function handleObjectOperators(array $tokens, $pointer, $isOwnCall)
     {
@@ -141,6 +142,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param array $token
+     *
      * @return string
      */
     private function getTokenType($token)
@@ -154,7 +156,8 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param array $tokens
-     * @param int $pointer
+     * @param int   $pointer
+     *
      * @return string
      */
     private function movePointerToNextObject(array $tokens, $pointer)

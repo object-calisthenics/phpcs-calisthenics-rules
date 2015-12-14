@@ -121,7 +121,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
      */
     private function subtractFunctionNestingLevel(array $token)
     {
-        return ($this->nestingLevel - $token['level'] - 1);
+        return $this->nestingLevel - $token['level'] - 1;
     }
 
     private function handleClosureToken(array $nestedToken)
@@ -130,6 +130,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
             // Move index pointer in case we found a lambda function
             // (another call process will deal with its check later).
             $this->currentPtr = $nestedToken['scope_closer'];
+
             return;
         }
     }
@@ -141,6 +142,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
             // Switch and case are considered separated scopes,
             // incrementing level twice. We need to fix this.
             array_push($this->ignoredScopeStack, $nestedToken);
+
             return;
         }
     }
@@ -155,7 +157,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param int $key
+     * @param int   $key
      * @param array $ignoredScope
      */
     private function unsetScopeIfNotCurrent($key, array $ignoredScope)
@@ -165,6 +167,5 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
 
         unset($this->ignoredScopeStack[$key]);
-
     }
 }
