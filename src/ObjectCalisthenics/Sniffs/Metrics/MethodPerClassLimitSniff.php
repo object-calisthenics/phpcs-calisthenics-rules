@@ -17,7 +17,7 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
      *
      * @var int
      */
-    public $maxCount = 10;
+    protected $maxCount = 10;
 
     /**
      * {@inheritdoc}

@@ -15,7 +15,32 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     /**
      * {@inheritdoc}
      */
-    public $maxNestingLevel = 1;
+    private $maxNestingLevel = 1;
+
+    /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $phpcsFile;
+
+    /**
+     * @var int
+     */
+    private $stackPtr;
+
+    /**
+     * @var int
+     */
+    private $nestingLevel;
+
+    /**
+     * @var array
+     */
+    private $ignoredScopeStack;
+
+    /**
+     * @var int
+     */
+    private $currentPtr;
 
     /**
      * {@inheritdoc}
@@ -30,6 +55,11 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        $this->phpcsFile = $phpcsFile;
+        $this->stackPtr = $stackPtr;
+        $this->nestingLevel = 0;
+        $this->ignoredScopeStack = [];
+
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
 
@@ -38,60 +68,103 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        // Detect start and end of this function definition.
-        $start = $token['scope_opener'];
-        $end = $token['scope_closer'];
-        $nestingLevel = 0;
-        $ignoredScopeStack = [];
+        $this->iterateTokens($token['scope_opener'], $token['scope_closer'], $tokens);
+
+        $this->nestingLevel = $this->subtractFunctionNestingLevel($token);
+        $this->handleNestingLevel($this->nestingLevel);
+    }
+
+    /**
+     * @param int $nestingLevel
+     */
+    private function handleNestingLevel($nestingLevel)
+    {
+        if ($nestingLevel > $this->maxNestingLevel) {
+            $this->phpcsFile->addError(
+                'Only one indentation level per function/method. Found %s levels.',
+                $this->stackPtr,
+                'MaxExceeded',
+                [$nestingLevel]
+            );
+        }
+    }
+
+    private function iterateTokens($start, $end, $tokens)
+    {
+        $this->currentPtr = $start + 1;
 
         // Find the maximum nesting level of any token in the function.
-        for ($i = ($start + 1); $i < $end; ++$i) {
-            $nestedToken = $tokens[$i];
+        for ($this->currentPtr = ($start + 1); $this->currentPtr < $end; ++$this->currentPtr) {
+            $nestedToken = $tokens[$this->currentPtr];
 
-            switch ($nestedToken['code']) {
-                // Move index pointer in case we found a lambda function
-                // (another call process will deal with its check later).
-                case T_CLOSURE:
-                    $i = $nestedToken['scope_closer'];
+            $this->handleToken($nestedToken);
+        }
+    }
 
-                    break;
+    private function handleToken(array $nestedToken)
+    {
+        $this->handleClosureToken($nestedToken);
+        $this->handleCaseToken($nestedToken);
 
-                // Some tokens needs to be adjusted with a new stack.
-                // Switch and case are considered separated scopes,
-                // incrementing level twice. We need to fix this.
-                case T_CASE:
-                    array_push($ignoredScopeStack, $nestedToken);
+        $this->adjustNestingLevelToIgnoredScope();
 
-                    break;
+        // Calculate nesting level
+        $level = $nestedToken['level'] - count($this->ignoredScopeStack);
 
-                default:
-                    // Iterated through ignored scope stack to find out if
-                    // anything can be popped out and adjust nesting level.
-                    foreach ($ignoredScopeStack as $k => $ignoredScope) {
-                        if ($ignoredScope['scope_closer'] !== $i) {
-                            continue;
-                        }
+        if ($this->nestingLevel < $level) {
+            $this->nestingLevel = $level;
+        }
+    }
 
-                        unset($ignoredScopeStack[$k]);
-                    }
+    /**
+     * @return int
+     */
+    private function subtractFunctionNestingLevel(array $token)
+    {
+        return ($this->nestingLevel - $token['level'] - 1);
+    }
 
-                    // Calculate nesting level
-                    $level = $nestedToken['level'] - count($ignoredScopeStack);
+    private function handleClosureToken(array $nestedToken)
+    {
+        if ($nestedToken['code'] === T_CLOSURE) {
+            // Move index pointer in case we found a lambda function
+            // (another call process will deal with its check later).
+            $this->currentPtr = $nestedToken['scope_closer'];
+            return;
+        }
+    }
 
-                    if ($nestingLevel < $level) {
-                        $nestingLevel = $level;
-                    }
-            }
+    private function handleCaseToken(array $nestedToken)
+    {
+        if ($nestedToken['code'] === T_CASE) {
+            // Some tokens needs to be adjusted with a new stack.
+            // Switch and case are considered separated scopes,
+            // incrementing level twice. We need to fix this.
+            array_push($this->ignoredScopeStack, $nestedToken);
+            return;
+        }
+    }
+
+    private function adjustNestingLevelToIgnoredScope()
+    {
+        // Iterated through ignored scope stack to find out if
+        // anything can be popped out and adjust nesting level.
+        foreach ($this->ignoredScopeStack as $key => $ignoredScope) {
+            $this->unsetScopeIfNotCurrent($key, $ignoredScope);
+        }
+    }
+
+    /**
+     * @param int $key
+     * @param array $ignoredScope
+     */
+    private function unsetScopeIfNotCurrent($key, array $ignoredScope)
+    {
+        if ($ignoredScope['scope_closer'] !== $this->currentPtr) {
+            return;
         }
 
-        // We subtract the nesting level of the function itself.
-        $nestingLevel = ($nestingLevel - $token['level'] - 1);
+        unset($this->ignoredScopeStack[$key]);
 
-        if ($nestingLevel > $this->maxNestingLevel) {
-            $error = 'Only one indentation level per function/method. Found %s levels.';
-            $data = [$nestingLevel];
-
-            $phpcsFile->addError($error, $stackPtr, 'MaxExceeded', $data);
-        }
     }
 }

@@ -15,7 +15,7 @@ final class FunctionLengthSniff extends AbstractDataStructureLengthSniff
     /**
      * {@inheritdoc}
      */
-    public $maxLength = 20;
+    protected $maxLength = 20;
 
     /**
      * {@inheritdoc}
