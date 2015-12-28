@@ -24,7 +24,7 @@ final class CodeSnifferRunner
      */
     public function detectErrorCountInFileForSniff($testedFile, $sniffName)
     {
-        $this->codeSniffer->initStandard('../../../../../src/ObjectCalisthenics', [$sniffName]);
+        $this->codeSniffer->initStandard(__DIR__.'/../src/ObjectCalisthenics', [$sniffName]);
         $codeSnifferFile = $this->codeSniffer->processFile($testedFile);
 
         return $codeSnifferFile->getErrorCount();
