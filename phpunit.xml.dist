@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit colors="true" bootstrap="./bootstrap.php">
+<phpunit
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        convertErrorsToExceptions="true"
+        syntaxCheck="true"
+        verbose="true"
+>
     <testsuites>
-        <testsuite name="Object Calisthenics Coding Standard Test Suite">
-            <file>./vendor/squizlabs/php_codesniffer/tests/AllTests.php</file>
+        <testsuite>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/ObjectCalisthenics/Sniffs</directory>
+        </whitelist>
+    </filter>
 </phpunit>
