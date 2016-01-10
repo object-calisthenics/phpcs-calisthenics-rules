@@ -5,31 +5,20 @@ A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to v
 
 ## Installation
 
-If you prefer using [Composer](http://getcomposer.org/) you can easily install Object Calisthenics rules system-wide with the following command:
+Install via [Composer](http://getcomposer.org/):
+ 
+```sh
+$ composer require object-calisthenics/phpcs-calisthenics-rules --dev
+``` 
 
-    composer global require "object-calisthenics/phpcs-calisthenics-rules=*"
-
-Make sure you have `~/.composer/vendor/bin/` in your PATH.
-
-Or alternatively, include a dependency for `object-calisthenics/phpcs-calisthenics-rules` in your `composer.json` file. For example:
-
-```javascript
-{
-    "require-dev": {
-        "squizlabs/php_codesniffer": "dev-master",
-        "object-calisthenics/phpcs-calisthenics-rules": "dev-master"
-    }
-}
-```
-
-Finally, enable it as part of your project code sniffer ruleset (ie. phpcs.xml in root project directory):
+Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in root project directory):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="Project">
     <description>Project Coding Standard</description>
 
-    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml"/>
+    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
 </ruleset>
 ```
 
