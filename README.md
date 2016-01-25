@@ -156,7 +156,7 @@ Small objects will also give you an obvious place to put behavior that otherwise
 - Prevent code duplication
 
 
-### Rule #4: Use only object operator per line
+### Rule #4: Use only one object operator per line
 
 - Status: **Implemented**
 
