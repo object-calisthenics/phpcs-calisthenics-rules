@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ObjectCalisthenics;
 
 use ObjectCalisthenics\Helper\ClassAnalyzer;
+use ObjectCalisthenics\Helper\PropertyFilter;
 use PHP_CodeSniffer_File;
 
 /**
@@ -42,14 +43,14 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         $this->propertyList = ClassAnalyzer::getClassProperties($phpcsFile, $stackPtr);
 
         // Check for tracked property type amount
-        if (($error = $this->checkTrackedClassPropertyAmount($this->propertyList)) !== '') {
+        if (($error = $this->checkTrackedClassPropertyAmount()) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyTrackedProperties');
 
             return;
         }
 
         // Check for each tracked property type amount
-        $errorList = $this->checkTrackedClassPropertyTypeAmount($this->propertyList);
+        $errorList = $this->checkTrackedClassPropertyTypeAmount();
 
         if ($errorList) {
             array_map(
@@ -62,12 +63,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
             return;
         }
 
-        // Check for untracked property type amount
-        if (($error = $this->checkUntrackedClassPropertyAmount($this->propertyList)) !== '') {
-            $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
-
-            return;
-        }
+        $this->checkUntrackedPropertyTypeAmount($phpcsFile, $stackPtr);
     }
 
     /**
@@ -78,12 +74,18 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return 'untracked';
     }
 
-    /**
-     * @return string
-     */
-    private function checkTrackedClassPropertyAmount(array $propertyList)
+    private function checkUntrackedPropertyTypeAmount(PHP_CodeSniffer_File $phpcsFile, int $stackPtr)
     {
-        $trackedPropertyList = $this->getTrackedClassPropertyList($propertyList);
+        if (($error = $this->checkUntrackedClassPropertyAmount()) !== '') {
+            $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
+
+            return;
+        }
+    }
+
+    private function checkTrackedClassPropertyAmount() : string
+    {
+        $trackedPropertyList = PropertyFilter::getTrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $trackedPropertyAmount = count($trackedPropertyList);
 
         if ($trackedPropertyAmount > $this->trackedMaxCount) {
@@ -98,9 +100,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
 
     abstract protected function getTrackedPropertyTypeList() : array;
 
-    private function checkTrackedClassPropertyTypeAmount(array $propertyList) : array
+    private function checkTrackedClassPropertyTypeAmount() : array
     {
-        $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
+        $segregatedPropertyList = $this->getClassPropertiesSegregatedByType();
         $errorList = [];
 
         foreach ($segregatedPropertyList as $propertyType => $propertyOfTypeList) {
@@ -116,9 +118,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return $errorList;
     }
 
-    private function checkUntrackedClassPropertyAmount(array $propertyList) : string
+    private function checkUntrackedClassPropertyAmount() : string
     {
-        $untrackedPropertyList = $this->getUntrackedClassPropertyList($propertyList);
+        $untrackedPropertyList = PropertyFilter::filterUntrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $untrackedPropertyAmount = count($untrackedPropertyList);
 
         if ($untrackedPropertyAmount > $this->untrackedMaxCount) {
@@ -131,14 +133,11 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return '';
     }
 
-    /**
-     * @return array
-     */
-    private function getClassPropertiesSegregatedByType(array $propertyList)
+    private function getClassPropertiesSegregatedByType() : array
     {
         $segregatedPropertyList = [];
 
-        foreach ($propertyList as $property) {
+        foreach ($this->propertyList as $property) {
             if (!isset($segregatedPropertyList[$property['type']])) {
                 $segregatedPropertyList[$property['type']] = [];
             }
@@ -147,31 +146,5 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         }
 
         return $segregatedPropertyList;
-    }
-
-    // Segregate property types and amount used in class, then loop through and validate.
-
-    private function getTrackedClassPropertyList(array $propertyList) : array
-    {
-        $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
-
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
-    }
-
-    private function getUntrackedClassPropertyList(array $propertyList) : array
-    {
-        $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
-
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return !in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
     }
 }
