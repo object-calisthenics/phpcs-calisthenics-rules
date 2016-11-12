@@ -23,11 +23,6 @@ final class ClassLengthSniff extends AbstractIdentifierLengthSniff implements PH
      */
     protected $tokenTypeLengthFactor = 0;
 
-    /**
-     * @var int
-     */
-    protected $maxLength = 48;
-
     protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
     {
         return $phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1), null, false, null, true) !== false;

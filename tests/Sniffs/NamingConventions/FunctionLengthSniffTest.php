@@ -20,6 +20,6 @@ final class FunctionLengthSniffTest extends TestCase
             'ObjectCalisthenics.NamingConventions.FunctionLength'
         );
 
-        $this->assertSame(4, $errorCount);
+        $this->assertSame(2, $errorCount);
     }
 }

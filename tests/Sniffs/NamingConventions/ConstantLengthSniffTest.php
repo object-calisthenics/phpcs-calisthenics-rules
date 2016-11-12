@@ -20,6 +20,6 @@ final class ConstantLengthSniffTest extends TestCase
             'ObjectCalisthenics.NamingConventions.ConstantLength'
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

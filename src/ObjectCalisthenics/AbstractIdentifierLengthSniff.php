@@ -33,13 +33,6 @@ abstract class AbstractIdentifierLengthSniff
     protected $minLength = 3;
 
     /**
-     * Maximum variable/method name length.
-     *
-     * @var int
-     */
-    protected $maxLength = 32;
-
-    /**
      * @var PHP_CodeSniffer_File
      */
     private $phpcsFile;
@@ -72,27 +65,10 @@ abstract class AbstractIdentifierLengthSniff
 
         $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
 
-        $this->handleMaxLength($length);
         $this->handleMinLength($length);
     }
 
     abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool;
-
-    private function handleMaxLength(int $length)
-    {
-        if ($length <= $this->maxLength) {
-            return;
-        }
-
-        $error = sprintf(
-            'Your %s is too long (currently %d chars, must be less or equals than %d chars)',
-            $this->tokenString,
-            $length,
-            $this->maxLength
-        );
-
-        $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooLong', ucfirst($this->tokenString)));
-    }
 
     private function handleMinLength(int $length)
     {
