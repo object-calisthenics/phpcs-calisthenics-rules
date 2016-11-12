@@ -17,15 +17,11 @@ matrix:
 install:
   - composer install --prefer-source
 
-before_script:
-  # check coding standard (defined in composer.json "scripts" section)
-  - if [[ "$CHECK_CS" != "" ]]; then composer check-cs; fi
-
 script:
   # run tests
   - vendor/bin/phpunit $PHPUNIT_FLAGS
-  # run this coding standard with PHP_CodeSniffer
-  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then vendor/bin/phpcs src tests --colors -p -s --extensions=php; fi
+  # check coding standard (defined in composer.json "scripts" section)
+  - if [[ "$CHECK_CS" != "" ]]; then composer check-cs; fi
 
 after_script:
   # upload coverage.xml file to Scrutinizer to analyze it

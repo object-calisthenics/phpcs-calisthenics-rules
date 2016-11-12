@@ -28,11 +28,13 @@
     "scripts": {
         "check-cs": [
             "vendor/bin/php-cs-fixer fix src --diff --dry-run -v --level=symfony",
-            "vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --level=symfony"
+            "vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --level=symfony",
+            "vendor/bin/phpcs src tests --colors -p -s --extensions=php"
         ],
         "fix-cs": [
             "vendor/bin/php-cs-fixer fix src -v --level=symfony",
-            "vendor/bin/php-cs-fixer fix tests -v --level=symfony"
+            "vendor/bin/php-cs-fixer fix tests -v --level=symfony",
+            "vendor/bin/phpcs src tests --colors -p -s --extensions=php"
         ]
     }
 }
