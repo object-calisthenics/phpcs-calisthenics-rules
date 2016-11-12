@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
@@ -33,10 +33,9 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
      */
     private $stackPtr;
 
-
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
+     * @param int                  $stackPtr
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -56,7 +55,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
+     * @param int                  $stackPtr
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -65,7 +64,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
+     * @param int                  $stackPtr
      */
     protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {

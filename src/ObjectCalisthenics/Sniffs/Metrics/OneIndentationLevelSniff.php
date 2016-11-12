@@ -51,7 +51,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
+     * @param int                  $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
