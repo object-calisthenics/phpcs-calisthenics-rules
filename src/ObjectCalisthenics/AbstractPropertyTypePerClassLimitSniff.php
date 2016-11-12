@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ObjectCalisthenics;
 
+use ObjectCalisthenics\Helper\ClassAnalyzer;
 use PHP_CodeSniffer_File;
 
 /**
@@ -38,7 +39,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $this->propertyList = $this->getClassPropertyList($phpcsFile, $stackPtr);
+        $this->propertyList = ClassAnalyzer::getClassProperties($phpcsFile, $stackPtr);
 
         // Check for tracked property type amount
         if (($error = $this->checkTrackedClassPropertyAmount($this->propertyList)) !== '') {
@@ -172,61 +173,5 @@ abstract class AbstractPropertyTypePerClassLimitSniff
                 return !in_array($property['type'], $trackedPropertyTypeList);
             }
         );
-    }
-
-    private function getClassPropertyList(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
-    {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-        $pointer = $token['scope_opener'];
-        $propertyList = [];
-
-        while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
-            $property = $this->createProperty($phpcsFile, $pointer);
-
-            if (!$property) {
-                continue;
-            }
-
-            $propertyList[] = $property;
-        }
-
-        return $propertyList;
-    }
-
-    private function createProperty(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
-    {
-        $tokens = $phpcsFile->getTokens();
-        $property = $tokens[$stackPtr];
-
-        // Is it a property or a random variable?
-        if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), $this->register()))) {
-            return [];
-        }
-
-        $comment = $this->processMemberComment($phpcsFile, $stackPtr);
-        if ($comment === null || $comment === '') {
-            return [];
-        }
-
-        return [
-            'type' => $comment,
-        ];
-    }
-
-    private function processMemberComment(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : string
-    {
-        $docCommentPosition = $phpcsFile->findPrevious(T_DOC_COMMENT_STRING, $stackPtr, $stackPtr - 10);
-        if ($docCommentPosition) {
-            $docCommentToken = $phpcsFile->getTokens()[$docCommentPosition];
-            $docComment = $docCommentToken['content'];
-            if (false !== strpos($docComment, 'inheritdoc')) {
-                return '';
-            }
-
-            return $docComment;
-        }
-
-        return '';
     }
 }
