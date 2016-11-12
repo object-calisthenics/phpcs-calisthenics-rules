@@ -49,9 +49,9 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * Retrieve the list of class methods' pointers.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned
      * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     *                                        in the stack passed in $tokens
      *
      * @return array
      */

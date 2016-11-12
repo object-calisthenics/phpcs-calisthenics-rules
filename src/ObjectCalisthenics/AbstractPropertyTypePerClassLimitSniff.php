@@ -193,9 +193,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned
      * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     *                                        in the stack passed in $tokens
      *
      * @return array
      */
@@ -222,9 +222,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
     /**
      * Create a given declared class property metadata.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned
      * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     *                                        in the stack passed in $tokens
      *
      * @return array
      */
@@ -249,9 +249,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
     /**
      * Process docblock of property and returns its processed information.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned
      * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     *                                        in the stack passed in $tokens
      *
      * @return string
      */
