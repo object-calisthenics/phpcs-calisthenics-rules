@@ -9,18 +9,29 @@ cache:
 php:
   - 7.0
   - 7.1
-  
+
+matrix:
+  include:
+    - php: 7.0
+      env: PHPUNIT_FLAGS="--coverage-clover coverage.xml" CHECK_CS=true
+
 install:
   - composer install --prefer-source
 
 before_script:
-  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then PHPUNIT_FLAGS="--coverage-clover coverage.xml"; fi
-  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then vendor/bin/php-cs-fixer fix src --diff --dry-run -v --level=symfony; fi
-  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --level=symfony; fi
+  # check coding standard (defined in composer.json "scripts" section)
+  - if [[ "$CHECK_CS" != "" ]]; then composer check-cs; fi
 
 script:
+  # run tests
   - vendor/bin/phpunit $PHPUNIT_FLAGS
+  # run this coding standard with PHP_CodeSniffer
   - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then vendor/bin/phpcs src tests --colors -p -s --extensions=php; fi
 
 after_script:
-  - if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi
+  # upload coverage.xml file to Scrutinizer to analyze it
+  - |
+   if [[ $TRAVIS_PHP_VERSION = '7.0' ]]; then
+     wget https://scrutinizer-ci.com/ocular.phar
+     php ocular.phar code-coverage:upload --format=php-clover coverage.xml
+   fi
