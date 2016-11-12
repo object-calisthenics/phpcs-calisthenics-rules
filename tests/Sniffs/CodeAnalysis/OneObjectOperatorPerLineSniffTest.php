@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
+ * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class OneObjectOperatorPerLineSniffTest extends PHPUnit_Framework_TestCase
+final class OneObjectOperatorPerLineSniffTest extends TestCase
 {
     public function testSniff()
     {

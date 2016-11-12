@@ -3,14 +3,14 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
+ * @covers \ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class PropertyVisibilitySniffTest extends PHPUnit_Framework_TestCase
+final class PropertyVisibilitySniffTest extends TestCase
 {
     public function testSniff()
     {

@@ -3,14 +3,14 @@
 namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
+ * @covers \ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class NoElseSniffTest extends PHPUnit_Framework_TestCase
+final class NoElseSniffTest extends TestCase
 {
     public function testSniff()
     {

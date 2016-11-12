@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff
+ * @covers \ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class FunctionLengthSniffTest extends PHPUnit_Framework_TestCase
+final class FunctionLengthSniffTest extends TestCase
 {
     public function testSniff()
     {

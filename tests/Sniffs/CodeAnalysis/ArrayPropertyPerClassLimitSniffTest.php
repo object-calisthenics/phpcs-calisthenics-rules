@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff
+ * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff
  *
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-final class ArrayPropertyPerClassLimitSniffTest extends PHPUnit_Framework_TestCase
+final class ArrayPropertyPerClassLimitSniffTest extends TestCase
 {
     public function testSniff()
     {
