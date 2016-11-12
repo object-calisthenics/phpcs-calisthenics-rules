@@ -38,9 +38,4 @@ final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerCl
             'string',
         ];
     }
-
-    protected function getUntrackedPropertyType() : string
-    {
-        return 'object instance';
-    }
 }
