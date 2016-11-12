@@ -1,4 +1,10 @@
-# PHPCS-Calisthenics-Rules
+# Object Calisthenics rules for PHP_CodeSniffer
+
+[![Build Status](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
+[![Quality Score](https://img.shields.io/scrutinizer/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
+[![Latest stable](https://img.shields.io/packagist/v/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
+
 
 A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to verify Object Calisthenics rules.
 
@@ -8,7 +14,7 @@ A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to v
 Install via [Composer](http://getcomposer.org/):
  
 ```sh
-$ composer require object-calisthenics/phpcs-calisthenics-rules --dev
+composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ``` 
 
 Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in root project directory):
@@ -22,6 +28,8 @@ Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in
 </ruleset>
 ```
 
+
+---
 
 # Object Calisthenics
 

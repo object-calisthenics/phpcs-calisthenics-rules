@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics;
 
 use PHP_CodeSniffer_File;
 
 /**
  * Identifier length checker, part of "Do not abbreviate" OC rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 abstract class AbstractIdentifierLengthSniff
 {
@@ -33,13 +33,6 @@ abstract class AbstractIdentifierLengthSniff
     protected $minLength = 3;
 
     /**
-     * Maximum variable/method name length.
-     *
-     * @var int
-     */
-    protected $maxLength = 32;
-
-    /**
      * @var PHP_CodeSniffer_File
      */
     private $phpcsFile;
@@ -49,10 +42,7 @@ abstract class AbstractIdentifierLengthSniff
      */
     private $stackPtr;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
+    public function register() : array
     {
         return [T_STRING];
     }
@@ -75,48 +65,24 @@ abstract class AbstractIdentifierLengthSniff
 
         $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
 
-        $this->handleMaxLength($length);
         $this->handleMinLength($length);
     }
 
-    /**
-     * Whether if token is valid to be checked over using the current sniffer.
-     *
-     * @return bool
-     */
-    abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr);
+    abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool;
 
-    /**
-     * @param int $length
-     */
-    private function handleMaxLength($length)
+    private function handleMinLength(int $length)
     {
-        if ($length > $this->maxLength) {
-            $error = sprintf(
-                'Your %s is too long (currently %d chars, must be less or equals than %d chars)',
-                $this->tokenString,
-                $length,
-                $this->maxLength
-            );
-
-            $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooLong', ucfirst($this->tokenString)));
+        if ($length >= $this->minLength) {
+            return;
         }
-    }
 
-    /**
-     * @param int $length
-     */
-    private function handleMinLength($length)
-    {
-        if ($length < $this->minLength) {
-            $error = sprintf(
-                'Your %s is too short (currently %d chars, must be more or equals than %d chars)',
-                $this->tokenString,
-                $length,
-                $this->minLength
-            );
+        $error = sprintf(
+            'Your %s is too short (currently %d chars, must be more or equals than %d chars)',
+            $this->tokenString,
+            $length,
+            $this->minLength
+        );
 
-            $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
-        }
+        $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics;
 
 use ObjectCalisthenics\Helper\Structure\StructureMetrics;
@@ -11,8 +13,6 @@ use PHP_CodeSniffer_File;
  * This sniff is the base for class, interface, trait, function and method
  * length checks as part of "Keep your classes small" object calisthenics
  * rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 abstract class AbstractDataStructureLengthSniff
 {

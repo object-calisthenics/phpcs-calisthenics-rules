@@ -1,18 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Helper\Structure;
 
 use PHP_CodeSniffer_File;
 
 final class StructureMetrics
 {
-    /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
-     *
-     * @return int
-     */
-    public static function getStructureLengthInLines(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public static function getStructureLengthInLines(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : int
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];

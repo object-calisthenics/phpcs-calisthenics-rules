@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
+ * @covers \ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff
  */
-final class OneIndentationLevelSniffTest extends PHPUnit_Framework_TestCase
+final class OneIndentationLevelSniffTest extends TestCase
 {
     public function testSniff()
     {

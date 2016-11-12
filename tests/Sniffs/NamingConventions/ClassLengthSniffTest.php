@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
+ * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
  */
-final class ClassLengthSniffTest extends PHPUnit_Framework_TestCase
+final class ClassLengthSniffTest extends TestCase
 {
     public function testSniff()
     {
@@ -20,6 +20,6 @@ final class ClassLengthSniffTest extends PHPUnit_Framework_TestCase
             'ObjectCalisthenics.NamingConventions.ClassLength'
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

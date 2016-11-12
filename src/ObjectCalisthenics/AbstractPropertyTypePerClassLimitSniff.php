@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics;
 
+use ObjectCalisthenics\Helper\ClassAnalyzer;
+use ObjectCalisthenics\Helper\PropertyFilter;
 use PHP_CodeSniffer_File;
 
 /**
  * Track the limit of properties of a given set of types per class.
  * Check for untracked property types per class limit too.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 abstract class AbstractPropertyTypePerClassLimitSniff
 {
@@ -28,9 +30,16 @@ abstract class AbstractPropertyTypePerClassLimitSniff
     private $propertyList;
 
     /**
-     * {@inheritdoc}
+     * @var PHP_CodeSniffer_File
      */
-    public function register()
+    private $phpcsFile;
+
+    /**
+     * @var int
+     */
+    private $stackPtr;
+
+    public function register() : array
     {
         return [T_CLASS, T_TRAIT];
     }
@@ -41,51 +50,33 @@ abstract class AbstractPropertyTypePerClassLimitSniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $this->propertyList = $this->getClassPropertyList($phpcsFile, $stackPtr);
+        $this->propertyList = ClassAnalyzer::getClassProperties($phpcsFile, $stackPtr);
+        $this->phpcsFile = $phpcsFile;
+        $this->stackPtr = $stackPtr;
 
-        // Check for tracked property type amount
-        if (($error = $this->checkTrackedClassPropertyAmount($this->propertyList)) !== '') {
-            $phpcsFile->addError($error, $stackPtr, 'TooManyTrackedProperties');
-
+        if ($this->checkTotalPropertiesAmount()) {
             return;
         }
 
-        // Check for each tracked property type amount
-        $errorList = $this->checkTrackedClassPropertyTypeAmount($this->propertyList);
-
-        if ($errorList) {
-            array_map(
-                function ($error) use ($phpcsFile, $stackPtr) {
-                    $phpcsFile->addError($error, $stackPtr, 'TooManyPropertiesOfType');
-                },
-                $errorList
-            );
-
+        if ($this->checkTrackedPropertiesAmount()) {
             return;
         }
 
-        // Check for untracked property type amount
-        if (($error = $this->checkUntrackedClassPropertyAmount($this->propertyList)) !== '') {
+        $this->checkUntrackedPropertyTypeAmount($phpcsFile, $stackPtr);
+    }
+
+    private function checkUntrackedPropertyTypeAmount(PHP_CodeSniffer_File $phpcsFile, int $stackPtr)
+    {
+        if (($error = $this->checkUntrackedClassPropertyAmount()) !== '') {
             $phpcsFile->addError($error, $stackPtr, 'TooManyUntrackedProperties');
 
             return;
         }
     }
 
-    /**
-     * @return string
-     */
-    protected function getUntrackedPropertyType()
+    private function checkTrackedClassPropertyAmount() : string
     {
-        return 'untracked';
-    }
-
-    /**
-     * @return string
-     */
-    private function checkTrackedClassPropertyAmount(array $propertyList)
-    {
-        $trackedPropertyList = $this->getTrackedClassPropertyList($propertyList);
+        $trackedPropertyList = PropertyFilter::getTrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $trackedPropertyAmount = count($trackedPropertyList);
 
         if ($trackedPropertyAmount > $this->trackedMaxCount) {
@@ -98,43 +89,39 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return '';
     }
 
-    /**
-     * @return array
-     */
-    abstract protected function getTrackedPropertyTypeList();
+    abstract protected function getTrackedPropertyTypeList() : array;
 
-    /**
-     * @return array
-     */
-    private function checkTrackedClassPropertyTypeAmount(array $propertyList)
+    private function checkTrackedClassPropertyTypeAmount() : array
     {
-        $segregatedPropertyList = $this->getClassPropertiesSegregatedByType($propertyList);
+        $segregatedPropertyList = $this->getClassPropertiesSegregatedByType();
         $errorList = [];
 
-        foreach ($segregatedPropertyList as $propertyType => $propertyOfTypeList) {
+        $overLimitPropertyList = array_filter($segregatedPropertyList, function (array $propertyOfTypeList) {
             $propertyOfTypeAmount = count($propertyOfTypeList);
-            if ($propertyOfTypeAmount > $this->trackedMaxCount) {
-                $message = 'You have %d properties of "%s" type, must be less or equals than %d properties in total';
-                $error = sprintf($message, $propertyOfTypeAmount, $propertyType, $this->trackedMaxCount);
 
-                $errorList[] = $error;
-            }
+            return $propertyOfTypeAmount > $this->trackedMaxCount;
+        });
+
+        foreach ($overLimitPropertyList as $propertyType => $propertyOfTypeList) {
+            $errorList[] = sprintf(
+                'You have %d properties of "%s" type, must be less or equals than %d properties in total',
+                count($propertyOfTypeList),
+                $propertyType,
+                $this->trackedMaxCount
+            );
         }
 
         return $errorList;
     }
 
-    /**
-     * @return string
-     */
-    private function checkUntrackedClassPropertyAmount(array $propertyList)
+    private function checkUntrackedClassPropertyAmount() : string
     {
-        $untrackedPropertyList = $this->getUntrackedClassPropertyList($propertyList);
+        $untrackedPropertyList = PropertyFilter::filterUntrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $untrackedPropertyAmount = count($untrackedPropertyList);
 
         if ($untrackedPropertyAmount > $this->untrackedMaxCount) {
             $message = 'You have %d properties declared of %s type, must be less or equals than %d properties in total';
-            $error = sprintf($message, $untrackedPropertyAmount, $this->getUntrackedPropertyType(), $this->untrackedMaxCount);
+            $error = sprintf($message, $untrackedPropertyAmount, 'object instance', $this->untrackedMaxCount);
 
             return $error;
         }
@@ -142,132 +129,42 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return '';
     }
 
-    /**
-     * @return array
-     */
-    private function getClassPropertiesSegregatedByType(array $propertyList)
+    private function getClassPropertiesSegregatedByType() : array
     {
         $segregatedPropertyList = [];
 
-        foreach ($propertyList as $property) {
-            if (!isset($segregatedPropertyList[$property['type']])) {
-                $segregatedPropertyList[$property['type']] = [];
-            }
-
+        foreach ($this->propertyList as $property) {
             $segregatedPropertyList[$property['type']][] = $property;
         }
 
         return $segregatedPropertyList;
     }
 
-    // Segregate property types and amount used in class, then loop through and validate.
-
-    /**
-     * @return array
-     */
-    private function getTrackedClassPropertyList(array $propertyList)
+    private function checkTotalPropertiesAmount() : bool
     {
-        $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
+        if (($error = $this->checkTrackedClassPropertyAmount()) !== '') {
+            $this->phpcsFile->addError($error, $this->stackPtr);
 
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
-    }
-
-    /**
-     * @return array
-     */
-    private function getUntrackedClassPropertyList(array $propertyList)
-    {
-        $trackedPropertyTypeList = $this->getTrackedPropertyTypeList();
-
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return !in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
-    }
-
-    /**
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
-     *
-     * @return array
-     */
-    private function getClassPropertyList(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-        $pointer = $token['scope_opener'];
-        $propertyList = [];
-
-        while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
-            $property = $this->createProperty($phpcsFile, $pointer);
-
-            if (!$property) {
-                continue;
-            }
-
-            $propertyList[] = $property;
+            return true;
         }
 
-        return $propertyList;
+        return false;
     }
 
-    /**
-     * Create a given declared class property metadata.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
-     *
-     * @return array
-     */
-    private function createProperty(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function checkTrackedPropertiesAmount() : bool
     {
-        $tokens = $phpcsFile->getTokens();
-        $property = $tokens[$stackPtr];
+        $errorList = $this->checkTrackedClassPropertyTypeAmount();
+        if ($errorList) {
+            array_map(
+                function ($error) {
+                    $this->phpcsFile->addError($error, $this->stackPtr, 'TooManyPropertiesOfType');
+                },
+                $errorList
+            );
 
-        // Is it a property or a random variable?
-        if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), $this->register()))) {
-            return;
+            return true;
         }
 
-        $comment = $this->processMemberComment($phpcsFile, $stackPtr);
-        if ($comment === null || $comment === '') {
-            return;
-        }
-
-        return ['type' => $comment];
-    }
-
-    /**
-     * Process docblock of property and returns its processed information.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
-     *
-     * @return string
-     */
-    private function processMemberComment(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        $docCommentPosition = $phpcsFile->findPrevious(T_DOC_COMMENT_STRING, $stackPtr, $stackPtr - 10);
-        if ($docCommentPosition) {
-            $docCommentToken = $phpcsFile->getTokens()[$docCommentPosition];
-            $docComment = $docCommentToken['content'];
-            if (false !== strpos($docComment, 'inheritdoc')) {
-                return '';
-            }
-
-            return $docComment;
-        }
-
-        return '';
+        return false;
     }
 }

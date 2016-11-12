@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use PHP_CodeSniffer_File;
@@ -11,8 +13,6 @@ use PHP_CodeSniffer_Tokens;
  * Check for proterty visibility, part of "Use getter/setter methods" OC rule.
  *
  * {@internal Barbara Liskov feels sick every time she looks at this class code.}
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
 {
@@ -32,7 +32,8 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     private $stackPtr;
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int                  $stackPtr
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -51,7 +52,8 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     }
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int                  $stackPtr
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -59,7 +61,8 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     }
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int                  $stackPtr
      */
     protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -73,20 +76,14 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
         }
     }
 
-    /**
-     * @param string $modifier
-     */
-    private function handlePublicProperty($modifier)
+    private function handlePublicProperty(int $modifier)
     {
         if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
             $this->phpcsFile->addError('Use getters and setters for properties. Public visibility is discouraged.', $this->stackPtr, 'PublicProperty');
         }
     }
 
-    /**
-     * @param string $modifier
-     */
-    private function handleVisibilityDeclaration($modifier)
+    private function handleVisibilityDeclaration(int $modifier)
     {
         if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->stackPtr]['line'])) {
             $this->phpcsFile->addError(

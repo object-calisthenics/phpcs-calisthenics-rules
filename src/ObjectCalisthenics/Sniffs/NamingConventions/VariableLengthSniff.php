@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\AbstractIdentifierLengthSniff;
@@ -8,23 +10,15 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Variable name length sniffer, part of "Do not abbreviate" object calisthenics rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class VariableLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
+    public function register() : array
     {
         return [T_VARIABLE];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
     {
         return true;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
 use PHP_CodeSniffer_File;
@@ -7,8 +9,6 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Only one object operator per line.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 {
@@ -27,16 +27,14 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
      */
     private $callerTokens;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
+    public function register() : array
     {
         return [T_VARIABLE];
     }
 
     /**
-     * {@inheritdoc}
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int                  $stackPtr
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -57,13 +55,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @param array $tokens
-     * @param int   $start
-     *
-     * @return string
-     */
-    private function ignoreWhitespace(array $tokens, $start)
+    private function ignoreWhitespace(array $tokens, int $start) : int
     {
         $pointer = $start;
 
@@ -74,12 +66,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         return $pointer;
     }
 
-    /**
-     * @param bool $isOwnCall
-     *
-     * @throws \Exception
-     */
-    private function handleTwoObjectOperators($isOwnCall)
+    private function handleTwoObjectOperators(bool $isOwnCall)
     {
         if ($this->callerTokens && !$isOwnCall) {
             $this->phpcsFile->addError('Only one object operator per line.', $this->stackPtr);
@@ -88,13 +75,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @param array  $tmpToken
-     * @param string $tmpTokenType
-     *
-     * @throws \Exception
-     */
-    private function handleExcludedFluentInterfaces(array $tmpToken, $tmpTokenType)
+    private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType)
     {
         if (!$this->callerTokens) {
             return;
@@ -115,12 +96,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @param array $tokens
-     * @param int   $pointer
-     * @param bool  $isOwnCall
-     */
-    private function handleObjectOperators(array $tokens, $pointer, $isOwnCall)
+    private function handleObjectOperators(array $tokens, int $pointer, bool $isOwnCall)
     {
         while ($tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
             $tmpToken = $tokens[++$pointer];
