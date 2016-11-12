@@ -1,4 +1,4 @@
-# PHPCS-Calisthenics-Rules
+# Object Calisthenics rules for PHP_CodeSniffer
 
 [![Build Status](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
 [![Quality Score](https://img.shields.io/scrutinizer/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
