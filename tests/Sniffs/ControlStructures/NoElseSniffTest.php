@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class NoElseSniffTest extends TestCase
 {

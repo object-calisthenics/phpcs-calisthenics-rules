@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class OneIndentationLevelSniffTest extends TestCase
 {

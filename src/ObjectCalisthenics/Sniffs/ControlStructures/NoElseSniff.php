@@ -9,8 +9,6 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Do not use "else" or "elseif" tokens.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class NoElseSniff implements PHP_CodeSniffer_Sniff
 {

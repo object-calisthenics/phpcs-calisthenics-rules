@@ -9,8 +9,6 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Only one object operator per line.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
 {

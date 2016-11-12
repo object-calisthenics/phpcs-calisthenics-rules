@@ -8,8 +8,6 @@ use PHP_CodeSniffer_File;
 
 /**
  * Identifier length checker, part of "Do not abbreviate" OC rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 abstract class AbstractIdentifierLengthSniff
 {

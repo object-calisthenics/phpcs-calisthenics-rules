@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class ClassElementLengthSniffTest extends TestCase
 {

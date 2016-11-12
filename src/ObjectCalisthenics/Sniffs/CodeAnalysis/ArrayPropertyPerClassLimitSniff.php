@@ -9,8 +9,6 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Array property per class limits, part of "Use first class collections" OC rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class ArrayPropertyPerClassLimitSniff extends AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {

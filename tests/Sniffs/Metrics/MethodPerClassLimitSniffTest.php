@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class MethodPerClassLimitSniffTest extends TestCase
 {

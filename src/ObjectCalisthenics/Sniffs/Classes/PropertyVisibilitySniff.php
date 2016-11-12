@@ -13,8 +13,6 @@ use PHP_CodeSniffer_Tokens;
  * Check for proterty visibility, part of "Use getter/setter methods" OC rule.
  *
  * {@internal Barbara Liskov feels sick every time she looks at this class code.}
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
 {

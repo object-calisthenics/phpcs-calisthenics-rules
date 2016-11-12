@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class PropertyVisibilitySniffTest extends TestCase
 {

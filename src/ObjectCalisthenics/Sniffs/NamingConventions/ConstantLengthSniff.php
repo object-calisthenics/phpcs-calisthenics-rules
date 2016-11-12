@@ -10,8 +10,6 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Constant name length sniffer, part of "Do not abbreviate" object calisthenics rule.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class ConstantLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {

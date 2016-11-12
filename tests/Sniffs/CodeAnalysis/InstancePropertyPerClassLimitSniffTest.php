@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class InstancePropertyPerClassLimitSniffTest extends TestCase
 {

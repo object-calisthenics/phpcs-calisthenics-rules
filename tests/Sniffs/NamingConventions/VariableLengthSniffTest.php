@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class VariableLengthSniffTest extends TestCase
 {

@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class OneObjectOperatorPerLineSniffTest extends TestCase
 {

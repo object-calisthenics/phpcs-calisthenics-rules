@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 final class ConstantLengthSniffTest extends TestCase
 {

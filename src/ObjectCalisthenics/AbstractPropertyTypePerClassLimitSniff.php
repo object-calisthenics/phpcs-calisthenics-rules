@@ -9,8 +9,6 @@ use PHP_CodeSniffer_File;
 /**
  * Track the limit of properties of a given set of types per class.
  * Check for untracked property types per class limit too.
- *
- * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
 abstract class AbstractPropertyTypePerClassLimitSniff
 {
