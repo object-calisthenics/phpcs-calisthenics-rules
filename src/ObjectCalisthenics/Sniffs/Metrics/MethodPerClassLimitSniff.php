@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
 use PHP_CodeSniffer_File;
@@ -19,10 +21,7 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     protected $maxCount = 10;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
+    public function register() : array
     {
         return [T_CLASS, T_INTERFACE, T_TRAIT];
     }
@@ -46,16 +45,7 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * Retrieve the list of class methods' pointers.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens
-     *
-     * @return array
-     */
-    private function getClassMethods(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function getClassMethods(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
     {
         $pointer = $stackPtr;
         $methods = [];

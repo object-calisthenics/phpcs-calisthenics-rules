@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\AbstractIdentifierLengthSniff;
@@ -14,19 +16,16 @@ use PHP_CodeSniffer_Sniff;
 final class ConstantLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
     protected $tokenString = 'constant';
 
     /**
-     * {@inheritdoc}
+     * @var int
      */
     protected $tokenTypeLengthFactor = 0;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
     {
         return $phpcsFile->findPrevious(T_CONST, ($stackPtr - 1), null, false, null, true) !== false;
     }

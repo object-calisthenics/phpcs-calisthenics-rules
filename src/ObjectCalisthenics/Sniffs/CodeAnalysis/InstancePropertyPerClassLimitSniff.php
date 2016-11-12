@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\AbstractPropertyTypePerClassLimitSniff;
@@ -13,19 +15,16 @@ use PHP_CodeSniffer_Sniff;
 final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * {@inheritdoc}
+     * @var int
      */
     protected $trackedMaxCount = 2147483647;
 
     /**
-     * {@inheritdoc}
+     * @var int
      */
     protected $untrackedMaxCount = 5;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getTrackedPropertyTypeList()
+    protected function getTrackedPropertyTypeList() : array
     {
         return [
             'array',
@@ -42,10 +41,7 @@ final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerCl
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getUntrackedPropertyType()
+    protected function getUntrackedPropertyType() : string
     {
         return 'object instance';
     }

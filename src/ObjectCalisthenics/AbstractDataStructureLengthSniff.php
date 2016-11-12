@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ObjectCalisthenics;
 
 use ObjectCalisthenics\Helper\Structure\StructureMetrics;
