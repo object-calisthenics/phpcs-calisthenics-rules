@@ -201,15 +201,17 @@ abstract class AbstractPropertyTypePerClassLimitSniff
 
         // Is it a property or a random variable?
         if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), $this->register()))) {
-            return;
+            return [];
         }
 
         $comment = $this->processMemberComment($phpcsFile, $stackPtr);
         if ($comment === null || $comment === '') {
-            return;
+            return [];
         }
 
-        return ['type' => $comment];
+        return [
+            'type' => $comment,
+        ];
     }
 
     private function processMemberComment(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : string
