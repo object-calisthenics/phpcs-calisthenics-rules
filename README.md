@@ -58,7 +58,7 @@ It's another thing altogether to design code that implements encapsulation well.
 
 ## Proposed Exercise
 
-Code a project using far stricter coding standards then you've ever used in your life. 
+Code a project using far stricter coding standards than you've ever used in your life. 
 In this section you'll find rules that will help push you into writing code that is almost required to be object-oriented. 
 This will allow you to make better decisions and give you more and better options when confronted with the problems of your day job.
 
@@ -116,7 +116,7 @@ So as part of this exercise, you're not allowed to use else.
 
 The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or its special case [Null Object](http://en.wikipedia.org/wiki/Null_Object_pattern) pattern) is one of the examples of using polymorphism to avoid branching.
 
-> **Null Object Pattern falacy**
+> **Null Object Pattern fallacy**
 >
 > People normally tend to use Null Object pattern when they face a problem similar to this one:
 >
@@ -138,7 +138,7 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 
 - Prevents code duplication
 - Increases readability
-- Reduce [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
+- Reduces [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
 ### Rule #3: Wrap primitive types and strings
@@ -162,7 +162,7 @@ Small objects will also give you an obvious place to put behavior that otherwise
 
 - Type hinting
 - Better encapsulation
-- Prevent code duplication
+- Prevents code duplication
 
 
 ### Rule #4: Use only one object operator per line
