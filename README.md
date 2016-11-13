@@ -138,7 +138,7 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 
 - Prevents code duplication
 - Increases readability
-- Reduce [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
+- Reduces [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
 ### Rule #3: Wrap primitive types and strings
@@ -162,7 +162,7 @@ Small objects will also give you an obvious place to put behavior that otherwise
 
 - Type hinting
 - Better encapsulation
-- Prevent code duplication
+- Prevents code duplication
 
 
 ### Rule #4: Use only one object operator per line
