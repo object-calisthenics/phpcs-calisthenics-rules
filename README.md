@@ -58,7 +58,7 @@ It's another thing altogether to design code that implements encapsulation well.
 
 ## Proposed Exercise
 
-Code a project using far stricter coding standards then you've ever used in your life. 
+Code a project using far stricter coding standards than you've ever used in your life. 
 In this section you'll find rules that will help push you into writing code that is almost required to be object-oriented. 
 This will allow you to make better decisions and give you more and better options when confronted with the problems of your day job.
 
