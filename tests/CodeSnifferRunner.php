@@ -30,7 +30,8 @@ final class CodeSnifferRunner
 
     private function processCodeSniffer(string $testedFile, string $sniffName) : \PHP_CodeSniffer_File
     {
-        $this->codeSniffer->initStandard(__DIR__ . '/../src/ObjectCalisthenics', [$sniffName]);
+        $this->codeSniffer->initStandard(__DIR__.'/../src/ObjectCalisthenics', [$sniffName]);
+
         return $this->codeSniffer->processFile($testedFile);
     }
 }

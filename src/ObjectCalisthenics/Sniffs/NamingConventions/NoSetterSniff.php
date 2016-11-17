@@ -26,6 +26,7 @@ class NoSetterSniff implements PHP_CodeSniffer_Sniff
 
     private function methodNameStartsWithSet(string $methodName) : bool
     {
-        return preg_match(self::SETTER_REGEX, $methodName) === 1;
+        return $methodName !== 'setUp'
+            && preg_match(self::SETTER_REGEX, $methodName) === 1;
     }
 }

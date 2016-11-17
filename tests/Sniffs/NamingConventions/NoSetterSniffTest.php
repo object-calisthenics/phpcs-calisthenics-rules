@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHP_CodeSniffer_File;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,18 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NoSetterSniffTest extends TestCase
 {
-    /** @var NoSetterSniff */
-    private $noSetterSniff;
-
-    /** @var PHP_CodeSniffer_File|\PHPUnit_Framework_MockObject_MockObject */
-    private $phpcsFile;
-
-    public function setUp()
-    {
-        $this->noSetterSniff = new NoSetterSniff();
-        $this->phpcsFile = $this->createMock(PHP_CodeSniffer_File::class);
-    }
-
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
@@ -35,50 +21,5 @@ class NoSetterSniffTest extends TestCase
         );
 
         $this->assertSame(1, $warningCount);
-    }
-
-    public function testDetectsStandardSetterMethod()
-    {
-        $this->phpcsFile
-            ->method('getDeclarationName')
-            ->willReturn('setCustomer');
-
-        $this->phpcsFile
-            ->expects($this->once())
-            ->method('addWarning')
-            ->with(NoSetterSniff::SETTER_WARNING, 0);
-
-        $this->noSetterSniff->process($this->phpcsFile, 0);
-    }
-
-    public function testIgnoresMethodStartingWithSetAndContinuingWithLowercaseLetters()
-    {
-        $this->phpcsFile
-            ->method('getDeclarationName')
-            ->willReturn('settings');
-
-        $this->phpcsFile
-            ->expects($this->never())
-            ->method('addWarning');
-
-        $this->noSetterSniff->process($this->phpcsFile, 0);
-    }
-
-    public function testIgnoresMethodsWhichDoNotStartWithSet()
-    {
-        $this->phpcsFile
-            ->method('getDeclarationName')
-            ->willReturn('increaseCount');
-
-        $this->phpcsFile
-            ->expects($this->never())
-            ->method('addWarning');
-
-        $this->noSetterSniff->process($this->phpcsFile, 0);
-    }
-
-    public function testRegistersFunctions()
-    {
-        $this->assertEquals([T_FUNCTION], $this->noSetterSniff->register());
     }
 }
