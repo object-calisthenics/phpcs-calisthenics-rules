@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
+use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHP_CodeSniffer_File;
 use PHPUnit\Framework\TestCase;
 
@@ -23,6 +24,17 @@ class NoSetterSniffTest extends TestCase
     {
         $this->noSetterSniff = new NoSetterSniff();
         $this->phpcsFile = $this->createMock(PHP_CodeSniffer_File::class);
+    }
+
+    public function testSniff()
+    {
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $warningCount = $codeSnifferRunner->detectWarningCountInFileForSniff(
+            __DIR__.'/NoSetterSniffTest.inc',
+            'ObjectCalisthenics.NamingConventions.NoSetter'
+        );
+
+        $this->assertSame(1, $warningCount);
     }
 
     public function testDetectsStandardSetterMethod()
