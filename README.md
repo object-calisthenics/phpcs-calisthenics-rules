@@ -186,7 +186,7 @@ Also, multiple dots in a single line of code might result in several issues when
 The [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter) ("Only talk to your friends") is a good place to start, but think about it this way: You can play with your toys, toys that you make and toys that someone gives you. 
 You don't ever, ever play with your toy's toys.
 
-> This rule got adapted to accept chaining the same object via [Fluent Interfaces](http://en.wikipedia.org/wiki/Fluent_interface) is fine, but please apply this technique carefully, as described in this [blog post](http://devzone.zend.com/article/1362).
+> This rule got adapted to accept chaining the same object via [Fluent Interfaces](http://en.wikipedia.org/wiki/Fluent_interface) is fine, but please apply this technique carefully, as described in this [blog post](http://devzone.zend.com/777/fluent-interfaces-in-php/).
 
 #### Benefits:
 
