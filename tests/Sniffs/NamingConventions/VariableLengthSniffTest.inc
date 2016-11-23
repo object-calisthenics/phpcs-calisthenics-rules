@@ -8,6 +8,8 @@ class Test
 
     public $veryLongPropertyNameVeryLongPropertyName = 2;
 
+    public $id = 3;
+
     public function __construct($t)
     {
         $this->te = $t;

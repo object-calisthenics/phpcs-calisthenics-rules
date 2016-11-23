@@ -42,6 +42,11 @@ abstract class AbstractIdentifierLengthSniff
      */
     private $stackPtr;
 
+    /**
+     * @var array
+     */
+    private $allowedShortVariables = ['id'];
+
     public function register() : array
     {
         return [T_STRING];
@@ -58,20 +63,25 @@ abstract class AbstractIdentifierLengthSniff
 
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
+        $content = mb_substr($token['content'], $this->tokenTypeLengthFactor);
 
         if (!$this->isValid($phpcsFile, $stackPtr)) {
             return;
         }
 
-        $length = strlen($token['content']) - $this->tokenTypeLengthFactor;
+        if ($this->isShortContentAllowed($content)) {
+            return;
+        }
 
-        $this->handleMinLength($length);
+        $this->handleMinContentLength($content);
     }
 
     abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool;
 
-    private function handleMinLength(int $length)
+    private function handleMinContentLength(string $content)
     {
+        $length = mb_strlen($content);
+
         if ($length >= $this->minLength) {
             return;
         }
@@ -84,5 +94,14 @@ abstract class AbstractIdentifierLengthSniff
         );
 
         $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
+    }
+
+    private function isShortContentAllowed(string $content): bool
+    {
+        if ($this->register() === [T_VARIABLE] && in_array($content, $this->allowedShortVariables)) {
+            return true;
+        }
+
+        return false;
     }
 }
