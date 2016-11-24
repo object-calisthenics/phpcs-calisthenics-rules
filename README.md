@@ -9,6 +9,22 @@
 
 A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to verify Object Calisthenics rules.
 
+* [Installation](#installation)
+* [Testing](#testing)
+* [Contributing](#contributing)
+* [Object Calisthenics](#object-calisthenics)
+    + [Motivation](#motivation)
+    + [Proposed Exercise](#proposed-exercise)
+    + [Proposed Rules](#proposed-rules)
+      - [Rule #1: Only one level of indentation](#rule-1-only-one-level-of-indentation)
+      - [Rule #2: Do not use "else" keyword](#rule-2-do-not-use-else-keyword)
+      - [Rule #3: Wrap primitive types and strings](#rule-3-wrap-primitive-types-and-strings)
+      - [Rule #4: Use only one object operator per line](#rule-4-use-only-one-object-operator-per-line)
+      - [Rule #5: Do not abbreviate](#rule-5-do-not-abbreviate)
+      - [Rule #6: Keep your classes small](#rule-6-keep-your-classes-small)
+      - [Rule #7: Do not use classes with several instance variables](#rule-7-do-not-use-classes-with-several-instance-variables)
+      - [Rule #8: Use first-class collections](#rule-8-use-first-class-collections)
+      - [Rule #9: Use getters and setters](#rule-9-use-getters-and-setters)
 
 ## Installation
 
@@ -32,13 +48,37 @@ Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in
 
 ---
 
-# Object Calisthenics
+
+## Testing
+
+```bash
+# install dependencies
+composer install
+
+# run Symfony style checks and check for object calisthenics
+composer check-cs
+
+# run unit tests
+vendor/bin/phpunit
+```
+
+## Contributing
+
+Rules are simple:
+
+ - 1 feature per PR
+ - every new feature must be covered by tests
+ - all existing tests and style checks must pass (see [Testing](#testing))
+
+We would be happy to merge your feature then.
+
+## Object Calisthenics
 
 [The ThoughtWorks Anthology](http://pragprog.com/book/twa/thoughtworks-anthology), a technical book published by [The Pragmatic Programmers](http://pragprog.com), introduced a technique called [Object Calisthenics](http://www.xpteam.com/jeff/writings/objectcalisthenics.rtf), proposed by [Jeff Bay](http://www.xpteam.com/jeff), who used to be the Technology Principal at [ThoughtWorks](http://www.thoughtworks.com). 
 The **adapted excerpts** present the author's motivation, as well as the proposed exercise and rules, ported to PHP language.
 
 
-## Motivation
+### Motivation
 
 We've all seen poorly written code that's hard to understand, test and maintain.
 Object-oriented programming promised to save us from our old procedural code, allowing us to write software incrementally, reusing as we go. 
@@ -56,7 +96,7 @@ It is one thing to understand that encapsulation means hiding data, implementati
 It's another thing altogether to design code that implements encapsulation well.
 
 
-## Proposed Exercise
+### Proposed Exercise
 
 Code a project using far stricter coding standards than you've ever used in your life. 
 In this section you'll find rules that will help push you into writing code that is almost required to be object-oriented. 
@@ -71,11 +111,10 @@ But there's great value in thinking about what would have to happen to move thos
 It's developing this type of thinking that's the real value of the exercise. 
 So, stretch the limits of what you imagine is possible, and see whether you start thinking about your code in a new way.
 
+### Proposed Rules
 
-## Proposed Rules
 
-
-### Rule #1: Only one level of indentation
+#### Rule #1: Only one level of indentation
 
 - Status: **Implemented**
 
@@ -89,13 +128,13 @@ As each unit in your application becomes smaller, your level of re-use will star
 It can be difficult to spot opportunities for reuse within a method that has five responsibilities and is implemented in 100 lines. 
 A three-line method that manages the state of a single object in a given context is usable in many different contexts.
 
-#### Benefits:
+##### Benefits:
 
 - Single Responsibility Principle ("S" in SOLID)
 - Benefits reusability
 
 
-### Rule #2: Do not use "else" keyword
+#### Rule #2: Do not use "else" keyword
 
 - Status: **Implemented**
 
@@ -134,14 +173,14 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 > * Codebase needs to be structured to deal with NullObject
 > * Hard to read and understand
 
-#### Benefits:
+##### Benefits:
 
 - Prevents code duplication
 - Increases readability
 - Reduces [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
-### Rule #3: Wrap primitive types and strings
+#### Rule #3: Wrap primitive types and strings
 
 - Status: **Cannot implement**
 
@@ -158,14 +197,14 @@ Small objects will also give you an obvious place to put behavior that otherwise
 
 > This rule will be regarded as a guideline, as opposed to a strict rule. So basically, if a variable of a primitive type has behavior, consider creating a class for it.
 
-#### Benefits:
+##### Benefits:
 
 - Type hinting
 - Better encapsulation
 - Prevents code duplication
 
 
-### Rule #4: Use only one object operator per line
+#### Rule #4: Use only one object operator per line
 
 - Status: **Implemented**
 
@@ -188,7 +227,7 @@ You don't ever, ever play with your toy's toys.
 
 > This rule got adapted to accept chaining the same object via [Fluent Interfaces](http://en.wikipedia.org/wiki/Fluent_interface) is fine, but please apply this technique carefully, as described in this [blog post](http://devzone.zend.com/article/1362).
 
-#### Benefits:
+##### Benefits:
 
 * Law of Demeter
 * Readability
@@ -196,7 +235,7 @@ You don't ever, ever play with your toy's toys.
 * Easier to debug
 
 
-### Rule #5: Do not abbreviate
+#### Rule #5: Do not abbreviate
 
 - Status: **Partially implemented**
 
@@ -213,7 +252,7 @@ Simply name the method `ship()` so that clients call `$order->ship()` - a simple
 
 For this exercise, all members should have a name that is one or two words, with no abbreviations.
 
-#### Benefits:
+##### Benefits:
 
 * Increases readability
 * Better communication
@@ -221,7 +260,7 @@ For this exercise, all members should have a name that is one or two words, with
 * Good problem indicator of encapsulation problem and code duplication
 
 
-### Rule #6: Keep your classes small
+#### Rule #6: Keep your classes small
 
 - Status: **Partially Implemented**
 
@@ -244,7 +283,7 @@ Keeping those packages small forces them to have real identity.
 
 In a nutshell, we want a higher number of smaller packages, with skinny classes inside them.
 
-#### Benefits:
+##### Benefits:
 
 * Single Responsibility Principle ("S" in SOLID)
 * Clear methods and their objectives
@@ -252,7 +291,7 @@ In a nutshell, we want a higher number of smaller packages, with skinny classes 
 * Cleaner namespaces
 
 
-### Rule #7: Do not use classes with several instance variables
+#### Rule #7: Do not use classes with several instance variables
 
 - Status: **Implemented**
 
@@ -267,7 +306,7 @@ The original rule of Jeff Bay kept any given entity from having more than 2 clas
 Probably, a maximum number of 5 instance variables will equally contribute to higher levels of cohesiveness and encapsulation.
 The majority of rules in this exercise also contribute to the same set of positive outcomes.
 
-#### Benefits:
+##### Benefits:
 
 * Single Responsibility Principle ("S" in SOLID)
 * Loose coupling
@@ -275,7 +314,7 @@ The majority of rules in this exercise also contribute to the same set of positi
 * Testability
 
 
-### Rule #8: Use first-class collections
+#### Rule #8: Use first-class collections
 
 - Status: **Implemented**
 
@@ -287,7 +326,7 @@ Also, your new class can handle activities such as joining two group together or
 This is an obvious extension of the rule "Do not use classes with several instance variables" (previous topic), but it is important for its own sake as well. 
 A collection is really a type of very useful primitive. It has many behaviors but little semantic intent or clues for either the next programmer or the maintainer.
 
-#### Benefits:
+##### Benefits:
 
 * Single Responsibility Principle ("S" in SOLID)
 * Operations over collections are implemented inside of collection
@@ -295,13 +334,13 @@ A collection is really a type of very useful primitive. It has many behaviors bu
 * Filtering, ordering, mapping and merging are good method examples
 
 
-### Rule #9: Use getters and setters
+#### Rule #9: Use getters and setters
 
 - Status: **Implemented**
 
 The application of this rule is simple: any class should not contain public properties.
 
-#### Benefits:
+##### Benefits:
 
 * Open/Close Principle ("O" in SOLID)
 * Operation injection
