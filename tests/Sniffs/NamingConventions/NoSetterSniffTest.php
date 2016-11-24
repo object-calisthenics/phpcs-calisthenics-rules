@@ -15,11 +15,11 @@ class NoSetterSniffTest extends TestCase
     public function testSniff()
     {
         $codeSnifferRunner = new CodeSnifferRunner();
-        $warningCount = $codeSnifferRunner->detectWarningCountInFileForSniff(
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/NoSetterSniffTest.inc',
             'ObjectCalisthenics.NamingConventions.NoSetter'
         );
 
-        $this->assertSame(1, $warningCount);
+        $this->assertSame(1, $errorCount);
     }
 }

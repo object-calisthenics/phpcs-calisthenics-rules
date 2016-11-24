@@ -20,7 +20,7 @@ class NoSetterSniff implements PHP_CodeSniffer_Sniff
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->methodNameStartsWithSet($phpcsFile->getDeclarationName($stackPtr))) {
-            $phpcsFile->addWarning(self::SETTER_WARNING, $stackPtr);
+            $phpcsFile->addError(self::SETTER_WARNING, $stackPtr);
         }
     }
 
