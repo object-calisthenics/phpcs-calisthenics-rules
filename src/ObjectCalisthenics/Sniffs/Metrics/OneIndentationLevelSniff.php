@@ -129,10 +129,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 
     private function handleCaseToken(array $nestedToken)
     {
-        if ($nestedToken['code'] === T_CASE) {
-            // Some tokens needs to be adjusted with a new stack.
-            // Switch and case are considered separated scopes,
-            // incrementing level twice. We need to fix this.
+        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
             array_push($this->ignoredScopeStack, $nestedToken);
 
             return;
