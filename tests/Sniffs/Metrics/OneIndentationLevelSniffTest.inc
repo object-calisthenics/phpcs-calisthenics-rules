@@ -105,4 +105,23 @@ function usingMultipleSwitchInsideLambda()
     $bar();
 }
 
+function usingLambdaDefault()
+{
+    $bar = function ()
+    {
+        switch ($condition) {
+            case '1':
+                echo 'hi';
+
+                break;
+            default:
+                echo 'hi';
+
+                break;
+        }
+    };
+
+    $bar();
+}
+
 ?>
