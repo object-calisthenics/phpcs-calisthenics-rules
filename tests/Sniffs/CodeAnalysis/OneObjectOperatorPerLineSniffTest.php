@@ -18,4 +18,15 @@ final class OneObjectOperatorPerLineSniffTest extends TestCase
 
         $this->assertSame(2, $errorCount);
     }
+
+    public function testFluentInterfaces()
+    {
+        $codeSnifferRunner = new CodeSnifferRunner();
+        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
+            __DIR__.'/OneObjectOperatorPerLineSniffTestFluentInterface.inc',
+            OneObjectOperatorPerLineSniff::class
+        );
+
+        $this->assertSame(1, $errorCount);
+    }
 }
