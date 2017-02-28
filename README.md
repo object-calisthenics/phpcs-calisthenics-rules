@@ -67,7 +67,7 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff.php)
 
 
-### 5. Use Only One Object Operator per Line
+### 5. Use Only One Object Operator (`->`) per Line
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
 
