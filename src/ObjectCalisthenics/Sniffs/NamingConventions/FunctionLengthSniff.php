@@ -25,6 +25,16 @@ final class FunctionLengthSniff extends AbstractIdentifierLengthSniff implements
 
     protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
     {
-        return $phpcsFile->findPrevious(T_FUNCTION, ($stackPtr - 1), null, false, null, true) !== false;
+        $previousTFunctionPosition = $phpcsFile->findPrevious(T_FUNCTION, ($stackPtr - 1), null, false, null, true);
+        if ($previousTFunctionPosition === false) {
+            return false;
+        }
+
+        $textAfterTFunction = $phpcsFile->getTokensAsString(
+            $previousTFunctionPosition + 1,
+            $stackPtr - $previousTFunctionPosition - 1
+        );
+
+        return trim($textAfterTFunction) === '';
     }
 }
