@@ -42,25 +42,45 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 ### 1. Only One Level of Indentation per Method
 
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#only-one-level-of-indentation-per-method).
+
+#### Sniffs
+
 - [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
 
 
 ### 2. Do Not Use "else" Keyword
+
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-use-the-else-keyword)
+
+#### Sniffs
 
 - [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
 
 ### 4. Use First Class Collections
 
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#first-class-collections)
+
+#### Sniffs
+
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff.php)
 
 
 ### 5. Use Only One Object Operator per Line
 
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
+
+#### Sniffs
+
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
 
 ### 6. Do not Abbreviate
+
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-abbreviate)
+
+#### Sniffs
 
 - [`ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff.php)
 - [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff.php)
@@ -70,20 +90,32 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 ### 7. Keep Your Classes Small
 
-- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`)[/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php]
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#keep-all-entities-small)
+
+#### Sniffs
+
+- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
 
 
 ### 8. Do Not Use Classes With More Than Two Instance Variables
 
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-classes-with-more-than-two-instance-variables)
+
+#### Sniffs
+
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
 
 
 ### 9. Do not Use Getters and Setters
 
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-getterssettersproperties)
+
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
+
+#### Sniffs
 
 - [`ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff`](/src/ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff.php)
 - [`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
@@ -93,6 +125,8 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 ## Not Implemented Rules
 
 ### 3. Wrap Primitive Types and Strings
+
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#wrap-all-primitives-and-strings)
 
 Since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
 
