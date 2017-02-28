@@ -8,7 +8,7 @@ use PHP_CodeSniffer_Standards_AbstractVariableSniff;
 use PHP_CodeSniffer_Tokens;
 
 /**
- * Check for proterty visibility, part of "Use getter/setter methods" OC rule.
+ * Check for property visibility, part of "Use getter/setter methods" OC rule.
  *
  * {@internal Barbara Liskov feels sick every time she looks at this class code.}
  */

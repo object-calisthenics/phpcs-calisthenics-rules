@@ -8,7 +8,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
-        "friendsofphp/php-cs-fixer": "^2.1"
+        "friendsofphp/php-cs-fixer": "^2.1",
+        "phpstan/phpstan": "^0.6.4"
     },
     "autoload": {
         "psr-4": {
@@ -21,15 +22,18 @@
         }
     },
     "scripts": {
+        "phpstan": [
+            "phpstan analyze src --level 4"
+        ],
         "check-cs": [
-            "vendor/bin/php-cs-fixer fix src --diff --dry-run -v --rules=@Symfony --allow-risky yes",
-            "vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --rules=@Symfony --allow-risky yes",
-            "vendor/bin/phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
+            "php-cs-fixer fix src --diff --dry-run -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
+            "php-cs-fixer fix tests --diff --dry-run -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
+            "phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
         ],
         "fix-cs": [
-            "vendor/bin/php-cs-fixer fix src -v --rules=@Symfony --allow-risky yes",
-            "vendor/bin/php-cs-fixer fix tests -v --rules=@Symfony --allow-risky yes",
-            "vendor/bin/phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
+            "php-cs-fixer fix src -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
+            "php-cs-fixer fix tests -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
+            "phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
         ]
     }
 }

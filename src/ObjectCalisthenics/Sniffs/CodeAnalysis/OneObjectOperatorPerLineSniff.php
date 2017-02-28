@@ -114,12 +114,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @param array $token
-     *
-     * @return string
-     */
-    private function getTokenType($token)
+    private function getTokenType(array $token): string
     {
         if ($token['code'] === T_OPEN_PARENTHESIS) {
             return 'method';
@@ -128,13 +123,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         return 'property';
     }
 
-    /**
-     * @param array $tokens
-     * @param int   $pointer
-     *
-     * @return string
-     */
-    private function movePointerToNextObject(array $tokens, $pointer)
+    private function movePointerToNextObject(array $tokens, int $pointer): int
     {
         $token = $tokens[$pointer];
 
