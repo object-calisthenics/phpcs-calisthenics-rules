@@ -111,14 +111,11 @@ But there's great value in thinking about what would have to happen to move thos
 It's developing this type of thinking that's the real value of the exercise. 
 So, stretch the limits of what you imagine is possible, and see whether you start thinking about your code in a new way.
 
-### Proposed Rules
-
+### Implemented Rules
 
 #### Rule #1: Only one level of indentation
 
-- Status: **Implemented**
-
-Ever stare at a big old method wondering where to start? A giant method lacks cohesiveness. 
+Ever stare at a big old method wondering where to start? A giant method lacks cohesiveness.
 One guideline is to limit method length to five lines, but that kind of transition can be daunting if your code is littered with 500-line monsters. 
 Instead, try to ensure that each method does exactly one thing - one control structure or one block of statements per method. 
 If you've got nested control structures in a method, you're working at multiple levels of abstraction, and that means you're doing more than one thing.
@@ -136,9 +133,7 @@ A three-line method that manages the state of a single object in a given context
 
 #### Rule #2: Do not use "else" keyword
 
-- Status: **Implemented**
-
-Every programmer understands the **if/else** construct. 
+Every programmer understands the **if/else** construct.
 It's built into nearly every programming language, and simple conditional logic is easy for anyone to understand. 
 Nearly every programmer has seen a nasty nested conditional that's impossible to follow, or a case statement that goes on for pages. 
 Even worse, it is all too easy to simply add another branch to an existing conditional rather than factoring to a better solution. 
@@ -180,49 +175,23 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 - Reduces [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
-#### Rule #3: Wrap primitive types and strings
-
-- Status: **Cannot implement**
-
-An ``integer`` on its own is just a scalar with no meaning. 
-When a method takes an integer as a parameter, the method name needs to do all the work of expressing the intent. 
-If the same method takes an hour as a parameter, it's much easier to see what's happening. 
-
-Small objects like this can make programs more maintainable, since it isn't possible to pass a year to a method that takes an hour parameter. 
-With a primitive variable, the compiler can't help you write semantically correct programs. 
-With an object, even a small one, you are giving both the compiler and the programmer additional information about what the value is and why it is being used.
-
-So go ahead and wrap primitives whenever feasible. 
-Small objects will also give you an obvious place to put behavior that otherwise would have been littered around other classes.
-
-> This rule will be regarded as a guideline, as opposed to a strict rule. So basically, if a variable of a primitive type has behavior, consider creating a class for it.
-
-##### Benefits:
-
-- Type hinting
-- Better encapsulation
-- Prevents code duplication
-
-
 #### Rule #4: Use only one object operator per line
-
-- Status: **Implemented**
 
 > **NOTE**
 >
-> When considering class own's members (`$this`), we have to accept 2 object operators per statement/line. 
+> When considering class own's members (`$this`), we have to accept 2 object operators per statement/line.
 > Otherwise, this would be considered invalid:
 >
 > * $this->property->method();
 
-When object operators are connected, your object is digging deeply into another object (or even a series of objects). 
-These multiple dots indicate that you're conceptually violating encapsulation. 
-Try asking that object to do something for you, rather than poking around its insides. 
+When object operators are connected, your object is digging deeply into another object (or even a series of objects).
+These multiple dots indicate that you're conceptually violating encapsulation.
+Try asking that object to do something for you, rather than poking around its insides.
 A major part of encapsulation is not reaching across class boundaries into types that you shouldn't necessarily know about.
 
 Also, multiple dots in a single line of code might result in several issues when it comes to debugging, logging and exception handling, since you won't be able to isolate the bug, or the atomic action, properly.
 
-The [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter) ("Only talk to your friends") is a good place to start, but think about it this way: You can play with your toys, toys that you make and toys that someone gives you. 
+The [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter) ("Only talk to your friends") is a good place to start, but think about it this way: You can play with your toys, toys that you make and toys that someone gives you.
 You don't ever, ever play with your toy's toys.
 
 > This rule got adapted to accept chaining the same object via [Fluent Interfaces](http://en.wikipedia.org/wiki/Fluent_interface) is fine, but please apply this technique carefully, as described in this [blog post](http://devzone.zend.com/777/fluent-interfaces-in-php/).
@@ -235,65 +204,7 @@ You don't ever, ever play with your toy's toys.
 * Easier to debug
 
 
-#### Rule #5: Do not abbreviate
-
-- Status: **Partially implemented**
-
-It's often tempting to abbreviate in the names of classes, methods or variables. Resist the temptation. Abbreviations can be confusing, and the tend to hide larger problems.
-
-Think about why you want to abbreviate.
-
-* Is it because you are typing the same word over and over again? If that's the case, perhaps your method is used too heavily, and you're missing opportunities to remove duplication.
-* Is it because your method names are getting long? This might be a sign of a misplaced responsibility or a missing class.
-
-Try to keep class and method names to one to two words, and avoid names that duplicate the context. 
-If the class is an `Order`, the method doesn't need to be called `shipOrder()`. 
-Simply name the method `ship()` so that clients call `$order->ship()` - a simple and clear representation of what's happening.
-
-For this exercise, all members should have a name that is one or two words, with no abbreviations.
-
-##### Benefits:
-
-* Increases readability
-* Better communication
-* Maintainability
-* Good problem indicator of encapsulation problem and code duplication
-
-
-#### Rule #6: Keep your classes small
-
-- Status: **Partially Implemented**
-
-This means no class that's more than 200 lines, and no package that's more than 15 classes.
-
-The original rule by Jeff Bay dictated 50-line classes. 
-However, there was nothing in that rule related to inline comments, doc-blocks, blank lines or control structure closing lines. 
-Thus, it makes sense for our team to extend this rule in order to allow for 100 lines of code per class, including all extra metadata mentioned here, which can easily take over 50% of file length.
-
-Classes of more than 200 lines usually do more than one thing, which makes them harder to understand and harder to reuse. 
-200-line classes have the added benefit of being visible with little scrolling, which makes them easier to grasp quickly.
-Additionally, methods that are bigger than 20 lines of code also indicates they are doing more than a single atomic operation. 
-Consider also up to 10 methods per class.
-
-What's challenging about creating such small classes is that there are often groups of behaviors that make logical sense together. 
-This is where we need to leverage packages. 
-As your classes become smaller and have fewer responsibilities and as you limit package size, you'll start to see that packages represent clusters of related classes that work together to achieve a goal. 
-Packages, like classes, should be cohesive and have a purpose. 
-Keeping those packages small forces them to have real identity.
-
-In a nutshell, we want a higher number of smaller packages, with skinny classes inside them.
-
-##### Benefits:
-
-* Single Responsibility Principle ("S" in SOLID)
-* Clear methods and their objectives
-* Better code segregation
-* Cleaner namespaces
-
-
 #### Rule #7: Do not use classes with several instance variables
-
-- Status: **Implemented**
 
 Decomposing objects from a set of attributes into a hierarchy of collaborating objects leads much more directly to an effective object model.
 Prior to understanding this rule, one can spend many hours trying to follow data flows through large objects.
@@ -316,14 +227,12 @@ The majority of rules in this exercise also contribute to the same set of positi
 
 #### Rule #8: Use first-class collections
 
-- Status: **Implemented**
-
 The application of this rule is simple: any class that contains a collection should contain no other member variables.
 
-A collection gets wrapped in its own class, so now behaviors related to the collection have a home. 
-You may find that filters become part of this new class. Filters may also become function objects in their own right. 
-Also, your new class can handle activities such as joining two group together or applying a rule to each element of the group. 
-This is an obvious extension of the rule "Do not use classes with several instance variables" (previous topic), but it is important for its own sake as well. 
+A collection gets wrapped in its own class, so now behaviors related to the collection have a home.
+You may find that filters become part of this new class. Filters may also become function objects in their own right.
+Also, your new class can handle activities such as joining two group together or applying a rule to each element of the group.
+This is an obvious extension of the rule "Do not use classes with several instance variables" (previous topic), but it is important for its own sake as well.
 A collection is really a type of very useful primitive. It has many behaviors but little semantic intent or clues for either the next programmer or the maintainer.
 
 ##### Benefits:
@@ -336,8 +245,6 @@ A collection is really a type of very useful primitive. It has many behaviors bu
 
 #### Rule #9: Use getters and setters
 
-- Status: **Implemented**
-
 The application of this rule is simple: any class should not contain public properties.
 
 ##### Benefits:
@@ -345,3 +252,83 @@ The application of this rule is simple: any class should not contain public prop
 * Open/Close Principle ("O" in SOLID)
 * Operation injection
 * Encapsulation of transformations
+
+---
+
+### Partially Implemented Rules
+
+#### Rule #5: Do not abbreviate
+
+It's often tempting to abbreviate in the names of classes, methods or variables. Resist the temptation. Abbreviations can be confusing, and the tend to hide larger problems.
+
+Think about why you want to abbreviate.
+
+* Is it because you are typing the same word over and over again? If that's the case, perhaps your method is used too heavily, and you're missing opportunities to remove duplication.
+* Is it because your method names are getting long? This might be a sign of a misplaced responsibility or a missing class.
+
+Try to keep class and method names to one to two words, and avoid names that duplicate the context.
+If the class is an `Order`, the method doesn't need to be called `shipOrder()`.
+Simply name the method `ship()` so that clients call `$order->ship()` - a simple and clear representation of what's happening.
+
+For this exercise, all members should have a name that is one or two words, with no abbreviations.
+
+##### Benefits:
+
+* Increases readability
+* Better communication
+* Maintainability
+* Good problem indicator of encapsulation problem and code duplication
+
+
+#### Rule #6: Keep your classes small
+
+This means no class that's more than 200 lines, and no package that's more than 15 classes.
+
+The original rule by Jeff Bay dictated 50-line classes.
+However, there was nothing in that rule related to inline comments, doc-blocks, blank lines or control structure closing lines.
+Thus, it makes sense for our team to extend this rule in order to allow for 100 lines of code per class, including all extra metadata mentioned here, which can easily take over 50% of file length.
+
+Classes of more than 200 lines usually do more than one thing, which makes them harder to understand and harder to reuse.
+200-line classes have the added benefit of being visible with little scrolling, which makes them easier to grasp quickly.
+Additionally, methods that are bigger than 20 lines of code also indicates they are doing more than a single atomic operation.
+Consider also up to 10 methods per class.
+
+What's challenging about creating such small classes is that there are often groups of behaviors that make logical sense together.
+This is where we need to leverage packages.
+As your classes become smaller and have fewer responsibilities and as you limit package size, you'll start to see that packages represent clusters of related classes that work together to achieve a goal.
+Packages, like classes, should be cohesive and have a purpose.
+Keeping those packages small forces them to have real identity.
+
+In a nutshell, we want a higher number of smaller packages, with skinny classes inside them.
+
+##### Benefits:
+
+* Single Responsibility Principle ("S" in SOLID)
+* Clear methods and their objectives
+* Better code segregation
+* Cleaner namespaces
+
+---
+
+### Not Implemented Rules
+
+#### Rule #3: Wrap primitive types and strings
+
+An ``integer`` on its own is just a scalar with no meaning.
+When a method takes an integer as a parameter, the method name needs to do all the work of expressing the intent. 
+If the same method takes an hour as a parameter, it's much easier to see what's happening. 
+
+Small objects like this can make programs more maintainable, since it isn't possible to pass a year to a method that takes an hour parameter. 
+With a primitive variable, the compiler can't help you write semantically correct programs. 
+With an object, even a small one, you are giving both the compiler and the programmer additional information about what the value is and why it is being used.
+
+So go ahead and wrap primitives whenever feasible. 
+Small objects will also give you an obvious place to put behavior that otherwise would have been littered around other classes.
+
+> This rule will be regarded as a guideline, as opposed to a strict rule. So basically, if a variable of a primitive type has behavior, consider creating a class for it.
+
+##### Benefits:
+
+- Type hinting
+- Better encapsulation
+- Prevents code duplication
