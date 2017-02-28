@@ -7,11 +7,6 @@ use PHP_CodeSniffer_Sniff;
 use PHP_CodeSniffer_Standards_AbstractVariableSniff;
 use PHP_CodeSniffer_Tokens;
 
-/**
- * Check for property visibility, part of "Use getter/setter methods" OC rule.
- *
- * {@internal Barbara Liskov feels sick every time she looks at this class code.}
- */
 final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
 {
     /**
@@ -70,7 +65,11 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     private function handleMultiPropertyDeclaration(): void
     {
         if (($nextPtr = $this->file->findNext(T_VARIABLE, ($this->position + 1), null, false, null, true)) !== false) {
-            $this->file->addError('There must not be more than one property declared per statement', $this->position, 'MultiPropertyDecl');
+            $this->file->addError(
+                'There must not be more than one property declared per statement',
+                $this->position,
+                self::class
+            );
         }
     }
 
@@ -80,7 +79,11 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     private function handlePublicProperty($modifier): void
     {
         if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
-            $this->file->addError('Use getters and setters for properties. Public visibility is discouraged.', $this->position, 'PublicProperty');
+            $this->file->addError(
+                'Use getters and setters for properties. Public visibility is discouraged.',
+                $this->position,
+                self::class
+            );
         }
     }
 
@@ -93,7 +96,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
             $this->file->addError(
                 sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
                 $this->position,
-                'ScopeMissing'
+                self::class
             );
         }
     }

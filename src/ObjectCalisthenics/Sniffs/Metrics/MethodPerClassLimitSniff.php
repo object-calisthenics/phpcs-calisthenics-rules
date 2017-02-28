@@ -5,9 +5,6 @@ namespace ObjectCalisthenics\Sniffs\Metrics;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Check for amount of methods per class, part of "Keep your classes small" OC rule.
- */
 final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**

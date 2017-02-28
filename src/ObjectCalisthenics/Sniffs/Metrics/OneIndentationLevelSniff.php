@@ -5,9 +5,6 @@ namespace ObjectCalisthenics\Sniffs\Metrics;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Only one indentation level per method.
- */
 final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 {
     /**

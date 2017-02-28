@@ -6,9 +6,6 @@ use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Class name length sniffer, part of "Do not abbreviate" object calisthenics rule.
- */
 final class ClassLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**

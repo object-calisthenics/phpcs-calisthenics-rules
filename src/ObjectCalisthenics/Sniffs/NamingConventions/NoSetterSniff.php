@@ -5,7 +5,7 @@ namespace ObjectCalisthenics\Sniffs\NamingConventions;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-class NoSetterSniff implements PHP_CodeSniffer_Sniff
+final class NoSetterSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var string
