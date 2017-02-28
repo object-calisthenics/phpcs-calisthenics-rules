@@ -33,7 +33,7 @@
         "fix-cs": [
             "php-cs-fixer fix src -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
             "php-cs-fixer fix tests -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
-            "phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
+            "phpcbf src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
         ]
     }
 }
