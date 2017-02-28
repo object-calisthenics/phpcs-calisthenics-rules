@@ -51,7 +51,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param int $stackPtr
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -60,7 +60,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
 
     /**
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param int $stackPtr
      */
     protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -74,6 +74,10 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
         }
     }
 
+
+	/**
+	 * @param int|bool $modifier
+	 */
     private function handlePublicProperty(int $modifier)
     {
         if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
@@ -81,7 +85,11 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
         }
     }
 
-    private function handleVisibilityDeclaration(int $modifier)
+
+	/**
+	 * @param int|bool $modifier
+	 */
+    private function handleVisibilityDeclaration($modifier)
     {
         if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->stackPtr]['line'])) {
             $this->phpcsFile->addError(

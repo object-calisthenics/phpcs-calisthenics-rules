@@ -12,16 +12,16 @@ final class ClassAnalyzer
      */
     private static $propertyList;
 
-    public static function getClassProperties(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): array
+    public static function getClassProperties(PHP_CodeSniffer_File $file, int $stackPtr): array
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens = $file->getTokens();
         $token = $tokens[$stackPtr];
         $pointer = $token['scope_opener'];
 
         self::$propertyList = [];
 
-        while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
-            self::extractPropertyIfFound($phpcsFile, $pointer);
+        while (($pointer = $file->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
+            self::extractPropertyIfFound($file, (int) $pointer);
         }
 
         return self::$propertyList;

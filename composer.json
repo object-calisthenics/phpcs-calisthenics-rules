@@ -23,7 +23,7 @@
     },
     "scripts": {
         "phpstan": [
-            "phpstan analyze src --level 4"
+            "phpstan analyze src --level 5"
         ],
         "check-cs": [
             "php-cs-fixer fix src --diff --dry-run -v --rules=@Symfony,-blank_line_after_opening_tag --allow-risky yes",
