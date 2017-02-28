@@ -10,8 +10,11 @@ final class FunctionLengthSniff extends AbstractDataStructureLengthSniff impleme
     /**
      * @var int
      */
-    protected $maxLength = 20;
+    public $maxLength = 20;
 
+    /**
+     * @return int[]
+     */
     public function register(): array
     {
         return [T_FUNCTION];

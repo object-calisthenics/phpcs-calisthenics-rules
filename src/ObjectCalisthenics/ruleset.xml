@@ -2,40 +2,14 @@
 <ruleset name="ObjectCalisthenics">
     <description>Object Calisthenics coding standard.</description>
 
-    <!-- Rule #1: Only one indentation level per function/method -->
+    <!-- 1. Only one indentation level per function/method -->
     <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel"/>
 
-    <!-- Rule #2: There is no "else" -->
+    <!-- 2. There is no "else" -->
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 
-    <!-- Rule #3: Encapsulate all primitive types and strings -->
-    <!-- Cannot be implemented, since it requires to be encapsulated ONLY if they have behavior -->
-
-    <!-- Rule #4: Only one object operator (->) per line -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
-
-    <!-- Rule #5: Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableLength"/>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionLength"/>
-    <rule ref="ObjectCalisthenics.NamingConventions.ConstantLength"/>
-    <rule ref="ObjectCalisthenics.NamingConventions.ClassLength"/>
-
-    <!-- Rule #6: Keep your classes small -->
-    <!-- 15 classes per namespace -->
-    <!-- Cannot be implemented, since PHPCS can only be executed over files -->
-    <!-- 200 LOC for interfaces, classes and traits -->
-    <rule ref="ObjectCalisthenics.Files.ClassElementLength"/>
-    <!-- 10 methods per class -->
-    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit"/>
-    <!-- 20 LOC for methods -->
-    <rule ref="ObjectCalisthenics.Files.FunctionLength"/>
-
-    <!-- Rule #7: Limit the number of object instances per class (2 to 5) -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
-
-    <!-- Rule #8: Use first class Collections -->
+    <!-- 4. Use first class Collections -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit"/>
-
     <!-- Not sure what this should do and tests keep failing. Temp off. -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit.TooManyUntrackedProperties">
         <severity>0</severity>
@@ -45,6 +19,35 @@
         <severity>0</severity>
     </rule>
 
-    <!-- Rule #9: Use getters/setter -->
+    <!-- 5. Only one object operator (->) per line -->
+    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
+
+    <!-- 6. Do not abbreviate -->
+    <rule ref="ObjectCalisthenics.NamingConventions.VariableLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.FunctionLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.ConstantLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.ClassLength"/>
+
+    <!-- 7. Keep your classes small -->
+    <rule ref="ObjectCalisthenics.Files.ClassElementLength">
+        <properties>
+            <property name="maxLength" type="int" value="200"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+        <properties>
+            <property name="maxLength" type="int" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Files.FunctionLength">
+        <properties>
+            <property name="maxLength" type="int" value="20"/>
+        </properties>
+    </rule>
+
+    <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
+    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
+
+    <!-- 9. Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.PropertyVisibility"/>
 </ruleset>

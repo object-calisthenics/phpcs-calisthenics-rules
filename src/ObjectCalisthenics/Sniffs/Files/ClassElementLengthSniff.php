@@ -10,7 +10,7 @@ final class ClassElementLengthSniff extends AbstractDataStructureLengthSniff imp
     /**
      * @var int
      */
-    protected $maxLength = 200;
+    public $maxLength = 200;
 
     public function register(): array
     {

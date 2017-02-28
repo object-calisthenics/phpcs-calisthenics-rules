@@ -68,7 +68,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
             $this->file->addError(
                 'There must not be more than one property declared per statement',
                 $this->position,
-                self::class
+                ''
             );
         }
     }
@@ -82,7 +82,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
             $this->file->addError(
                 'Use getters and setters for properties. Public visibility is discouraged.',
                 $this->position,
-                self::class
+                ''
             );
         }
     }
@@ -96,7 +96,7 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
             $this->file->addError(
                 sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
                 $this->position,
-                self::class
+                ''
             );
         }
     }

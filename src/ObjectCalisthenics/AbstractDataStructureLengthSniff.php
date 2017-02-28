@@ -17,7 +17,7 @@ abstract class AbstractDataStructureLengthSniff
     /**
      * @var int
      */
-    protected $maxLength = 200;
+    public $maxLength = 200;
 
     /**
      * @param PHP_CodeSniffer_File $file
