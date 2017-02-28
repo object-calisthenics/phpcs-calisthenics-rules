@@ -1,4 +1,4 @@
-# Object Calisthenics rules for PHP_CodeSniffer
+# Object Calisthenics rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 [![Build Status](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
@@ -6,15 +6,42 @@
 [![Latest stable](https://img.shields.io/packagist/v/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
+## Install
 
-A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to verify Object Calisthenics rules.
+Via composer:
 
-* [Installation](#installation)
-* [Testing](#testing)
-* [Contributing](#contributing)
+```sh
+composer require object-calisthenics/phpcs-calisthenics-rules --dev
+```
+
+Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root project directory):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Project">
+    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
+</ruleset>
+```
+
+
+## Contributing
+
+Rules are simple:
+
+- **1 feature per PR**
+- every new feature **must be covered by tests**
+- **all tests** and **style checks must pass**
+
+```bash
+# run PHPStan, coding-standard check and test, see "scripts" section in composer.json for more
+composer complete-check
+```
+
+We will be happy to merge your feature then.
+
+
+
 * [Object Calisthenics](#object-calisthenics)
-    + [Motivation](#motivation)
-    + [Proposed Exercise](#proposed-exercise)
     + [Proposed Rules](#proposed-rules)
       - [Rule #1: Only one level of indentation](#rule-1-only-one-level-of-indentation)
       - [Rule #2: Do not use "else" keyword](#rule-2-do-not-use-else-keyword)
@@ -26,94 +53,22 @@ A [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer/) standard to v
       - [Rule #8: Use first-class collections](#rule-8-use-first-class-collections)
       - [Rule #9: Use getters and setters](#rule-9-use-getters-and-setters)
 
-## Installation
 
-Install via [Composer](http://getcomposer.org/):
- 
-```sh
-composer require object-calisthenics/phpcs-calisthenics-rules --dev
-``` 
+## What are Object Calisthenics?
 
-Then, enable it as part of your project code sniffer ruleset (ie. `phpcs.xml` in root project directory):
+Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Project">
-    <description>Project Coding Standard</description>
+**Are you interested in history or motivation behind them**? [Read this post by William Durand](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [this post by Diego Mariani](https://medium.com/web-engineering-vox/improving-code-quality-with-object-calisthenics-aa4ad67a61f1). Both include code examples, that are simple and easy to understand.
 
-    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
-</ruleset>
-```
+**Do you prefer memes and slides**? [Here are 58 of them in presentation by Guilherme Blanco](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php), the founding father of this project.
 
 
----
+Now let's see rules in this set.
 
 
-## Testing
+## Implemented Rules
 
-```bash
-# install dependencies
-composer install
-
-# run Symfony style checks and check for object calisthenics
-composer check-cs
-
-# run unit tests
-vendor/bin/phpunit
-```
-
-## Contributing
-
-Rules are simple:
-
- - 1 feature per PR
- - every new feature must be covered by tests
- - all existing tests and style checks must pass (see [Testing](#testing))
-
-We would be happy to merge your feature then.
-
-## Object Calisthenics
-
-[The ThoughtWorks Anthology](http://pragprog.com/book/twa/thoughtworks-anthology), a technical book published by [The Pragmatic Programmers](http://pragprog.com), introduced a technique called [Object Calisthenics](http://www.xpteam.com/jeff/writings/objectcalisthenics.rtf), proposed by [Jeff Bay](http://www.xpteam.com/jeff), who used to be the Technology Principal at [ThoughtWorks](http://www.thoughtworks.com). 
-The **adapted excerpts** present the author's motivation, as well as the proposed exercise and rules, ported to PHP language.
-
-
-### Motivation
-
-We've all seen poorly written code that's hard to understand, test and maintain.
-Object-oriented programming promised to save us from our old procedural code, allowing us to write software incrementally, reusing as we go. 
-But sometimes it seems like we're just chasing down the same old complex, coupled designs in Java that we had in C.
-
-Good object-oriented design can be hard to learn. 
-Transitioning from procedural development to object-oriented design requires a major shift in thinking that is more difficult than it seems. 
-Many developers assume they're doing a good job with OO design, when in reality they're unconsciously stuck in procedural habits that are hard to break. 
-It doesn't help that many examples and best practices encourage poor OO design in the name of performance or the simple weight of history.
-
-The core concepts behind good design are well understood. 
-[Alan Shalloway](http://www.netobjectives.com/bio-alan-shalloway) has suggested that seven code qualities matter: cohesion, loose coupling, zero duplication, encapsulation, testability, readability and focus. 
-Yet it's hard to put those concepts into practice. 
-It is one thing to understand that encapsulation means hiding data, implementation, type, design, or construction. 
-It's another thing altogether to design code that implements encapsulation well.
-
-
-### Proposed Exercise
-
-Code a project using far stricter coding standards than you've ever used in your life. 
-In this section you'll find rules that will help push you into writing code that is almost required to be object-oriented. 
-This will allow you to make better decisions and give you more and better options when confronted with the problems of your day job.
-
-By suspending disbelief and rigidly applying these rules on a project, you'll start to see a significantly different approach to designing software. 
-Once you've written the core components, the exercise is done, and you can relax and go back to using these rules as guidelines.
-
-This is a hard exercise, especially because many of these rules are not universally applicable. 
-The fact is that sometimes classes are little more than 200 lines. 
-But there's great value in thinking about what would have to happen to move those responsibilities into real, first-class objects of their own. 
-It's developing this type of thinking that's the real value of the exercise. 
-So, stretch the limits of what you imagine is possible, and see whether you start thinking about your code in a new way.
-
-### Implemented Rules
-
-#### Rule #1: Only one level of indentation
+### Rule #1: Only one level of indentation
 
 Ever stare at a big old method wondering where to start? A giant method lacks cohesiveness.
 One guideline is to limit method length to five lines, but that kind of transition can be daunting if your code is littered with 500-line monsters. 
@@ -131,7 +86,7 @@ A three-line method that manages the state of a single object in a given context
 - Benefits reusability
 
 
-#### Rule #2: Do not use "else" keyword
+### Rule #2: Do not use "else" keyword
 
 Every programmer understands the **if/else** construct.
 It's built into nearly every programming language, and simple conditional logic is easy for anyone to understand. 
@@ -175,7 +130,7 @@ The design pattern [Strategy](http://en.wikipedia.org/wiki/Strategy_pattern) (or
 - Reduces [cyclomatic complexity](http://en.wikipedia.org/wiki/Cyclomatic_complexity)
 
 
-#### Rule #4: Use only one object operator per line
+### Rule #4: Use only one object operator per line
 
 > **NOTE**
 >
@@ -204,7 +159,7 @@ You don't ever, ever play with your toy's toys.
 * Easier to debug
 
 
-#### Rule #7: Do not use classes with several instance variables
+### Rule #7: Do not use classes with several instance variables
 
 Decomposing objects from a set of attributes into a hierarchy of collaborating objects leads much more directly to an effective object model.
 Prior to understanding this rule, one can spend many hours trying to follow data flows through large objects.
@@ -225,7 +180,7 @@ The majority of rules in this exercise also contribute to the same set of positi
 * Testability
 
 
-#### Rule #8: Use first-class collections
+### Rule #8: Use first-class collections
 
 The application of this rule is simple: any class that contains a collection should contain no other member variables.
 
@@ -243,7 +198,7 @@ A collection is really a type of very useful primitive. It has many behaviors bu
 * Filtering, ordering, mapping and merging are good method examples
 
 
-#### Rule #9: Use getters and setters
+### Rule #9: Use getters and setters
 
 The application of this rule is simple: any class should not contain public properties.
 
@@ -255,9 +210,9 @@ The application of this rule is simple: any class should not contain public prop
 
 ---
 
-### Partially Implemented Rules
+## Partially Implemented Rules
 
-#### Rule #5: Do not abbreviate
+### Rule #5: Do not abbreviate
 
 It's often tempting to abbreviate in the names of classes, methods or variables. Resist the temptation. Abbreviations can be confusing, and the tend to hide larger problems.
 
@@ -280,7 +235,7 @@ For this exercise, all members should have a name that is one or two words, with
 * Good problem indicator of encapsulation problem and code duplication
 
 
-#### Rule #6: Keep your classes small
+### Rule #6: Keep your classes small
 
 This means no class that's more than 200 lines, and no package that's more than 15 classes.
 
@@ -310,9 +265,9 @@ In a nutshell, we want a higher number of smaller packages, with skinny classes 
 
 ---
 
-### Not Implemented Rules
+## Not Implemented Rules
 
-#### Rule #3: Wrap primitive types and strings
+### Rule #3: Wrap primitive types and strings
 
 An ``integer`` on its own is just a scalar with no meaning.
 When a method takes an integer as a parameter, the method name needs to do all the work of expressing the intent. 
