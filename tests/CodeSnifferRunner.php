@@ -18,12 +18,12 @@ final class CodeSnifferRunner
         $this->codeSniffer = new PHP_CodeSniffer();
     }
 
-    public function detectErrorCountInFileForSniff(string $testedFile, string $sniffName) : int
+    public function detectErrorCountInFileForSniff(string $testedFile, string $sniffName): int
     {
         return $this->processCodeSniffer($testedFile, $sniffName)->getErrorCount();
     }
 
-    private function processCodeSniffer(string $testedFile, string $sniffName) : \PHP_CodeSniffer_File
+    private function processCodeSniffer(string $testedFile, string $sniffName): \PHP_CodeSniffer_File
     {
         $this->codeSniffer->initStandard(__DIR__.'/../src/ObjectCalisthenics', [$sniffName]);
 

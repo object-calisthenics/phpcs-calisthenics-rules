@@ -22,7 +22,7 @@ final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerCl
      */
     protected $untrackedMaxCount = 5;
 
-    protected function getTrackedPropertyTypeList() : array
+    protected function getTrackedPropertyTypeList(): array
     {
         return [
             'array',

@@ -39,7 +39,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
      */
     private $stackPtr;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_CLASS, T_TRAIT];
     }
@@ -74,7 +74,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         }
     }
 
-    private function checkTrackedClassPropertyAmount() : string
+    private function checkTrackedClassPropertyAmount(): string
     {
         $trackedPropertyList = PropertyFilter::getTrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $trackedPropertyAmount = count($trackedPropertyList);
@@ -89,9 +89,9 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return '';
     }
 
-    abstract protected function getTrackedPropertyTypeList() : array;
+    abstract protected function getTrackedPropertyTypeList(): array;
 
-    private function checkTrackedClassPropertyTypeAmount() : array
+    private function checkTrackedClassPropertyTypeAmount(): array
     {
         $segregatedPropertyList = $this->getClassPropertiesSegregatedByType();
         $errorList = [];
@@ -114,7 +114,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return $errorList;
     }
 
-    private function checkUntrackedClassPropertyAmount() : string
+    private function checkUntrackedClassPropertyAmount(): string
     {
         $untrackedPropertyList = PropertyFilter::filterUntrackedClassPropertyList($this->propertyList, $this->getTrackedPropertyTypeList());
         $untrackedPropertyAmount = count($untrackedPropertyList);
@@ -129,7 +129,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return '';
     }
 
-    private function getClassPropertiesSegregatedByType() : array
+    private function getClassPropertiesSegregatedByType(): array
     {
         $segregatedPropertyList = [];
 
@@ -140,7 +140,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return $segregatedPropertyList;
     }
 
-    private function checkTotalPropertiesAmount() : bool
+    private function checkTotalPropertiesAmount(): bool
     {
         if (($error = $this->checkTrackedClassPropertyAmount()) !== '') {
             $this->phpcsFile->addError($error, $this->stackPtr);
@@ -151,7 +151,7 @@ abstract class AbstractPropertyTypePerClassLimitSniff
         return false;
     }
 
-    private function checkTrackedPropertiesAmount() : bool
+    private function checkTrackedPropertiesAmount(): bool
     {
         $errorList = $this->checkTrackedClassPropertyTypeAmount();
         if ($errorList) {

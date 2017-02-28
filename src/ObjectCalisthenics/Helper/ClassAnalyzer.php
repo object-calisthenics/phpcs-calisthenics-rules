@@ -14,7 +14,7 @@ final class ClassAnalyzer
      */
     private static $propertyList;
 
-    public static function getClassProperties(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
+    public static function getClassProperties(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): array
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];

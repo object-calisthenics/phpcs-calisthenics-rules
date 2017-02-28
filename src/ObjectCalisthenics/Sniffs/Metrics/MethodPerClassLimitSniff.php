@@ -19,7 +19,7 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     protected $maxCount = 10;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_CLASS, T_INTERFACE, T_TRAIT];
     }
@@ -43,7 +43,7 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function getClassMethods(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
+    private function getClassMethods(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): array
     {
         $pointer = $stackPtr;
         $methods = [];

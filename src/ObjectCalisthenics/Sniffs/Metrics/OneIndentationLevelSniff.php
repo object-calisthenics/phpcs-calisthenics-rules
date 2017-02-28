@@ -42,7 +42,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
      */
     private $currentPtr;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_FUNCTION, T_CLOSURE];
     }
@@ -111,7 +111,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function subtractFunctionNestingLevel(array $token) : int
+    private function subtractFunctionNestingLevel(array $token): int
     {
         return $this->nestingLevel - $token['level'] - 1;
     }

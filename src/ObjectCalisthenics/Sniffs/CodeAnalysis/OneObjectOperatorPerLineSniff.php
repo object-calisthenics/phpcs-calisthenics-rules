@@ -27,7 +27,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
      */
     private $callerTokens;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_VARIABLE];
     }
@@ -55,7 +55,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function ignoreWhitespace(array $tokens, int $start) : int
+    private function ignoreWhitespace(array $tokens, int $start): int
     {
         $pointer = $start;
 

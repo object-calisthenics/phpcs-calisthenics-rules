@@ -6,7 +6,7 @@ namespace ObjectCalisthenics\Helper;
 
 final class PropertyFilter
 {
-    public static function filterUntrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList) : array
+    public static function filterUntrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList): array
     {
         return array_filter(
             $propertyList,
@@ -16,7 +16,7 @@ final class PropertyFilter
         );
     }
 
-    public static function getTrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList) : array
+    public static function getTrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList): array
     {
         return array_filter(
             $propertyList,

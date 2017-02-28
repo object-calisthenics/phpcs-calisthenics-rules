@@ -47,7 +47,7 @@ abstract class AbstractIdentifierLengthSniff
      */
     private $allowedShortVariables = ['id'];
 
-    public function register() : array
+    public function register(): array
     {
         return [T_STRING];
     }
@@ -76,7 +76,7 @@ abstract class AbstractIdentifierLengthSniff
         $this->handleMinContentLength($content);
     }
 
-    abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool;
+    abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool;
 
     private function handleMinContentLength(string $content)
     {

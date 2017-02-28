@@ -8,7 +8,7 @@ use PHP_CodeSniffer_File;
 
 final class StructureMetrics
 {
-    public static function getStructureLengthInLines(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : int
+    public static function getStructureLengthInLines(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): int
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];

@@ -18,7 +18,7 @@ final class ClassElementLengthSniff extends AbstractDataStructureLengthSniff imp
      */
     protected $maxLength = 200;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_CLASS, T_INTERFACE, T_TRAIT];
     }

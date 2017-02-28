@@ -22,7 +22,7 @@ final class ArrayPropertyPerClassLimitSniff extends AbstractPropertyTypePerClass
      */
     protected $untrackedMaxCount = 0;
 
-    protected function getTrackedPropertyTypeList() : array
+    protected function getTrackedPropertyTypeList(): array
     {
         return ['array'];
     }

@@ -23,7 +23,7 @@ final class FunctionLengthSniff extends AbstractIdentifierLengthSniff implements
      */
     protected $tokenTypeLengthFactor = 0;
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
+    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool
     {
         $previousTFunctionPosition = $phpcsFile->findPrevious(T_FUNCTION, ($stackPtr - 1), null, false, null, true);
         if ($previousTFunctionPosition === false) {

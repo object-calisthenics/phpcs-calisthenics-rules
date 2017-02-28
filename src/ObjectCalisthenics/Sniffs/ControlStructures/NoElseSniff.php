@@ -12,7 +12,7 @@ use PHP_CodeSniffer_Sniff;
  */
 final class NoElseSniff implements PHP_CodeSniffer_Sniff
 {
-    public function register() : array
+    public function register(): array
     {
         return [T_ELSE, T_ELSEIF];
     }

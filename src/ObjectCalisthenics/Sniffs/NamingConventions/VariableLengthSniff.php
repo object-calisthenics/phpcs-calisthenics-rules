@@ -13,12 +13,12 @@ use PHP_CodeSniffer_Sniff;
  */
 final class VariableLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
-    public function register() : array
+    public function register(): array
     {
         return [T_VARIABLE];
     }
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
+    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool
     {
         return true;
     }

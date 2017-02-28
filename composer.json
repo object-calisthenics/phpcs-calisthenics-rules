@@ -8,7 +8,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
-        "fabpot/php-cs-fixer": "^1.12"
+        "fabpot/php-cs-fixer": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -22,13 +22,13 @@
     },
     "scripts": {
         "check-cs": [
-            "vendor/bin/php-cs-fixer fix src --diff --dry-run -v --level=symfony",
-            "vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --level=symfony",
+            "vendor/bin/php-cs-fixer fix src --diff --dry-run -v --rules=@Symfony --allow-risky yes",
+            "vendor/bin/php-cs-fixer fix tests --diff --dry-run -v --rules=@Symfony --allow-risky yes",
             "vendor/bin/phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
         ],
         "fix-cs": [
-            "vendor/bin/php-cs-fixer fix src -v --level=symfony",
-            "vendor/bin/php-cs-fixer fix tests -v --level=symfony",
+            "vendor/bin/php-cs-fixer fix src -v --rules=@Symfony --allow-risky yes",
+            "vendor/bin/php-cs-fixer fix tests -v --rules=@Symfony --allow-risky yes",
             "vendor/bin/phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
         ]
     }
