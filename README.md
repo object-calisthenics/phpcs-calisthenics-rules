@@ -42,42 +42,42 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 ### 1. Only One Level of Indentation per Method
 
-- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/blob/master/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
 
 
 ### 2. Do Not Use "else" Keyword
 
-- [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/blob/master/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
+- [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
 
 ### 4. Use First Class Collections
 
-- [`ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff.php)
+- [`ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff.php)
 
 
 ### 5. Use Only One Object Operator per Line
 
-- [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
+- [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
 
 ### 6. Do not Abbreviate
 
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff.php)
 
 
 ### 7. Keep Your Classes Small
 
-- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`)[/blob/master/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php]
-- [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`)[/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php]
+- [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
 
 
 ### 8. Do Not Use Classes With More Than Two Instance Variables
 
-- [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
+- [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
 
 
 ### 9. Do not Use Getters and Setters
@@ -85,8 +85,8 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
 
-- [`ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff`](/blob/master/src/ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/blob/master/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
+- [`ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff`](/src/ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
 
 ---
 
