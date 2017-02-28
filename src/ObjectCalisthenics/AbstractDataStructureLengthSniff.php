@@ -8,7 +8,7 @@ use PHP_CodeSniffer_File;
 /**
  * Data structure length code sniffer.
  *
- * This sniff is thegs base for class, interface, trait, function and method
+ * This sniff is the base for class, interface, trait, function and method
  * length checks as part of "Keep your classes small" object calisthenics
  * rule.
  */
