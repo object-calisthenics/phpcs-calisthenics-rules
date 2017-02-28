@@ -2,7 +2,6 @@
     "name": "object-calisthenics/phpcs-calisthenics-rules",
     "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
     "license": "MIT",
-    "homepage": "https://github.com/object-calisthenics/phpcs-calisthenics-rules",
     "authors": [
         { "name": "Guilherme Blanco", "email": "guilhermeblanco@hotmail.com" },
         { "name": "Tomas Votruba", "email": "info@tomasvotruba.cz" }
