@@ -3,7 +3,7 @@
     "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
     "license": "MIT",
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "squizlabs/php_codesniffer": "^2.8"
     },
     "require-dev": {

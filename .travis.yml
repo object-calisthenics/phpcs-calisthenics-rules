@@ -2,12 +2,9 @@ language: php
 
 sudo: false
 
-php:
-  - 7.1
-
 matrix:
   include:
-    - php: 7.0
+    - php: 7.1
       # add variables to enable coverage, coding standard check and static analysis
       env: PHPUNIT_FLAGS="--coverage-clover coverage.xml" CHECK_CS=1 RUN_PHPSTAN=1
 

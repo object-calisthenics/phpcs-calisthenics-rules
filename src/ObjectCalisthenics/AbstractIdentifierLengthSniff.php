@@ -33,12 +33,12 @@ abstract class AbstractIdentifierLengthSniff
     /**
      * @var PHP_CodeSniffer_File
      */
-    private $phpcsFile;
+    private $file;
 
     /**
      * @var int
      */
-    private $stackPtr;
+    private $position;
 
     /**
      * @var array
@@ -51,19 +51,19 @@ abstract class AbstractIdentifierLengthSniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $this->phpcsFile = $phpcsFile;
-        $this->stackPtr = $stackPtr;
+        $this->file = $file;
+        $this->position = $position;
 
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
         $content = mb_substr($token['content'], $this->tokenTypeLengthFactor);
 
-        if (!$this->isValid($phpcsFile, $stackPtr)) {
+        if (!$this->isValid($file, $position)) {
             return;
         }
 
@@ -74,9 +74,9 @@ abstract class AbstractIdentifierLengthSniff
         $this->handleMinContentLength($content);
     }
 
-    abstract protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool;
+    abstract protected function isValid(PHP_CodeSniffer_File $file, int $position): bool;
 
-    private function handleMinContentLength(string $content)
+    private function handleMinContentLength(string $content): void
     {
         $length = mb_strlen($content);
 
@@ -91,15 +91,11 @@ abstract class AbstractIdentifierLengthSniff
             $this->minLength
         );
 
-        $this->phpcsFile->addError($error, $this->stackPtr, sprintf('%sTooShort', ucfirst($this->tokenString)));
+        $this->file->addError($error, $this->position, sprintf('%sTooShort', ucfirst($this->tokenString)));
     }
 
     private function isShortContentAllowed(string $content): bool
     {
-        if ($this->register() === [T_VARIABLE] && in_array($content, $this->allowedShortVariables)) {
-            return true;
-        }
-
-        return false;
+        return $this->register() === [T_VARIABLE] && in_array($content, $this->allowedShortVariables);
     }
 }

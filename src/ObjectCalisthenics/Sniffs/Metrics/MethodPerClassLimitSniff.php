@@ -25,28 +25,28 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
         $tokenType = strtolower(substr($token['type'], 2));
-        $methods = $this->getClassMethods($phpcsFile, $stackPtr);
+        $methods = $this->getClassMethods($file, $position);
         $methodCount = count($methods);
 
         if ($methodCount > $this->maxCount) {
             $message = 'Your %s has %d methods, must be less or equals than %d methods';
             $error = sprintf($message, $tokenType, $methodCount, $this->maxCount);
 
-            $phpcsFile->addError($error, $stackPtr, sprintf('%sTooManyMethods', ucfirst($tokenType)));
+            $file->addError($error, $position, sprintf('%sTooManyMethods', ucfirst($tokenType)));
         }
     }
 
-    private function getClassMethods(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): array
+    private function getClassMethods(PHP_CodeSniffer_File $file, int $position): array
     {
-        $pointer = $stackPtr;
+        $pointer = $position;
         $methods = [];
 
-        while (($next = $phpcsFile->findNext(T_FUNCTION, $pointer + 1)) !== false) {
+        while (($next = $file->findNext(T_FUNCTION, $pointer + 1)) !== false) {
             $methods[] = $next;
 
             $pointer = $next;

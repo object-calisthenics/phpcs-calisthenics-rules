@@ -15,21 +15,19 @@ use PHP_CodeSniffer_File;
 abstract class AbstractDataStructureLengthSniff
 {
     /**
-     * Maximum data structure length.
-     *
      * @var int
      */
     protected $maxLength = 200;
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-        $length = StructureMetrics::getStructureLengthInLines($phpcsFile, $stackPtr);
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
+        $length = StructureMetrics::getStructureLengthInLines($file, $position);
 
         if ($length > $this->maxLength) {
             $tokenType = strtolower(substr($token['type'], 2));
@@ -40,7 +38,7 @@ abstract class AbstractDataStructureLengthSniff
                 $this->maxLength
             );
 
-            $phpcsFile->addError($error, $stackPtr, sprintf('%sTooBig', ucfirst($tokenType)));
+            $file->addError($error, $position, sprintf('%sTooBig', ucfirst($tokenType)));
         }
     }
 }

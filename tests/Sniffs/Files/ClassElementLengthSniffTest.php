@@ -15,12 +15,12 @@ final class ClassElementLengthSniffTest extends TestCase
      */
     private $codeSnifferRunner;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->codeSnifferRunner = new CodeSnifferRunner();
     }
 
-    public function testClassLengthSniff()
+    public function testClassLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest.inc',
@@ -30,7 +30,7 @@ final class ClassElementLengthSniffTest extends TestCase
         $this->assertSame(1, $errorCount);
     }
 
-    public function testInterfaceLengthSniff()
+    public function testInterfaceLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest2.inc',
@@ -40,7 +40,7 @@ final class ClassElementLengthSniffTest extends TestCase
         $this->assertSame(1, $errorCount);
     }
 
-    public function testTraitLengthSniff()
+    public function testTraitLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest3.inc',

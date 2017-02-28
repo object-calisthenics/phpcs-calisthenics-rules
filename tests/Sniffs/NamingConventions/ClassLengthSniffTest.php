@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ClassLengthSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(

@@ -21,16 +21,16 @@ final class ClassLengthSniff extends AbstractIdentifierLengthSniff implements PH
      */
     protected $tokenTypeLengthFactor = 0;
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool
+    protected function isValid(PHP_CodeSniffer_File $file, int $position): bool
     {
-        $previousTClassPosition = $phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1), null, false, null, true);
+        $previousTClassPosition = $file->findPrevious(T_CLASS, ($position - 1), null, false, null, true);
         if ($previousTClassPosition === false) {
             return false;
         }
 
-        $textAfterTClass = $phpcsFile->getTokensAsString(
+        $textAfterTClass = $file->getTokensAsString(
             $previousTClassPosition + 1,
-            $stackPtr - $previousTClassPosition - 1
+            $position - $previousTClassPosition - 1
         );
 
         return trim($textAfterTClass) === '';

@@ -3,6 +3,7 @@
 namespace ObjectCalisthenics\Tests;
 
 use PHP_CodeSniffer;
+use PHP_CodeSniffer_File;
 
 final class CodeSnifferRunner
 {
@@ -21,7 +22,7 @@ final class CodeSnifferRunner
         return $this->processCodeSniffer($testedFile, $sniffName)->getErrorCount();
     }
 
-    private function processCodeSniffer(string $testedFile, string $sniffName): \PHP_CodeSniffer_File
+    private function processCodeSniffer(string $testedFile, string $sniffName): PHP_CodeSniffer_File
     {
         $this->codeSniffer->initStandard(__DIR__.'/../src/ObjectCalisthenics', [$sniffName]);
 

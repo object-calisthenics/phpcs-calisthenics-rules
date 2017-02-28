@@ -16,7 +16,7 @@ final class VariableLengthSniff extends AbstractIdentifierLengthSniff implements
         return [T_VARIABLE];
     }
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool
+    protected function isValid(PHP_CodeSniffer_File $file, int $position): bool
     {
         return true;
     }

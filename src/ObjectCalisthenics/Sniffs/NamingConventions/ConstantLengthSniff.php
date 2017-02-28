@@ -21,8 +21,8 @@ final class ConstantLengthSniff extends AbstractIdentifierLengthSniff implements
      */
     protected $tokenTypeLengthFactor = 0;
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr): bool
+    protected function isValid(PHP_CodeSniffer_File $file, int $position): bool
     {
-        return $phpcsFile->findPrevious(T_CONST, ($stackPtr - 1), null, false, null, true) !== false;
+        return $file->findPrevious(T_CONST, ($position - 1), null, false, null, true) !== false;
     }
 }

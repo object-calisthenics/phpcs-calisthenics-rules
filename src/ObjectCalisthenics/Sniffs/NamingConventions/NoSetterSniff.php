@@ -7,18 +7,29 @@ use PHP_CodeSniffer_Sniff;
 
 class NoSetterSniff implements PHP_CodeSniffer_Sniff
 {
-    const SETTER_REGEX = '/^set[A-Z0-9]/';
-    const SETTER_WARNING = 'Setters are not allowed';
+    /**
+     * @var string
+     */
+    private const SETTER_REGEX = '/^set[A-Z0-9]/';
 
-    public function register()
+    /**
+     * @var string
+     */
+    private const SETTER_WARNING = 'Setters are not allowed';
+
+    public function register(): array
     {
         return [T_FUNCTION];
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    /**
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
+     */
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        if ($this->methodNameStartsWithSet($phpcsFile->getDeclarationName($stackPtr))) {
-            $phpcsFile->addError(self::SETTER_WARNING, $stackPtr);
+        if ($this->methodNameStartsWithSet($file->getDeclarationName($position))) {
+            $file->addError(self::SETTER_WARNING, $position);
         }
     }
 

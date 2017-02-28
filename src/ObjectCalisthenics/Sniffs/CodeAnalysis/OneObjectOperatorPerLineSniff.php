@@ -13,12 +13,12 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
     /**
      * @var PHP_CodeSniffer_File
      */
-    private $phpcsFile;
+    private $file;
 
     /**
      * @var int
      */
-    private $stackPtr;
+    private $position;
 
     /**
      * @var array
@@ -31,19 +31,19 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $this->phpcsFile = $phpcsFile;
-        $this->stackPtr = $stackPtr;
+        $this->file = $file;
+        $this->position = $position;
         $this->callerTokens = [];
 
-        $tokens = $phpcsFile->getTokens();
-        $pointer = $this->ignoreWhitespace($tokens, $stackPtr + 1);
+        $tokens = $file->getTokens();
+        $pointer = $this->ignoreWhitespace($tokens, $position + 1);
 
-        $token = $tokens[$stackPtr];
+        $token = $tokens[$position];
         $isOwnCall = ($token['content'] === '$this');
 
         try {
@@ -64,16 +64,16 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
         return $pointer;
     }
 
-    private function handleTwoObjectOperators(bool $isOwnCall)
+    private function handleTwoObjectOperators(bool $isOwnCall): void
     {
         if ($this->callerTokens && !$isOwnCall) {
-            $this->phpcsFile->addError('Only one object operator per line.', $this->stackPtr);
+            $this->file->addError('Only one object operator per line.', $this->position);
 
             throw new \Exception();
         }
     }
 
-    private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType)
+    private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType): void
     {
         if (!$this->callerTokens) {
             return;
@@ -88,13 +88,13 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
             ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
             ($memberTokenType === 'method' && $tmpTokenType === 'method' && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'])
         ) {
-            $this->phpcsFile->addError('Only one object operator per line.', $this->stackPtr);
+            $this->file->addError('Only one object operator per line.', $this->position);
 
             throw new \Exception();
         }
     }
 
-    private function handleObjectOperators(array $tokens, int $pointer, bool $isOwnCall)
+    private function handleObjectOperators(array $tokens, int $pointer, bool $isOwnCall): void
     {
         while ($tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
             $tmpToken = $tokens[++$pointer];

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 class NoSetterSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(

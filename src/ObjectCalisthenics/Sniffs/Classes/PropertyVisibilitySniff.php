@@ -22,26 +22,26 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     /**
      * @var PHP_CodeSniffer_File
      */
-    private $phpcsFile;
+    private $file;
 
     /**
      * @var int
      */
-    private $stackPtr;
+    private $position;
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processMemberVar(PHP_CodeSniffer_File $file, $position): void
     {
-        $this->phpcsFile = $phpcsFile;
-        $this->stackPtr = $stackPtr;
-        $this->tokens = $phpcsFile->getTokens();
+        $this->file = $file;
+        $this->position = $position;
+        $this->tokens = $file->getTokens();
 
         $this->handleMultiPropertyDeclaration();
 
-        $modifier = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, ($stackPtr - 1));
+        $modifier = $file->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, ($position - 1));
 
         // Check for no visibility declaration
 
@@ -50,49 +50,49 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariable(PHP_CodeSniffer_File $file, $position): void
     {
         // We don't care about normal variables.
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariableInString(PHP_CodeSniffer_File $file, $position): void
     {
         // We don't care about normal variables.
     }
 
-    private function handleMultiPropertyDeclaration()
+    private function handleMultiPropertyDeclaration(): void
     {
-        if (($nextPtr = $this->phpcsFile->findNext(T_VARIABLE, ($this->stackPtr + 1), null, false, null, true)) !== false) {
-            $this->phpcsFile->addError('There must not be more than one property declared per statement', $this->stackPtr, 'MultiPropertyDecl');
+        if (($nextPtr = $this->file->findNext(T_VARIABLE, ($this->position + 1), null, false, null, true)) !== false) {
+            $this->file->addError('There must not be more than one property declared per statement', $this->position, 'MultiPropertyDecl');
         }
     }
 
     /**
      * @param int|bool $modifier
      */
-    private function handlePublicProperty(int $modifier)
+    private function handlePublicProperty($modifier): void
     {
         if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
-            $this->phpcsFile->addError('Use getters and setters for properties. Public visibility is discouraged.', $this->stackPtr, 'PublicProperty');
+            $this->file->addError('Use getters and setters for properties. Public visibility is discouraged.', $this->position, 'PublicProperty');
         }
     }
 
     /**
      * @param int|bool $modifier
      */
-    private function handleVisibilityDeclaration($modifier)
+    private function handleVisibilityDeclaration($modifier): void
     {
-        if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->stackPtr]['line'])) {
-            $this->phpcsFile->addError(
-                sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->stackPtr]['content']),
-                $this->stackPtr,
+        if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->position]['line'])) {
+            $this->file->addError(
+                sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
+                $this->position,
                 'ScopeMissing'
             );
         }
