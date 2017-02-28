@@ -47,9 +47,4 @@
 
     <!-- Rule #9: Use getters/setter -->
     <rule ref="ObjectCalisthenics.Classes.PropertyVisibility"/>
-
-    <!-- Rule #10: Document your code -->
-    <!-- These rules are all but useful. Check so many irrelevant stuffs. -->
-    <!--<rule ref="Squiz.Commenting.DocCommentAlignment"/>-->
-    <!--<rule ref="Squiz.Commenting.FunctionComment"/>-->
 </ruleset>
