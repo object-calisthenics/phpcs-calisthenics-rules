@@ -18,6 +18,6 @@ final class OneIndentationLevelSniffTest extends TestCase
             'ObjectCalisthenics.Metrics.OneIndentationLevel'
         );
 
-        $this->assertSame(5, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

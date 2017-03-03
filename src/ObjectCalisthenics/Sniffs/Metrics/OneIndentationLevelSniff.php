@@ -8,9 +8,10 @@ use PHP_CodeSniffer_Sniff;
 final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
 {
     /**
+     * @todo Make configurable and return to 1.
      * @var int
      */
-    private $maxNestingLevel = 1;
+    private $maxNestingLevel = 2;
 
     /**
      * @var PHP_CodeSniffer_File
