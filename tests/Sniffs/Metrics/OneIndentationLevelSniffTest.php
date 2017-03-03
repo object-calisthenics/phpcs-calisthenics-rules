@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
@@ -12,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class OneIndentationLevelSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
@@ -20,6 +18,6 @@ final class OneIndentationLevelSniffTest extends TestCase
             'ObjectCalisthenics.Metrics.OneIndentationLevel'
         );
 
-        $this->assertSame(5, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

@@ -1,28 +1,26 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Sniffs\ControlStructures;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Do not use "else" or "elseif" tokens.
- */
 final class NoElseSniff implements PHP_CodeSniffer_Sniff
 {
-    public function register() : array
+    /**
+     * @return int[]
+     */
+    public function register(): array
     {
         return [T_ELSE, T_ELSEIF];
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $phpcsFile->addError('Do not use "else" or "elseif" tokens', $stackPtr);
+        $file->addError('Do not use "else" or "elseif" tokens', $position, self::class);
     }
 }

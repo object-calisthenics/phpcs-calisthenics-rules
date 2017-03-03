@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
@@ -8,9 +6,6 @@ use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Constant name length sniffer, part of "Do not abbreviate" object calisthenics rule.
- */
 final class ConstantLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
@@ -23,8 +18,8 @@ final class ConstantLengthSniff extends AbstractIdentifierLengthSniff implements
      */
     protected $tokenTypeLengthFactor = 0;
 
-    protected function isValid(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : bool
+    protected function isValid(PHP_CodeSniffer_File $file, int $position): bool
     {
-        return $phpcsFile->findPrevious(T_CONST, ($stackPtr - 1), null, false, null, true) !== false;
+        return $file->findPrevious(T_CONST, ($position - 1), null, false, null, true) !== false;
     }
 }

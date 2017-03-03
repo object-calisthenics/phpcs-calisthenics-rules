@@ -6,16 +6,16 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
+ * @covers \ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff
  */
-final class PropertyVisibilitySniffTest extends TestCase
+final class ForbiddenPublicPropertySniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/PropertyVisibilitySniffTest.inc',
-            'ObjectCalisthenics.Classes.PropertyVisibility'
+            __DIR__.'/ForbiddenPublicPropertySniffTest.inc',
+            'ObjectCalisthenics.Classes.ForbiddenPublicProperty'
         );
 
         $this->assertSame(2, $errorCount);

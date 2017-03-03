@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
@@ -12,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class FunctionLengthSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Helper;
 
@@ -14,32 +12,32 @@ final class ClassAnalyzer
      */
     private static $propertyList;
 
-    public static function getClassProperties(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : array
+    public static function getClassProperties(PHP_CodeSniffer_File $file, int $position): array
     {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
         $pointer = $token['scope_opener'];
 
         self::$propertyList = [];
 
-        while (($pointer = $phpcsFile->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
-            self::extractPropertyIfFound($phpcsFile, $pointer);
+        while (($pointer = $file->findNext(T_VARIABLE, ($pointer + 1), $token['scope_closer'])) !== false) {
+            self::extractPropertyIfFound($file, (int) $pointer);
         }
 
         return self::$propertyList;
     }
 
-    private static function extractPropertyIfFound(PHP_CodeSniffer_File $phpcsFile, int $stackPtr)
+    private static function extractPropertyIfFound(PHP_CodeSniffer_File $file, int $position): void
     {
-        $tokens = $phpcsFile->getTokens();
-        $property = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $property = $tokens[$position];
 
         // Is it a property or a random variable?
         if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), [T_CLASS, T_TRAIT]))) {
             return;
         }
 
-        if ($comment = MemberComment::getMemberComment($phpcsFile, $stackPtr)) {
+        if ($comment = MemberComment::getMemberComment($file, $position)) {
             self::$propertyList[] = [
                 'type' => $comment,
             ];
