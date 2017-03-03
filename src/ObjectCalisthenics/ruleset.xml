@@ -3,7 +3,11 @@
     <description>Object Calisthenics coding standard.</description>
 
     <!-- 1. Only one indentation level per function/method -->
-    <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel"/>
+    <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+        <properties>
+            <property name="maxNestingLevel" type="int" value="2"/>
+        </properties>
+    </rule>
 
     <!-- 2. There is no "else" -->
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
@@ -41,7 +45,7 @@
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionLengthSniff.php,AbstractDataStructureLengthSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php"
             />
         </properties>
     </rule>
