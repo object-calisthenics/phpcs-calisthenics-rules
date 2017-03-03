@@ -8,17 +8,6 @@
     <!-- 2. There is no "else" -->
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 
-    <!-- 4. Use first class Collections -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit"/>
-    <!-- Not sure what this should do and tests keep failing. Temp off. -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit.TooManyUntrackedProperties">
-        <severity>0</severity>
-    </rule>
-    <!-- Not sure what this should do and tests keep failing. Temp off. -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit.TooManyPropertiesOfType">
-        <severity>0</severity>
-    </rule>
-
     <!-- 5. Only one object operator (->) per line -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
