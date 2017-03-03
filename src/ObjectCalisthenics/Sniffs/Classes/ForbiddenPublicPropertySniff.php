@@ -2,13 +2,19 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
+use Nette\Utils\Strings;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 use PHP_CodeSniffer_Standards_AbstractVariableSniff;
 use PHP_CodeSniffer_Tokens;
 
-final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
+final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
 {
+    /**
+     * @var string[]
+     */
+    public $filesToBeSkipped = [];
+
     /**
      * @var array
      */
@@ -30,6 +36,10 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
      */
     protected function processMemberVar(PHP_CodeSniffer_File $file, $position): void
     {
+        if ($this->isFileSkipped($file->getFilename())) {
+            return;
+        }
+
         $this->file = $file;
         $this->position = $position;
         $this->tokens = $file->getTokens();
@@ -92,12 +102,23 @@ final class PropertyVisibilitySniff extends PHP_CodeSniffer_Standards_AbstractVa
      */
     private function handleVisibilityDeclaration($modifier): void
     {
-        if (($modifier === false) || ($this->tokens[$modifier]['line'] !== $this->tokens[$this->position]['line'])) {
+        if ($modifier === false || $this->tokens[$modifier]['line'] !== $this->tokens[$this->position]['line']) {
             $this->file->addError(
                 sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
                 $this->position,
                 ''
             );
         }
+    }
+
+    private function isFileSkipped(string $filename): bool
+    {
+        foreach ($this->filesToBeSkipped as $fileToBeSkipped) {
+            if (Strings::endsWith($filename, $fileToBeSkipped)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

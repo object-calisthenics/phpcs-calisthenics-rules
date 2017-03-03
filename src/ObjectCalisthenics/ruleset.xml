@@ -49,5 +49,11 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
 
     <!-- 9. Do not Use Getters and Setters -->
-    <rule ref="ObjectCalisthenics.Classes.PropertyVisibility"/>
+    <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
+        <properties>
+            <property name="filesToBeSkipped" type="array"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionLengthSniff.php,AbstractDataStructureLengthSniff.php"
+            />
+        </properties>
+    </rule>
 </ruleset>
