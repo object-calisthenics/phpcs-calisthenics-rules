@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <ruleset name="ObjectCalisthenics">
-    <description>Object Calisthenics coding standard.</description>
-
     <!-- 1. Only one indentation level per function/method -->
     <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
         <properties>

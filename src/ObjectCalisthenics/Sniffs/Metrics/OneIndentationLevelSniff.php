@@ -30,7 +30,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     /**
      * @var array
      */
-    private $ignoredScopeStack;
+    private $ignoredScopeStack = [];
 
     /**
      * @var int

@@ -28,9 +28,10 @@ Via composer:
 composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ```
 
-Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root project directory):
+Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root project directory):
 
 ```xml
+<!-- ruleset.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="Project">
     <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
@@ -43,6 +44,18 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 ### 1. Only One Level of Indentation per Method
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#only-one-level-of-indentation-per-method).
+
+
+This rule is **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+    <properties>
+        <property name="maxNestingLevel" type="int" value="2"/>
+    </properties>
+</rule>
+```
 
 #### Sniffs
 
