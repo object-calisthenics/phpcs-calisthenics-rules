@@ -58,15 +58,6 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 - [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
 
-### 4. Use First Class Collections
-
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#first-class-collections)
-
-#### Sniffs
-
-- [`ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\ArrayPropertyPerClassLimitSniff.php)
-
-
 ### 5. Use Only One Object Operator (`->`) per Line
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
@@ -143,6 +134,13 @@ final class Resolver
 ```
 
 For other cases, e.g. email, you can **deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#wrap-all-primitives-and-strings)**.
+
+
+### 4. Use First Class Collections
+
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#first-class-collections)
+
+This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
 
 
 ## 3 Rules for Contributing
