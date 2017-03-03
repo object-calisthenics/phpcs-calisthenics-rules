@@ -117,7 +117,7 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 #### Sniffs
 
-- [`ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff`](/src/ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff.php)
+- [`ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff`](/src/ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff.php)
 - [`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
 
 ---
