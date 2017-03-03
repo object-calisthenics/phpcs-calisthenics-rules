@@ -3,7 +3,7 @@
     <!-- 1. Only one indentation level per function/method -->
     <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
         <properties>
-            <property name="maxNestingLevel" type="int" value="2"/>
+            <property name="maxNestingLevel" value="2"/>
         </properties>
     </rule>
 
@@ -22,17 +22,17 @@
     <!-- 7. Keep your classes small -->
     <rule ref="ObjectCalisthenics.Files.ClassElementLength">
         <properties>
-            <property name="maxLength" type="int" value="200"/>
+            <property name="maxLength" value="200"/>
         </properties>
     </rule>
     <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
         <properties>
-            <property name="maxLength" type="int" value="10"/>
+            <property name="maxLength" value="10"/>
         </properties>
     </rule>
     <rule ref="ObjectCalisthenics.Files.FunctionLength">
         <properties>
-            <property name="maxLength" type="int" value="20"/>
+            <property name="maxLength" value="20"/>
         </properties>
     </rule>
 

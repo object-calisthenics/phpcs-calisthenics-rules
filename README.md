@@ -52,7 +52,7 @@ This rule is **configurable**:
 <!-- ruleset.xml -->
 <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
     <properties>
-        <property name="maxNestingLevel" type="int" value="2"/>
+        <property name="maxNestingLevel" value="2"/>
     </properties>
 </rule>
 ```
