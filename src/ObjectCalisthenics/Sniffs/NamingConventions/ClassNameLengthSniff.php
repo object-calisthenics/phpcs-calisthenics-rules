@@ -6,7 +6,7 @@ use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-final class ClassLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+final class ClassNameLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var string

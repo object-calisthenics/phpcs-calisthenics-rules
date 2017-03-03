@@ -6,18 +6,18 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff
+ * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff
  */
-final class VariableLengthSniffTest extends TestCase
+final class ConstantNameLengthSniffTest extends TestCase
 {
     public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/VariableLengthSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.VariableLength'
+            __DIR__.'/ConstantNameLengthSniffTest.inc',
+            'ObjectCalisthenics.NamingConventions.ConstantNameLength'
         );
 
-        $this->assertSame(8, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

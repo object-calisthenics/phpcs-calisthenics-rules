@@ -85,10 +85,10 @@ This sniff is **configurable**:
 
 #### Sniffs
 
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff.php)
 
 
 ### 7. Keep Your Classes Small
@@ -99,7 +99,7 @@ This sniff is **configurable**:
 
 - [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
 
 These sniffs are **configurable**:
 
