@@ -45,8 +45,11 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root p
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#only-one-level-of-indentation-per-method).
 
+#### Sniff
 
-This rule is **configurable**:
+- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
+
+This sniff is **configurable**:
 
 ```xml
 <!-- ruleset.xml -->
@@ -57,16 +60,12 @@ This rule is **configurable**:
 </rule>
 ```
 
-#### Sniffs
-
-- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
-
 
 ### 2. Do Not Use "else" Keyword
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-use-the-else-keyword)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
@@ -75,7 +74,7 @@ This rule is **configurable**:
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
@@ -102,12 +101,33 @@ This rule is **configurable**:
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
 
+These sniffs are **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.Files.ClassElementLength">
+    <properties>
+        <property name="maxLength" value="200"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+    <properties>
+        <property name="maxLength" value="10"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Files.FunctionLength">
+    <properties>
+        <property name="maxLength" value="20"/>
+    </properties>
+</rule>
+```
+
 
 ### 8. Do Not Use Classes With More Than Two Instance Variables
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-classes-with-more-than-two-instance-variables)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
 
