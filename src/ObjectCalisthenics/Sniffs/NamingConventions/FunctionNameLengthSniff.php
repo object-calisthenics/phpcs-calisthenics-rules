@@ -2,34 +2,67 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\AbstractIdentifierLengthSniff;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-final class FunctionNameLengthSniff extends AbstractIdentifierLengthSniff implements PHP_CodeSniffer_Sniff
+final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * @var string
+     * @var int
      */
-    protected $tokenString = 'function';
+    private $minRequiredLength = 3;
+
+    /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $file;
 
     /**
      * @var int
      */
-    protected $tokenTypeLengthFactor = 0;
+    private $position;
 
-    protected function isValid(PHP_CodeSniffer_File $file, int $position): bool
+    /**
+     * @return int[]
+     */
+    public function register(): array
     {
-        $previousTFunctionPosition = $file->findPrevious(T_FUNCTION, ($position - 1), null, false, null, true);
-        if ($previousTFunctionPosition === false) {
-            return false;
+        return [T_FUNCTION];
+    }
+
+    /**
+     * @param PHP_CodeSniffer_File $file
+     * @param int $position
+     */
+    public function process(PHP_CodeSniffer_File $file, $position): void
+    {
+        $this->file = $file;
+        $this->position = $position;
+
+        $functionNamePosition = $file->findNext(T_STRING, $position, $position + 3);
+        $functionName = $file->getTokens()[$functionNamePosition]['content'];
+
+        $this->handleMinRequiredFunctionNameLength($functionName);
+    }
+
+    private function handleMinRequiredFunctionNameLength(string $functionName): void
+    {
+        $length = mb_strlen($functionName);
+
+        if ($length >= $this->minRequiredLength) {
+            return;
         }
 
-        $textAfterTFunction = $file->getTokensAsString(
-            $previousTFunctionPosition + 1,
-            $position - $previousTFunctionPosition - 1
+        $error = sprintf(
+            'Function name is currently %d chars long. Must be at least %d.',
+            $length,
+            $this->minRequiredLength
         );
 
-        return trim($textAfterTFunction) === '';
+        $this->file->addError(
+            $error,
+            $this->position,
+            self::class
+        );
     }
 }
