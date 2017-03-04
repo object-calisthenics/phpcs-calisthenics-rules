@@ -12,6 +12,20 @@ final class ClassAnalyzer
      */
     private static $propertyList;
 
+    public static function getClassMethodCount(PHP_CodeSniffer_File $file, int $position): int
+    {
+        $methodCount = 0;
+        $pointer = $position;
+
+        while (($next = $file->findNext(T_FUNCTION, $pointer + 1)) !== false) {
+            ++$methodCount;
+
+            $pointer = $next;
+        }
+
+        return $methodCount;
+    }
+
     public static function getClassProperties(PHP_CodeSniffer_File $file, int $position): array
     {
         $tokens = $file->getTokens();

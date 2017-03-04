@@ -28,9 +28,10 @@ Via composer:
 composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ```
 
-Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root project directory):
+Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root project directory):
 
 ```xml
+<!-- ruleset.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="Project">
     <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
@@ -44,16 +45,27 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#only-one-level-of-indentation-per-method).
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
+
+This sniff is **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+    <properties>
+        <property name="maxNestingLevel" value="2"/>
+    </properties>
+</rule>
+```
 
 
 ### 2. Do Not Use "else" Keyword
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-use-the-else-keyword)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
@@ -62,7 +74,7 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
@@ -73,10 +85,34 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 #### Sniffs
 
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff.php)
+
+These sniffs are **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+        <property name="propertiesToBeSkipped" type="array"
+                  value="id"
+        />
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+    </properties>
+</rule>
+```
 
 
 ### 7. Keep Your Classes Small
@@ -87,14 +123,35 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `phpcs.xml` in root pro
 
 - [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
-- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
+
+These sniffs are **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.Files.ClassElementLength">
+    <properties>
+        <property name="maxLength" value="200"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+    <properties>
+        <property name="maxLength" value="10"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Files.FunctionLength">
+    <properties>
+        <property name="maxLength" value="20"/>
+    </properties>
+</rule>
+```
 
 
 ### 8. Do Not Use Classes With More Than Two Instance Variables
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-classes-with-more-than-two-instance-variables)
 
-#### Sniffs
+#### Sniff
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
 

@@ -6,7 +6,7 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
+ * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff
  */
 final class ClassElementLengthSniffTest extends TestCase
 {

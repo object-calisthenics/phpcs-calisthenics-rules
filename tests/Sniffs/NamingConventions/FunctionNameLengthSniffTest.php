@@ -6,16 +6,16 @@ use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
+ * @covers \ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff
  */
-final class ClassLengthSniffTest extends TestCase
+final class FunctionNameLengthSniffTest extends TestCase
 {
     public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassLengthSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.ClassLength'
+            __DIR__.'/FunctionNameLengthSniffTest.inc',
+            'ObjectCalisthenics.NamingConventions.FunctionNameLength'
         );
 
         $this->assertSame(1, $errorCount);
