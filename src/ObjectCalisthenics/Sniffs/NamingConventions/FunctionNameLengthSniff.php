@@ -39,29 +39,26 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        $functionNamePosition = $file->findNext(T_STRING, $position, $position + 3);
-        $functionName = $file->getTokens()[$functionNamePosition]['content'];
-
-        $this->handleMinRequiredFunctionNameLength($functionName);
+        $this->processFunctionName($this->getFunctionName());
     }
 
-    private function handleMinRequiredFunctionNameLength(string $functionName): void
+    private function processFunctionName(string $functionName): void
     {
         $length = mb_strlen($functionName);
         if ($length >= $this->minLength) {
             return;
         }
 
-        $error = sprintf(
-            'Function name is currently %d chars long. Must be at least %d.',
-            $length,
+        $error = sprintf('Function name is %d chars long. Must be at least %d.', $length,
             $this->minLength
         );
 
-        $this->file->addError(
-            $error,
-            $this->position,
-            self::class
-        );
+        $this->file->addError($error, $this->position, self::class);
+    }
+
+    private function getFunctionName(): string
+    {
+        $functionNamePosition = $this->file->findNext(T_STRING, $this->position, $this->position + 3);
+        return $this->file->getTokens()[$functionNamePosition]['content'];
     }
 }
