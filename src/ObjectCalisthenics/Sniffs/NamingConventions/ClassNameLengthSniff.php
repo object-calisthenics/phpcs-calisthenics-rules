@@ -14,16 +14,6 @@ final class ClassNameLengthSniff implements PHP_CodeSniffer_Sniff
     public $minLength = 3;
 
     /**
-     * @var PHP_CodeSniffer_File
-     */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $position;
-
-    /**
      * @return int[]
      */
     public function register(): array
@@ -37,25 +27,20 @@ final class ClassNameLengthSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $this->file = $file;
-        $this->position = $position;
+        $className = Naming::getElementName($file, $position);
 
-        $this->processClassName(Naming::getElementName($file, $position));
-    }
-
-    private function processClassName(string $functionName): void
-    {
-        $length = mb_strlen($functionName);
+        $length = mb_strlen($className);
         if ($length >= $this->minLength) {
             return;
         }
 
         $message = sprintf(
-            'Class name is %d chars long. Must be at least %d.',
+            'Name "%s" is %d chars long. Must be at least %d.',
+            $className,
             $length,
             $this->minLength
         );
 
-        $this->file->addError($message, $this->position, self::class);
+        $file->addError($message, $position, self::class);
     }
 }

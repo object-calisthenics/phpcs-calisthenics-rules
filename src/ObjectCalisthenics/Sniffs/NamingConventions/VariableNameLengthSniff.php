@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
+use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
@@ -41,36 +42,25 @@ final class VariableNameLengthSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $this->file = $file;
-        $this->position = $position;
+        $variableName = Naming::getElementName($file, $position);
 
-        $variableName = $this->getVariableName();
-        if ($this->isAllowedShortVariableName($variableName)) {
-            return;
-        }
-
-        $this->processVariableName($variableName);
-    }
-
-    private function processVariableName(string $functionName): void
-    {
-        $length = mb_strlen($functionName);
+        $length = mb_strlen($variableName);
         if ($length >= $this->minLength) {
             return;
         }
 
+        if ($this->isAllowedShortVariableName($variableName)) {
+            return;
+        }
+
         $message = sprintf(
-            'Variable name is %d chars long. Must be at least %d.',
+            'Name "%s" is %d chars long. Must be at least %d.',
+            $variableName,
             $length,
             $this->minLength
         );
 
-        $this->file->addError($message, $this->position, self::class);
-    }
-
-    private function getVariableName(): string
-    {
-        return trim($this->file->getTokens()[$this->position]['content'], '$');
+        $file->addError($message, $this->position, self::class);
     }
 
     private function isAllowedShortVariableName(string $variableName): bool
