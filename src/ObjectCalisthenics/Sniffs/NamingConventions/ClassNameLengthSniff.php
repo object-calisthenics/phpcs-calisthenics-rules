@@ -35,7 +35,7 @@ final class ClassNameLengthSniff implements PHP_CodeSniffer_Sniff
         }
 
         $message = sprintf(
-            'Name "%s" is %d chars long. Must be at least %d.',
+            'Name "%s" is only %d chars long. Must be at least %d.',
             $className,
             $length,
             $this->minLength

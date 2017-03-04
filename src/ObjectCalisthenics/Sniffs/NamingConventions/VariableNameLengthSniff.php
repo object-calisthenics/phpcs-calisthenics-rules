@@ -19,16 +19,6 @@ final class VariableNameLengthSniff implements PHP_CodeSniffer_Sniff
     public $allowedShortVariableNames = ['id'];
 
     /**
-     * @var PHP_CodeSniffer_File
-     */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $position;
-
-    /**
      * @return int[]
      */
     public function register(): array
@@ -54,13 +44,13 @@ final class VariableNameLengthSniff implements PHP_CodeSniffer_Sniff
         }
 
         $message = sprintf(
-            'Name "%s" is %d chars long. Must be at least %d.',
+            'Name "%s" is only %d chars long. Must be at least %d.',
             $variableName,
             $length,
             $this->minLength
         );
 
-        $file->addError($message, $this->position, self::class);
+        $file->addError($message, $position, self::class);
     }
 
     private function isAllowedShortVariableName(string $variableName): bool
