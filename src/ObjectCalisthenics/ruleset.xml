@@ -58,7 +58,7 @@
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php"
             />
         </properties>
     </rule>
