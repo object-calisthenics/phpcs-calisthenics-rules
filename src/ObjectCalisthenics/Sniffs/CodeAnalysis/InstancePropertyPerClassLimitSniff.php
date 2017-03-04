@@ -12,7 +12,7 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     /**
      * @var int
      */
-    public $maxCount = 5;
+    public $maxCount = 2;
 
     /**
      * @return int[]
@@ -28,22 +28,25 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $file, $position): void
     {
-        $propertyList = ClassAnalyzer::getClassProperties($file, $position);
+        $properties = ClassAnalyzer::getClassProperties($file, $position);
 
-        $groupedObjectPropertyList = PropertyFilter::filterOutScalarProperties($propertyList);
-        $propertyCountByType = $this->countPropertiesByType($groupedObjectPropertyList);
+        $objectOnlyProperties = PropertyFilter::filterOutScalarProperties($properties);
+        $propertyCountByType = $this->countPropertiesByType($objectOnlyProperties);
 
         foreach ($propertyCountByType as $type => $count) {
-            if ($count > $this->maxCount) {
-                $message = sprintf(
-                    'There are %d properties of "%s" type. Can be up to %d properties in total.',
-                    $count,
-                    $type,
-                    $this->maxCount
-                );
 
-                $file->addError($message, $position, self::class);
+            if ($count <= $this->maxCount) {
+                continue;
             }
+
+            $message = sprintf(
+                'There are %d properties of "%s" type. Can be up to %d properties in total.',
+                $count,
+                $type,
+                $this->maxCount
+            );
+
+            $file->addError($message, $position, self::class);
         }
     }
 
@@ -52,14 +55,11 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
      */
     private function countPropertiesByType(array $properties): array
     {
-        $groupedProperties = [];
-        foreach ($properties as $property) {
-            $groupedProperties[$property['type']][] = $property;
-        }
-
         $propertyCountByType = [];
-        foreach ($groupedProperties as $type => $groupedProperty) {
-            $propertyCountByType[$type] = count($groupedProperty);
+
+        foreach ($properties as $property) {
+            $counter = $propertyCountByType[$property['type']] ?? 0;
+            $propertyCountByType[$property['type']] = ++$counter;
         }
 
         return $propertyCountByType;

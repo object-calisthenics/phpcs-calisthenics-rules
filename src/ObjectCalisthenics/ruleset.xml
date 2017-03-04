@@ -63,7 +63,7 @@
     <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
         <properties>
-            <property name="maxCount" value="5"/>
+            <property name="maxCount" value="2"/>
         </properties>
     </rule>
 
