@@ -126,8 +126,9 @@ These sniffs are **configurable**:
 
 #### Sniffs
 
-- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/PropertyPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
 
 These sniffs are **configurable**:
@@ -140,6 +141,11 @@ These sniffs are **configurable**:
     </properties>
 </rule>
 <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+    <properties>
+        <property name="maxLength" value="10"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
     <properties>
         <property name="maxLength" value="10"/>
     </properties>

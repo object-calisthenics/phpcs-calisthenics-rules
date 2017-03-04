@@ -22,6 +22,9 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
      */
     private $callerTokens;
 
+    /**
+     * @return int[]
+     */
     public function register(): array
     {
         return [T_VARIABLE];
