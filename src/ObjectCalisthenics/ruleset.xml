@@ -61,13 +61,17 @@
     </rule>
 
     <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
+    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
+        <properties>
+            <property name="maxCount" value="5"/>
+        </properties>
+    </rule>
 
     <!-- 9. Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php,PropertyPerClassLimitSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php,PropertyPerClassLimitSniff.php,InstancePropertyPerClassLimitSniff.php"
             />
         </properties>
     </rule>

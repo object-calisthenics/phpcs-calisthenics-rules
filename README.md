@@ -166,6 +166,17 @@ These sniffs are **configurable**:
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
 
+This sniff is **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
+    <properties>
+        <property name="maxCount" value="5"/>
+    </properties>
+</rule>
+```
+
 
 ### 9. Do not Use Getters and Setters
 

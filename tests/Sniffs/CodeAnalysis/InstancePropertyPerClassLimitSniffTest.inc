@@ -147,6 +147,36 @@ trait TestTrait
      * @var Color
      */
     protected $color6;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity1;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity2;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity3;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity4;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity5;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity6;
 }
 
 trait OkTestTrait
