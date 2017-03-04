@@ -59,6 +59,7 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
     private function getFunctionName(): string
     {
         $functionNamePosition = $this->file->findNext(T_STRING, $this->position, $this->position + 3);
+
         return $this->file->getTokens()[$functionNamePosition]['content'];
     }
 }
