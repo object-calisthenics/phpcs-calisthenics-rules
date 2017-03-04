@@ -32,7 +32,7 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
 
     /**
      * @param PHP_CodeSniffer_File $file
-     * @param int $position
+     * @param int                  $position
      */
     public function process(PHP_CodeSniffer_File $file, $position): void
     {
