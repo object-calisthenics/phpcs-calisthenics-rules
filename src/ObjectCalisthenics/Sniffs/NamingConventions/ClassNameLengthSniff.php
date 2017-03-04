@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
+use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
@@ -39,7 +40,7 @@ final class ClassNameLengthSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        $this->processClassName($this->getClassName());
+        $this->processClassName(Naming::getElementName($file, $position));
     }
 
     private function processClassName(string $functionName): void
@@ -56,12 +57,5 @@ final class ClassNameLengthSniff implements PHP_CodeSniffer_Sniff
         );
 
         $this->file->addError($message, $this->position, self::class);
-    }
-
-    private function getClassName(): string
-    {
-        $functionNamePosition = $this->file->findNext(T_STRING, $this->position, $this->position + 3);
-
-        return $this->file->getTokens()[$functionNamePosition]['content'];
     }
 }
