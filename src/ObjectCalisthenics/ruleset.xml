@@ -20,7 +20,11 @@
             <property name="minLength" value="3"/>
         </properties>
     </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+        </properties>
+    </rule>
     <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength"/>
 
     <!-- 7. Keep your classes small -->
@@ -47,7 +51,7 @@
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php"
             />
         </properties>
     </rule>

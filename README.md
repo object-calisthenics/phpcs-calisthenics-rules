@@ -99,6 +99,11 @@ These sniffs are **configurable**:
         <property name="minLength" value="3"/>
     </properties>
 </rule>
+<rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+    </properties>
+</rule>
 ```
 
 
