@@ -14,7 +14,14 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- 6. Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+            <property name="propertiesToBeSkipped" type="array"
+                      value="id"
+            />
+        </properties>
+    </rule>
     <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
         <properties>
             <property name="minLength" value="3"/>
@@ -51,7 +58,7 @@
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php"
             />
         </properties>
     </rule>

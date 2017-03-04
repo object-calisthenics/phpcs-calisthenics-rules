@@ -94,6 +94,14 @@ These sniffs are **configurable**:
 
 ```xml
 <!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+        <property name="propertiesToBeSkipped" type="array"
+                  value="id"
+        />
+    </properties>
+</rule>
 <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
     <properties>
         <property name="minLength" value="3"/>
