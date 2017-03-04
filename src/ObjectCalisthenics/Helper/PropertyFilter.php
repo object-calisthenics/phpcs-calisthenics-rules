@@ -14,7 +14,7 @@ final class PropertyFilter
     public static function filterOutScalarProperties(array $propertyList): array
     {
         return array_filter($propertyList, function ($property) {
-            return ! in_array($property['type'], self::$scalarPropertyTypes, true);
+            return !in_array($property['type'], self::$scalarPropertyTypes, true);
         });
     }
 }
