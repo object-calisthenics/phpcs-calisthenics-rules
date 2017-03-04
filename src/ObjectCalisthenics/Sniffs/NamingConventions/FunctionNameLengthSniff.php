@@ -10,7 +10,7 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
     /**
      * @var int
      */
-    private $minRequiredLength = 3;
+    public $minLength = 3;
 
     /**
      * @var PHP_CodeSniffer_File
@@ -48,15 +48,14 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
     private function handleMinRequiredFunctionNameLength(string $functionName): void
     {
         $length = mb_strlen($functionName);
-
-        if ($length >= $this->minRequiredLength) {
+        if ($length >= $this->minLength) {
             return;
         }
 
         $error = sprintf(
             'Function name is currently %d chars long. Must be at least %d.',
             $length,
-            $this->minRequiredLength
+            $this->minLength
         );
 
         $this->file->addError(

@@ -90,6 +90,17 @@ This sniff is **configurable**:
 - [`ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff.php)
 - [`ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff.php)
 
+These sniffs are **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+    </properties>
+</rule>
+```
+
 
 ### 7. Keep Your Classes Small
 

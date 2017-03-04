@@ -15,7 +15,11 @@
 
     <!-- 6. Do not abbreviate -->
     <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength"/>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+        </properties>
+    </rule>
     <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength"/>
     <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength"/>
 
