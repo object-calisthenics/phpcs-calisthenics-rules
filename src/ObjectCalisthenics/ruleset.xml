@@ -14,15 +14,7 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- 6. Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-            <property name="propertiesToBeSkipped" type="array"
-                      value="id"
-            />
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength">
         <properties>
             <property name="minLength" value="3"/>
         </properties>
@@ -32,7 +24,19 @@
             <property name="minLength" value="3"/>
         </properties>
     </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+            <property name="propertiesToBeSkipped" type="array"
+                      value="id"
+            />
+        </properties>
+    </rule>
 
     <!-- 7. Keep your classes small -->
     <rule ref="ObjectCalisthenics.Files.ClassElementLength">
