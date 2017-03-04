@@ -71,19 +71,12 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        if ($this->checkTrackedPropertiesAmount()) {
+        if ($this->checkTrackedClassPropertyAmount()) {
             return;
         }
 
-        $this->checkUntrackedPropertyTypeAmount($file, $position);
-    }
-
-    private function checkUntrackedPropertyTypeAmount(PHP_CodeSniffer_File $file, int $position): void
-    {
-        if (($error = $this->checkUntrackedClassPropertyAmount()) !== '') {
-            $file->addError($error, $position, 'TooManyUntrackedProperties');
-
-            return;
+        if ($error = $this->checkUntrackedClassPropertyAmount()) {
+            $file->addError($error, $position, self::class);
         }
     }
 
@@ -141,7 +134,7 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
         return $segregatedPropertyList;
     }
 
-    private function checkTrackedPropertiesAmount(): bool
+    private function checkTrackedClassPropertyAmount(): bool
     {
         $errors = $this->checkTrackedClassPropertyTypeAmount();
         foreach ($errors as $error) {
