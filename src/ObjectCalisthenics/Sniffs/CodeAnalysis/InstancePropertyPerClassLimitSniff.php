@@ -34,7 +34,6 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
         $propertyCountByType = $this->countPropertiesByType($objectOnlyProperties);
 
         foreach ($propertyCountByType as $type => $count) {
-
             if ($count <= $this->maxCount) {
                 continue;
             }

@@ -172,7 +172,7 @@ This sniff is **configurable**:
 <!-- ruleset.xml -->
 <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
     <properties>
-        <property name="maxCount" value="3"/>
+        <property name="maxCount" value="2"/>
     </properties>
 </rule>
 ```
