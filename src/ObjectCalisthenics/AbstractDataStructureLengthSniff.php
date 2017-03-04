@@ -13,7 +13,7 @@ abstract class AbstractDataStructureLengthSniff
     /**
      * @var int
      */
-    public $maxLength = 200;
+    public $maxLength;
 
     /**
      * @param PHP_CodeSniffer_File $file
@@ -26,7 +26,7 @@ abstract class AbstractDataStructureLengthSniff
 
         if ($length > $this->maxLength) {
             $error = sprintf(
-                'Keep your %s small (currently using %d lines, must be less or equals than %d lines)',
+                'Your %s is too long. Currently using %d lines. Can be up to %d lines.',
                 $tokenType,
                 $length,
                 $this->maxLength

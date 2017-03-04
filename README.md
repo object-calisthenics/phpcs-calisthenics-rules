@@ -47,13 +47,13 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root p
 
 #### Sniff
 
-- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MaxNestingLevelSniff.php)
 
 This sniff is **configurable**:
 
 ```xml
 <!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+<rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
     <properties>
         <property name="maxNestingLevel" value="2"/>
     </properties>
