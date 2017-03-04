@@ -49,11 +49,13 @@ final class FunctionNameLengthSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $error = sprintf('Function name is %d chars long. Must be at least %d.', $length,
+        $message = sprintf(
+            'Function name is %d chars long. Must be at least %d.',
+            $length,
             $this->minLength
         );
 
-        $this->file->addError($error, $this->position, self::class);
+        $this->file->addError($message, $this->position, self::class);
     }
 
     private function getFunctionName(): string
