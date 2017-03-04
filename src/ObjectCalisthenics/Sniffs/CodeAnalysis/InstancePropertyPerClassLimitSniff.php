@@ -2,41 +2,65 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
-use ObjectCalisthenics\AbstractPropertyTypePerClassLimitSniff;
+use ObjectCalisthenics\Helper\ClassAnalyzer;
+use ObjectCalisthenics\Helper\PropertyFilter;
+use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-/**
- * Instance property per class limit, part of "Do not use classes with several instance variables" OC rule.
- */
-final class InstancePropertyPerClassLimitSniff extends AbstractPropertyTypePerClassLimitSniff implements PHP_CodeSniffer_Sniff
+final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var int
      */
-    protected $trackedMaxCount = 100;
+    public $maxCount = 2;
 
     /**
-     * @var int
+     * @return int[]
      */
-    protected $untrackedMaxCount = 5;
-
-    /**
-     * @return string[]
-     */
-    protected function getTrackedPropertyTypeList(): array
+    public function register(): array
     {
-        return [
-            'array',
-            'bool',
-            'boolean',
-            'callable',
-            'decimal',
-            'double',
-            'float',
-            'int',
-            'integer',
-            'resource',
-            'string',
-        ];
+        return [T_CLASS, T_TRAIT];
+    }
+
+    /**
+     * @param PHP_CodeSniffer_File $file
+     * @param int                  $position
+     */
+    public function process(PHP_CodeSniffer_File $file, $position): void
+    {
+        $properties = ClassAnalyzer::getClassProperties($file, $position);
+
+        $objectOnlyProperties = PropertyFilter::filterOutScalarProperties($properties);
+        $propertyCountByType = $this->countPropertiesByType($objectOnlyProperties);
+
+        foreach ($propertyCountByType as $type => $count) {
+            if ($count <= $this->maxCount) {
+                continue;
+            }
+
+            $message = sprintf(
+                'There are %d properties of "%s" type. Can be up to %d properties in total.',
+                $count,
+                $type,
+                $this->maxCount
+            );
+
+            $file->addError($message, $position, self::class);
+        }
+    }
+
+    /**
+     * @return int[]
+     */
+    private function countPropertiesByType(array $properties): array
+    {
+        $propertyCountByType = [];
+
+        foreach ($properties as $property) {
+            $counter = $propertyCountByType[$property['type']] ?? 0;
+            $propertyCountByType[$property['type']] = ++$counter;
+        }
+
+        return $propertyCountByType;
     }
 }

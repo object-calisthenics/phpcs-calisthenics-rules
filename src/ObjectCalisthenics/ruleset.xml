@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="ObjectCalisthenics">
     <!-- 1. Only one indentation level per function/method -->
-    <rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+    <rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
         <properties>
             <property name="maxNestingLevel" value="2"/>
         </properties>
@@ -14,15 +14,7 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- 6. Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-            <property name="propertiesToBeSkipped" type="array"
-                      value="id"
-            />
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength">
         <properties>
             <property name="minLength" value="3"/>
         </properties>
@@ -32,7 +24,19 @@
             <property name="minLength" value="3"/>
         </properties>
     </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+        <properties>
+            <property name="minLength" value="3"/>
+            <property name="propertiesToBeSkipped" type="array"
+                      value="id"
+            />
+        </properties>
+    </rule>
 
     <!-- 7. Keep your classes small -->
     <rule ref="ObjectCalisthenics.Files.ClassElementLength">
@@ -45,6 +49,11 @@
             <property name="maxLength" value="10"/>
         </properties>
     </rule>
+    <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
+        <properties>
+            <property name="maxLength" value="10"/>
+        </properties>
+    </rule>
     <rule ref="ObjectCalisthenics.Files.FunctionLength">
         <properties>
             <property name="maxLength" value="20"/>
@@ -52,13 +61,17 @@
     </rule>
 
     <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit"/>
+    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
+        <properties>
+            <property name="maxCount" value="2"/>
+        </properties>
+    </rule>
 
     <!-- 9. Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
             <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,OneIndentationLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php"
+                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,MaxNestingLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php,PropertyPerClassLimitSniff.php,InstancePropertyPerClassLimitSniff.php"
             />
         </properties>
     </rule>

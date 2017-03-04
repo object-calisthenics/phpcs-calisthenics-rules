@@ -18,6 +18,6 @@ final class InstancePropertyPerClassLimitSniffTest extends TestCase
             'ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit'
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(3, $errorCount);
     }
 }

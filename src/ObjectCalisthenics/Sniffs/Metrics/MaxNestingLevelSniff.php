@@ -5,12 +5,12 @@ namespace ObjectCalisthenics\Sniffs\Metrics;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
+final class MaxNestingLevelSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var int
      */
-    public $maxNestingLevel = 1;
+    public $maxNestingLevel = 2;
 
     /**
      * @var PHP_CodeSniffer_File

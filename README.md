@@ -47,13 +47,13 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root p
 
 #### Sniff
 
-- [`ObjectCalisthenics\Sniffs\Metrics\OneIndentationLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/OneIndentationLevelSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MaxNestingLevelSniff.php)
 
 This sniff is **configurable**:
 
 ```xml
 <!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.Metrics.OneIndentationLevel">
+<rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
     <properties>
         <property name="maxNestingLevel" value="2"/>
     </properties>
@@ -94,15 +94,7 @@ These sniffs are **configurable**:
 
 ```xml
 <!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
-    <properties>
-        <property name="minLength" value="3"/>
-        <property name="propertiesToBeSkipped" type="array"
-                  value="id"
-        />
-    </properties>
-</rule>
-<rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+<rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength">
     <properties>
         <property name="minLength" value="3"/>
     </properties>
@@ -110,6 +102,19 @@ These sniffs are **configurable**:
 <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
     <properties>
         <property name="minLength" value="3"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
+    <properties>
+        <property name="minLength" value="3"/>
+        <property name="propertiesToBeSkipped" type="array"
+                  value="id"
+        />
     </properties>
 </rule>
 ```
@@ -121,8 +126,9 @@ These sniffs are **configurable**:
 
 #### Sniffs
 
-- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php)
+- [`ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/PropertyPerClassLimitSniff.php)
 - [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
 
 These sniffs are **configurable**:
@@ -135,6 +141,11 @@ These sniffs are **configurable**:
     </properties>
 </rule>
 <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+    <properties>
+        <property name="maxLength" value="10"/>
+    </properties>
+</rule>
+<rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
     <properties>
         <property name="maxLength" value="10"/>
     </properties>
@@ -154,6 +165,17 @@ These sniffs are **configurable**:
 #### Sniff
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
+
+This sniff is **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
+    <properties>
+        <property name="maxCount" value="2"/>
+    </properties>
+</rule>
+```
 
 
 ### 9. Do not Use Getters and Setters

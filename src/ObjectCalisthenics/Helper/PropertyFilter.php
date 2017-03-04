@@ -4,23 +4,17 @@ namespace ObjectCalisthenics\Helper;
 
 final class PropertyFilter
 {
-    public static function filterUntrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList): array
-    {
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return !in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
-    }
+    /**
+     * @var string[]
+     */
+    private static $scalarPropertyTypes = [
+        'array', 'bool', 'boolean', 'callable', 'double', 'float', 'int', 'integer', 'resource', 'string',
+    ];
 
-    public static function getTrackedClassPropertyList(array $propertyList, array $trackedPropertyTypeList): array
+    public static function filterOutScalarProperties(array $propertyList): array
     {
-        return array_filter(
-            $propertyList,
-            function ($property) use ($trackedPropertyTypeList) {
-                return in_array($property['type'], $trackedPropertyTypeList);
-            }
-        );
+        return array_filter($propertyList, function ($property) {
+            return !in_array($property['type'], self::$scalarPropertyTypes, true);
+        });
     }
 }
