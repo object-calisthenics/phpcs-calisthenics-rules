@@ -20,11 +20,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ObjectCalisthenics\\Tests\\": "tests"
-        },
-        "classmap": [
-            "vendor/squizlabs/php_codesniffer"
-        ]
+            "ObjectCalisthenics\\Tests\\": "tests",
+            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src"
+        }
     },
     "scripts": {
         "complete-check": ["@phpstan", "@check-cs", "phpunit"],
