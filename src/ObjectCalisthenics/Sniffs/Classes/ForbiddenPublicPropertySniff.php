@@ -32,7 +32,7 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
 
     /**
      * @param File $file
-     * @param int                  $position
+     * @param int  $position
      */
     protected function processMemberVar(File $file, $position): void
     {
@@ -56,7 +56,7 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
 
     /**
      * @param File $file
-     * @param int                  $position
+     * @param int  $position
      */
     protected function processVariable(File $file, $position): void
     {
@@ -65,7 +65,7 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
 
     /**
      * @param File $file
-     * @param int                  $position
+     * @param int  $position
      */
     protected function processVariableInString(File $file, $position): void
     {

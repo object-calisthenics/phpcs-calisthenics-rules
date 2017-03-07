@@ -23,7 +23,7 @@ final class MethodPerClassLimitSniff implements Sniff
 
     /**
      * @param File $file
-     * @param int                  $position
+     * @param int  $position
      */
     public function process(File $file, $position): void
     {

@@ -16,7 +16,7 @@ final class CodeSnifferRunner
             define('PHP_CODESNIFFER_VERBOSITY', 0);
         }
 
-        new Tokens;
+        new Tokens();
     }
 
     public function detectErrorCountInFileForSniff(string $testedFile, string $sniffName): int
@@ -40,7 +40,7 @@ final class CodeSnifferRunner
 
         $ruleset = new Ruleset($config);
         $ruleset->sniffs = [
-            $sniffClass => new $sniffClass
+            $sniffClass => new $sniffClass(),
         ];
         $ruleset->populateTokenListeners();
 
