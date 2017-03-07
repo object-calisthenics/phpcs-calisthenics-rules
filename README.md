@@ -25,7 +25,7 @@ Do you **prefer slides**?
 Via composer:
 
 ```sh
-composer require object-calisthenics/phpcs-calisthenics-rules --dev
+composer require object-calisthenics/phpcs-calisthenics-rules "squizlabs/php_codesniffer:3.0.0RC4" --dev
 ```
 
 Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root project directory):
