@@ -2,12 +2,10 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
+use ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
- */
 final class PropertyPerClassLimitSniffTest extends TestCase
 {
     public function test(): void
@@ -15,7 +13,7 @@ final class PropertyPerClassLimitSniffTest extends TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/PropertyPerClassLimitSniffTest.inc',
-            'ObjectCalisthenics.Metrics.PropertyPerClassLimit'
+            PropertyPerClassLimitSniff::class
         );
 
         $this->assertSame(1, $errorCount);

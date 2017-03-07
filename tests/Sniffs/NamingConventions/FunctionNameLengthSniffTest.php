@@ -2,12 +2,10 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
+use ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff
- */
 final class FunctionNameLengthSniffTest extends TestCase
 {
     public function test(): void
@@ -15,7 +13,7 @@ final class FunctionNameLengthSniffTest extends TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/FunctionNameLengthSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.FunctionNameLength'
+            FunctionNameLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);

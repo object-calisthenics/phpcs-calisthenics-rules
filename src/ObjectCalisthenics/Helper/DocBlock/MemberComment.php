@@ -2,11 +2,11 @@
 
 namespace ObjectCalisthenics\Helper\DocBlock;
 
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 final class MemberComment
 {
-    public static function getMemberComment(PHP_CodeSniffer_File $file, int $position): string
+    public static function getMemberComment(File $file, int $position): string
     {
         $docCommentPosition = $file->findPrevious(T_DOC_COMMENT_STRING, $position, $position - 10);
         if (!$docCommentPosition) {

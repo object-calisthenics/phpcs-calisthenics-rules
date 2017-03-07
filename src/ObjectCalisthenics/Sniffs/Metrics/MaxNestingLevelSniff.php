@@ -2,10 +2,10 @@
 
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class MaxNestingLevelSniff implements PHP_CodeSniffer_Sniff
+final class MaxNestingLevelSniff implements Sniff
 {
     /**
      * @var int
@@ -13,7 +13,7 @@ final class MaxNestingLevelSniff implements PHP_CodeSniffer_Sniff
     public $maxNestingLevel = 2;
 
     /**
-     * @var PHP_CodeSniffer_File
+     * @var File
      */
     private $file;
 
@@ -43,10 +43,10 @@ final class MaxNestingLevelSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
+     * @param File $file
      * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $this->file = $file;
         $this->position = $position;

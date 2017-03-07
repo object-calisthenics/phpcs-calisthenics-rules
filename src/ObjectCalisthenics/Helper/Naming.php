@@ -3,11 +3,11 @@
 namespace ObjectCalisthenics\Helper;
 
 use Nette\Utils\Strings;
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 final class Naming
 {
-    public static function getElementName(PHP_CodeSniffer_File $file, int $position): string
+    public static function getElementName(File $file, int $position): string
     {
         $name = $file->getTokens()[$position]['content'];
 

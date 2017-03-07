@@ -3,10 +3,10 @@
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
 use ObjectCalisthenics\Helper\ClassAnalyzer;
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
+final class MethodPerClassLimitSniff implements Sniff
 {
     /**
      * @var int
@@ -22,10 +22,10 @@ final class MethodPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
+     * @param File $file
      * @param int                  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $methodCount = ClassAnalyzer::getClassMethodCount($file, $position);
 

@@ -2,12 +2,10 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
+use ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
- */
 final class OneObjectOperatorPerLineSniffTest extends TestCase
 {
     public function test(): void
@@ -15,7 +13,7 @@ final class OneObjectOperatorPerLineSniffTest extends TestCase
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/OneObjectOperatorPerLineSniffTest.inc',
-            'ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine'
+            OneObjectOperatorPerLineSniff::class
         );
 
         $this->assertSame(2, $errorCount);
