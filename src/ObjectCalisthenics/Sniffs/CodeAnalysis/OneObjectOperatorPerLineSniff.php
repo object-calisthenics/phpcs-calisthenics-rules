@@ -8,6 +8,21 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class OneObjectOperatorPerLineSniff implements Sniff
 {
     /**
+     * @var string[]
+     */
+    public $variablesHoldingAFluentInterface = ['$queryBuilder'];
+
+    /**
+     * @var string[]
+     */
+    public $methodsStartingAFluentInterface = ['createQueryBuilder'];
+
+    /**
+     * @var string[]
+     */
+    public $methodsEndingAFluentInterface = ['execute', 'getQuery'];
+
+    /**
      * @var File
      */
     private $file;
@@ -23,9 +38,14 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private $callerTokens;
 
     /**
-     * mixed[]
+     * mixed[].
      */
     private $tokens;
+
+    /**
+     * @var string
+     */
+    private $variableName;
 
     /**
      * @return int[]
@@ -47,8 +67,8 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
         $this->callerTokens = [];
 
-//        $tokens = $file->getTokens();
         $pointer = $this->ignoreWhitespace($position + 1);
+        $this->variableName = $this->tokens[$this->position]['content'];
 
         $token = $this->tokens[$position];
         $isOwnCall = ($token['content'] === '$this');
@@ -69,7 +89,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
     private function handleTwoObjectOperators(bool $isOwnCall): void
     {
-        if ($this->callerTokens && !$isOwnCall) {
+        if ($this->callerTokens && !$isOwnCall && !$this->isInFluentInterfaceMode()) {
             $this->file->addError('Only one object operator per line.', $this->position, self::class);
         }
     }
@@ -87,13 +107,45 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         if (
             ($memberTokenType === 'property' && $tmpTokenType === 'property') ||
             ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
-            ($memberTokenType === 'method' && $tmpTokenType === 'method' && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'])
+            ($memberTokenType === 'method' && $tmpTokenType === 'method'
+                && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'] && !$this->isInFluentInterfaceMode())
         ) {
             $this->file->addError('Only one object operator per line.', $this->position, self::class);
         }
     }
 
-    private function handleObjectOperators(int $pointer, bool $isOwnCall): void
+    private function isInFluentInterfaceMode(): bool
+    {
+        $lastEndPoint = $this->computeLastCallOfAnyFrom($this->methodsEndingAFluentInterface);
+        $lastStartPoint = $this->computeLastCallOfAnyFrom($this->methodsStartingAFluentInterface);
+
+        if (in_array($this->variableName, $this->variablesHoldingAFluentInterface)) {
+            $lastStartPoint = max($lastStartPoint, -1);
+        }
+
+        return $lastStartPoint > -2
+            && $lastStartPoint > $lastEndPoint;
+    }
+
+    /**
+     * @param array $methods
+     *
+     * @return int The last position of the method calls within the callerTokens
+     *             or -2 if none of the methods has been called
+     */
+    private function computeLastCallOfAnyFrom(array $methods): int
+    {
+        $calls = array_filter($this->callerTokens, function (array $token) use ($methods) {
+            return in_array($token['token']['content'], $methods);
+        });
+        if (count($calls) > 0) {
+            return array_search(end($calls), $this->callerTokens);
+        }
+
+        return -2;
+    }
+
+    private function handleObjectOperators(int $pointer, bool $isOwnCall)
     {
         while ($this->tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
             $tmpToken = $this->tokens[++$pointer];

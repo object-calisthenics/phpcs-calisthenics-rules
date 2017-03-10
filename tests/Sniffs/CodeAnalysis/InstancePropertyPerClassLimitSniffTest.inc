@@ -129,7 +129,17 @@ trait TestTrait
 trait OkTestTrait
 {
     /**
-     * @var array
+     * @var string[]
      */
     protected $array1;
+
+    /**
+     * @var string[]
+     */
+    protected $array2;
+
+    /**
+     * @var string[]
+     */
+    protected $array3;
 }
