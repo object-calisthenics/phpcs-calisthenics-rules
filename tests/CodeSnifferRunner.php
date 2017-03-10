@@ -14,6 +14,8 @@ final class CodeSnifferRunner
         // legacy compatibility
         if (!defined('PHP_CODESNIFFER_VERBOSITY')) {
             define('PHP_CODESNIFFER_VERBOSITY', 0);
+            define('PHP_CODESNIFFER_CBF', false);
+            define('PHP_CODESNIFFER_IN_TESTS', true);
         }
 
         new Tokens();
