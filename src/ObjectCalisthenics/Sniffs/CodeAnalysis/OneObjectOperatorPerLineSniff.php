@@ -2,13 +2,13 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
+final class OneObjectOperatorPerLineSniff implements Sniff
 {
     /**
-     * @var PHP_CodeSniffer_File
+     * @var File
      */
     private $file;
 
@@ -31,10 +31,10 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $this->file = $file;
         $this->position = $position;
@@ -67,7 +67,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
     private function handleTwoObjectOperators(bool $isOwnCall): void
     {
         if ($this->callerTokens && !$isOwnCall) {
-            $this->file->addError('Only one object operator per line.', $this->position);
+            $this->file->addError('Only one object operator per line.', $this->position, self::class);
 
             throw new \Exception();
         }
@@ -88,7 +88,7 @@ final class OneObjectOperatorPerLineSniff implements PHP_CodeSniffer_Sniff
             ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
             ($memberTokenType === 'method' && $tmpTokenType === 'method' && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'])
         ) {
-            $this->file->addError('Only one object operator per line.', $this->position);
+            $this->file->addError('Only one object operator per line.', $this->position, self::class);
 
             throw new \Exception();
         }

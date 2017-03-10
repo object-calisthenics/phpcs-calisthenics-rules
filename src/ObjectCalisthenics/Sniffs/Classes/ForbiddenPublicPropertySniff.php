@@ -3,12 +3,12 @@
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use Nette\Utils\Strings;
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
-use PHP_CodeSniffer_Standards_AbstractVariableSniff;
-use PHP_CodeSniffer_Tokens;
+use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Util\Tokens;
 
-final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements PHP_CodeSniffer_Sniff
+final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implements Sniff
 {
     /**
      * @var string[]
@@ -21,7 +21,7 @@ final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_Abstr
     private $tokens;
 
     /**
-     * @var PHP_CodeSniffer_File
+     * @var File
      */
     private $file;
 
@@ -31,10 +31,10 @@ final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_Abstr
     private $position;
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    protected function processMemberVar(PHP_CodeSniffer_File $file, $position): void
+    protected function processMemberVar(File $file, $position): void
     {
         if ($this->isFileSkipped($file->getFilename())) {
             return;
@@ -46,7 +46,7 @@ final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_Abstr
 
         $this->handleMultiPropertyDeclaration();
 
-        $modifier = $file->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, ($position - 1));
+        $modifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
 
         // Check for no visibility declaration
 
@@ -55,19 +55,19 @@ final class ForbiddenPublicPropertySniff extends PHP_CodeSniffer_Standards_Abstr
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    protected function processVariable(PHP_CodeSniffer_File $file, $position): void
+    protected function processVariable(File $file, $position): void
     {
         // We don't care about normal variables.
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $file, $position): void
+    protected function processVariableInString(File $file, $position): void
     {
         // We don't care about normal variables.
     }

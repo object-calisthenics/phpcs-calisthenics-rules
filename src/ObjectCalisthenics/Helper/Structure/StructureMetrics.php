@@ -2,11 +2,11 @@
 
 namespace ObjectCalisthenics\Helper\Structure;
 
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 final class StructureMetrics
 {
-    public static function getStructureLengthInLines(PHP_CodeSniffer_File $file, int $position): int
+    public static function getStructureLengthInLines(File $file, int $position): int
     {
         $tokens = $file->getTokens();
         $token = $tokens[$position];

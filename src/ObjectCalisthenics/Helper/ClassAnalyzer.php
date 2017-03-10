@@ -3,7 +3,7 @@
 namespace ObjectCalisthenics\Helper;
 
 use ObjectCalisthenics\Helper\DocBlock\MemberComment;
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 final class ClassAnalyzer
 {
@@ -12,7 +12,7 @@ final class ClassAnalyzer
      */
     private static $propertyList;
 
-    public static function getClassMethodCount(PHP_CodeSniffer_File $file, int $position): int
+    public static function getClassMethodCount(File $file, int $position): int
     {
         $methodCount = 0;
         $pointer = $position;
@@ -26,12 +26,12 @@ final class ClassAnalyzer
         return $methodCount;
     }
 
-    public static function getClassPropertiesCount(PHP_CodeSniffer_File $file, int $position): int
+    public static function getClassPropertiesCount(File $file, int $position): int
     {
         return count(self::getClassProperties($file, $position));
     }
 
-    public static function getClassProperties(PHP_CodeSniffer_File $file, int $position): array
+    public static function getClassProperties(File $file, int $position): array
     {
         $tokens = $file->getTokens();
         $token = $tokens[$position];
@@ -46,7 +46,7 @@ final class ClassAnalyzer
         return self::$propertyList;
     }
 
-    private static function extractPropertyIfFound(PHP_CodeSniffer_File $file, int $position): void
+    private static function extractPropertyIfFound(File $file, int $position): void
     {
         $tokens = $file->getTokens();
         $property = $tokens[$position];

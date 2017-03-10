@@ -2,10 +2,10 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class NoSetterSniff implements PHP_CodeSniffer_Sniff
+final class NoSetterSniff implements Sniff
 {
     /**
      * @var string
@@ -23,13 +23,13 @@ final class NoSetterSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         if ($this->methodNameStartsWithSet($file->getDeclarationName($position))) {
-            $file->addError(self::SETTER_WARNING, $position);
+            $file->addError(self::SETTER_WARNING, $position, self::class);
         }
     }
 

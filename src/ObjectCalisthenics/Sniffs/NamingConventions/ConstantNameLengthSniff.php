@@ -3,10 +3,10 @@
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
 use ObjectCalisthenics\Helper\Naming;
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ConstantNameLengthSniff implements PHP_CodeSniffer_Sniff
+final class ConstantNameLengthSniff implements Sniff
 {
     /**
      * @var int
@@ -22,10 +22,10 @@ final class ConstantNameLengthSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $functionName = Naming::getElementName($file, $position);
 

@@ -2,20 +2,18 @@
 
 namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
 
+use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff
- */
-class NoSetterSniffTest extends TestCase
+final class NoSetterSniffTest extends TestCase
 {
     public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/NoSetterSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.NoSetter'
+            NoSetterSniff::class
         );
 
         $this->assertSame(1, $errorCount);

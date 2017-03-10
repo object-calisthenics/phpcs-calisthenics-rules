@@ -4,10 +4,10 @@ namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
 use ObjectCalisthenics\Helper\ClassAnalyzer;
 use ObjectCalisthenics\Helper\PropertyFilter;
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
+final class InstancePropertyPerClassLimitSniff implements Sniff
 {
     /**
      * @var int
@@ -23,10 +23,10 @@ final class InstancePropertyPerClassLimitSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $properties = ClassAnalyzer::getClassProperties($file, $position);
 

@@ -3,7 +3,7 @@
 namespace ObjectCalisthenics;
 
 use ObjectCalisthenics\Helper\Structure\StructureMetrics;
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Base for class, interface, trait, function and method length checks.
@@ -16,10 +16,10 @@ abstract class AbstractDataStructureLengthSniff
     public $maxLength;
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $file, $position): void
+    public function process(File $file, $position): void
     {
         $tokenType = $file->getTokens()[$position]['content'];
         $length = StructureMetrics::getStructureLengthInLines($file, $position);
