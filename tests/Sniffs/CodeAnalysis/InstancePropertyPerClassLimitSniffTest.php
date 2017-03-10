@@ -1,25 +1,21 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
+use ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff
- */
 final class InstancePropertyPerClassLimitSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/InstancePropertyPerClassLimitSniffTest.inc',
-            'ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit'
+            InstancePropertyPerClassLimitSniff::class
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(3, $errorCount);
     }
 }

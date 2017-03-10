@@ -1,31 +1,26 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * Only one indentation level per method.
- */
-final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
+final class MaxNestingLevelSniff implements Sniff
 {
     /**
      * @var int
      */
-    private $maxNestingLevel = 1;
+    public $maxNestingLevel = 2;
 
     /**
-     * @var PHP_CodeSniffer_File
+     * @var File
      */
-    private $phpcsFile;
+    private $file;
 
     /**
      * @var int
      */
-    private $stackPtr;
+    private $position;
 
     /**
      * @var int
@@ -35,31 +30,31 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
     /**
      * @var array
      */
-    private $ignoredScopeStack;
+    private $ignoredScopeStack = [];
 
     /**
      * @var int
      */
     private $currentPtr;
 
-    public function register() : array
+    public function register(): array
     {
         return [T_FUNCTION, T_CLOSURE];
     }
 
     /**
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int                  $stackPtr
+     * @param File $file
+     * @param int  $position
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $file, $position): void
     {
-        $this->phpcsFile = $phpcsFile;
-        $this->stackPtr = $stackPtr;
+        $this->file = $file;
+        $this->position = $position;
         $this->nestingLevel = 0;
         $this->ignoredScopeStack = [];
 
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
 
         // Ignore abstract methods.
         if (isset($token['scope_opener']) === false) {
@@ -72,19 +67,19 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         $this->handleNestingLevel($this->nestingLevel);
     }
 
-    private function handleNestingLevel(int $nestingLevel)
+    private function handleNestingLevel(int $nestingLevel): void
     {
         if ($nestingLevel > $this->maxNestingLevel) {
-            $this->phpcsFile->addError(
+            $this->file->addError(
                 'Only one indentation level per function/method. Found %s levels.',
-                $this->stackPtr,
+                $this->position,
                 'MaxExceeded',
                 [$nestingLevel]
             );
         }
     }
 
-    private function iterateTokens(int $start, int $end, array $tokens)
+    private function iterateTokens(int $start, int $end, array $tokens): void
     {
         $this->currentPtr = $start + 1;
 
@@ -96,7 +91,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function handleToken(array $nestedToken)
+    private function handleToken(array $nestedToken): void
     {
         $this->handleClosureToken($nestedToken);
         $this->handleCaseToken($nestedToken);
@@ -111,7 +106,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function subtractFunctionNestingLevel(array $token) : int
+    private function subtractFunctionNestingLevel(array $token): int
     {
         return $this->nestingLevel - $token['level'] - 1;
     }
@@ -127,7 +122,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function handleCaseToken(array $nestedToken)
+    private function handleCaseToken(array $nestedToken): void
     {
         if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
             array_push($this->ignoredScopeStack, $nestedToken);
@@ -136,7 +131,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function adjustNestingLevelToIgnoredScope()
+    private function adjustNestingLevelToIgnoredScope(): void
     {
         // Iterated through ignored scope stack to find out if
         // anything can be popped out and adjust nesting level.
@@ -145,7 +140,7 @@ final class OneIndentationLevelSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    private function unsetScopeIfNotCurrent(int $key, array $ignoredScope)
+    private function unsetScopeIfNotCurrent(int $key, array $ignoredScope): void
     {
         if ($ignoredScope['scope_closer'] !== $this->currentPtr) {
             return;

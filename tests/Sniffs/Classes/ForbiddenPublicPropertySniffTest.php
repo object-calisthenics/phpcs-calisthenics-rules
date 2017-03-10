@@ -2,20 +2,18 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
+use ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\Classes\PropertyVisibilitySniff
- */
-final class PropertyVisibilitySniffTest extends TestCase
+final class ForbiddenPublicPropertySniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/PropertyVisibilitySniffTest.inc',
-            'ObjectCalisthenics.Classes.PropertyVisibility'
+            __DIR__.'/ForbiddenPublicPropertySniffTest.inc',
+            ForbiddenPublicPropertySniff::class
         );
 
         $this->assertSame(2, $errorCount);

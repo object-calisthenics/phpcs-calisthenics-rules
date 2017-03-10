@@ -1,15 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
+use ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\ClassLengthSniff
- */
 final class ClassElementLengthSniffTest extends TestCase
 {
     /**
@@ -17,36 +13,36 @@ final class ClassElementLengthSniffTest extends TestCase
      */
     private $codeSnifferRunner;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->codeSnifferRunner = new CodeSnifferRunner();
     }
 
-    public function testClassLengthSniff()
+    public function testClassLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest.inc',
-            'ObjectCalisthenics.Files.ClassElementLength'
+            ClassElementLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);
     }
 
-    public function testInterfaceLengthSniff()
+    public function testInterfaceLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest2.inc',
-            'ObjectCalisthenics.Files.ClassElementLength'
+            ClassElementLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);
     }
 
-    public function testTraitLengthSniff()
+    public function testTraitLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/ClassElementLengthSniffTest3.inc',
-            'ObjectCalisthenics.Files.ClassElementLength'
+            ClassElementLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);

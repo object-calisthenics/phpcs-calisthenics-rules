@@ -6,7 +6,7 @@ use ObjectCalisthenics\Helper\ClassAnalyzer;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class MethodPerClassLimitSniff implements Sniff
+final class PropertyPerClassLimitSniff implements Sniff
 {
     /**
      * @var int
@@ -18,7 +18,7 @@ final class MethodPerClassLimitSniff implements Sniff
      */
     public function register(): array
     {
-        return [T_CLASS, T_INTERFACE, T_TRAIT];
+        return [T_CLASS, T_TRAIT];
     }
 
     /**
@@ -27,15 +27,15 @@ final class MethodPerClassLimitSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $methodCount = ClassAnalyzer::getClassMethodCount($file, $position);
+        $propertiesCount = ClassAnalyzer::getClassPropertiesCount($file, $position);
 
-        if ($methodCount > $this->maxCount) {
+        if ($propertiesCount > $this->maxCount) {
             $tokenType = $file->getTokens()[$position]['content'];
 
             $message = sprintf(
-                '""%s" has too many methods: %d. Can be up to %d methods',
+                '""%s" has too many properties: %d. Can be up to %d properties.',
                 $tokenType,
-                $methodCount,
+                $propertiesCount,
                 $this->maxCount
             );
             $file->addError($message, $position, self::class);

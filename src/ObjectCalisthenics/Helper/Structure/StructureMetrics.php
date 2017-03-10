@@ -1,17 +1,15 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Helper\Structure;
 
-use PHP_CodeSniffer_File;
+use PHP_CodeSniffer\Files\File;
 
 final class StructureMetrics
 {
-    public static function getStructureLengthInLines(PHP_CodeSniffer_File $phpcsFile, int $stackPtr) : int
+    public static function getStructureLengthInLines(File $file, int $position): int
     {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
+        $tokens = $file->getTokens();
+        $token = $tokens[$position];
 
         // Skip function without body.
         if (isset($token['scope_opener']) === false) {

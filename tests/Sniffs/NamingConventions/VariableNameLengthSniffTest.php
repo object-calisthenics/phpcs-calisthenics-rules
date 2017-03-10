@@ -1,23 +1,19 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
+use ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\NamingConventions\VariableLengthSniff
- */
-final class VariableLengthSniffTest extends TestCase
+final class VariableNameLengthSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/VariableLengthSniffTest.inc',
-            'ObjectCalisthenics.NamingConventions.VariableLength'
+            __DIR__.'/VariableNameLengthSniffTest.inc',
+            VariableNameLengthSniff::class
         );
 
         $this->assertSame(8, $errorCount);

@@ -1,38 +1,5 @@
 <?php
 
-class TestClass
-{
-    /**
-     * @var Color
-     */
-    protected $color1;
-
-    /**
-     * @var Color
-     */
-    protected $color2;
-
-    /**
-     * @var Color
-     */
-    protected $color3;
-
-    /**
-     * @var Color
-     */
-    protected $color4;
-
-    /**
-     * @var Color
-     */
-    protected $color5;
-
-    /**
-     * @var Color
-     */
-    protected $color6;
-}
-
 class OkTestClass
 {
     /**
@@ -54,11 +21,6 @@ class OkTestClass
      * @var callable
      */
     protected $callable1;
-
-    /**
-     * @var decimal
-     */
-    protected $decimal1;
 
     /**
      * @var double
@@ -147,6 +109,21 @@ trait TestTrait
      * @var Color
      */
     protected $color6;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity1;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity2;
+
+    /**
+     * @var Complexity
+     */
+    protected $complexity3;
 }
 
 trait OkTestTrait

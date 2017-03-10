@@ -1,23 +1,19 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
+use ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
- */
 final class MethodPerClassLimitSniffTest extends TestCase
 {
-    public function testSniff()
+    public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__.'/MethodPerClassLimitSniffTest.inc',
-            'ObjectCalisthenics.Metrics.MethodPerClassLimit'
+            MethodPerClassLimitSniff::class
         );
 
         $this->assertSame(3, $errorCount);

@@ -1,21 +1,21 @@
 <?php declare(strict_types=1);
 
-namespace ObjectCalisthenics\Tests\Sniffs\Files;
+namespace ObjectCalisthenics\Tests\Sniffs\Metrics;
 
-use ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff;
+use ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-final class FunctionLengthSniffTest extends TestCase
+final class MaxNestingLevelSniffTest extends TestCase
 {
     public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/FunctionLengthSniffTest.inc',
-            FunctionLengthSniff::class
+            __DIR__.'/MaxNestingLevelSniffTest.inc',
+            MaxNestingLevelSniff::class
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }
