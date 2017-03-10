@@ -2,6 +2,8 @@
 
 namespace ObjectCalisthenics\Helper;
 
+use Nette\Utils\Strings;
+
 final class PropertyFilter
 {
     /**
@@ -14,7 +16,13 @@ final class PropertyFilter
     public static function filterOutScalarProperties(array $propertyList): array
     {
         return array_filter($propertyList, function ($property) {
-            return !in_array($property['type'], self::$scalarPropertyTypes, true);
+            foreach (self::$scalarPropertyTypes as $scalarPropertyType) {
+                if (Strings::startsWith($property['type'], $scalarPropertyType)) {
+                    return false;
+                }
+            }
+
+            return true;
         });
     }
 }

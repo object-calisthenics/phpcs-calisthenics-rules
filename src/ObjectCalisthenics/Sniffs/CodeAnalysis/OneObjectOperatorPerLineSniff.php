@@ -38,7 +38,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private $callerTokens;
 
     /**
-     * mixed[]
+     * mixed[].
      */
     private $tokens;
 
@@ -50,7 +50,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     /**
      * @return int[]
      */
-    public function register() : array
+    public function register(): array
     {
         return [T_VARIABLE];
     }
