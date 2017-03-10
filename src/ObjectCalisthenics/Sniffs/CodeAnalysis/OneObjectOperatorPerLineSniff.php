@@ -8,19 +8,19 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class OneObjectOperatorPerLineSniff implements Sniff
 {
     /**
-     * @var string
+     * @var string[]
      */
-    public $variablesHoldingAFluentInterface = '$queryBuilder';
+    public $variablesHoldingAFluentInterface = ['$queryBuilder'];
 
     /**
-     * @var string
+     * @var string[]
      */
-    public $methodsStartingAFluentInterface = 'createQueryBuilder';
+    public $methodsStartingAFluentInterface = ['createQueryBuilder'];
 
     /**
-     * @var string
+     * @var string[]
      */
-    public $methodsEndingAFluentInterface = 'execute,getQuery';
+    public $methodsEndingAFluentInterface = ['execute', 'getQuery'];
 
     /**
      * @var File
@@ -116,10 +116,10 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
     private function isInFluentInterfaceMode(): bool
     {
-        $lastEndPoint = $this->computeLastCallOfAnyFrom(explode(',', $this->methodsEndingAFluentInterface));
-        $lastStartPoint = $this->computeLastCallOfAnyFrom(explode(',', $this->methodsStartingAFluentInterface));
+        $lastEndPoint = $this->computeLastCallOfAnyFrom($this->methodsEndingAFluentInterface);
+        $lastStartPoint = $this->computeLastCallOfAnyFrom($this->methodsStartingAFluentInterface);
 
-        if (in_array($this->variableName, explode(',', $this->variablesHoldingAFluentInterface), true)) {
+        if (in_array($this->variableName, $this->variablesHoldingAFluentInterface)) {
             $lastStartPoint = max($lastStartPoint, -1);
         }
 
