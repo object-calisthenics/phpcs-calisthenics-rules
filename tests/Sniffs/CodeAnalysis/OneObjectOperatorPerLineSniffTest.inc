@@ -59,5 +59,3 @@ class PHPSessionStorage
 $user = new User();
 
 $user->sessionStorage->start();
-
-?>
