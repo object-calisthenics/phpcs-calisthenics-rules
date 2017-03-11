@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Helper;
 
@@ -26,8 +26,8 @@ final class ClassAnalyzerTest extends TestCase
 
     protected function setUp()
     {
-        $fileFactory = new FileFactory;
-        $this->file = $fileFactory->createFile(__DIR__ . '/ClassAnalyzerSource/SomeFile.php.inc');
+        $fileFactory = new FileFactory();
+        $this->file = $fileFactory->createFile(__DIR__.'/ClassAnalyzerSource/SomeFile.php.inc');
     }
 
     public function testMethodCount()

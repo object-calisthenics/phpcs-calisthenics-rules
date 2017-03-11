@@ -61,7 +61,7 @@ final class FileFactory
 
     private function createConfig(): Config
     {
-        $config = new Config;
+        $config = new Config();
         // nulling required, because PEAR Standard is on by default
         $config->standards = [];
 

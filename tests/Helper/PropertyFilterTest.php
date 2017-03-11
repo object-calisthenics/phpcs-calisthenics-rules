@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Helper;
 
@@ -9,8 +9,9 @@ final class PropertyFilterTest extends TestCase
 {
     /**
      * @dataProvider provideProperties
+     *
      * @param string[] $properties
-     * @param int $nonScalarPropertiesCount
+     * @param int      $nonScalarPropertiesCount
      */
     public function test(array $properties, int $nonScalarPropertiesCount)
     {
@@ -24,14 +25,14 @@ final class PropertyFilterTest extends TestCase
     {
         return [
             [
-                [['type' => 'string']], 0
+                [['type' => 'string']], 0,
             ],
             [
-                [['type' => 'string[]']], 0
+                [['type' => 'string[]']], 0,
             ],
             [
-                [['type' => 'bool[][]']], 0
-            ]
+                [['type' => 'bool[][]']], 0,
+            ],
         ];
     }
 }

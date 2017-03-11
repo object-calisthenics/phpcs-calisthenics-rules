@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Helper\Structure;
 
@@ -25,12 +25,12 @@ final class StructureMetricsTest extends TestCase
 
     protected function setUp()
     {
-        $this->fileFactory = new FileFactory;
+        $this->fileFactory = new FileFactory();
     }
 
     public function test()
     {
-        $file = $this->fileFactory->createFile(__DIR__ . '/StructureMetricsSource/SomeClass.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__.'/StructureMetricsSource/SomeClass.php.inc');
 
         $classStructureLength = StructureMetrics::getStructureLengthInLines($file, self::CLASS_POSITION);
         $this->assertSame(9, $classStructureLength);

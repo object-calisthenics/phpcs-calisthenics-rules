@@ -54,7 +54,6 @@ final class ClassAnalyzer
         $tokens = $file->getTokens();
         $property = $tokens[$position];
 
-
         // Is it a property or a random variable?
         if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), [T_CLASS, T_TRAIT]))) {
             return;
@@ -70,7 +69,7 @@ final class ClassAnalyzer
     {
         $token = $file->getTokens()[$position];
 
-        if ( ! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT])) {
+        if (!in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT])) {
             throw new Exception(
                 sprintf(
                     'Must be class, interface or trait. "%s" given.',

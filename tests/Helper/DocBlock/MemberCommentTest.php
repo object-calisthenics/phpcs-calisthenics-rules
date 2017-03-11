@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Helper\DocBlock;
 
@@ -15,12 +15,12 @@ final class MemberCommentTest extends TestCase
 
     protected function setUp()
     {
-        $this->fileFactory = new FileFactory;
+        $this->fileFactory = new FileFactory();
     }
 
     public function test()
     {
-        $file = $this->fileFactory->createFile(__DIR__ . '/MemberCommentSource/SomeFile.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__.'/MemberCommentSource/SomeFile.php.inc');
         $memberComment = MemberComment::getMemberComment($file, 20);
 
         $this->assertSame('argument', $memberComment);

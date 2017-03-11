@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Helper;
 
@@ -35,7 +35,7 @@ final class NamingTest extends TestCase
 
     public function test()
     {
-        $file = $this->fileFactory->createFile(__DIR__ . '/NamingSource/SomeFile.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__.'/NamingSource/SomeFile.php.inc');
 
         $name = Naming::getElementName($file, self::CLASS_POSITION);
         $this->assertSame('SomeClass', $name);
