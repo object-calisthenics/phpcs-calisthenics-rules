@@ -33,7 +33,7 @@ final class MethodPerClassLimitSniff implements Sniff
             $tokenType = $file->getTokens()[$position]['content'];
 
             $message = sprintf(
-                '""%s" has too many methods: %d. Can be up to %d methods',
+                '"%s" has too many methods: %d. Can be up to %d methods',
                 $tokenType,
                 $methodCount,
                 $this->maxCount
