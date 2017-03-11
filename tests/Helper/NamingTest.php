@@ -9,6 +9,21 @@ use PHPUnit\Framework\TestCase;
 final class NamingTest extends TestCase
 {
     /**
+     * @var int
+     */
+    private const CLASS_POSITION = 4;
+
+    /**
+     * @var int
+     */
+    private const CONSTANT_POSITION = 12;
+
+    /**
+     * @var int
+     */
+    private const PROPERTY_POSITION = 25;
+
+    /**
      * @var FileFactory
      */
     private $fileFactory;
@@ -22,13 +37,13 @@ final class NamingTest extends TestCase
     {
         $file = $this->fileFactory->createFile(__DIR__ . '/NamingSource/SomeFile.php.inc');
 
-        $name = Naming::getElementName($file, 4);
+        $name = Naming::getElementName($file, self::CLASS_POSITION);
         $this->assertSame('SomeClass', $name);
 
-        $name = Naming::getElementName($file, 12);
+        $name = Naming::getElementName($file, self::CONSTANT_POSITION);
         $this->assertSame('SOME_CONSTANT', $name);
 
-        $name = Naming::getElementName($file, 21);
+        $name = Naming::getElementName($file, self::PROPERTY_POSITION);
         $this->assertSame('someProperty', $name);
     }
 }
