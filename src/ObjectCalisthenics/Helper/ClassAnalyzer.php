@@ -59,10 +59,11 @@ final class ClassAnalyzer
             return;
         }
 
-        $comment = MemberComment::getMemberComment($file, $position);
-        self::$propertyList[] = [
-            'type' => $comment ?: 'unknown',
-        ];
+        if ($comment = MemberComment::getMemberComment($file, $position)) {
+            self::$propertyList[] = [
+                'type' => $comment,
+            ];
+        }
     }
 
     private static function ensureIsClassTraitOrInterface(File $file, int $position): void

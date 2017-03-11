@@ -15,11 +15,6 @@ final class ClassAnalyzerTest extends TestCase
     private const CLASS_POSITION = 3;
 
     /**
-     * @var FileFactory
-     */
-    private $fileFactory;
-
-    /**
      * @var File
      */
     private $file;
@@ -39,15 +34,15 @@ final class ClassAnalyzerTest extends TestCase
     {
         $properties = ClassAnalyzer::getClassProperties($this->file, self::CLASS_POSITION);
 
-        $this->assertCount(2, $properties);
+        $this->assertCount(1, $properties);
 
-        $this->assertArrayHasKey(1, $properties);
-        $this->assertArrayHasKey('type', $properties[1]);
-        $this->assertSame('int', $properties[1]['type']);
+        $this->assertArrayHasKey(0, $properties);
+        $this->assertArrayHasKey('type', $properties[0]);
+        $this->assertSame('int', $properties[0]['type']);
     }
 
     public function testPropertyCount()
     {
-        $this->assertSame(2, ClassAnalyzer::getClassPropertiesCount($this->file, self::CLASS_POSITION));
+        $this->assertSame(1, ClassAnalyzer::getClassPropertiesCount($this->file, self::CLASS_POSITION));
     }
 }

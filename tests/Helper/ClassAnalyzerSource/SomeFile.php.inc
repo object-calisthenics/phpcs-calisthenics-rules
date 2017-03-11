@@ -3,12 +3,10 @@
 
 class SomeFile
 {
-    private $somePropertyWithNoDoc;
-
     /**
      * @var int
      */
-    private $someIntegerProperty;
+    private $someProperty;
 
 
     public function someMethod()
