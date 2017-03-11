@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Helper;
 
+use Exception;
 use ObjectCalisthenics\Helper\DocBlock\MemberComment;
 use PHP_CodeSniffer\Files\File;
 
@@ -14,6 +15,8 @@ final class ClassAnalyzer
 
     public static function getClassMethodCount(File $file, int $position): int
     {
+        self::ensureIsClassTraitOrInterface($file, $position);
+
         $methodCount = 0;
         $pointer = $position;
 
@@ -51,15 +54,29 @@ final class ClassAnalyzer
         $tokens = $file->getTokens();
         $property = $tokens[$position];
 
+
         // Is it a property or a random variable?
         if (!(count($property['conditions']) === 1 && in_array(reset($property['conditions']), [T_CLASS, T_TRAIT]))) {
             return;
         }
 
-        if ($comment = MemberComment::getMemberComment($file, $position)) {
-            self::$propertyList[] = [
-                'type' => $comment,
-            ];
+        $comment = MemberComment::getMemberComment($file, $position);
+        self::$propertyList[] = [
+            'type' => $comment ?: 'unknown',
+        ];
+    }
+
+    private static function ensureIsClassTraitOrInterface(File $file, int $position): void
+    {
+        $token = $file->getTokens()[$position];
+
+        if ( ! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT])) {
+            throw new Exception(
+                sprintf(
+                    'Must be class, interface or trait. "%s" given.',
+                    ltrim($token['type'], 'T_')
+                )
+            );
         }
     }
 }
