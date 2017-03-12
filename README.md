@@ -78,6 +78,18 @@ This sniff is **configurable**:
 
 - [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
+This sniff is **configurable**:
+
+```xml
+<!-- ruleset.xml -->
+<rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine">
+    <properties>
+        <property name="variablesHoldingAFluentInterface" type="array" value="$queryBuilder"/>
+        <property name="methodsStartingAFluentInterface" type="array" value="createQueryBuilder"/>
+        <property name="methodsEndingAFluentInterface" type="array" value="execute,getQuery"/>
+    </properties>
+</rule>
+```
 
 ### 6. Do not Abbreviate
 
