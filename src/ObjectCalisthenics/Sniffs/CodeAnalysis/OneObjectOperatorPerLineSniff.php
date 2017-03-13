@@ -94,9 +94,9 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         }
     }
 
-    private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType): void
+    private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType, bool $isOwnCall): void
     {
-        if (!$this->callerTokens) {
+        if ((count($this->callerTokens) - (int) $isOwnCall) === 0) {
             return;
         }
 
@@ -154,7 +154,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
             // Look for second object operator token on same statement
             $this->handleTwoObjectOperators($isOwnCall);
-            $this->handleExcludedFluentInterfaces($tmpToken, $tmpTokenType);
+            $this->handleExcludedFluentInterfaces($tmpToken, $tmpTokenType, $isOwnCall);
 
             $this->callerTokens[] = [
                 'token' => $tmpToken,
