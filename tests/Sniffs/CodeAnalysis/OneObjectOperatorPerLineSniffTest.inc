@@ -23,10 +23,17 @@ class User
     {
         return $this->sessionStorage;
     }
+
+    public function getSessionStorageName()
+    {
+        return $this->sessionStorage->name;
+    }
 }
 
 class MySessionStorage
 {
+    public $name = 'mySessionStorage';
+
     public function __construct()
     {
         $this->driver = new NativeSessionStorage();
