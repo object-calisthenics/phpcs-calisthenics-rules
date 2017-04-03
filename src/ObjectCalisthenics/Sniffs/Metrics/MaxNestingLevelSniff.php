@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
@@ -9,8 +7,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
  * MaxNestingLevelSniff.
- *
- * @uses \Sniff
  */
 final class MaxNestingLevelSniff implements Sniff
 {
@@ -45,7 +41,7 @@ final class MaxNestingLevelSniff implements Sniff
     private $currentPtr;
 
     /**
-     * @return array
+     * @return int[]
      */
     public function register(): array
     {
@@ -77,9 +73,6 @@ final class MaxNestingLevelSniff implements Sniff
         $this->handleNestingLevel($this->nestingLevel);
     }
 
-    /**
-     * @param int $nestingLevel
-     */
     private function handleNestingLevel(int $nestingLevel): void
     {
         if ($nestingLevel > $this->maxNestingLevel) {
@@ -93,11 +86,6 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @param int   $start
-     * @param int   $end
-     * @param array $tokens
-     */
     private function iterateTokens(int $start, int $end, array $tokens): void
     {
         $this->currentPtr = $start + 1;
@@ -110,9 +98,6 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @param array $nestedToken
-     */
     private function handleToken(array $nestedToken): void
     {
         $this->handleClosureToken($nestedToken);
@@ -128,19 +113,11 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @param array $token
-     *
-     * @return int
-     */
     private function subtractFunctionNestingLevel(array $token): int
     {
         return $this->nestingLevel - $token['level'] - 1;
     }
 
-    /**
-     * @param array $nestedToken
-     */
     private function handleClosureToken(array $nestedToken)
     {
         if ($nestedToken['code'] === T_CLOSURE) {
@@ -152,9 +129,6 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @param array $nestedToken
-     */
     private function handleCaseToken(array $nestedToken): void
     {
         if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
@@ -173,10 +147,6 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @param int   $key
-     * @param array $ignoredScope
-     */
     private function unsetScopeIfNotCurrent(int $key, array $ignoredScope): void
     {
         if ($ignoredScope['scope_closer'] !== $this->currentPtr) {
