@@ -8,9 +8,9 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
- * MaxNestingLevelSniff
+ * MaxNestingLevelSniff.
  *
- * @uses Sniff
+ * @uses \Sniff
  */
 final class MaxNestingLevelSniff implements Sniff
 {
@@ -79,7 +79,6 @@ final class MaxNestingLevelSniff implements Sniff
 
     /**
      * @param int $nestingLevel
-     * @return void
      */
     private function handleNestingLevel(int $nestingLevel): void
     {
@@ -95,10 +94,9 @@ final class MaxNestingLevelSniff implements Sniff
     }
 
     /**
-     * @param int $start
-     * @param int $end
+     * @param int   $start
+     * @param int   $end
      * @param array $tokens
-     * @return void
      */
     private function iterateTokens(int $start, int $end, array $tokens): void
     {
@@ -114,7 +112,6 @@ final class MaxNestingLevelSniff implements Sniff
 
     /**
      * @param array $nestedToken
-     * @return void
      */
     private function handleToken(array $nestedToken): void
     {
@@ -133,6 +130,7 @@ final class MaxNestingLevelSniff implements Sniff
 
     /**
      * @param array $token
+     *
      * @return int
      */
     private function subtractFunctionNestingLevel(array $token): int
@@ -142,7 +140,6 @@ final class MaxNestingLevelSniff implements Sniff
 
     /**
      * @param array $nestedToken
-     * @return void
      */
     private function handleClosureToken(array $nestedToken)
     {
@@ -157,7 +154,6 @@ final class MaxNestingLevelSniff implements Sniff
 
     /**
      * @param array $nestedToken
-     * @return void
      */
     private function handleCaseToken(array $nestedToken): void
     {
@@ -168,9 +164,6 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
-    /**
-     * @return void
-     */
     private function adjustNestingLevelToIgnoredScope(): void
     {
         // Iterated through ignored scope stack to find out if
@@ -181,9 +174,8 @@ final class MaxNestingLevelSniff implements Sniff
     }
 
     /**
-     * @param int $key
+     * @param int   $key
      * @param array $ignoredScope
-     * @return void
      */
     private function unsetScopeIfNotCurrent(int $key, array $ignoredScope): void
     {
