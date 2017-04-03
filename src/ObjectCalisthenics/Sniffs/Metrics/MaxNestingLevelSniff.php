@@ -37,6 +37,9 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private $currentPtr;
 
+    /**
+     * @return int[]
+     */
     public function register(): array
     {
         return [T_FUNCTION, T_CLOSURE];
@@ -70,11 +73,12 @@ final class MaxNestingLevelSniff implements Sniff
     private function handleNestingLevel(int $nestingLevel): void
     {
         if ($nestingLevel > $this->maxNestingLevel) {
+            $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
             $this->file->addError(
-                'Only one indentation level per function/method. Found %s levels.',
+                'Only %d indentation level%s per function/method. Found %s levels.',
                 $this->position,
                 'MaxExceeded',
-                [$nestingLevel]
+                [$this->maxNestingLevel, $levelPluralization, $nestingLevel]
             );
         }
     }
