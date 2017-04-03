@@ -5,9 +5,6 @@ namespace ObjectCalisthenics\Sniffs\Metrics;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * MaxNestingLevelSniff.
- */
 final class MaxNestingLevelSniff implements Sniff
 {
     /**
