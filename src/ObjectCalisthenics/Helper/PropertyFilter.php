@@ -20,13 +20,18 @@ final class PropertyFilter
     public static function filterOutScalarProperties(array $propertyList): array
     {
         return array_filter($propertyList, function ($property) {
-            foreach (self::$scalarPropertyTypes as $scalarPropertyType) {
-                if (Strings::startsWith($property['type'], $scalarPropertyType)) {
-                    return false;
-                }
-            }
-
-            return true;
+            return self::isPropertyScalar($property);
         });
+    }
+
+    private static function isPropertyScalar(array $property): bool
+    {
+        foreach (self::$scalarPropertyTypes as $scalarPropertyType) {
+            if (Strings::startsWith($property['type'], $scalarPropertyType)) {
+                return false;
+            }
+        }
+
+        return false;
     }
 }

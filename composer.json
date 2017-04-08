@@ -29,13 +29,7 @@
     "scripts": {
         "complete-check": ["@phpstan", "@check-ecs", "phpunit"],
         "phpstan": "phpstan analyze src --level 5",
-        "check-ecs": "vendor/bin/easy-coding-standard check src tests",
-        "fix-ecs": "vendor/bin/easy-coding-standard check src tests --fix",
-        "check-cs": [
-            "phpcs src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
-        ],
-        "fix-cs": [
-            "phpcbf src tests --colors -p -s --extensions=php --standard=src/ObjectCalisthenics/ruleset.xml"
-        ]
+        "check-cs": "vendor/bin/easy-coding-standard check src tests",
+        "fix-cs": "vendor/bin/easy-coding-standard check src tests --fix"
     }
 }

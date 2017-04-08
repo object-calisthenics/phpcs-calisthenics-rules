@@ -1,4 +1,49 @@
 checkers:
+    # Rule 1
+    - ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff
+    # posibly replaceable by?
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
+        nestingLevel: 2
+        absoluteNestingLevel: 2
+
+    # Rule 2
+    - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
+
+    # Rule 5
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+        variablesHoldingAFluentInterface:
+            - $containerBuilder
+            - $container
+            - $kernel
+            - $rootNode
+            - $requestMock
+            - $entityManagerMock
+
+    # Rule 6
+    - ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff
+    - ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff
+    - ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff
+    ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff:
+        allowedShortVariableNames:
+            - to
+            - id
+            - i
+
+    # Rule 7
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
+        maxCount: 16 # 10 by default
+    - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
+    - ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff
+    - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
+
+    # Rule 8
+    - ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff
+
+    # Rule 9
+    # disable for temp bug in Symplify\EasyCodingStandard
+    # - ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff
+    - ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff
+
     # Classes
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Classes\DuplicateClassNameSniff
     - PHP_CodeSniffer\Standards\PSR2\Sniffs\Classes\PropertyDeclarationSniff
@@ -42,37 +87,13 @@ checkers:
 
     # Metrics
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
-    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
-        nestingLevel: 3
-        absoluteNestingLevel: 6
     - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
-    - ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
-        maxCount: 16 # 10 by default
-    - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff
-    - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
-    - ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff
-    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
-        variablesHoldingAFluentInterface:
-            - $containerBuilder
-            - $container
-            - $kernel
-            - $rootNode
-            - $requestMock
-            - $entityManagerMock
+
+
 
     # Naming Conventions
     - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff
     - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff
-    - ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff
-    - ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff
-    - ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff
-    ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff:
-        allowedShortVariableNames:
-            - to
-            - id
-            - i
 
     # PHP
     - PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\DisallowShortOpenTagSniff
@@ -280,4 +301,7 @@ checkers:
 skip:
     # bugged in Symplify, to be fixed soon
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        - src/ObjetCalisthenics/Sniffs/*/*Sniff.php
+    # bugged in Symplify, to be fixed soon
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff:
         - src/ObjetCalisthenics/Sniffs/*/*Sniff.php

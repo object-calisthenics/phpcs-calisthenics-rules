@@ -38,7 +38,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private $callerTokens;
 
     /**
-     * mixed[].
+     * @var mixed[]
      */
     private $tokens;
 
