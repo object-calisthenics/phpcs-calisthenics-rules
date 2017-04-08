@@ -3,8 +3,8 @@
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use Nette\Utils\Strings;
-use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
 

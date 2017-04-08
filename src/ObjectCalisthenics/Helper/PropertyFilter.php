@@ -13,6 +13,10 @@ final class PropertyFilter
         'array', 'bool', 'boolean', 'callable', 'double', 'float', 'int', 'integer', 'resource', 'string',
     ];
 
+    /**
+     * @param mixed[] $propertyList
+     * @return mixed[]
+     */
     public static function filterOutScalarProperties(array $propertyList): array
     {
         return array_filter($propertyList, function ($property) {

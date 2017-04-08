@@ -115,7 +115,7 @@ final class MaxNestingLevelSniff implements Sniff
         return $this->nestingLevel - $token['level'] - 1;
     }
 
-    private function handleClosureToken(array $nestedToken)
+    private function handleClosureToken(array $nestedToken): void
     {
         if ($nestedToken['code'] === T_CLOSURE) {
             // Move index pointer in case we found a lambda function

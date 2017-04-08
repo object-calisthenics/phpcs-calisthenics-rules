@@ -122,11 +122,12 @@ checkers:
     - SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff
     - SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
     - SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff
-    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        usefulAnnotations:
-            - @todo
-            - @dataProvider
-            - @expectedException
+    # disable for temp bug in Symplify\EasyCodingStandard
+#    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+#        usefulAnnotations:
+#            - @todo
+#            - @dataProvider
+#            - @expectedException
     - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
@@ -275,3 +276,8 @@ checkers:
     - PhpCsFixer\Fixer\LanguageConstruct\FunctionToConstantFixer
     - PhpCsFixer\Fixer\Basic\NonPrintableCharacterFixer
     - PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer
+
+skip:
+    # bugged in Symplify, to be fixed soon
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        - src/ObjetCalisthenics/Sniffs/*/*Sniff.php

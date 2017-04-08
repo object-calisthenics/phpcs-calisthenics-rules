@@ -89,7 +89,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
     private function handleTwoObjectOperators(bool $isOwnCall): void
     {
-        if ($this->callerTokens && !$isOwnCall && !$this->isInFluentInterfaceMode()) {
+        if ($this->callerTokens && ! $isOwnCall && ! $this->isInFluentInterfaceMode()) {
             $this->file->addError('Only one object operator per line.', $this->position, self::class);
         }
     }
@@ -104,11 +104,11 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         $memberToken = end($this->callerTokens);
         $memberTokenType = $memberToken['type'];
 
-        if (
-            ($memberTokenType === 'property' && $tmpTokenType === 'property') ||
-            ($memberTokenType === 'method' && $tmpTokenType === 'property') ||
-            ($memberTokenType === 'method' && $tmpTokenType === 'method'
-                && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content'] && !$this->isInFluentInterfaceMode())
+        if (($memberTokenType === 'property' && $tmpTokenType === 'property')
+            || ($memberTokenType === 'method' && $tmpTokenType === 'property')
+            || ($memberTokenType === 'method' && $tmpTokenType === 'method'
+            && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content']
+            && ! $this->isInFluentInterfaceMode())
         ) {
             $this->file->addError('Only one object operator per line.', $this->position, self::class);
         }
@@ -145,7 +145,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         return -2;
     }
 
-    private function handleObjectOperators(int $pointer, bool $isOwnCall)
+    private function handleObjectOperators(int $pointer, bool $isOwnCall): void
     {
         while ($this->tokens[$pointer]['code'] === T_OBJECT_OPERATOR) {
             $tmpToken = $this->tokens[++$pointer];

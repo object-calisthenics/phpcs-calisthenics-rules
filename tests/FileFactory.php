@@ -24,7 +24,7 @@ final class FileFactory
         }
     }
 
-    public function createFile(string $filePath)
+    public function createFile(string $filePath): File
     {
         $config = $this->createConfig();
         $ruleset = new Ruleset($config);
