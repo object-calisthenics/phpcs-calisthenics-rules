@@ -43,7 +43,7 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root p
 
 ### 1. Only One Level of Indentation per Method
 
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#only-one-level-of-indentation-per-method).
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#1-only-one-level-of-indentation-per-method).
 
 #### Sniff
 
@@ -63,7 +63,7 @@ This sniff is **configurable**:
 
 ### 2. Do Not Use "else" Keyword
 
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-use-the-else-keyword)
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#2-dont-use-the-else-keyword)
 
 #### Sniff
 
@@ -72,7 +72,7 @@ This sniff is **configurable**:
 
 ### 5. Use Only One Object Operator (`->`) per Line
 
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#one-dot-per-line)
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
 #### Sniff
 
@@ -93,7 +93,7 @@ This sniff is **configurable**:
 
 ### 6. Do not Abbreviate
 
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#dont-abbreviate)
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#6-dont-abbreviate)
 
 #### Sniffs
 
@@ -134,7 +134,7 @@ These sniffs are **configurable**:
 
 ### 7. Keep Your Classes Small
 
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#keep-all-entities-small)
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#7-keep-all-entities-small)
 
 #### Sniffs
 
@@ -172,7 +172,7 @@ These sniffs are **configurable**:
 
 ### 8. Do Not Use Classes With More Than Two Instance Variables
 
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-classes-with-more-than-two-instance-variables)
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)
 
 #### Sniff
 
@@ -192,7 +192,7 @@ This sniff is **configurable**:
 
 ### 9. Do not Use Getters and Setters
 
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#no-getterssettersproperties)
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
 
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
@@ -208,12 +208,12 @@ This sniff is **configurable**:
 
 ### 3. Wrap Primitive Types and Strings
 
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#wrap-all-primitives-and-strings)
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#3- wrap-all-primitives-and-strings)
 
 Since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
 
 ```php
-define(strict_types=1);
+<?php define(strict_types=1);
 
 final class Resolver
 {
@@ -229,7 +229,7 @@ For other cases, e.g. email, you can **deal with that in your [Domain via Value 
 
 ### 4. Use First Class Collections
 
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#first-class-collections)
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#4-first-class-collections)
 
 This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
 
