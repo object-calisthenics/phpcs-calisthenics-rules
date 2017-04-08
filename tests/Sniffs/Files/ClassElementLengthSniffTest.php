@@ -21,7 +21,7 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testClassLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassElementLengthSniffTest.inc',
+            __DIR__ . '/ClassElementLengthSniffTest.inc',
             ClassElementLengthSniff::class
         );
 
@@ -31,7 +31,7 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testInterfaceLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassElementLengthSniffTest2.inc',
+            __DIR__ . '/ClassElementLengthSniffTest2.inc',
             ClassElementLengthSniff::class
         );
 
@@ -41,7 +41,7 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testTraitLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ClassElementLengthSniffTest3.inc',
+            __DIR__ . '/ClassElementLengthSniffTest3.inc',
             ClassElementLengthSniff::class
         );
 

@@ -12,18 +12,18 @@ final class OneObjectOperatorPerLineSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/OneObjectOperatorPerLineSniffTest.inc',
+            __DIR__ . '/OneObjectOperatorPerLineSniffTest.inc',
             OneObjectOperatorPerLineSniff::class
         );
 
         $this->assertSame(2, $errorCount);
     }
 
-    public function testFluentInterfaces()
+    public function testFluentInterfaces(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/OneObjectOperatorPerLineSniffTestFluentInterface.inc',
+            __DIR__ . '/OneObjectOperatorPerLineSniffTestFluentInterface.inc',
             OneObjectOperatorPerLineSniff::class
         );
 

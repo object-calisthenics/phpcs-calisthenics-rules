@@ -12,7 +12,7 @@ final class FunctionNameLengthSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/FunctionNameLengthSniffTest.inc',
+            __DIR__ . '/FunctionNameLengthSniffTest.inc',
             FunctionNameLengthSniff::class
         );
 

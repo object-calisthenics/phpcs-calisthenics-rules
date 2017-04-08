@@ -12,7 +12,7 @@ final class MethodPerClassLimitSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/MethodPerClassLimitSniffTest.inc',
+            __DIR__ . '/MethodPerClassLimitSniffTest.inc',
             MethodPerClassLimitSniff::class
         );
 

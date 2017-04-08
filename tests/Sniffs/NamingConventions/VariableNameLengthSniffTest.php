@@ -12,7 +12,7 @@ final class VariableNameLengthSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/VariableNameLengthSniffTest.inc',
+            __DIR__ . '/VariableNameLengthSniffTest.inc',
             VariableNameLengthSniff::class
         );
 

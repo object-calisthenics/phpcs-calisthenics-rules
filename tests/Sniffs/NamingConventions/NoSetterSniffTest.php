@@ -12,7 +12,7 @@ final class NoSetterSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/NoSetterSniffTest.inc',
+            __DIR__ . '/NoSetterSniffTest.inc',
             NoSetterSniff::class
         );
 

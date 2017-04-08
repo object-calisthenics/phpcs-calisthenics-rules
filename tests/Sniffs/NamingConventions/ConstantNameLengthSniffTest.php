@@ -12,7 +12,7 @@ final class ConstantNameLengthSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ConstantNameLengthSniffTest.inc',
+            __DIR__ . '/ConstantNameLengthSniffTest.inc',
             ConstantNameLengthSniff::class
         );
 

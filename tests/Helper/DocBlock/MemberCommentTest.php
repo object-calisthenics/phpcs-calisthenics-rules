@@ -13,14 +13,14 @@ final class MemberCommentTest extends TestCase
      */
     private $fileFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fileFactory = new FileFactory();
     }
 
-    public function test()
+    public function test(): void
     {
-        $file = $this->fileFactory->createFile(__DIR__.'/MemberCommentSource/SomeFile.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__ . '/MemberCommentSource/SomeFile.php.inc');
         $memberComment = MemberComment::getMemberComment($file, 20);
 
         $this->assertSame('argument', $memberComment);

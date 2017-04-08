@@ -12,14 +12,14 @@ final class FileFactory
     public function __construct()
     {
         // legacy compatibility
-        if (!defined('PHP_CODESNIFFER_VERBOSITY')) {
+        if (! defined('PHP_CODESNIFFER_VERBOSITY')) {
             define('PHP_CODESNIFFER_VERBOSITY', 0);
             define('PHP_CODESNIFFER_CBF', false);
             define('PHP_CODESNIFFER_IN_TESTS', true);
         }
 
         // initialize Token constants
-        if (!defined('T_NONE')) {
+        if (! defined('T_NONE')) {
             new Tokens();
         }
     }

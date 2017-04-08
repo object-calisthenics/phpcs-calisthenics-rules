@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
@@ -12,7 +12,7 @@ final class NoElseSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/NoElseSniffTest.inc',
+            __DIR__ . '/NoElseSniffTest.inc',
             NoElseSniff::class
         );
 

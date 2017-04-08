@@ -13,7 +13,7 @@ final class PropertyFilterTest extends TestCase
      * @param string[] $properties
      * @param int      $nonScalarPropertiesCount
      */
-    public function test(array $properties, int $nonScalarPropertiesCount)
+    public function test(array $properties, int $nonScalarPropertiesCount): void
     {
         $this->assertCount($nonScalarPropertiesCount, PropertyFilter::filterOutScalarProperties($properties));
     }
