@@ -154,12 +154,12 @@ These sniffs are **configurable**:
 </rule>
 <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
     <properties>
-        <property name="maxLength" value="10"/>
+        <property name="maxCount" value="10"/>
     </properties>
 </rule>
 <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
     <properties>
-        <property name="maxLength" value="10"/>
+        <property name="maxCount" value="10"/>
     </properties>
 </rule>
 <rule ref="ObjectCalisthenics.Files.FunctionLength">
