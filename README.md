@@ -6,17 +6,12 @@
 
 Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**.
 
+
 ### Where to read more about Object Calisthenics?
 
+If you interested in **motivation and reasons behind them**, [read post by *William Durand*](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [post by *Diego Mariani*](https://medium.com/web-engineering-vox/improving-code-quality-with-object-calisthenics-aa4ad67a61f1).
 
-Are you interested in **motivation and reasons behind them**?
-
-- [Read post by William Durand](http://williamdurand.fr/2013/06/03/object-calisthenics/) or
-- [post by Diego Mariani](https://medium.com/web-engineering-vox/improving-code-quality-with-object-calisthenics-aa4ad67a61f1).
-
-Do you **prefer slides**?
-
-- [Here are 58 of them in presentation by Guilherme Blanco](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php), the founding father of this project.
+And if you **prefer slides**, [here are 58 of them in presentation](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php) by *Guilherme Blanco*.
 
 
 ## Install
@@ -185,18 +180,18 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 
 ---
 
-## Not Implemented Rules
+### Not Implemented Rules
 
 While using in practise, we found these rule to be too much strict, vague or even annoying, rather then helping to write cleaner and more pragmatic code.
 
 They're also closely related with [Domain Driven Design](https://github.com/dddinphp).
 
 
-### 3. Wrap Primitive Types and Strings
+#### 3. Wrap Primitive Types and Strings
 
 [Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)
 
-Since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
+Relate to this rule: since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
 
 ```php
 <?php define(strict_types=1);
@@ -213,13 +208,13 @@ final class Resolver
 For other cases, e.g. email, you can **deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)**.
 
 
-### 4. Use First Class Collections
+#### 4. Use First Class Collections
 
 [Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#4-first-class-collections)
 
 This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
 
-### 8. Do Not Use Classes With More Than Two Instance Variables
+#### 8. Do Not Use Classes With More Than Two Instance Variables
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)
 
