@@ -138,7 +138,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     }
 
     /**
-     * @param array $methods
+     * @param mixed[] $methods
      *
      * @return int The last position of the method calls within the callerTokens
      *             or -2 if none of the methods has been called

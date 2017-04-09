@@ -3,11 +3,11 @@
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
-final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implements Sniff
+final class ForbiddenPublicPropertySniff implements Sniff
 {
     /**
      * @var string
@@ -15,60 +15,36 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
     private const ERROR_MESSAGE = 'Do not use public properties. Use method access instead.';
 
     /**
-     * @var array
+     * @return int[]
      */
-    private $tokens;
-
-    /**
-     * @var File
-     */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $position;
-
-    /**
-     * @param File $file
-     * @param int  $position
-     */
-    protected function processMemberVar(File $file, $position): void
+    public function register(): array
     {
-        $this->file = $file;
-        $this->position = $position;
-        $this->tokens = $file->getTokens();
-
-        $modifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
-
-        $this->handlePublicProperty($modifier);
+        return [T_VARIABLE];
     }
 
     /**
      * @param File $file
-     * @param int  $position
+     * @param int $position
      */
-    protected function processVariable(File $file, $position): void
+    public function process(File $file, $position): void
     {
-        // We don't care about normal variables.
+        $this->setupLegacyCompatibilitey();
+        if (! PropertyHelper::isProperty($file, $position)) {
+            return;
+        }
+
+        $scopeModifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
+
+        $tokens = $file->getTokens();
+        if ($tokens[$scopeModifier]['code'] === T_PUBLIC) {
+            $file->addError(self::ERROR_MESSAGE, $position, self::class);
+        }
     }
 
-    /**
-     * @param File $file
-     * @param int  $position
-     */
-    protected function processVariableInString(File $file, $position): void
+    private function setupLegacyCompatibilitey(): void
     {
-        // We don't care about normal variables.
-    }
-
-    /**
-     * @param int|bool $modifier
-     */
-    private function handlePublicProperty($modifier): void
-    {
-        if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
-            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
+        if (!class_exists('PHP_CodeSniffer_File')) {
+            class_alias(File::class, 'PHP_CodeSniffer_File');
         }
     }
 }
