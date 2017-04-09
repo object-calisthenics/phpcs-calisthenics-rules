@@ -16,6 +16,6 @@ final class ForbiddenPublicPropertySniffTest extends TestCase
             ForbiddenPublicPropertySniff::class
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

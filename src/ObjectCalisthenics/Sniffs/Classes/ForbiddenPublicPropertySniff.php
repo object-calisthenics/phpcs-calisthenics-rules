@@ -10,6 +10,11 @@ use PHP_CodeSniffer\Util\Tokens;
 final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Do not use public properties. Use method access instead.';
+
+    /**
      * @var array
      */
     private $tokens;
@@ -34,13 +39,8 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
         $this->position = $position;
         $this->tokens = $file->getTokens();
 
-        $this->handleMultiPropertyDeclaration();
-
         $modifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
 
-        // Check for no visibility declaration
-
-        $this->handleVisibilityDeclaration($modifier);
         $this->handlePublicProperty($modifier);
     }
 
@@ -62,42 +62,13 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
         // We don't care about normal variables.
     }
 
-    private function handleMultiPropertyDeclaration(): void
-    {
-        if (($nextPtr = $this->file->findNext(T_VARIABLE, ($this->position + 1), null, false, null, true)) !== false) {
-            $this->file->addError(
-                'There must not be more than one property declared per statement',
-                $this->position,
-                ''
-            );
-        }
-    }
-
     /**
      * @param int|bool $modifier
      */
     private function handlePublicProperty($modifier): void
     {
         if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
-            $this->file->addError(
-                'Use getters and setters for properties. Public visibility is discouraged.',
-                $this->position,
-                ''
-            );
-        }
-    }
-
-    /**
-     * @param int|bool $modifier
-     */
-    private function handleVisibilityDeclaration($modifier): void
-    {
-        if ($modifier === false || $this->tokens[$modifier]['line'] !== $this->tokens[$this->position]['line']) {
-            $this->file->addError(
-                sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
-                $this->position,
-                ''
-            );
+            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
         }
     }
 }
