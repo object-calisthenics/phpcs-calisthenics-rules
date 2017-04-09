@@ -4,7 +4,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
 [![Downloads](https://img.shields.io/packagist/dt/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
 
-Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**.
+Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**. We're *pragmatic first* - they are easy to use all together or one by one.
 
 
 ### Where to read more about Object Calisthenics?
@@ -16,29 +16,17 @@ And if you **prefer slides**, [here are 58 of them in presentation](https://www.
 
 ## Install
 
-Via composer:
-
 ```sh
 composer require object-calisthenics/phpcs-calisthenics-rules "squizlabs/php_codesniffer:3.0.0RC4" --dev
 ```
 
-Then, enable it as part of your CodeSniffer ruleset.
-
-```xml
-<!-- ruleset.xml -->
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Project">
-    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml"/>
-</ruleset>
-```
-
-Or via CLI:
+### Via CLI
 
 ```bash
 vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
 ```
 
-Or only particular sniffs via CLI:
+### The Most Favorite Option: particular sniffs via CLI
 
 ```bash
 vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine

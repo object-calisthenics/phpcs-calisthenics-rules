@@ -10,7 +10,8 @@ final class NoSetterSniff implements Sniff
     /**
      * @var string
      */
-    private const ERROR_MESSAGE = 'Setters are not allowed. Use constructor injection and behavior naming instead, e.g. changeName() instead of setName().';
+    private const ERROR_MESSAGE = 'Setters are not allowed. Use constructor injection and'
+        . ' behavior naming instead, e.g. changeName() instead of setName().';
 
     /**
      * @var string

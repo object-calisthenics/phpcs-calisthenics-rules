@@ -1,0 +1,3 @@
+parameters:
+    ignoreErrors:
+        - "#expects PHP_CodeSniffer_File#"

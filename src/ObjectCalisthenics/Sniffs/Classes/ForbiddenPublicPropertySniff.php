@@ -43,7 +43,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
 
     private function setupLegacyCompatibilitey(): void
     {
-        if (!class_exists('PHP_CodeSniffer_File')) {
+        if (! class_exists('PHP_CodeSniffer_File')) {
             class_alias(File::class, 'PHP_CodeSniffer_File');
         }
     }
