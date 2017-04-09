@@ -2,7 +2,6 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
-use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -10,11 +9,6 @@ use PHP_CodeSniffer\Util\Tokens;
 
 final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implements Sniff
 {
-    /**
-     * @var string[]
-     */
-    public $filesToBeSkipped = [];
-
     /**
      * @var array
      */
@@ -36,10 +30,6 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
      */
     protected function processMemberVar(File $file, $position): void
     {
-        if ($this->isFileSkipped($file->getFilename())) {
-            return;
-        }
-
         $this->file = $file;
         $this->position = $position;
         $this->tokens = $file->getTokens();
@@ -109,16 +99,5 @@ final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implement
                 ''
             );
         }
-    }
-
-    private function isFileSkipped(string $filename): bool
-    {
-        foreach ($this->filesToBeSkipped as $fileToBeSkipped) {
-            if (Strings::endsWith($filename, $fileToBeSkipped)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
