@@ -9,6 +9,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class VariableNameLengthSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Name "%s" is only %d chars long. Must be at least %d.';
+
+    /**
      * @var int
      */
     public $minLength = 3;
@@ -44,7 +49,7 @@ final class VariableNameLengthSniff implements Sniff
         }
 
         $message = sprintf(
-            'Name "%s" is only %d chars long. Must be at least %d.',
+            self::ERROR_MESSAGE,
             $variableName,
             $length,
             $this->minLength

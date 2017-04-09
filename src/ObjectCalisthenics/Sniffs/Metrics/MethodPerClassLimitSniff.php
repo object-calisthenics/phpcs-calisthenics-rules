@@ -9,6 +9,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class MethodPerClassLimitSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = '%s has too many methods: %d. Can be up to %d methods.';
+
+    /**
      * @var int
      */
     public $maxCount = 10;
@@ -33,7 +38,7 @@ final class MethodPerClassLimitSniff implements Sniff
             $tokenType = $file->getTokens()[$position]['content'];
 
             $message = sprintf(
-                '%s has too many methods: %d. Can be up to %d methods',
+                self::ERROR_MESSAGE,
                 ucfirst($tokenType),
                 $methodCount,
                 $this->maxCount

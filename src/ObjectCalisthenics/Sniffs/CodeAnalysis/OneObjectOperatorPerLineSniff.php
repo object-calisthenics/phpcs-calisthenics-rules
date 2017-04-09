@@ -8,6 +8,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class OneObjectOperatorPerLineSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Only one object operator per line.';
+
+    /**
      * @var string[]
      */
     public $variablesHoldingAFluentInterface = [
@@ -95,7 +100,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private function handleTwoObjectOperators(bool $isOwnCall): void
     {
         if ($this->callerTokens && ! $isOwnCall && ! $this->isInFluentInterfaceMode()) {
-            $this->file->addError('Only one object operator per line.', $this->position, self::class);
+            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
         }
     }
 
@@ -115,7 +120,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
             && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content']
             && ! $this->isInFluentInterfaceMode())
         ) {
-            $this->file->addError('Only one object operator per line.', $this->position, self::class);
+            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
         }
     }
 

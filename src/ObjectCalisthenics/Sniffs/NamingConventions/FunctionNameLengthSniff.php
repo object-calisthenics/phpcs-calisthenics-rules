@@ -9,6 +9,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class FunctionNameLengthSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Name "%s" is only %d chars long. Must be at least %d.';
+
+    /**
      * @var int
      */
     public $minLength = 3;
@@ -35,7 +40,7 @@ final class FunctionNameLengthSniff implements Sniff
         }
 
         $message = sprintf(
-            'Name "%s" is only %d chars long. Must be at least %d.',
+            self::ERROR_MESSAGE,
             $functionName,
             $length,
             $this->minLength
