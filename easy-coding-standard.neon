@@ -23,15 +23,10 @@ checkers:
     - ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff
     - ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff
     - ObjectCalisthenics\Sniffs\NamingConventions\FunctionNameLengthSniff
-    ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff:
-        allowedShortVariableNames:
-            - to
-            - id
-            - i
+    - ObjectCalisthenics\Sniffs\NamingConventions\VariableNameLengthSniff
 
     # Rule 7
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
-        maxCount: 16 # 10 by default
+    - ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
     - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
     - ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff
     - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff

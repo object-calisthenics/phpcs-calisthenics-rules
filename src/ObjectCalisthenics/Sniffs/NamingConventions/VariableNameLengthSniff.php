@@ -16,7 +16,7 @@ final class VariableNameLengthSniff implements Sniff
     /**
      * @var string[]
      */
-    public $allowedShortVariableNames = ['id'];
+    public $allowedShortVariableNames = ['id', 'to', 'i'];
 
     /**
      * @return int[]

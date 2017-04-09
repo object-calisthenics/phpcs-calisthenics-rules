@@ -16,6 +16,6 @@ final class VariableNameLengthSniffTest extends TestCase
             VariableNameLengthSniff::class
         );
 
-        $this->assertSame(8, $errorCount);
+        $this->assertSame(4, $errorCount);
     }
 }
