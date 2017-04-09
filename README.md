@@ -3,7 +3,6 @@
 [![Build Status](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
 [![Downloads](https://img.shields.io/packagist/dt/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
 Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**.
 
@@ -237,6 +236,11 @@ For other cases, e.g. email, you can **deal with that in your [Domain via Value 
 [Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#4-first-class-collections)
 
 This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
+
+### 8. Do Not Use Classes With More Than Two Instance Variables
+
+[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)
+
 
 
 ## 3 Rules for Contributing

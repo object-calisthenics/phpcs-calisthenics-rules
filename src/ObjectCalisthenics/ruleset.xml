@@ -60,13 +60,6 @@
         </properties>
     </rule>
 
-    <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
-        <properties>
-            <property name="maxCount" value="2"/>
-        </properties>
-    </rule>
-
     <!-- 9. Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
         <properties>
