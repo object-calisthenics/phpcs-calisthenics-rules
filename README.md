@@ -169,29 +169,11 @@ These sniffs are **configurable**:
 ```
 
 
-### 8. Do Not Use Classes With More Than Two Instance Variables
-
-[Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)
-
-#### Sniff
-
-- [`ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\InstancePropertyPerClassLimitSniff.php)
-
-This sniff is **configurable**:
-
-```xml
-<!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
-    <properties>
-        <property name="maxCount" value="2"/>
-    </properties>
-</rule>
-```
-
-
 ### 9. Do not Use Getters and Setters
 
 [Read explanation with code examples](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
+
+This rules is partially related to [Domain Driven Design](https://github.com/dddinphp).
 
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
@@ -207,7 +189,7 @@ This sniff is **configurable**:
 
 While using in practise, we found these rule to be too much strict, vague or even annoying, rather then helping to write cleaner and more pragmatic code.
 
-They're also rather closely connected with [Domain Driven Design](https://github.com/dddinphp).
+They're also closely related with [Domain Driven Design](https://github.com/dddinphp).
 
 
 ### 3. Wrap Primitive Types and Strings
