@@ -206,9 +206,14 @@ This sniff is **configurable**:
 
 ## Not Implemented Rules
 
+While using in practise, we found these rule to be too much strict, vague or even annoying, rather then helping to write cleaner and more pragmatic code.
+
+They're also rather closely connected with [Domain Driven Design](https://github.com/dddinphp).
+
+
 ### 3. Wrap Primitive Types and Strings
 
-[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#3- wrap-all-primitives-and-strings)
+[Read explanation](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)
 
 Since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
 
@@ -224,7 +229,7 @@ final class Resolver
 }
 ```
 
-For other cases, e.g. email, you can **deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#wrap-all-primitives-and-strings)**.
+For other cases, e.g. email, you can **deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)**.
 
 
 ### 4. Use First Class Collections

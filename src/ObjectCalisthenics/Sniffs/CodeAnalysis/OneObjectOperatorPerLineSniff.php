@@ -10,7 +10,12 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     /**
      * @var string[]
      */
-    public $variablesHoldingAFluentInterface = ['$queryBuilder'];
+    public $variablesHoldingAFluentInterface = [
+        '$queryBuilder',
+        '$containerBuilder',
+        '$container',
+        '$kernel'
+    ];
 
     /**
      * @var string[]

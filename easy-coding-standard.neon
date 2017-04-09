@@ -10,14 +10,7 @@ checkers:
     - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
 
     # Rule 5
-    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
-        variablesHoldingAFluentInterface:
-            - $containerBuilder
-            - $container
-            - $kernel
-            - $rootNode
-            - $requestMock
-            - $entityManagerMock
+    - ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
 
     # Rule 6
     - ObjectCalisthenics\Sniffs\NamingConventions\ClassNameLengthSniff
@@ -83,8 +76,6 @@ checkers:
     # Metrics
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
     - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
-
-
 
     # Naming Conventions
     - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff
