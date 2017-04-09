@@ -22,7 +22,7 @@ Via composer:
 composer require object-calisthenics/phpcs-calisthenics-rules "squizlabs/php_codesniffer:3.0.0RC4" --dev
 ```
 
-Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root project directory):
+Then, enable it as part of your CodeSniffer ruleset.
 
 ```xml
 <!-- ruleset.xml -->
@@ -32,6 +32,17 @@ Then, enable it as part of your CodeSniffer ruleset (ie. `ruleset.xml` in root p
 </ruleset>
 ```
 
+Or via CLI:
+
+```bash
+vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
+```
+
+Or only particular sniffs via CLI:
+
+```bash
+vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
+```
 
 ## Implemented Rules
 
