@@ -21,7 +21,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
     /**
      * @var string[]
      */
-    public $allowedShortNames = ['id', 'to', 'i'];
+    public $allowedShortNames = ['i', 'id', 'to'];
 
     /**
      * @return int[]

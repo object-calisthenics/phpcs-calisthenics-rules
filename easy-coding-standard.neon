@@ -9,12 +9,12 @@ checkers:
     - ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
 
     # Rule 6
-    - ObjectCalisthenics\Sniffs\NamingConventions\ElementNameLengthSniff
+    - ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff
 
     # Rule 7
     - ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
     - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff
+    - ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff
     - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
 
     # Rule 9
