@@ -17,7 +17,7 @@
     <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
         <properties>
             <property name="minLength" value="3"/>
-            <property name="allowedShortNames" type="array" value="i,id,to"/>
+            <property name="allowedShortNames" type="array" value="i,id,to,up"/>
         </properties>
     </rule>
 
