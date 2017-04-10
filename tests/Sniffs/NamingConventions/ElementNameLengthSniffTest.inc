@@ -2,6 +2,43 @@
 
 class Test
 {
+    const RED = '1';
+
+    const BL = '2';
+
+    const LONGEST_CONSTANT_NAME_EVER_LONGEST_CONSTANT_NAME_EVER = '2';
+}
+
+class TooMuchLongClassNameTooMuchLongClassNameTooMuchLongClassName
+{
+}
+
+class ValidClassName
+{
+    public function te()
+    {
+    }
+}
+
+function test()
+{
+}
+
+function te()
+{
+}
+
+function veryLongFunctionNameVeryLongFunctionName()
+{
+}
+
+class Te
+{
+}
+
+
+class Test
+{
     public $testing = 1;
 
     public $te = 0;

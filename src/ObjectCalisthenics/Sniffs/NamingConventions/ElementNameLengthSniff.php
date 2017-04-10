@@ -6,7 +6,7 @@ use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ConstantNameLengthSniff implements Sniff
+final class ClassNameLengthSniff implements Sniff
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ final class ConstantNameLengthSniff implements Sniff
      */
     public function register(): array
     {
-        return [T_CONST];
+        return [T_CLASS, T_CONST, T_FUNCTION];
     }
 
     /**
@@ -32,16 +32,16 @@ final class ConstantNameLengthSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $functionName = Naming::getElementName($file, $position);
+        $elementName = Naming::getElementName($file, $position);
 
-        $length = mb_strlen($functionName);
+        $length = mb_strlen($elementName);
         if ($length >= $this->minLength) {
             return;
         }
 
         $message = sprintf(
             self::ERROR_MESSAGE,
-            $functionName,
+            $elementName,
             $length,
             $this->minLength
         );

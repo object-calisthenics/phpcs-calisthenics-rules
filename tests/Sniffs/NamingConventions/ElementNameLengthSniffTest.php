@@ -2,20 +2,20 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\Sniffs\NamingConventions\ConstantNameLengthSniff;
+use ObjectCalisthenics\Sniffs\NamingConventions\ElementNameLengthSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-final class ConstantNameLengthSniffTest extends TestCase
+final class ElementNameLengthSniffTest extends TestCase
 {
     public function test(): void
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/ConstantNameLengthSniffTest.inc',
-            ConstantNameLengthSniff::class
+            __DIR__ . '/ElementNameLengthSniffTest.inc',
+            ElementNameLengthSniff::class
         );
 
-        $this->assertSame(1, $errorCount);
+        $this->assertSame(8, $errorCount);
     }
 }
