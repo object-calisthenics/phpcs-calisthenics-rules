@@ -14,27 +14,10 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- 6. Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength">
+    <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
         <properties>
             <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-            <property name="propertiesToBeSkipped" type="array"
-                      value="id"
-            />
+            <property name="allowedShortNames" type="array" value="i,id,to"/>
         </properties>
     </rule>
 

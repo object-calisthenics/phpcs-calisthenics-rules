@@ -11,7 +11,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
     /**
      * @var string
      */
-    private const ERROR_MESSAGE = 'Name "%s" is only %d chars long. Must be at least %d.';
+    private const ERROR_MESSAGE = '%s name "%s" is only %d chars long. Must be at least %d.';
 
     /**
      * @var int
@@ -38,24 +38,34 @@ final class ElementNameMinimalLengthSniff implements Sniff
     public function process(File $file, $position): void
     {
         $elementName = Naming::getElementName($file, $position);
+        $elementNameLength = mb_strlen($elementName);
 
-        $length = mb_strlen($elementName);
-        if ($length >= $this->minLength) {
+        if ($this->shouldBeSkipped($elementNameLength, $elementName)) {
             return;
+        }
+
+        $typeName = Naming::getTypeName($file, $position);
+        $message = sprintf(
+            self::ERROR_MESSAGE,
+            $typeName,
+            $elementName,
+            $elementNameLength,
+            $this->minLength
+        );
+        $file->addError($message, $position, self::class);
+    }
+
+    private function shouldBeSkipped(int $elementNameLength, string $elementName): bool
+    {
+        if ($elementNameLength >= $this->minLength) {
+            return true;
         }
 
         if ($this->isShortNameAllowed($elementName)) {
-            return;
+            return true;
         }
 
-        $message = sprintf(
-            self::ERROR_MESSAGE,
-            $elementName,
-            $length,
-            $this->minLength
-        );
-
-        $file->addError($message, $position, self::class);
+        return false;
     }
 
     private function isShortNameAllowed(string $variableName): bool

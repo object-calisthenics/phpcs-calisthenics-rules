@@ -3,6 +3,7 @@
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
 use ObjectCalisthenics\Helper\ClassAnalyzer;
+use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
@@ -35,14 +36,14 @@ final class MethodPerClassLimitSniff implements Sniff
         $methodCount = ClassAnalyzer::getClassMethodCount($file, $position);
 
         if ($methodCount > $this->maxCount) {
-            $tokenType = $file->getTokens()[$position]['content'];
-
+            $typeName = Naming::getTypeName($file, $position);
             $message = sprintf(
                 self::ERROR_MESSAGE,
-                ucfirst($tokenType),
+                $typeName,
                 $methodCount,
                 $this->maxCount
             );
+
             $file->addError($message, $position, self::class);
         }
     }

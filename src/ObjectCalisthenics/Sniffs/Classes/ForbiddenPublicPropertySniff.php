@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
+use ObjectCalisthenics\Helper\LegacyCompatibilityLayer;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
@@ -28,7 +29,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $this->setupLegacyCompatibilitey();
+        LegacyCompatibilityLayer::setupClassAliases();
         if (! PropertyHelper::isProperty($file, $position)) {
             return;
         }
@@ -38,13 +39,6 @@ final class ForbiddenPublicPropertySniff implements Sniff
         $tokens = $file->getTokens();
         if ($tokens[$scopeModifier]['code'] === T_PUBLIC) {
             $file->addError(self::ERROR_MESSAGE, $position, self::class);
-        }
-    }
-
-    private function setupLegacyCompatibilitey(): void
-    {
-        if (! class_exists('PHP_CodeSniffer_File')) {
-            class_alias(File::class, 'PHP_CodeSniffer_File');
         }
     }
 }
