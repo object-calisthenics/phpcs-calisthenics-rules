@@ -6,7 +6,7 @@ use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ClassNameLengthSniff implements Sniff
+final class ElementNameLengthSniff implements Sniff
 {
     /**
      * @var string
@@ -19,16 +19,21 @@ final class ClassNameLengthSniff implements Sniff
     public $minLength = 3;
 
     /**
+     * @var string[]
+     */
+    public $allowedShortNames = ['id', 'to', 'i'];
+
+    /**
      * @return int[]
      */
     public function register(): array
     {
-        return [T_CLASS, T_CONST, T_FUNCTION];
+        return [T_CLASS, T_TRAIT, T_INTERFACE, T_CONST, T_FUNCTION, T_VARIABLE];
     }
 
     /**
      * @param File $file
-     * @param int  $position
+     * @param int $position
      */
     public function process(File $file, $position): void
     {
@@ -36,6 +41,10 @@ final class ClassNameLengthSniff implements Sniff
 
         $length = mb_strlen($elementName);
         if ($length >= $this->minLength) {
+            return;
+        }
+
+        if ($this->isShortNameAllowed($elementName)) {
             return;
         }
 
@@ -47,5 +56,10 @@ final class ClassNameLengthSniff implements Sniff
         );
 
         $file->addError($message, $position, self::class);
+    }
+
+    private function isShortNameAllowed(string $variableName): bool
+    {
+        return in_array($variableName, $this->allowedShortNames);
     }
 }
