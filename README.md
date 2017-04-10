@@ -40,6 +40,7 @@ vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthen
 ### 1. [Only One Level of Indentation per Method](http://williamdurand.fr/2013/06/03/object-calisthenics/#1-only-one-level-of-indentation-per-method)
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel`
+
 **The class?** [`ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MaxNestingLevelSniff.php)
 
 #### Configurable
@@ -59,12 +60,14 @@ In CodeSniffer XML:
 ### 2. [Do Not Use "else" Keyword](http://williamdurand.fr/2013/06/03/object-calisthenics/#2-dont-use-the-else-keyword)
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff`
+
 **The class?** [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
 
 
 ### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine`
+
 **The class?** [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
 
 #### Configurable
@@ -88,6 +91,7 @@ In CodeSniffer XML:
 This is concerned to class, trait, interface, constant, function and variable names.
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength`
+
 **The class?**: [`ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff.php)
 
 #### Configurable
@@ -108,6 +112,7 @@ This is concerned to class, trait, interface, constant, function and variable na
 ### 7. [Keep Your Classes Small](http://williamdurand.fr/2013/06/03/object-calisthenics/#7-keep-all-entities-small)
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.Files.ClassElementLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff`
+
 **Classes?** [`ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff.php),[`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/PropertyPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
 
 #### Configurable
@@ -141,6 +146,7 @@ In CodeSniffer XML:
 ### 9. [Do not Use Getters and Setters](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
 
 **Apply in CLI?** `--sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter`
+
 **Classes?** [`ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff`](/src/ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff.php),[`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
 
 This rules is partially related to [Domain Driven Design](https://github.com/dddinphp).
