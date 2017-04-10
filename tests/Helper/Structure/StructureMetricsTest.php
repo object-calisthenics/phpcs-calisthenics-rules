@@ -23,14 +23,14 @@ final class StructureMetricsTest extends TestCase
      */
     private $fileFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fileFactory = new FileFactory();
     }
 
-    public function test()
+    public function test(): void
     {
-        $file = $this->fileFactory->createFile(__DIR__.'/StructureMetricsSource/SomeClass.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__ . '/StructureMetricsSource/SomeClass.php.inc');
 
         $classStructureLength = StructureMetrics::getStructureLengthInLines($file, self::CLASS_POSITION);
         $this->assertSame(9, $classStructureLength);

@@ -2,123 +2,43 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
-use Nette\Utils\Strings;
-use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
+use ObjectCalisthenics\Helper\LegacyCompatibilityLayer;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
-final class ForbiddenPublicPropertySniff extends AbstractVariableSniff implements Sniff
+final class ForbiddenPublicPropertySniff implements Sniff
 {
     /**
-     * @var string[]
+     * @var string
      */
-    public $filesToBeSkipped = [];
+    private const ERROR_MESSAGE = 'Do not use public properties. Use method access instead.';
 
     /**
-     * @var array
+     * @return int[]
      */
-    private $tokens;
-
-    /**
-     * @var File
-     */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $position;
+    public function register(): array
+    {
+        return [T_VARIABLE];
+    }
 
     /**
      * @param File $file
-     * @param int  $position
+     * @param int $position
      */
-    protected function processMemberVar(File $file, $position): void
+    public function process(File $file, $position): void
     {
-        if ($this->isFileSkipped($file->getFilename())) {
+        LegacyCompatibilityLayer::setupClassAliases();
+        if (! PropertyHelper::isProperty($file, $position)) {
             return;
         }
 
-        $this->file = $file;
-        $this->position = $position;
-        $this->tokens = $file->getTokens();
+        $scopeModifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
 
-        $this->handleMultiPropertyDeclaration();
-
-        $modifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
-
-        // Check for no visibility declaration
-
-        $this->handleVisibilityDeclaration($modifier);
-        $this->handlePublicProperty($modifier);
-    }
-
-    /**
-     * @param File $file
-     * @param int  $position
-     */
-    protected function processVariable(File $file, $position): void
-    {
-        // We don't care about normal variables.
-    }
-
-    /**
-     * @param File $file
-     * @param int  $position
-     */
-    protected function processVariableInString(File $file, $position): void
-    {
-        // We don't care about normal variables.
-    }
-
-    private function handleMultiPropertyDeclaration(): void
-    {
-        if (($nextPtr = $this->file->findNext(T_VARIABLE, ($this->position + 1), null, false, null, true)) !== false) {
-            $this->file->addError(
-                'There must not be more than one property declared per statement',
-                $this->position,
-                ''
-            );
+        $tokens = $file->getTokens();
+        if ($tokens[$scopeModifier]['code'] === T_PUBLIC) {
+            $file->addError(self::ERROR_MESSAGE, $position, self::class);
         }
-    }
-
-    /**
-     * @param int|bool $modifier
-     */
-    private function handlePublicProperty($modifier): void
-    {
-        if ($this->tokens[$modifier]['code'] === T_PUBLIC) {
-            $this->file->addError(
-                'Use getters and setters for properties. Public visibility is discouraged.',
-                $this->position,
-                ''
-            );
-        }
-    }
-
-    /**
-     * @param int|bool $modifier
-     */
-    private function handleVisibilityDeclaration($modifier): void
-    {
-        if ($modifier === false || $this->tokens[$modifier]['line'] !== $this->tokens[$this->position]['line']) {
-            $this->file->addError(
-                sprintf('Visibility must be declared on property "%s"', $this->tokens[$this->position]['content']),
-                $this->position,
-                ''
-            );
-        }
-    }
-
-    private function isFileSkipped(string $filename): bool
-    {
-        foreach ($this->filesToBeSkipped as $fileToBeSkipped) {
-            if (Strings::endsWith($filename, $fileToBeSkipped)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

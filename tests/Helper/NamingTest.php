@@ -28,14 +28,14 @@ final class NamingTest extends TestCase
      */
     private $fileFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fileFactory = new FileFactory();
     }
 
-    public function test()
+    public function test(): void
     {
-        $file = $this->fileFactory->createFile(__DIR__.'/NamingSource/SomeFile.php.inc');
+        $file = $this->fileFactory->createFile(__DIR__ . '/NamingSource/SomeFile.php.inc');
 
         $name = Naming::getElementName($file, self::CLASS_POSITION);
         $this->assertSame('SomeClass', $name);

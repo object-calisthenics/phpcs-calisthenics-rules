@@ -12,7 +12,7 @@ final class PropertyPerClassLimitSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/PropertyPerClassLimitSniffTest.inc',
+            __DIR__ . '/PropertyPerClassLimitSniffTest.inc',
             PropertyPerClassLimitSniff::class
         );
 

@@ -8,6 +8,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class MaxNestingLevelSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Only %d indentation level%s per function/method. Found %s levels.';
+
+    /**
      * @var int
      */
     public $maxNestingLevel = 2;
@@ -74,12 +79,15 @@ final class MaxNestingLevelSniff implements Sniff
     {
         if ($nestingLevel > $this->maxNestingLevel) {
             $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
-            $this->file->addError(
-                'Only %d indentation level%s per function/method. Found %s levels.',
-                $this->position,
-                'MaxExceeded',
-                [$this->maxNestingLevel, $levelPluralization, $nestingLevel]
+
+            $error = sprintf(
+                self::ERROR_MESSAGE,
+                $this->maxNestingLevel,
+                $levelPluralization,
+                $nestingLevel
             );
+
+            $this->file->addError($error, $this->position, self::class);
         }
     }
 
@@ -115,7 +123,7 @@ final class MaxNestingLevelSniff implements Sniff
         return $this->nestingLevel - $token['level'] - 1;
     }
 
-    private function handleClosureToken(array $nestedToken)
+    private function handleClosureToken(array $nestedToken): void
     {
         if ($nestedToken['code'] === T_CLOSURE) {
             // Move index pointer in case we found a lambda function

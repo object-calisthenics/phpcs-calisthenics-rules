@@ -6,24 +6,24 @@ use ObjectCalisthenics\Helper\Structure\StructureMetrics;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class FunctionLengthSniff implements Sniff
+final class ClassTraitAndInterfaceLengthSniff implements Sniff
 {
     /**
      * @var string
      */
-    private const ERROR_MESSAGE = 'Your function is too long. Currently using %d lines. Can be up to %d lines.';
+    private const ERROR_MESSAGE = 'Your class is too long. Currently using %d lines. Can be up to %d lines.';
 
     /**
      * @var int
      */
-    public $maxLength = 20;
+    public $maxLength = 200;
 
     /**
      * @return int[]
      */
     public function register(): array
     {
-        return [T_FUNCTION];
+        return [T_CLASS, T_INTERFACE, T_TRAIT];
     }
 
     /**

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
@@ -12,10 +12,10 @@ final class ForbiddenPublicPropertySniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/ForbiddenPublicPropertySniffTest.inc',
+            __DIR__ . '/ForbiddenPublicPropertySniffTest.inc',
             ForbiddenPublicPropertySniff::class
         );
 
-        $this->assertSame(2, $errorCount);
+        $this->assertSame(1, $errorCount);
     }
 }

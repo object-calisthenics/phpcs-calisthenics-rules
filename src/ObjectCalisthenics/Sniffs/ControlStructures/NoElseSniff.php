@@ -8,6 +8,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class NoElseSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = 'Do not use "else/elseif". Prefer early return statement instead.';
+
+    /**
      * @return int[]
      */
     public function register(): array
@@ -17,10 +22,10 @@ final class NoElseSniff implements Sniff
 
     /**
      * @param File $file
-     * @param int  $position
+     * @param int $position
      */
     public function process(File $file, $position): void
     {
-        $file->addError('Do not use "else" or "elseif" tokens', $position, self::class);
+        $file->addError(self::ERROR_MESSAGE, $position, self::class);
     }
 }

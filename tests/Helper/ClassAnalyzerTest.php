@@ -19,18 +19,18 @@ final class ClassAnalyzerTest extends TestCase
      */
     private $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $fileFactory = new FileFactory();
-        $this->file = $fileFactory->createFile(__DIR__.'/ClassAnalyzerSource/SomeFile.php.inc');
+        $this->file = $fileFactory->createFile(__DIR__ . '/ClassAnalyzerSource/SomeFile.php.inc');
     }
 
-    public function testMethodCount()
+    public function testMethodCount(): void
     {
         $this->assertSame(2, ClassAnalyzer::getClassMethodCount($this->file, self::CLASS_POSITION));
     }
 
-    public function testProperties()
+    public function testProperties(): void
     {
         $properties = ClassAnalyzer::getClassProperties($this->file, self::CLASS_POSITION);
 
@@ -41,7 +41,7 @@ final class ClassAnalyzerTest extends TestCase
         $this->assertSame('int', $properties[0]['type']);
     }
 
-    public function testPropertyCount()
+    public function testPropertyCount(): void
     {
         $this->assertSame(1, ClassAnalyzer::getClassPropertiesCount($this->file, self::CLASS_POSITION));
     }

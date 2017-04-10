@@ -3,11 +3,17 @@
 namespace ObjectCalisthenics\Sniffs\Metrics;
 
 use ObjectCalisthenics\Helper\ClassAnalyzer;
+use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class MethodPerClassLimitSniff implements Sniff
 {
+    /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = '%s has too many methods: %d. Can be up to %d methods.';
+
     /**
      * @var int
      */
@@ -30,14 +36,14 @@ final class MethodPerClassLimitSniff implements Sniff
         $methodCount = ClassAnalyzer::getClassMethodCount($file, $position);
 
         if ($methodCount > $this->maxCount) {
-            $tokenType = $file->getTokens()[$position]['content'];
-
+            $typeName = Naming::getTypeName($file, $position);
             $message = sprintf(
-                '%s has too many methods: %d. Can be up to %d methods',
-                ucfirst($tokenType),
+                self::ERROR_MESSAGE,
+                $typeName,
                 $methodCount,
                 $this->maxCount
             );
+
             $file->addError($message, $position, self::class);
         }
     }

@@ -14,27 +14,10 @@
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
 
     <!-- 6. Do not abbreviate -->
-    <rule ref="ObjectCalisthenics.NamingConventions.ClassNameLength">
+    <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
         <properties>
             <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.ConstantNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.FunctionNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.NamingConventions.VariableNameLength">
-        <properties>
-            <property name="minLength" value="3"/>
-            <property name="propertiesToBeSkipped" type="array"
-                      value="id"
-            />
+            <property name="allowedShortNames" type="array" value="i,id,to"/>
         </properties>
     </rule>
 
@@ -60,19 +43,6 @@
         </properties>
     </rule>
 
-    <!-- 8. Do Not Use Classes With More Than Two Instance Variables -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.InstancePropertyPerClassLimit">
-        <properties>
-            <property name="maxCount" value="2"/>
-        </properties>
-    </rule>
-
     <!-- 9. Do not Use Getters and Setters -->
-    <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty">
-        <properties>
-            <property name="filesToBeSkipped" type="array"
-                value="ForbiddenPublicPropertySniff.php,ClassElementLengthSniff.php,FunctionNameLengthSniff.php,AbstractDataStructureLengthSniff.php,MaxNestingLevelSniff.php,FunctionLengthSniff.php,ConstantNameLengthSniff.php,ClassNameLengthSniff.php,VariableNameLengthSniff.php,MethodPerClassLimitSniff.php,PropertyPerClassLimitSniff.php,InstancePropertyPerClassLimitSniff.php,OneObjectOperatorPerLineSniff.php"
-            />
-        </properties>
-    </rule>
+    <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty"/>
 </ruleset>

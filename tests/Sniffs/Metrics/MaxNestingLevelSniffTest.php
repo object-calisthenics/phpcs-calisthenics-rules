@@ -12,7 +12,7 @@ final class MaxNestingLevelSniffTest extends TestCase
     {
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__.'/MaxNestingLevelSniffTest.inc',
+            __DIR__ . '/MaxNestingLevelSniffTest.inc',
             MaxNestingLevelSniff::class
         );
 

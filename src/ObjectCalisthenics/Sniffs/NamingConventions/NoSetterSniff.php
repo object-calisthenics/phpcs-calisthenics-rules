@@ -10,12 +10,13 @@ final class NoSetterSniff implements Sniff
     /**
      * @var string
      */
-    private const SETTER_REGEX = '/^set[A-Z0-9]/';
+    private const ERROR_MESSAGE = 'Setters are not allowed. Use constructor injection and'
+        . ' behavior naming instead, e.g. changeName() instead of setName().';
 
     /**
      * @var string
      */
-    private const SETTER_WARNING = 'Setters are not allowed';
+    private const SETTER_REGEX = '/^set[A-Z0-9]/';
 
     public function register(): array
     {
@@ -29,7 +30,7 @@ final class NoSetterSniff implements Sniff
     public function process(File $file, $position): void
     {
         if ($this->methodNameStartsWithSet($file->getDeclarationName($position))) {
-            $file->addError(self::SETTER_WARNING, $position, self::class);
+            $file->addError(self::ERROR_MESSAGE, $position, self::class);
         }
     }
 

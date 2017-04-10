@@ -9,6 +9,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class PropertyPerClassLimitSniff implements Sniff
 {
     /**
+     * @var string
+     */
+    private const ERROR_MESSAGE = '"%s" has too many properties: %d. Can be up to %d properties.';
+
+    /**
      * @var int
      */
     public $maxCount = 10;
@@ -33,7 +38,7 @@ final class PropertyPerClassLimitSniff implements Sniff
             $tokenType = $file->getTokens()[$position]['content'];
 
             $message = sprintf(
-                '""%s" has too many properties: %d. Can be up to %d properties.',
+                self::ERROR_MESSAGE,
                 $tokenType,
                 $propertiesCount,
                 $this->maxCount
