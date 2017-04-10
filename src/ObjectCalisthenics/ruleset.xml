@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="ObjectCalisthenics">
-    <!-- 1. Only one indentation level per function/method -->
+    <!-- 1. Only X indentation level per function/method -->
     <rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
         <properties>
             <property name="maxNestingLevel" value="2"/>
@@ -11,7 +11,13 @@
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 
     <!-- 5. Only one object operator (->) per line -->
-    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine"/>
+    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine">
+        <properties>
+            <property name="variablesHoldingAFluentInterface" type="array" value="$queryBuilder,$containerBuilder"/>
+            <property name="methodsStartingAFluentInterface" type="array" value="createQueryBuilder"/>
+            <property name="methodsEndingAFluentInterface" type="array" value="execute,getQuery"/>
+        </properties>
+    </rule>
 
     <!-- 6. Do not abbreviate -->
     <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
@@ -22,7 +28,7 @@
     </rule>
 
     <!-- 7. Keep your classes small -->
-    <rule ref="ObjectCalisthenics.Files.ClassElementLength">
+    <rule ref="ObjectCalisthenics.Files.ClassTraitAndInterfaceLength">
         <properties>
             <property name="maxLength" value="200"/>
         </properties>

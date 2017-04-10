@@ -1,6 +1,9 @@
 checkers:
+    # All rules with default values
+
     # Rule 1
-    - ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff:
+        maxNestingLevel: 2
 
     # Rule 2
     - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
