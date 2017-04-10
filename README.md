@@ -199,10 +199,8 @@ This depends on your specific domain and approach. It doesn't make sense to make
 - every new feature **must be covered by tests**
 - **all tests** and **style checks must pass**
 
-```bash
-# runs PHPStan, coding standard check and tests,
-# see "scripts" section in composer.json for more
-composer complete-check
-```
+    ```bash
+    composer complete-check
+    ```
 
 We will be happy to merge your feature then.
