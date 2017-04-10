@@ -2,15 +2,9 @@
 
 class Test
 {
-    const RED = '1';
-
     const BL = '2';
 
     const LONGEST_CONSTANT_NAME_EVER_LONGEST_CONSTANT_NAME_EVER = '2';
-}
-
-class TooMuchLongClassNameTooMuchLongClassNameTooMuchLongClassName
-{
 }
 
 class ValidClassName
@@ -20,15 +14,11 @@ class ValidClassName
     }
 }
 
-function test()
-{
-}
-
 function te()
 {
 }
 
-function veryLongFunctionNameVeryLongFunctionName()
+function veryLongFunctionName()
 {
 }
 
@@ -36,11 +26,12 @@ class Te
 {
 }
 
+trait Tr
+{
+}
 
 class Test
 {
-    public $testing = 1;
-
     public $te = 0;
 
     public $veryLongPropertyNameVeryLongPropertyName = 2;
@@ -54,14 +45,11 @@ class Test
 
     public function testing()
     {
-        $red = 0;
-        $green = 1;
         $bl = 2;
 
         for ($i = 0; $i < range(0, 9); $i++) {
             echo $i;
         }
-
         $veryLongPropertyNameVeryLongPropertyName = 3;
     }
 }

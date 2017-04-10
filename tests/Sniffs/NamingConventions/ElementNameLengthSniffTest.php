@@ -16,6 +16,6 @@ final class ElementNameLengthSniffTest extends TestCase
             ElementNameLengthSniff::class
         );
 
-        $this->assertSame(8, $errorCount);
+        $this->assertSame(9, $errorCount);
     }
 }
