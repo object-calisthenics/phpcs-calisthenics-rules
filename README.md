@@ -75,7 +75,7 @@ if ($isEnabled) {
 }
 ```
 
-✔
+✅
 
 ```php
 if ($isEnabled) {
@@ -104,7 +104,7 @@ return false;
 
 @todo
 
-✔
+✅
 
 @todo
 
@@ -132,7 +132,7 @@ This is concerned to class, trait, interface, constant, function and variable na
 
 @todo
 
-✔
+✅
 
 @todo
 
@@ -159,7 +159,7 @@ This is concerned to class, trait, interface, constant, function and variable na
 
 @todo
 
-✔
+✅
 
 @todo
 
@@ -192,7 +192,7 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 
 @todo
 
-✔
+✅
 
 @todo
 
