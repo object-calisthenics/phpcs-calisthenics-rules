@@ -3,8 +3,8 @@
 namespace ObjectCalisthenics\Helper;
 
 use Exception;
-use ObjectCalisthenics\Helper\DocBlock\MemberComment;
 use PHP_CodeSniffer\Files\File;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class ClassAnalyzer
 {
@@ -54,18 +54,9 @@ final class ClassAnalyzer
 
     private static function extractPropertyIfFound(File $file, int $position): void
     {
-        $tokens = $file->getTokens();
-        $property = $tokens[$position];
-
-        // Is it a property or a random variable?
-        if (! (count($property['conditions']) === 1 && in_array(reset($property['conditions']), [T_CLASS, T_TRAIT]))) {
-            return;
-        }
-
-        if ($comment = MemberComment::getMemberComment($file, $position)) {
-            self::$propertyList[] = [
-                'type' => $comment,
-            ];
+        LegacyCompatibilityLayer::setupClassAliases();
+        if (PropertyHelper::isProperty($file, $position)) {
+            self::$propertyList[] = $position;
         }
     }
 

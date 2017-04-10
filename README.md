@@ -218,6 +218,7 @@ While using in practise, we found these rule to be too strict, vague or even ann
 **8. [Do Not Use Classes With More Than Two Instance Variables](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)** -
 This depends on individual domain of each project. It doesn't make sense to make a rule for that.
 
+---
 
 ## 3 Rules for Contributing
 
