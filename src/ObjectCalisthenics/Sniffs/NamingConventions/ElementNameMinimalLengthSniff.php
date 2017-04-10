@@ -6,7 +6,7 @@ use ObjectCalisthenics\Helper\Naming;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ElementNameLengthSniff implements Sniff
+final class ElementNameMinimalLengthSniff implements Sniff
 {
     /**
      * @var string
