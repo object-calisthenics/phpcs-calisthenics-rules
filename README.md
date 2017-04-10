@@ -162,35 +162,12 @@ While using in practise, we found these rule to be too much strict, vague or eve
 
 They're also closely related with [Domain Driven Design](https://github.com/dddinphp).
 
+**3. [Wrap Primitive Types and Strings](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)** - Since PHP 7, you can use `define(strict_types=1)` and scalar type hints. For other cases, e.g. email, you can deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings).
 
-#### 3. [Wrap Primitive Types and Strings](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)
+**4. [Use First Class Collections](http://williamdurand.fr/2013/06/03/object-calisthenics/#4-first-class-collections)** - This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
 
-Since PHP 7, you can use `define(strict_types=1)` and scalar type hints:
-
-```php
-<?php define(strict_types=1);
-
-final class Resolver
-{
-    public function resolveFromRoute(string $route): string
-    {
-        // ...
-    }
-}
-```
-
-For other cases, e.g. email, you can **deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)**.
-
-
-#### 4. [Use First Class Collections](http://williamdurand.fr/2013/06/03/object-calisthenics/#4-first-class-collections)
-
-This rule makes sense, yet is too strict to be useful in practise. Even our code didn't pass it at all.
-
-
-#### 8. [Do Not Use Classes With More Than Two Instance Variables](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)
-
-This depends on your specific domain and approach. It doesn't make sense to make a rule for that, because it's unique per project.
-
+**8. [Do Not Use Classes With More Than Two Instance Variables](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)** -
+This depends on individual domain of each project. It doesn't make sense to make a rule for that.
 
 
 ## 3 Rules for Contributing
