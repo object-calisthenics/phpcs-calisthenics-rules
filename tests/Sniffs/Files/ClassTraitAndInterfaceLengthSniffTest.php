@@ -2,11 +2,11 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files;
 
-use ObjectCalisthenics\Sniffs\Files\ClassElementLengthSniff;
+use ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff;
 use ObjectCalisthenics\Tests\CodeSnifferRunner;
 use PHPUnit\Framework\TestCase;
 
-final class ClassElementLengthSniffTest extends TestCase
+final class ClassTraitAndInterfaceLengthSniffTest extends TestCase
 {
     /**
      * @var CodeSnifferRunner
@@ -21,8 +21,8 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testClassLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/ClassElementLengthSniffTest.inc',
-            ClassElementLengthSniff::class
+            __DIR__ . '/ClassTraitAndInterfaceLengthSniffTest.inc',
+            ClassTraitAndInterfaceLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);
@@ -31,8 +31,8 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testInterfaceLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/ClassElementLengthSniffTest2.inc',
-            ClassElementLengthSniff::class
+            __DIR__ . '/ClassTraitAndInterfaceLengthSniffTest2.inc',
+            ClassTraitAndInterfaceLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);
@@ -41,8 +41,8 @@ final class ClassElementLengthSniffTest extends TestCase
     public function testTraitLengthSniff(): void
     {
         $errorCount = $this->codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/ClassElementLengthSniffTest3.inc',
-            ClassElementLengthSniff::class
+            __DIR__ . '/ClassTraitAndInterfaceLengthSniffTest3.inc',
+            ClassTraitAndInterfaceLengthSniff::class
         );
 
         $this->assertSame(1, $errorCount);

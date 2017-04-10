@@ -6,7 +6,7 @@ use ObjectCalisthenics\Helper\Structure\StructureMetrics;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ClassElementLengthSniff implements Sniff
+final class ClassTraitAndInterfaceLengthSniff implements Sniff
 {
     /**
      * @var string
