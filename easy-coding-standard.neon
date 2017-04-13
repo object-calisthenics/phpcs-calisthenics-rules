@@ -9,16 +9,25 @@ checkers:
     - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
 
     # Rule 5
-    - ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+        variablesHoldingAFluentInterface: ["$queryBuilder", "$containerBuilder"]
+        methodsStartingAFluentInterface: ["createQueryBuilder"]
+        methodsEndingAFluentInterface: ["execute", "getQuery"]
 
     # Rule 6
-    - ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
+        minLength: 3
+        allowedShortNames: ["i", "id", "to", "up"]
 
     # Rule 7
-    - ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff
-    - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
+        maxCount: 200
+    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
+        maxCount: 10
+    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+        maxLength: 10
+    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
+        maxLength: 20
 
     # Rule 9
     # disable for temp bug in Symplify\EasyCodingStandard

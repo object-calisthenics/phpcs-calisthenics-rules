@@ -44,18 +44,40 @@ vendor/bin/phpcs src tests -sp \
 
 #### Example
 
-❌
+:x:
+
+```php
+foreach ($sniffGroups as $sniffGroup) {
+    foreach ($sniffGroup as $sniffKey => $sniffClass) {
+        if ( ! $sniffClass instanceof Sniff) {
+            throw new InvalidClassTypeException;
+        }
+    }
+}
+```
+
+:+1:
+
+```php
+foreach ($sniffGroups as $sniffGroup) {
+    $this->ensureIsAllInstanceOf($sniffGroup, Sniff::class);
+}
+
+// ...
+private function ensureIsAllInstanceOf(array $classes, string $type)
+{
+    // ...
+}
+```
+
 
 #### Apply in CLI?
 
-```
+```bash
 --sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
 ```
 
-**The class?** [`ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MaxNestingLevelSniff.php)
-
-
-#### ⚙ Configurable
+#### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
 - [in EasyCodingStandard NEON](/easy-coding-standard.neon#L4-L6)
@@ -65,7 +87,7 @@ vendor/bin/phpcs src tests -sp \
 
 #### Example
 
-❌
+:x:
 
 ```php
 if ($isEnabled) {
@@ -75,7 +97,7 @@ if ($isEnabled) {
 }
 ```
 
-✅
+:+1:
 
 ```php
 if ($isEnabled) {
@@ -91,35 +113,36 @@ return false;
 --sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
 ```
 
-**The class?**
-
-- [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
-
 
 ### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
 #### Example
 
-❌
+#### Example
 
-@todo
+:x:
 
-✅
+```php
+$this->container->getBuilder()->addDefinition(SniffRunner::class);
+```
 
-@todo
+:+1:
+
+```php
+$containerBuilder = $this->getContainerBuilder();
+$containerBuilder->addDefinition(SniffRunner::class);
+```
 
 #### Apply in CLI?
 
-```
+```bash
 --sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
 ```
 
-**The class?** [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
-
-#### ⚙ Configurable
+#### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#LX-LX)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L11-L15)
 
 
 ### 6. [Do not Abbreviate](http://williamdurand.fr/2013/06/03/object-calisthenics/#6-dont-abbreviate)
@@ -128,54 +151,66 @@ This is concerned to class, trait, interface, constant, function and variable na
 
 #### Example
 
-❌
+:x:
 
-@todo
+```php
+class EM
+{
+    // ...
+}
+```
 
-✅
+:+1:
 
-@todo
-
+```php
+class EntityMailer
+{
+    // ...
+}
+```
 
 #### Apply in CLI?
 
-```
+```bash
 --sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength
 ```
 
-**The class?**: [`ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff.php)
-
-#### ⚙ Configurable
+#### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#LX-LX)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L17-L20)
 
 
 ### 7. [Keep Your Classes Small](http://williamdurand.fr/2013/06/03/object-calisthenics/#7-keep-all-entities-small)
 
-#### Example
+:x:
 
-❌
+```php
+class SimpleStartupPresenter
+{
+    // 300 lines of code
+}
+```
 
-@todo
+:+1:
 
-✅
-
-@todo
-
+```php
+class SimpleStartupPresenter
+{
+    // 50 lines of code
+}
+```
 
 #### Apply in CLI?
 
-```
+```bash
 --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
 ```
 
-**Classes?** [`ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff.php),[`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/PropertyPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
-
-#### ⚙ Configurable
+#### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#LX-LX)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L22-L30)
 
 
 ### 9. [Do not Use Getters and Setters](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
@@ -188,22 +223,20 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 
 #### Example
 
-❌
+:x:
 
 @todo
 
-✅
+:+1:
 
 @todo
 
 
 #### Apply in CLI?
 
-```
+```bash
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter
 ```
-
-**Classes?** [`ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff`](/src/ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff.php),[`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
 
 ---
 
