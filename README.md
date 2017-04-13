@@ -37,6 +37,7 @@ vendor/bin/phpcs src tests -sp \
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
 ```
 
+---
 
 ## Implemented Rule Sniffs
 
@@ -70,7 +71,6 @@ private function ensureIsAllInstanceOf(array $classes, string $type)
 }
 ```
 
-
 #### Apply in CLI?
 
 ```bash
@@ -82,6 +82,7 @@ private function ensureIsAllInstanceOf(array $classes, string $type)
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
 - [in EasyCodingStandard NEON](/easy-coding-standard.neon#L4-L6)
 
+---
 
 ### 2. [Do Not Use "else" Keyword](http://williamdurand.fr/2013/06/03/object-calisthenics/#2-dont-use-the-else-keyword)
 
@@ -113,10 +114,9 @@ return false;
 --sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
 ```
 
+---
 
 ### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
-
-#### Example
 
 #### Example
 
@@ -144,6 +144,7 @@ $containerBuilder->addDefinition(SniffRunner::class);
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
 - [in EasyCodingStandard NEON](/easy-coding-standard.neon#L11-L15)
 
+---
 
 ### 6. [Do not Abbreviate](http://williamdurand.fr/2013/06/03/object-calisthenics/#6-dont-abbreviate)
 
@@ -180,6 +181,7 @@ class EntityMailer
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
 - [in EasyCodingStandard NEON](/easy-coding-standard.neon#L17-L20)
 
+---
 
 ### 7. [Keep Your Classes Small](http://williamdurand.fr/2013/06/03/object-calisthenics/#7-keep-all-entities-small)
 
@@ -212,6 +214,7 @@ class SimpleStartupPresenter
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
 - [in EasyCodingStandard NEON](/easy-coding-standard.neon#L22-L30)
 
+---
 
 ### 9. [Do not Use Getters and Setters](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
 
@@ -223,14 +226,35 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 
 #### Example
 
-:x:
+```php
+class ImmutableBankAccount
+{
+    public $currency = 'USD';
 
-@todo
+    private $amount;
+
+    public function setAmount(int $amount)
+    {
+        $this->amount = $amount;
+    }
+}
+```
 
 :+1:
 
-@todo
+```php
+class ImmutableBankAccount
+{
+    private $currency = 'USD';
 
+    private $amount;
+
+    public function withdrawAmount(int $withdrawnAmount)
+    {
+        $this->amount -= $withdrawnAmount;
+    }
+}
+```
 
 #### Apply in CLI?
 

@@ -1,25 +1,25 @@
 checkers:
     # All rules with default values
 
-    # Rule 1
+    # Rule 1 (with default values)
     ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff:
         maxNestingLevel: 2
 
     # Rule 2
     - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
 
-    # Rule 5
+    # Rule 5 (with default values)
     ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
         variablesHoldingAFluentInterface: ["$queryBuilder", "$containerBuilder"]
         methodsStartingAFluentInterface: ["createQueryBuilder"]
         methodsEndingAFluentInterface: ["execute", "getQuery"]
 
-    # Rule 6
+    # Rule 6 (with default values)
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
         minLength: 3
         allowedShortNames: ["i", "id", "to", "up"]
 
-    # Rule 7
+    # Rule 7 (with default values)
     ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
         maxCount: 200
     ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
