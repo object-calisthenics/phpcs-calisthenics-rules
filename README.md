@@ -48,7 +48,7 @@ vendor/bin/phpcs src tests -sp \
 ```php
 foreach ($sniffGroups as $sniffGroup) {
     foreach ($sniffGroup as $sniffKey => $sniffClass) {
-        if ( ! $sniffClass instanceof Sniff) {
+        if (! $sniffClass instanceof Sniff) {
             throw new InvalidClassTypeException;
         }
     }

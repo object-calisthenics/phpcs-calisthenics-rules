@@ -51,4 +51,5 @@
 
     <!-- Rule 9: Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty"/>
+    <rule ref="ObjectCalisthenics.NamingConventions.NoSetter"/>
 </ruleset>
