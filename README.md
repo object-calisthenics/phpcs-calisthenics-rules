@@ -43,8 +43,6 @@ vendor/bin/phpcs src tests -sp \
 
 ### 1. [Only `X` Level of Indentation per Method](http://williamdurand.fr/2013/06/03/object-calisthenics/#1-only-one-level-of-indentation-per-method)
 
-#### Example
-
 :x:
 
 ```php
@@ -61,11 +59,11 @@ foreach ($sniffGroups as $sniffGroup) {
 
 ```php
 foreach ($sniffGroups as $sniffGroup) {
-    $this->ensureIsAllInstanceOf($sniffGroup, Sniff::class);
+    $this->ensureIsAllInstanceOf($sniffGefroup, Sniff::class);
 }
 
 // ...
-private function ensureIsAllInstanceOf(array $classes, string $type)
+private function ensureIsAllInstanceOf(array $objects, string $type)
 {
     // ...
 }
@@ -85,8 +83,6 @@ private function ensureIsAllInstanceOf(array $classes, string $type)
 ---
 
 ### 2. [Do Not Use "else" Keyword](http://williamdurand.fr/2013/06/03/object-calisthenics/#2-dont-use-the-else-keyword)
-
-#### Example
 
 :x:
 
@@ -118,8 +114,6 @@ return false;
 
 ### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
-#### Example
-
 :x:
 
 ```php
@@ -148,9 +142,7 @@ $containerBuilder->addDefinition(SniffRunner::class);
 
 ### 6. [Do not Abbreviate](http://williamdurand.fr/2013/06/03/object-calisthenics/#6-dont-abbreviate)
 
-This is concerned to class, trait, interface, constant, function and variable names.
-
-#### Example
+This is related to class, trait, interface, constant, function and variable names.
 
 :x:
 
@@ -188,7 +180,7 @@ class EntityMailer
 :x:
 
 ```php
-class SimpleStartupPresenter
+class SimpleStartupController
 {
     // 300 lines of code
 }
@@ -197,7 +189,7 @@ class SimpleStartupPresenter
 :+1:
 
 ```php
-class SimpleStartupPresenter
+class SimpleStartupController
 {
     // 50 lines of code
 }
@@ -222,9 +214,6 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
-
-
-#### Example
 
 :x:
 
