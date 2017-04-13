@@ -9,158 +9,268 @@ Object Calisthenics are **set of rules in object-oriented code, that focuses of 
 
 ### Why Should You Use This in Your Project?
 
-[Read post by *William Durand*](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [post by *Diego Mariani*](https://medium.com/web-engineering-vox/improving-code-quality-with-object-calisthenics-aa4ad67a61f1).
-
-Do you prefer slides? [Check presentation by *Guilherme Blanco*](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php).
+[Read post by *William Durand*](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [check presentation by *Guilherme Blanco*](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php).
 
 
 ## Install
 
 ```sh
-composer require object-calisthenics/phpcs-calisthenics-rules "squizlabs/php_codesniffer:3.0.0RC4" --dev
+composer require object-calisthenics/phpcs-calisthenics-rules \
+"squizlabs/php_codesniffer:3.0.0RC4" --dev
 ```
+
 
 ## Usage
 
 ### Via CLI
 
 ```bash
-vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
+vendor/bin/phpcs src tests -sp \
+--standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
 ```
 
 ### The Best to Start With: Single Sniff via CLI
 
 ```bash
-vendor/bin/phpcs src tests --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
+vendor/bin/phpcs src tests -sp \
+--standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml \
+--sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
 ```
+
+---
 
 ## Implemented Rule Sniffs
 
+### 1. [Only `X` Level of Indentation per Method](http://williamdurand.fr/2013/06/03/object-calisthenics/#1-only-one-level-of-indentation-per-method)
 
-### 1. [Only One Level of Indentation per Method](http://williamdurand.fr/2013/06/03/object-calisthenics/#1-only-one-level-of-indentation-per-method)
+#### Example
 
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel`
+:x:
 
-**The class?** [`ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MaxNestingLevelSniff.php)
-
-#### Configurable
-
-In CodeSniffer XML:
-
-```xml
-<!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
-    <properties>
-        <property name="maxNestingLevel" value="2"/>
-    </properties>
-</rule>
+```php
+foreach ($sniffGroups as $sniffGroup) {
+    foreach ($sniffGroup as $sniffKey => $sniffClass) {
+        if ( ! $sniffClass instanceof Sniff) {
+            throw new InvalidClassTypeException;
+        }
+    }
+}
 ```
 
+:+1:
+
+```php
+foreach ($sniffGroups as $sniffGroup) {
+    $this->ensureIsAllInstanceOf($sniffGroup, Sniff::class);
+}
+
+// ...
+private function ensureIsAllInstanceOf(array $classes, string $type)
+{
+    // ...
+}
+```
+
+#### Apply in CLI?
+
+```bash
+--sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
+```
+
+#### :wrench: Configurable
+
+- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L4-L6)
+
+---
 
 ### 2. [Do Not Use "else" Keyword](http://williamdurand.fr/2013/06/03/object-calisthenics/#2-dont-use-the-else-keyword)
 
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff`
+#### Example
 
-**The class?** [`ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff`](/src/ObjectCalisthenics/Sniffs/ControlStructures/NoElseSniff.php)
+:x:
 
+```php
+if ($isEnabled) {
+    return true;
+} else {
+    return false;
+}
+```
+
+:+1:
+
+```php
+if ($isEnabled) {
+    return true;
+}
+
+return false;
+```
+
+#### Apply in CLI?
+
+```
+--sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
+```
+
+---
 
 ### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine`
+#### Example
 
-**The class?** [`ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff`](/src/ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff.php)
+:x:
 
-#### Configurable
-
-In CodeSniffer XML:
-
-```xml
-<!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine">
-    <properties>
-        <property name="variablesHoldingAFluentInterface" type="array" value="$queryBuilder"/>
-        <property name="methodsStartingAFluentInterface" type="array" value="createQueryBuilder"/>
-        <property name="methodsEndingAFluentInterface" type="array" value="execute,getQuery"/>
-    </properties>
-</rule>
+```php
+$this->container->getBuilder()->addDefinition(SniffRunner::class);
 ```
 
+:+1:
+
+```php
+$containerBuilder = $this->getContainerBuilder();
+$containerBuilder->addDefinition(SniffRunner::class);
+```
+
+#### Apply in CLI?
+
+```bash
+--sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
+```
+
+#### :wrench: Configurable
+
+- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L11-L15)
+
+---
 
 ### 6. [Do not Abbreviate](http://williamdurand.fr/2013/06/03/object-calisthenics/#6-dont-abbreviate)
 
 This is concerned to class, trait, interface, constant, function and variable names.
 
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength`
+#### Example
 
-**The class?**: [`ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff.php)
+:x:
 
-#### Configurable
-
-```xml
-<!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
-    <properties>
-        <property name="minLength" value="3"/>
-        <property name="allowedShortNames" type="array"
-                  value="i,id,to"
-        />
-    </properties>
-</rule>
+```php
+class EM
+{
+    // ...
+}
 ```
 
+:+1:
+
+```php
+class EntityMailer
+{
+    // ...
+}
+```
+
+#### Apply in CLI?
+
+```bash
+--sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength
+```
+
+#### :wrench: Configurable
+
+- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L17-L20)
+
+---
 
 ### 7. [Keep Your Classes Small](http://williamdurand.fr/2013/06/03/object-calisthenics/#7-keep-all-entities-small)
 
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.Files.ClassElementLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff`
+:x:
 
-**Classes?** [`ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff`](/src/ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff.php),[`ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/MethodPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff`](/src/ObjectCalisthenics/Sniffs/Metrics/PropertyPerClassLimitSniff.php), [`ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff`](/src/ObjectCalisthenics/Sniffs/Files/FunctionLengthSniff.php)
-
-#### Configurable
-
-In CodeSniffer XML:
-
-```xml
-<!-- ruleset.xml -->
-<rule ref="ObjectCalisthenics.Files.ClassElementLength">
-    <properties>
-        <property name="maxLength" value="200"/>
-    </properties>
-</rule>
-<rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
-    <properties>
-        <property name="maxCount" value="10"/>
-    </properties>
-</rule>
-<rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
-    <properties>
-        <property name="maxCount" value="10"/>
-    </properties>
-</rule>
-<rule ref="ObjectCalisthenics.Files.FunctionLength">
-    <properties>
-        <property name="maxLength" value="20"/>
-    </properties>
-</rule>
+```php
+class SimpleStartupPresenter
+{
+    // 300 lines of code
+}
 ```
 
+:+1:
+
+```php
+class SimpleStartupPresenter
+{
+    // 50 lines of code
+}
+```
+
+#### Apply in CLI?
+
+```bash
+--sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
+```
+
+#### :wrench: Configurable
+
+- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
+- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L22-L30)
+
+---
+
 ### 9. [Do not Use Getters and Setters](http://williamdurand.fr/2013/06/03/object-calisthenics/#9-no-getterssettersproperties)
-
-**Apply in CLI?** `--sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter`
-
-**Classes?** [`ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff`](/src/ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff.php),[`ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff`](/src/ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff.php)
 
 This rules is partially related to [Domain Driven Design](https://github.com/dddinphp).
 
 - Classes should not contain public properties.
 - Method should [represent behavior](http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html), not set values.
 
+
+#### Example
+
+:x:
+
+```php
+class ImmutableBankAccount
+{
+    public $currency = 'USD';
+```
+```php
+    private $amount;
+
+    public function setAmount(int $amount)
+    {
+        $this->amount = $amount;
+    }
+}
+```
+
+:+1:
+
+```php
+class ImmutableBankAccount
+{
+    private $currency = 'USD';
+```
+```php
+    private $amount;
+
+    public function withdrawAmount(int $withdrawnAmount)
+    {
+        $this->amount -= $withdrawnAmount;
+    }
+}
+```
+
+#### Apply in CLI?
+
+```bash
+--sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter
+```
+
 ---
 
 ### Not Implemented Rules - Too Strict, Vague or Annoying
 
-While using in practise, we found these rule to be too much strict, vague or even annoying, rather then helping to write cleaner and more pragmatic code.
-
-They're also closely related with [Domain Driven Design](https://github.com/dddinphp).
+While using in practise, we found these rule to be too strict, vague or even annoying, rather then helping to write cleaner and more pragmatic code. They're also closely related with [Domain Driven Design](https://github.com/dddinphp).
 
 **3. [Wrap Primitive Types and Strings](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings)** - Since PHP 7, you can use `define(strict_types=1)` and scalar type hints. For other cases, e.g. email, you can deal with that in your [Domain via Value Objects](http://williamdurand.fr/2013/06/03/object-calisthenics/#3-wrap-all-primitives-and-strings).
 
@@ -169,6 +279,7 @@ They're also closely related with [Domain Driven Design](https://github.com/dddi
 **8. [Do Not Use Classes With More Than Two Instance Variables](http://williamdurand.fr/2013/06/03/object-calisthenics/#8-no-classes-with-more-than-two-instance-variables)** -
 This depends on individual domain of each project. It doesn't make sense to make a rule for that.
 
+---
 
 ## 3 Rules for Contributing
 

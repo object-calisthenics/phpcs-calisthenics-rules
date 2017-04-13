@@ -1,23 +1,35 @@
 checkers:
-    # Rule 1
-    - ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff
+    # All rules with default values
 
-    # Rule 2
+    # Rule 1: Only X indentation level per function/method (with default values)
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff:
+        maxNestingLevel: 2
+
+    # Rule 2: There is no "else"
     - ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff
 
-    # Rule 5
-    - ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff
+    # Rule 5: Only one object operator (->) per line (with default values)
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+        variablesHoldingAFluentInterface: ["$queryBuilder", "$containerBuilder"]
+        methodsStartingAFluentInterface: ["createQueryBuilder"]
+        methodsEndingAFluentInterface: ["execute", "getQuery"]
 
-    # Rule 6
-    - ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff
+    # Rule 6: Do not abbreviate  (with default values)
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
+        minLength: 3
+        allowedShortNames: ["i", "id", "to", "up"]
 
-    # Rule 7
-    - ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
-    - ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff
-    - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
+    # Rule 7: Keep your classes small (with default values)
+    ObjectCalisthenics\Sniffs\Metrics\ClassTraitAndInterfaceLength:
+        maxCount: 200
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimit:
+        maxCount: 10
+    ObjectCalisthenics\Sniffs\Files\PropertyPerClassLimit:
+        maxLength: 10
+    ObjectCalisthenics\Sniffs\Files\FunctionLength:
+        maxLength: 20
 
-    # Rule 9
+    # Rule 9: Do not Use Getters and Setters
     # disable for temp bug in Symplify\EasyCodingStandard
     # - ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff
     - ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff

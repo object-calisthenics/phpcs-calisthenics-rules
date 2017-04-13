@@ -35,10 +35,6 @@ final class ClassAnalyzerTest extends TestCase
         $properties = ClassAnalyzer::getClassProperties($this->file, self::CLASS_POSITION);
 
         $this->assertCount(1, $properties);
-
-        $this->assertArrayHasKey(0, $properties);
-        $this->assertArrayHasKey('type', $properties[0]);
-        $this->assertSame('int', $properties[0]['type']);
     }
 
     public function testPropertyCount(): void
