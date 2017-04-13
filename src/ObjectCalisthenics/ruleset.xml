@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <ruleset name="ObjectCalisthenics">
-    <!-- 1. Only X indentation level per function/method (with default values) -->
+    <!-- Rule 1: Only X indentation level per function/method (with default values) -->
     <rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
         <properties>
             <property name="maxNestingLevel" value="2"/>
         </properties>
     </rule>
 
-    <!-- 2. There is no "else" -->
+    <!-- Rule 2: There is no "else" -->
     <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
 
-    <!-- 5. Only one object operator (->) per line (with default values) -->
+    <!-- Rule 5: Only one object operator (->) per line (with default values) -->
     <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine">
         <properties>
             <property name="variablesHoldingAFluentInterface" type="array" value="$queryBuilder,$containerBuilder"/>
@@ -19,7 +19,7 @@
         </properties>
     </rule>
 
-    <!-- 6. Do not abbreviate (with default values) -->
+    <!-- Rule 6: Do not abbreviate (with default values) -->
     <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
         <properties>
             <property name="minLength" value="3"/>
@@ -27,7 +27,7 @@
         </properties>
     </rule>
 
-    <!-- 7. Keep your classes small (with default values) -->
+    <!-- Rule 7: Keep your classes small (with default values) -->
     <rule ref="ObjectCalisthenics.Files.ClassTraitAndInterfaceLength">
         <properties>
             <property name="maxCount" value="200"/>
@@ -49,6 +49,6 @@
         </properties>
     </rule>
 
-    <!-- 9. Do not Use Getters and Setters -->
+    <!-- Rule 9: Do not Use Getters and Setters -->
     <rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty"/>
 </ruleset>
