@@ -20,13 +20,13 @@ checkers:
         allowedShortNames: ["i", "id", "to", "up"]
 
     # Rule 7: Keep your classes small (with default values)
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
+    ObjectCalisthenics\Sniffs\Metrics\ClassTraitAndInterfaceLength:
         maxCount: 200
-    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimit:
         maxCount: 10
-    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+    ObjectCalisthenics\Sniffs\Files\PropertyPerClassLimit:
         maxLength: 10
-    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
+    ObjectCalisthenics\Sniffs\Files\FunctionLength:
         maxLength: 20
 
     # Rule 9: Do not Use Getters and Setters
