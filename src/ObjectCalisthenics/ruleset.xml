@@ -30,22 +30,22 @@
     <!-- Rule 7: Keep your classes small (with default values) -->
     <rule ref="ObjectCalisthenics.Files.ClassTraitAndInterfaceLength">
         <properties>
-            <property name="maxCount" value="200"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
-        <properties>
-            <property name="maxCount" value="10"/>
-        </properties>
-    </rule>
-    <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
-        <properties>
-            <property name="maxLength" value="10"/>
+            <property name="maxLength" value="200"/>
         </properties>
     </rule>
     <rule ref="ObjectCalisthenics.Files.FunctionLength">
         <properties>
             <property name="maxLength" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
+        <properties>
+            <property name="maxCount" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+        <properties>
+            <property name="maxCount" value="10"/>
         </properties>
     </rule>
 

@@ -21,13 +21,13 @@ checkers:
 
     # Rule 7: Keep your classes small (with default values)
     ObjectCalisthenics\Sniffs\Metrics\ClassTraitAndInterfaceLength:
-        maxCount: 200
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimit:
-        maxCount: 10
-    ObjectCalisthenics\Sniffs\Files\PropertyPerClassLimit:
-        maxLength: 10
+        maxLength: 200
     ObjectCalisthenics\Sniffs\Files\FunctionLength:
         maxLength: 20
+    ObjectCalisthenics\Sniffs\Files\PropertyPerClassLimit:
+        maxCount: 10
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimit:
+        maxCount: 10
 
     # Rule 9: Do not Use Getters and Setters
     # disable for temp bug in Symplify\EasyCodingStandard
@@ -132,11 +132,11 @@ checkers:
     - SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
     - SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff
     # disable for temp bug in Symplify\EasyCodingStandard
-#    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-#        usefulAnnotations:
-#            - @todo
-#            - @dataProvider
-#            - @expectedException
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        usefulAnnotations:
+            - @todo
+            - @dataProvider
+            - @expectedException
     - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
