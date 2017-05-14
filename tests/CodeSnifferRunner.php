@@ -13,7 +13,7 @@ final class CodeSnifferRunner
 
     public function __construct()
     {
-        $this->fileFactory = new FileFactory();
+        $this->fileFactory = new FileFactory;
     }
 
     public function detectErrorCountInFileForSniff(string $testedFile, string $sniffName): int
