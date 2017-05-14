@@ -2,6 +2,7 @@
     "name": "object-calisthenics/phpcs-calisthenics-rules",
     "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
     "license": "MIT",
+    "type": "phpcodesniffer-standard",
     "require": {
         "php": "^7.1",
         "squizlabs/php_codesniffer": "3.0.0RC4 as 2.8.1",
