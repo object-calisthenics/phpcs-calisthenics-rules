@@ -10,6 +10,7 @@ final class ForbiddenPublicPropertySniffTest extends TestCase
 {
     public function test(): void
     {
+
         $codeSnifferRunner = new CodeSnifferRunner();
         $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
             __DIR__ . '/ForbiddenPublicPropertySniffTest.inc',

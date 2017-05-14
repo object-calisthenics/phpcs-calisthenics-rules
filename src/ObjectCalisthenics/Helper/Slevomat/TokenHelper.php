@@ -10,21 +10,20 @@ use PHP_CodeSniffer\Files\File;
  */
 final class TokenHelper
 {
-
-    /** @var mixed[] */
+    /** @var int[] */
     public static $nameTokenCodes = [
         T_NS_SEPARATOR,
         T_STRING,
     ];
 
-    /** @var mixed[] */
+    /** @var int[] */
     public static $typeKeywordTokenCodes = [
         T_CLASS,
         T_TRAIT,
         T_INTERFACE,
     ];
 
-    /** @var mixed[] */
+    /** @var int[]|string[] */
     public static $ineffectiveTokenCodes = [
         T_WHITESPACE,
         T_COMMENT,
@@ -37,7 +36,7 @@ final class TokenHelper
         T_DOC_COMMENT_WHITESPACE,
     ];
 
-    /** @var mixed[] */
+    /** @var int[]|string[] */
     public static $typeHintTokenCodes = [
         T_NS_SEPARATOR,
         T_STRING,
@@ -144,7 +143,7 @@ final class TokenHelper
     {
         $tokenCount = count($phpcsFile->getTokens());
         if ($tokenCount === 0) {
-            throw new \SlevomatCodingStandard\Helpers\EmptyFileException($phpcsFile->getFilename());
+            throw new EmptyFileException($phpcsFile->getFilename());
         }
         return $tokenCount - 1;
     }

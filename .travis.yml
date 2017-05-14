@@ -19,8 +19,9 @@ script:
   - if [[ $CHECK_CS = 1 ]]; then composer check-cs; fi
   # check with phpstan (defined in composer.json "scripts" section)
   - if [[ $RUN_PHPSTAN = 1 ]]; then composer phpstan; fi
-  # @todo: run code-sniffer with ruleset
-  # - if [[ $CHECK_CS = 1 ]]; then composer run-code-sniffer; fi
+  # run PHP_CodeSniffer with ruleset
+  - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php --colors --ignore="/Slevomat/"
+
 
 after_script:
   # upload coverage.xml file to Scrutinizer to analyze it
