@@ -12,7 +12,7 @@
         "phpunit/phpunit": "^6.0",
         "phpstan/phpstan": "^0.6",
         "tracy/tracy": "^2.4",
-        "symplify/easy-coding-standard": "v2.0.0-RC4",
+        "symplify/easy-coding-standard": "dev-master",
         "slevomat/coding-standard": "dev-phpcs3"
     },
     "autoload": {
