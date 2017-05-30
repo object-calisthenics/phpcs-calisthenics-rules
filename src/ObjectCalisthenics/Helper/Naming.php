@@ -26,8 +26,6 @@ final class Naming
             return self::$codeToTypeNameMap[$tokenCode];
         }
 
-        LegacyCompatibilityLayer::setupClassAliases();
-
         if ($token['code'] === T_VARIABLE) {
             if (PropertyHelper::isProperty($file, $position)) {
                 return 'Property';

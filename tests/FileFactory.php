@@ -50,11 +50,11 @@ final class FileFactory
 
     private function createRulesetWithConfigAndSniffClass(string $sniffClass, Config $config): Ruleset
     {
+        $config->sniffs = [$sniffClass];
+        $config->standards = ['ObjectCalisthenics'];
+
         $ruleset = new Ruleset($config);
-        $ruleset->sniffs = [
-            $sniffClass => new $sniffClass(),
-        ];
-        $ruleset->populateTokenListeners();
+//        $ruleset->populateTokenListeners();
 
         return $ruleset;
     }
@@ -63,7 +63,7 @@ final class FileFactory
     {
         $config = new Config();
         // nulling required, because PEAR Standard is on by default
-        $config->standards = [];
+//        $config->standards = [];
 
         return $config;
     }

@@ -3,19 +3,12 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 
 use ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff;
-use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit\Framework\TestCase;
+use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
 
-final class ForbiddenPublicPropertySniffTest extends TestCase
+final class ForbiddenPublicPropertySniffTest extends AbstractSniffTestCase
 {
     public function test(): void
     {
-        $codeSnifferRunner = new CodeSnifferRunner();
-        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/ForbiddenPublicPropertySniffTest.inc',
-            ForbiddenPublicPropertySniff::class
-        );
-
-        $this->assertSame(1, $errorCount);
+        $this->runSniffTestForDirectory(ForbiddenPublicPropertySniff::class, __DIR__);
     }
 }

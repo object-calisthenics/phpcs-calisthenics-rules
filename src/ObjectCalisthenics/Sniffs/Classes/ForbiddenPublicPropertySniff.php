@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
-use ObjectCalisthenics\Helper\LegacyCompatibilityLayer;
+use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
@@ -29,16 +29,40 @@ final class ForbiddenPublicPropertySniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        LegacyCompatibilityLayer::setupClassAliases();
         if (! PropertyHelper::isProperty($file, $position)) {
             return;
         }
 
-        $scopeModifier = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
+        // skip Sniff classes, they have public properties for configuration (unfortunately)
+        if ($this->isSniffClass($file, $position)) {
+            return;
+        }
 
-        $tokens = $file->getTokens();
-        if ($tokens[$scopeModifier]['code'] === T_PUBLIC) {
+        $scopeModifierToken = $this->getPropertyScopeModifier($file, $position);
+        if ($scopeModifierToken['code'] === T_PUBLIC) {
             $file->addError(self::ERROR_MESSAGE, $position, self::class);
         }
+    }
+
+    private function isSniffClass(File $file, int $position): bool
+    {
+        $classTokenPosition = $file->findPrevious(T_CLASS, $position);
+        $classNameTokenPosition = $file->findNext(T_STRING, $classTokenPosition);
+
+        $classNameToken = $file->getTokens()[$classNameTokenPosition];
+        if (Strings::endsWith($classNameToken['content'], 'Sniff')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return mixed[]
+     */
+    private function getPropertyScopeModifier(File $file, int $position): array
+    {
+        $scopeModifierPosition = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
+        return $file->getTokens()[$scopeModifierPosition];
     }
 }

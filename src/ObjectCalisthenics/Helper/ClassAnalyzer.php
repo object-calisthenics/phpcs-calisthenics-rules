@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Helper;
 
-use Exception;
+use ObjectCalisthenics\Exception\Helper\NonClassTypeTokenTypeException;
 use PHP_CodeSniffer\Files\File;
 use SlevomatCodingStandard\Helpers\PropertyHelper;
 
@@ -54,7 +54,6 @@ final class ClassAnalyzer
 
     private static function extractPropertyIfFound(File $file, int $position): void
     {
-        LegacyCompatibilityLayer::setupClassAliases();
         if (PropertyHelper::isProperty($file, $position)) {
             self::$propertyList[] = $position;
         }
@@ -64,8 +63,8 @@ final class ClassAnalyzer
     {
         $token = $file->getTokens()[$position];
 
-        if (! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT])) {
-            throw new Exception(
+        if (! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT], true)) {
+            throw new NonClassTypeTokenTypeException(
                 sprintf(
                     'Must be class, interface or trait. "%s" given.',
                     ltrim($token['type'], 'T_')

@@ -195,6 +195,67 @@ class SimpleStartupController
 }
 ```
 
+:x:
+
+```php
+class SomeClass
+{
+    public function simpleLogic()
+    {
+        // 30 lines of code
+    }
+}
+```
+
+:+1:
+
+```php
+class SomeClass
+{
+    public function simpleLogic()
+    {
+        // 10 lines of code
+    }
+}
+```
+
+:x:
+
+```php
+class SomeClass
+{
+    // 20 properties
+}
+```
+
+:+1:
+
+```php
+class SomeClass
+{
+    // 5 properties
+}
+```
+
+:x:
+
+```php
+class SomeClass
+{
+    // 20 methods
+}
+```
+
+:+1:
+
+```php
+class SomeClass
+{
+    // 5 methods
+}
+```
+
+
 #### Apply in CLI?
 
 ```bash
