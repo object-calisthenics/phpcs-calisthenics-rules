@@ -3,10 +3,10 @@
 namespace ObjectCalisthenics\Sniffs\Classes;
 
 use Nette\Utils\Strings;
-use ObjectCalisthenics\Helper\Slevomat\PropertyHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class ForbiddenPublicPropertySniff implements Sniff
 {

@@ -3,8 +3,8 @@
 namespace ObjectCalisthenics\Helper;
 
 use Nette\Utils\Strings;
-use ObjectCalisthenics\Helper\Slevomat\PropertyHelper;
 use PHP_CodeSniffer\Files\File;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class Naming
 {
@@ -25,8 +25,6 @@ final class Naming
         if (isset(self::$codeToTypeNameMap[$tokenCode])) {
             return self::$codeToTypeNameMap[$tokenCode];
         }
-
-        LegacyCompatibilityLayer::setupClassAliases();
 
         if ($token['code'] === T_VARIABLE) {
             if (PropertyHelper::isProperty($file, $position)) {

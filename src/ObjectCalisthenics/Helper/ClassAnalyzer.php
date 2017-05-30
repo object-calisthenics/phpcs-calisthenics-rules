@@ -3,8 +3,8 @@
 namespace ObjectCalisthenics\Helper;
 
 use ObjectCalisthenics\Exception\Helper\NonClassTypeTokenTypeException;
-use ObjectCalisthenics\Helper\Slevomat\PropertyHelper;
 use PHP_CodeSniffer\Files\File;
+use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class ClassAnalyzer
 {
@@ -54,7 +54,6 @@ final class ClassAnalyzer
 
     private static function extractPropertyIfFound(File $file, int $position): void
     {
-        LegacyCompatibilityLayer::setupClassAliases();
         if (PropertyHelper::isProperty($file, $position)) {
             self::$propertyList[] = $position;
         }
