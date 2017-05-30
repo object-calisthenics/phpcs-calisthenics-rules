@@ -4,11 +4,9 @@
     colors="true"
     verbose="true"
 >
-    <testsuites>
-        <testsuite>
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
+    <testsuite>
+        <directory>tests</directory>
+    </testsuite>
     <filter>
         <whitelist>
             <directory>src</directory>
