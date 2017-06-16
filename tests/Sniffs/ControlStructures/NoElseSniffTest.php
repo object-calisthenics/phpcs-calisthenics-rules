@@ -3,19 +3,12 @@
 namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
 use ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff;
-use ObjectCalisthenics\Tests\CodeSnifferRunner;
-use PHPUnit\Framework\TestCase;
+use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
 
-final class NoElseSniffTest extends TestCase
+final class NoElseSniffTest extends AbstractSniffTestCase
 {
     public function test(): void
     {
-        $codeSnifferRunner = new CodeSnifferRunner();
-        $errorCount = $codeSnifferRunner->detectErrorCountInFileForSniff(
-            __DIR__ . '/NoElseSniffTest.inc',
-            NoElseSniff::class
-        );
-
-        $this->assertSame(5, $errorCount);
+        $this->runSniffTestForDirectory(NoElseSniff::class, __DIR__);
     }
 }

@@ -6,9 +6,4 @@ class Test
     {
 
     }
-
-    public function setCustomer()
-    {
-
-    }
 }
