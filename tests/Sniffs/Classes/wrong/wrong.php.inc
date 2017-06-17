@@ -2,5 +2,5 @@
 
 class Test
 {
-    private $one, $two;
+    public $public;
 }
