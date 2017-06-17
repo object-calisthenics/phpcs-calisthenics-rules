@@ -4,7 +4,6 @@ namespace ObjectCalisthenics\Helper;
 
 use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
-use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class Naming
 {

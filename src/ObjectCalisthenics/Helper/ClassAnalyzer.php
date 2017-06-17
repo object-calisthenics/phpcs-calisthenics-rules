@@ -4,7 +4,6 @@ namespace ObjectCalisthenics\Helper;
 
 use ObjectCalisthenics\Exception\Helper\NonClassTypeTokenTypeException;
 use PHP_CodeSniffer\Files\File;
-use SlevomatCodingStandard\Helpers\PropertyHelper;
 
 final class ClassAnalyzer
 {
