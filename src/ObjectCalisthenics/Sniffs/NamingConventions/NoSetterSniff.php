@@ -29,7 +29,12 @@ final class NoSetterSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        if ($this->methodNameStartsWithSet($file->getDeclarationName($position))) {
+        $declarationName = $file->getDeclarationName($position);
+        if ($declarationName === null) {
+            return;
+        }
+
+        if ($this->methodNameStartsWithSet($declarationName)) {
             $file->addError(self::ERROR_MESSAGE, $position, self::class);
         }
     }

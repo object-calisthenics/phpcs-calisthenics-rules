@@ -21,7 +21,7 @@ final class ClassAnalyzerTest extends TestCase
 
     protected function setUp(): void
     {
-        $fileFactory = new FileFactory();
+        $fileFactory = new FileFactory;
         $this->file = $fileFactory->createFile(__DIR__ . '/ClassAnalyzerSource/SomeFile.php.inc');
     }
 

@@ -1,7 +1,7 @@
 # Object Calisthenics rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 [![Build Status](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules/master.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://scrutinizer-ci.com/g/object-calisthenics/phpcs-calisthenics-rules)
+[![Coverage Status](https://img.shields.io/coveralls//object-calisthenics/phpcs-calisthenics-rules/master.svg?style=flat-square)](https://coveralls.io//object-calisthenics/phpcs-calisthenics-rules/Symplify?branch=master)
 [![Downloads](https://img.shields.io/packagist/dt/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
 
 Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**. We're **pragmatic first** - they are easy to use all together or one by one.
