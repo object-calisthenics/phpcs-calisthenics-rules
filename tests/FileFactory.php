@@ -26,7 +26,7 @@ final class FileFactory
 
     public function createFile(string $filePath): File
     {
-        $config = $this->createConfig();
+        $config = new Config;
         $ruleset = new Ruleset($config);
 
         $file = new File($filePath, $ruleset, $config);
@@ -38,7 +38,7 @@ final class FileFactory
 
     public function createFileWithSniffClass(string $filePath, string $sniffClass): File
     {
-        $config = $this->createConfig();
+        $config = new Config;
         $ruleset = $this->createRulesetWithConfigAndSniffClass($sniffClass, $config);
 
         $file = new File($filePath, $ruleset, $config);
@@ -53,18 +53,6 @@ final class FileFactory
         $config->sniffs = [$sniffClass];
         $config->standards = ['ObjectCalisthenics'];
 
-        $ruleset = new Ruleset($config);
-//        $ruleset->populateTokenListeners();
-
-        return $ruleset;
-    }
-
-    private function createConfig(): Config
-    {
-        $config = new Config;
-        // nulling required, because PEAR Standard is on by default
-//        $config->standards = [];
-
-        return $config;
+        return new Ruleset($config);
     }
 }
