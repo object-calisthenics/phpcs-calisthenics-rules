@@ -112,7 +112,6 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
 
     - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
-    - PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer
 
     # Symplify: Naming
     - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
@@ -177,7 +176,6 @@ checkers:
     - PhpCsFixer\Fixer\ClassNotation\ClassDefinitionFixer
     - PhpCsFixer\Fixer\ControlStructure\ElseifFixer
     - PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer
-    - PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer
     - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
     - PhpCsFixer\Fixer\Whitespace\LineEndingFixer
     - PhpCsFixer\Fixer\Casing\LowercaseKeywordsFixer
@@ -203,8 +201,6 @@ checkers:
     PhpCsFixer\Fixer\Basic\BracesFixer:
         allow_single_line_closure: true
     - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
-    PhpCsFixer\Fixer\ClassNotation\ClassDefinitionFixer:
-        singleLine: true
     - PhpCsFixer\Fixer\LanguageConstruct\DeclareEqualNormalizeFixer
     - PhpCsFixer\Fixer\FunctionNotation\FunctionTypehintSpaceFixer
     - PhpCsFixer\Fixer\Comment\HashToSlashCommentFixer
