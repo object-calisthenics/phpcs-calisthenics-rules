@@ -46,7 +46,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
 
     private function isSniffClass(File $file, int $position): bool
     {
-        $classTokenPosition = $file->findPrevious(T_CLASS, $position);
+        $classTokenPosition = (int) $file->findPrevious(T_CLASS, $position);
         $classNameTokenPosition = $file->findNext(T_STRING, $classTokenPosition);
 
         $classNameToken = $file->getTokens()[$classNameTokenPosition];
@@ -63,6 +63,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
     private function getPropertyScopeModifier(File $file, int $position): array
     {
         $scopeModifierPosition = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
+
         return $file->getTokens()[$scopeModifierPosition];
     }
 }

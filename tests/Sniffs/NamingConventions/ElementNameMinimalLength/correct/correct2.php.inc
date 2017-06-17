@@ -2,5 +2,5 @@
 
 class Test
 {
-    public $public;
+    public $id = 3;
 }
