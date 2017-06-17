@@ -63,6 +63,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
     private function getPropertyScopeModifier(File $file, int $position): array
     {
         $scopeModifierPosition = $file->findPrevious(Tokens::$scopeModifiers, ($position - 1));
+
         return $file->getTokens()[$scopeModifierPosition];
     }
 }

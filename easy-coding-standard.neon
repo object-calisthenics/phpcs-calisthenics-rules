@@ -20,18 +20,17 @@ checkers:
         allowedShortNames: ["i", "id", "to", "up"]
 
     # Rule 7: Keep your classes small (with default values)
-    ObjectCalisthenics\Sniffs\Metrics\ClassTraitAndInterfaceLength:
+    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
         maxLength: 200
-    ObjectCalisthenics\Sniffs\Files\FunctionLength:
+    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
         maxLength: 20
-    ObjectCalisthenics\Sniffs\Files\PropertyPerClassLimit:
+    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
         maxCount: 10
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimit:
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
         maxCount: 10
 
     # Rule 9: Do not Use Getters and Setters
-    # disable for temp bug in Symplify\EasyCodingStandard
-    # - ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff
+    - ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff
     - ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff
 
     # Classes
@@ -70,8 +69,7 @@ checkers:
 
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\ValidDefaultValueSniff
-    PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\FunctionDeclarationSniff:
-        equalsSpacing: 1
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\FunctionDeclarationSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\LowercaseFunctionKeywordsSniff
 
@@ -97,20 +95,13 @@ checkers:
         ignoreBlankLines: false
 
     # Symplify: Commenting
-    - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
-    - Symplify\CodingStandard\Sniffs\Commenting\MethodReturnTypeSniff
-    - Symplify\CodingStandard\Sniffs\Commenting\MethodCommentSniff
     - Symplify\CodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
-
-    # Symplify: Control Structures
-    - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
 
     # Symplify: Debug
     - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
 
     # Namespaces
     - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
-
     - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
 
     # Symplify: Naming
@@ -186,8 +177,6 @@ checkers:
     - PhpCsFixer\Fixer\Whitespace\NoTrailingWhitespaceFixer
     - PhpCsFixer\Fixer\Comment\NoTrailingWhitespaceInCommentFixer
     - PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer
-    PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
-        - property
     - PhpCsFixer\Fixer\Import\SingleImportPerStatementFixer
     - PhpCsFixer\Fixer\Import\SingleLineAfterImportsFixer
     - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSemicolonToColonFixer
@@ -242,7 +231,6 @@ checkers:
     - PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer
     - PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer
     - PhpCsFixer\Fixer\Phpdoc\PhpdocNoPackageFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocNoUselessInheritdocFixer
     - PhpCsFixer\Fixer\Phpdoc\PhpdocReturnSelfReferenceFixer
     - PhpCsFixer\Fixer\Phpdoc\PhpdocScalarFixer
     - PhpCsFixer\Fixer\Phpdoc\PhpdocSingleLineVarSpacingFixer
@@ -255,7 +243,6 @@ checkers:
     - PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer
     - PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer
     - PhpCsFixer\Fixer\CastNotation\ShortScalarCastFixer
-    - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
     - PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer
     - PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer
     - PhpCsFixer\Fixer\Semicolon\SpaceAfterSemicolonFixer
@@ -275,17 +262,12 @@ checkers:
         - method
 
     # new since PhpCsFixer 2.1/2.2
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocNoUselessInheritdocFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocReturnSelfReferenceFixer
     - PhpCsFixer\Fixer\LanguageConstruct\IsNullFixer
     - PhpCsFixer\Fixer\LanguageConstruct\FunctionToConstantFixer
     - PhpCsFixer\Fixer\Basic\NonPrintableCharacterFixer
     - PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer
 
-skip:
-    # bugged in Symplify, to be fixed soon
-    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        - src/ObjetCalisthenics/Sniffs/*/*Sniff.php
-    # bugged in Symplify, to be fixed soon
-    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff:
-        - src/ObjetCalisthenics/Sniffs/*/*Sniff.php
+parameters:
+    skip:
+        SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+            - src/ObjectCalisthenics/Sniffs/*/*Sniff.php
