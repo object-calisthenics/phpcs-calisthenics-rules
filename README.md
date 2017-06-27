@@ -85,21 +85,22 @@ private function ensureIsAllInstanceOf(array $objects, string $type)
 :x:
 
 ```php
-if ($isEnabled) {
-    return true;
+if ($status === self::DONE) {
+    $this->finish();
 } else {
-    return false;
+    $this->advance();
 }
 ```
 
 :+1:
 
 ```php
-if ($isEnabled) {
-    return true;
+if ($status === self::DONE) {
+    $this->finish();
+    return;
 }
 
-return false;
+$this->advance();
 ```
 
 #### Apply in CLI?
