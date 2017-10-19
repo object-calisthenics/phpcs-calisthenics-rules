@@ -2,11 +2,8 @@ language: php
 
 sudo: false
 
-matrix:
-  include:
-    - php: 7.1
-      # add variables to enable coverage, coding standard check and static analysis
-      env: PHPUNIT_FLAGS="--coverage-clover coverage.xml" CHECK_CS=1 RUN_PHPSTAN=1
+php:
+  - 7.1
 
 install:
   # install composer dependencies
@@ -14,21 +11,21 @@ install:
 
 script:
   # run tests
-  - vendor/bin/phpunit $PHPUNIT_FLAGS
+  - vendor/bin/phpunit --coverage-clover coverage.xml
+  # turn off XDebug
+  - phpenv config-rm xdebug.ini || return 0
   # check coding standard (defined in composer.json "scripts" section)
-  - if [[ $CHECK_CS = 1 ]]; then composer check-cs; fi
+  - composer check-cs
   # check with phpstan (defined in composer.json "scripts" section)
-  - if [[ $RUN_PHPSTAN = 1 ]]; then composer phpstan; fi
+  - composer phpstan
   # run PHP_CodeSniffer with ruleset
   - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php
 
 after_script:
   # upload coverage.xml file to Coveralls to analyze it
   - |
-   if [[ PHPUNIT_FLAGS != "" ]]; then
-     wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
-     php coveralls.phar --verbose
-   fi
+    wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+    php coveralls.phar --verbose
 
 # do not send success notifications, they have no value
 notifications:
