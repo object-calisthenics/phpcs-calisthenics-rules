@@ -52,14 +52,16 @@ checkers:
     # Metrics
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
         absoluteLineLimit: 120
-
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
-    - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
+        absoluteComplexity: 4
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
+        absoluteNestingLevel: 2
 
     # Slevomat
     - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff
-    - SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        enableEachParameterAndReturnInspection: true
 
 parameters:
     skip:
