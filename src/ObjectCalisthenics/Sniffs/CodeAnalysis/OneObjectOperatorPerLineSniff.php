@@ -24,14 +24,14 @@ final class OneObjectOperatorPerLineSniff implements Sniff
      * @var string[]
      */
     public $methodsStartingAFluentInterface = [
-        'createQueryBuilder'
+        'createQueryBuilder',
     ];
 
     /**
      * @var string[]
      */
     public $methodsEndingAFluentInterface = [
-        'execute', 'getQuery'
+        'execute', 'getQuery',
     ];
 
     /**
@@ -45,14 +45,14 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private $position;
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    private $callerTokens;
+    private $callerTokens = [];
 
     /**
      * @var mixed[]
      */
-    private $tokens;
+    private $tokens = [];
 
     /**
      * @var string
@@ -106,6 +106,9 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $tmpToken
+     */
     private function handleExcludedFluentInterfaces(array $tmpToken, string $tmpTokenType, bool $isOwnCall): void
     {
         if ((count($this->callerTokens) - (int) $isOwnCall) === 0) {
@@ -119,7 +122,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         if (($memberTokenType === 'property' && $tmpTokenType === 'property')
             || ($memberTokenType === 'method' && $tmpTokenType === 'property')
             || ($memberTokenType === 'method' && $tmpTokenType === 'method'
-            && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content']
+            && $memberTokenCount > 1 && $tmpToken['content'] !== $memberToken['token']['content']
             && ! $this->isInFluentInterfaceMode())
         ) {
             $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
@@ -140,7 +143,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     }
 
     /**
-     * @param mixed[] $methods
+     * @param string[] $methods
      *
      * @return int The last position of the method calls within the callerTokens
      *             or -2 if none of the methods has been called
@@ -177,6 +180,9 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $token
+     */
     private function getTokenType(array $token): string
     {
         if ($token['code'] === T_OPEN_PARENTHESIS) {

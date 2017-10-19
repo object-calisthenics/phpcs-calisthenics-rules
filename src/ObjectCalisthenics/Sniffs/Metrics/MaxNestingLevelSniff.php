@@ -33,7 +33,7 @@ final class MaxNestingLevelSniff implements Sniff
     private $nestingLevel;
 
     /**
-     * @var array
+     * @var mixed[]
      */
     private $ignoredScopeStack = [];
 
@@ -91,6 +91,9 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $tokens
+     */
     private function iterateTokens(int $start, int $end, array $tokens): void
     {
         $this->currentPtr = $start + 1;
@@ -103,6 +106,9 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $nestedToken
+     */
     private function handleToken(array $nestedToken): void
     {
         $this->handleClosureToken($nestedToken);
@@ -118,11 +124,17 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $token
+     */
     private function subtractFunctionNestingLevel(array $token): int
     {
         return $this->nestingLevel - $token['level'] - 1;
     }
 
+    /**
+     * @param mixed[] $nestedToken
+     */
     private function handleClosureToken(array $nestedToken): void
     {
         if ($nestedToken['code'] === T_CLOSURE) {
@@ -134,6 +146,9 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $nestedToken
+     */
     private function handleCaseToken(array $nestedToken): void
     {
         if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
@@ -152,6 +167,9 @@ final class MaxNestingLevelSniff implements Sniff
         }
     }
 
+    /**
+     * @param mixed[] $ignoredScope
+     */
     private function unsetScopeIfNotCurrent(int $key, array $ignoredScope): void
     {
         if ($ignoredScope['scope_closer'] !== $this->currentPtr) {
