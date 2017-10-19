@@ -147,12 +147,12 @@ final class MaxNestingLevelSniff implements Sniff
     }
 
     /**
-     * @param mixed[] $caseToken
+     * @param mixed[] $nestedToken
      */
-    private function handleCaseToken(array $caseToken): void
+    private function handleCaseToken(array $nestedToken): void
     {
-        if (in_array($caseToken['code'], [T_CASE, T_DEFAULT])) {
-            array_push($this->ignoredScopeStack, $caseToken);
+        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
+            array_push($this->ignoredScopeStack, $nestedToken);
 
             return;
         }
