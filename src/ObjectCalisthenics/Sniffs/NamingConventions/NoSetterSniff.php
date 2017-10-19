@@ -18,6 +18,9 @@ final class NoSetterSniff implements Sniff
      */
     private const SETTER_REGEX = '/^set[A-Z0-9]/';
 
+    /**
+     * @return int[]
+     */
     public function register(): array
     {
         return [T_FUNCTION];
