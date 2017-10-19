@@ -29,7 +29,7 @@
     "scripts": {
         "complete-check": ["@phpstan", "@check-cs", "phpunit"],
         "phpstan": "phpstan analyze src --level max --configuration phpstan.neon",
-        "check-cs": "easy-coding-standard check src tests",
-        "fix-cs": "easy-coding-standard check src tests --fix"
+        "check-cs": "ecs check src tests",
+        "fix-cs": "ecs check src tests --fix"
     }
 }

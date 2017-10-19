@@ -4,7 +4,7 @@ includes:
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
     # custom
-#    - vendor/symplify/easy-coding-standard/config/symplify-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/symplify-checkers.neon
     - vendor/symplify/easy-coding-standard/config/common.neon
     - vendor/symplify/easy-coding-standard/config/spaces.neon
 
