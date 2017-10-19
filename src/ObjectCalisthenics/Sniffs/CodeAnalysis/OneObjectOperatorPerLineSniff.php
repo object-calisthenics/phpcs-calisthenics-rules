@@ -24,14 +24,14 @@ final class OneObjectOperatorPerLineSniff implements Sniff
      * @var string[]
      */
     public $methodsStartingAFluentInterface = [
-        'createQueryBuilder'
+        'createQueryBuilder',
     ];
 
     /**
      * @var string[]
      */
     public $methodsEndingAFluentInterface = [
-        'execute', 'getQuery'
+        'execute', 'getQuery',
     ];
 
     /**
@@ -122,7 +122,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         if (($memberTokenType === 'property' && $tmpTokenType === 'property')
             || ($memberTokenType === 'method' && $tmpTokenType === 'property')
             || ($memberTokenType === 'method' && $tmpTokenType === 'method'
-            && $memberTokenCount > 1 && $memberToken['token']['content'] !== $tmpToken['content']
+            && $memberTokenCount > 1 && $tmpToken['content'] !== $memberToken['token']['content']
             && ! $this->isInFluentInterfaceMode())
         ) {
             $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
