@@ -117,7 +117,8 @@ checkers:
     - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
     - SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff
     - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEqualOperatorsSniff
-    - SlevomatCodingStandard\Sniffs\ControlStructures\YodaComparisonSniff
+    - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff
+
     - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff
     - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
@@ -273,4 +274,4 @@ checkers:
 parameters:
     skip:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-            - src/ObjectCalisthenics/Sniffs/*/*Sniff.php
+            - *src/ObjectCalisthenics/Sniffs/*/*Sniff.php
