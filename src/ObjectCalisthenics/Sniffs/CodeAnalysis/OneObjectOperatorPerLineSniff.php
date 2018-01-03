@@ -68,7 +68,6 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     }
 
     /**
-     * @param File $file
      * @param int $position
      */
     public function process(File $file, $position): void
@@ -134,7 +133,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         $lastEndPoint = $this->computeLastCallOfAnyFrom($this->methodsEndingAFluentInterface);
         $lastStartPoint = $this->computeLastCallOfAnyFrom($this->methodsStartingAFluentInterface);
 
-        if (in_array($this->variableName, $this->variablesHoldingAFluentInterface)) {
+        if (in_array($this->variableName, $this->variablesHoldingAFluentInterface, true)) {
             $lastStartPoint = max($lastStartPoint, -1);
         }
 
@@ -151,7 +150,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private function computeLastCallOfAnyFrom(array $methods): int
     {
         $calls = array_filter($this->callerTokens, function (array $token) use ($methods) {
-            return in_array($token['token']['content'], $methods);
+            return in_array($token['token']['content'], $methods, true);
         });
         if (count($calls) > 0) {
             return array_search(end($calls), $this->callerTokens);

@@ -32,7 +32,6 @@ final class ElementNameMinimalLengthSniff implements Sniff
     }
 
     /**
-     * @param File $file
      * @param int $position
      */
     public function process(File $file, $position): void
@@ -70,6 +69,6 @@ final class ElementNameMinimalLengthSniff implements Sniff
 
     private function isShortNameAllowed(string $variableName): bool
     {
-        return in_array($variableName, $this->allowedShortNames);
+        return in_array($variableName, $this->allowedShortNames, true);
     }
 }

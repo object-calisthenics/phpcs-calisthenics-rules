@@ -20,13 +20,13 @@ final class FileFactory
 
         // initialize Token constants
         if (! defined('T_NONE')) {
-            new Tokens;
+            new Tokens();
         }
     }
 
     public function createFile(string $filePath): File
     {
-        $config = new Config;
+        $config = new Config();
         $ruleset = new Ruleset($config);
 
         $file = new File($filePath, $ruleset, $config);
@@ -38,7 +38,7 @@ final class FileFactory
 
     public function createFileWithSniffClass(string $filePath, string $sniffClass): File
     {
-        $config = new Config;
+        $config = new Config();
         $ruleset = $this->createRulesetWithConfigAndSniffClass($sniffClass, $config);
 
         $file = new File($filePath, $ruleset, $config);

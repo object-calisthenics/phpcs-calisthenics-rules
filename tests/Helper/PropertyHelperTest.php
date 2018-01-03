@@ -10,7 +10,7 @@ final class PropertyHelperTest extends TestCase
 {
     public function test(): void
     {
-        $fileFactory = new FileFactory;
+        $fileFactory = new FileFactory();
         $file = $fileFactory->createFile(__DIR__ . '/PropertyHelperSource/SomeFile.php.inc');
 
         $this->assertTrue(PropertyHelper::isProperty($file, 11));

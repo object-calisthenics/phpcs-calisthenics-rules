@@ -51,8 +51,7 @@ final class MaxNestingLevelSniff implements Sniff
     }
 
     /**
-     * @param File $file
-     * @param int  $position
+     * @param int $position
      */
     public function process(File $file, $position): void
     {
@@ -151,7 +150,7 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private function handleCaseToken(array $nestedToken): void
     {
-        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
+        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT], true)) {
             array_push($this->ignoredScopeStack, $nestedToken);
 
             return;
