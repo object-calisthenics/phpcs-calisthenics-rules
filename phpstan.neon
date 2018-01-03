@@ -4,4 +4,4 @@ parameters:
     excludes_analyse:
         - **/ObjectCalisthenics/Helper/Slevomat/**
     ignoreErrors:
-        - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::register\(\) should return int\[\] but returns \(int\|string\)\[\]#'
+#        - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::register\(\) should return int\[\] but returns \(int\|string\)\[\]#'
