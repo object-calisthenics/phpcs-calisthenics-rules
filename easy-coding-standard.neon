@@ -61,3 +61,7 @@ parameters:
     skip:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
             - *src/ObjectCalisthenics/Sniffs/*/*Sniff.php
+
+        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff:
+            # while() assign
+            - src/ObjectCalisthenics/Helper/ClassAnalyzer.php
