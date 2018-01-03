@@ -25,7 +25,7 @@ final class StructureMetricsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fileFactory = new FileFactory;
+        $this->fileFactory = new FileFactory();
     }
 
     public function test(): void

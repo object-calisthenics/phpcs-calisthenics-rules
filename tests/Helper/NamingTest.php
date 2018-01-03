@@ -30,7 +30,7 @@ final class NamingTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fileFactory = new FileFactory;
+        $this->fileFactory = new FileFactory();
     }
 
     public function test(): void

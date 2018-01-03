@@ -1,11 +1,7 @@
 includes:
-    - vendor/symplify/easy-coding-standard/config/symfony-checkers.neon
-    - vendor/symplify/easy-coding-standard/config/php54-checkers.neon
-    - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
-    - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
-    # custom
+    - vendor/symplify/easy-coding-standard/config/symplify.neon
+    - vendor/symplify/easy-coding-standard/config/php71.neon
     - vendor/symplify/easy-coding-standard/config/common.neon
-    - vendor/symplify/easy-coding-standard/config/spaces.neon
 
 checkers:
     # All rules with default values
@@ -61,49 +57,11 @@ checkers:
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
 
-    # Symplify
-    - Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer
-    - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
-    - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
-    - Symplify\CodingStandard\Sniffs\Property\DynamicPropertySniff
-
-    # Control Structures
-    - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
-    - Symplify\CodingStandard\Fixer\Property\ArrayPropertyDefaultValueFixer
-    - Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer
-    - Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer
-
-    # Spaces
-    - Symplify\CodingStandard\Fixer\ClassNotation\PropertyAndConstantSeparationFixer
-    - Symplify\CodingStandard\Fixer\ClassNotation\LastPropertyAndFirstMethodSeparationFixer
-
-    # Comments
-    - Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer
-    - Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff
-    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
-    - Symplify\CodingStandard\Fixer\Commenting\AnnotateMagicContainerGetterFixer
-
-    # Naming
-    - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
-    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
-    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
-    - Symplify\CodingStandard\Fixer\Naming\MagicMethodsNamingFixer
-    - Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer
-
-    # Architecture
-    - Symplify\CodingStandard\Sniffs\Classes\EqualInterfaceImplementationSniff
-    - Symplify\CodingStandard\Sniffs\Classes\FinalInterfaceSniff
-
 parameters:
     skip:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
             - *src/ObjectCalisthenics/Sniffs/*/*Sniff.php
 
-    exclude_checkers:
-        # Symfony ruleset
-        - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
-        - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
-        - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
-        # mutually excluded
-        - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff
-        - PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer
+        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff:
+            # while() assign
+            - src/ObjectCalisthenics/Helper/ClassAnalyzer.php
