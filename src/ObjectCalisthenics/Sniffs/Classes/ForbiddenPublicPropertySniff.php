@@ -40,7 +40,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
 
         $scopeModifierToken = $this->getPropertyScopeModifier($file, $position);
         if ($scopeModifierToken['code'] === T_PUBLIC) {
-            $file->addError(self::ERROR_MESSAGE, $position, self::class);
+            $file->addError(self::ERROR_MESSAGE, $position, addslashes(self::class));
         }
     }
 

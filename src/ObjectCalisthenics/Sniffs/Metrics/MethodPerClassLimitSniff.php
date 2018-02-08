@@ -44,7 +44,7 @@ final class MethodPerClassLimitSniff implements Sniff
                 $this->maxCount
             );
 
-            $file->addError($message, $position, self::class);
+            $file->addError($message, $position, addslashes(self::class));
         }
     }
 }

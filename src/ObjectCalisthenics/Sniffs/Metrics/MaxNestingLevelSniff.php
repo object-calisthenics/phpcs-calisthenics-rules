@@ -87,7 +87,7 @@ final class MaxNestingLevelSniff implements Sniff
                 $nestingLevel
             );
 
-            $this->file->addError($error, $this->position, self::class);
+            $this->file->addError($error, $this->position, addslashes(self::class));
         }
     }
 

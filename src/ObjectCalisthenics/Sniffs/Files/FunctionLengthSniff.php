@@ -36,7 +36,7 @@ final class FunctionLengthSniff implements Sniff
 
         if ($length > $this->maxLength) {
             $error = sprintf(self::ERROR_MESSAGE, $length, $this->maxLength);
-            $file->addError($error, $position, self::class);
+            $file->addError($error, $position, addslashes(self::class));
         }
     }
 }

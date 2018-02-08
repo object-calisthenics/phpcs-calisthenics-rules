@@ -38,7 +38,7 @@ final class NoSetterSniff implements Sniff
         }
 
         if ($this->methodNameStartsWithSet($declarationName)) {
-            $file->addError(self::ERROR_MESSAGE, $position, self::class);
+            $file->addError(self::ERROR_MESSAGE, $position, addslashes(self::class));
         }
     }
 

@@ -26,6 +26,6 @@ final class NoElseSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $file->addError(self::ERROR_MESSAGE, $position, self::class);
+        $file->addError(self::ERROR_MESSAGE, $position, addslashes(self::class));
     }
 }
