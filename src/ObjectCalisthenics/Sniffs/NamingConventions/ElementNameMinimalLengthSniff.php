@@ -52,7 +52,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
             $elementNameLength,
             $this->minLength
         );
-        $file->addError($message, $position, self::class);
+        $file->addError($message, $position, addslashes(self::class));
     }
 
     private function shouldBeSkipped(int $elementNameLength, string $elementName): bool

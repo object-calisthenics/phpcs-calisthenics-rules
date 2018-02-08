@@ -102,7 +102,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     private function handleTwoObjectOperators(bool $isOwnCall): void
     {
         if ($this->callerTokens && ! $isOwnCall && ! $this->isInFluentInterfaceMode()) {
-            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
+            $this->file->addError(self::ERROR_MESSAGE, $this->position, addslashes(self::class));
         }
     }
 
@@ -125,7 +125,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
             && $memberTokenCount > 1 && $tmpToken['content'] !== $memberToken['token']['content']
             && ! $this->isInFluentInterfaceMode())
         ) {
-            $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
+            $this->file->addError(self::ERROR_MESSAGE, $this->position, addslashes(self::class));
         }
     }
 
