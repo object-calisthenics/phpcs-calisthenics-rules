@@ -281,8 +281,6 @@ This rules is partially related to [Domain Driven Design](https://github.com/ddd
 class ImmutableBankAccount
 {
     public $currency = 'USD';
-```
-```php
     private $amount;
 
     public function setAmount(int $amount)
@@ -298,8 +296,6 @@ class ImmutableBankAccount
 class ImmutableBankAccount
 {
     private $currency = 'USD';
-```
-```php
     private $amount;
 
     public function withdrawAmount(int $withdrawnAmount)
