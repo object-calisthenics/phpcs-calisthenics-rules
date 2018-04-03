@@ -4,6 +4,7 @@ imports:
     - { resource: 'vendor/symplify/easy-coding-standard/config/php71.yml' }
     # custom
     - { resource: 'vendor/symplify/easy-coding-standard/config/common.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symplify.yml' }
 
 services:
     # All rules with default values
@@ -56,27 +57,6 @@ services:
     SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff: ~
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         enableEachParameterAndReturnInspection: true
-
-    # Symplify
-    Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer: ~
-    Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff: ~
-
-    # Control Structures
-    Symplify\CodingStandard\Fixer\Property\ArrayPropertyDefaultValueFixer: ~
-    Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer: ~
-    Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer: ~
-
-    # Comments
-    Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer: ~
-    Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff: ~
-    Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff: ~
-
-    # Naming
-    Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff: ~
-    Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff: ~
-    Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff: ~
-    Symplify\CodingStandard\Fixer\Naming\MagicMethodsNamingFixer: ~
-    Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer: ~
 
 parameters:
     skip:
