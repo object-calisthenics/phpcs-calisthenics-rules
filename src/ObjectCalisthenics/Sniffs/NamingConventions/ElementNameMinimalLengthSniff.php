@@ -44,13 +44,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
         }
 
         $typeName = Naming::getTypeName($file, $position);
-        $message = sprintf(
-            self::ERROR_MESSAGE,
-            $typeName,
-            $elementName,
-            $elementNameLength,
-            $this->minLength
-        );
+        $message = sprintf(self::ERROR_MESSAGE, $typeName, $elementName, $elementNameLength, $this->minLength);
         $file->addError($message, $position, self::class);
     }
 

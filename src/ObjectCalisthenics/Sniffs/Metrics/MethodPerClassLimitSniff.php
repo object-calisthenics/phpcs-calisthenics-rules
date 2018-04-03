@@ -36,12 +36,7 @@ final class MethodPerClassLimitSniff implements Sniff
 
         if ($methodCount > $this->maxCount) {
             $typeName = Naming::getTypeName($file, $position);
-            $message = sprintf(
-                self::ERROR_MESSAGE,
-                $typeName,
-                $methodCount,
-                $this->maxCount
-            );
+            $message = sprintf(self::ERROR_MESSAGE, $typeName, $methodCount, $this->maxCount);
 
             $file->addError($message, $position, self::class);
         }

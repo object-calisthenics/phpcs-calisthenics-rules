@@ -79,12 +79,7 @@ final class MaxNestingLevelSniff implements Sniff
         if ($nestingLevel > $this->maxNestingLevel) {
             $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
 
-            $error = sprintf(
-                self::ERROR_MESSAGE,
-                $this->maxNestingLevel,
-                $levelPluralization,
-                $nestingLevel
-            );
+            $error = sprintf(self::ERROR_MESSAGE, $this->maxNestingLevel, $levelPluralization, $nestingLevel);
 
             $this->file->addError($error, $this->position, self::class);
         }
