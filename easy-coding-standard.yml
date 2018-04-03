@@ -1,11 +1,9 @@
 imports:
-    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }: ~
-    - { resource: 'vendor/symplify/easy-coding-standard/config/php54.yml' }: ~
-    - { resource: 'vendor/symplify/easy-coding-standard/config/php70.yml' }: ~
-    - { resource: 'vendor/symplify/easy-coding-standard/config/php71.yml' }: ~
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/php70.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/php71.yml' }
     # custom
-    - { resource: 'vendor/symplify/easy-coding-standard/config/common.neon' }: ~
-    - { resource: 'vendor/symplify/easy-coding-standard/config/spaces.neon' }: ~
+    - { resource: 'vendor/symplify/easy-coding-standard/config/common.yml' }
 
 services:
     # All rules with default values
@@ -97,13 +95,13 @@ services:
 parameters:
     skip:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-            *src/ObjectCalisthenics/Sniffs/*/*Sniff.php: ~
+            - '*src/ObjectCalisthenics/Sniffs/*/*Sniff.php'
 
     exclude_checkers:
         # Symfony ruleset
-        PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer: ~
-        PhpCsFixer\Fixer\Operator\NewWithBracesFixer: ~
-        PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
+        - 'PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer'
+        - 'PhpCsFixer\Fixer\Operator\NewWithBracesFixer'
+        - 'PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer'
         # mutually excluded
-        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff: ~
-        PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer: ~
+        - 'SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff'
+        - 'PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer'
