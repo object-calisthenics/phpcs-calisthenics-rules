@@ -46,8 +46,6 @@ services:
         less_and_greater: false
 
     # Metrics
-    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
-        absoluteLineLimit: 120
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
         absoluteComplexity: 4
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
@@ -61,25 +59,17 @@ services:
 
     # Symplify
     Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer: ~
-    Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff: ~
     Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff: ~
-    Symplify\CodingStandard\Sniffs\Property\DynamicPropertySniff: ~
 
     # Control Structures
-    Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff: ~
     Symplify\CodingStandard\Fixer\Property\ArrayPropertyDefaultValueFixer: ~
     Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer: ~
     Symplify\CodingStandard\Fixer\ControlStructure\RequireFollowedByAbsolutePathFixer: ~
-
-    # Spaces
-    Symplify\CodingStandard\Fixer\ClassNotation\PropertyAndConstantSeparationFixer: ~
-    Symplify\CodingStandard\Fixer\ClassNotation\LastPropertyAndFirstMethodSeparationFixer: ~
 
     # Comments
     Symplify\CodingStandard\Fixer\Commenting\BlockPropertyCommentFixer: ~
     Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff: ~
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff: ~
-    Symplify\CodingStandard\Fixer\Commenting\AnnotateMagicContainerGetterFixer: ~
 
     # Naming
     Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff: ~
@@ -87,10 +77,6 @@ services:
     Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff: ~
     Symplify\CodingStandard\Fixer\Naming\MagicMethodsNamingFixer: ~
     Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer: ~
-
-    # Architecture
-    Symplify\CodingStandard\Sniffs\Classes\EqualInterfaceImplementationSniff: ~
-    Symplify\CodingStandard\Sniffs\Classes\FinalInterfaceSniff: ~
 
 parameters:
     skip:
