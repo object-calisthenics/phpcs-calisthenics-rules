@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics\MethodPerClassLimit;
 
+use Iterator;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
 final class MethodPerClassLimitSniffTest extends AbstractCheckerTestCase
@@ -14,7 +15,7 @@ final class MethodPerClassLimitSniffTest extends AbstractCheckerTestCase
         $this->doTestWrongFile($wrongFile);
     }
 
-    public function provideWrongCases(): \Iterator
+    public function provideWrongCases(): Iterator
     {
         yield [__DIR__ . '/wrong/wrong.php.inc'];
     }

@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files\ClassTraitAndInterfaceLength;
 
+use Iterator;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
 final class ClassTraitAndInterfaceLengthSniffTest extends AbstractCheckerTestCase
@@ -14,7 +15,7 @@ final class ClassTraitAndInterfaceLengthSniffTest extends AbstractCheckerTestCas
         $this->doTestWrongFile($wrongFile);
     }
 
-    public function provideWrongCases(): \Iterator
+    public function provideWrongCases(): Iterator
     {
         yield [__DIR__ . '/wrong/wrong.php.inc'];
         yield [__DIR__ . '/wrong/wrong2.php.inc'];
