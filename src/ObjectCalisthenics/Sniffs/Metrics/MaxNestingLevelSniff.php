@@ -43,7 +43,7 @@ final class MaxNestingLevelSniff implements Sniff
     private $currentPtr;
 
     /**
-     * @return int[]
+     * @return int[]|string[]
      */
     public function register(): array
     {
