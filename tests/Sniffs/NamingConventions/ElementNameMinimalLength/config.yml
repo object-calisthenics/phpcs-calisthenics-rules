@@ -1,0 +1,2 @@
+services:
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~

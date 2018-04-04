@@ -1,0 +1,2 @@
+services:
+    ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~

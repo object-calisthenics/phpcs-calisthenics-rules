@@ -27,8 +27,7 @@ final class PropertyPerClassLimitSniff implements Sniff
     }
 
     /**
-     * @param File $file
-     * @param int  $position
+     * @param int $position
      */
     public function process(File $file, $position): void
     {
@@ -37,12 +36,7 @@ final class PropertyPerClassLimitSniff implements Sniff
         if ($propertiesCount > $this->maxCount) {
             $tokenType = $file->getTokens()[$position]['content'];
 
-            $message = sprintf(
-                self::ERROR_MESSAGE,
-                $tokenType,
-                $propertiesCount,
-                $this->maxCount
-            );
+            $message = sprintf(self::ERROR_MESSAGE, $tokenType, $propertiesCount, $this->maxCount);
             $file->addError($message, $position, self::class);
         }
     }

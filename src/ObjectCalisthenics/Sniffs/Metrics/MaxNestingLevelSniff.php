@@ -43,7 +43,7 @@ final class MaxNestingLevelSniff implements Sniff
     private $currentPtr;
 
     /**
-     * @return int[]
+     * @return int[]|string[]
      */
     public function register(): array
     {
@@ -51,8 +51,7 @@ final class MaxNestingLevelSniff implements Sniff
     }
 
     /**
-     * @param File $file
-     * @param int  $position
+     * @param int $position
      */
     public function process(File $file, $position): void
     {
@@ -80,12 +79,7 @@ final class MaxNestingLevelSniff implements Sniff
         if ($nestingLevel > $this->maxNestingLevel) {
             $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
 
-            $error = sprintf(
-                self::ERROR_MESSAGE,
-                $this->maxNestingLevel,
-                $levelPluralization,
-                $nestingLevel
-            );
+            $error = sprintf(self::ERROR_MESSAGE, $this->maxNestingLevel, $levelPluralization, $nestingLevel);
 
             $this->file->addError($error, $this->position, self::class);
         }
@@ -151,7 +145,7 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private function handleCaseToken(array $nestedToken): void
     {
-        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT])) {
+        if (in_array($nestedToken['code'], [T_CASE, T_DEFAULT], true)) {
             array_push($this->ignoredScopeStack, $nestedToken);
 
             return;

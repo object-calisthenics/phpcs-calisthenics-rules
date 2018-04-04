@@ -32,7 +32,6 @@ final class ElementNameMinimalLengthSniff implements Sniff
     }
 
     /**
-     * @param File $file
      * @param int $position
      */
     public function process(File $file, $position): void
@@ -45,13 +44,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
         }
 
         $typeName = Naming::getTypeName($file, $position);
-        $message = sprintf(
-            self::ERROR_MESSAGE,
-            $typeName,
-            $elementName,
-            $elementNameLength,
-            $this->minLength
-        );
+        $message = sprintf(self::ERROR_MESSAGE, $typeName, $elementName, $elementNameLength, $this->minLength);
         $file->addError($message, $position, self::class);
     }
 
@@ -70,6 +63,6 @@ final class ElementNameMinimalLengthSniff implements Sniff
 
     private function isShortNameAllowed(string $variableName): bool
     {
-        return in_array($variableName, $this->allowedShortNames);
+        return in_array($variableName, $this->allowedShortNames, true);
     }
 }

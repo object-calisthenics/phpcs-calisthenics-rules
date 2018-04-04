@@ -1,7 +1,6 @@
 parameters:
     autoload_files:
+        - %currentWorkingDirectory%/tests/bootstrap.php
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
     excludes_analyse:
         - **/ObjectCalisthenics/Helper/Slevomat/**
-    ignoreErrors:
-        - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::register\(\) should return int\[\] but returns \(int\|string\)\[\]#'

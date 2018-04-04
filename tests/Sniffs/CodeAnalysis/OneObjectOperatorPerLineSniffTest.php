@@ -2,13 +2,45 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 
+use Iterator;
 use ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
-final class OneObjectOperatorPerLineSniffTest extends AbstractSniffTestCase
+/**
+ * @see OneObjectOperatorPerLineSniff
+ */
+final class OneObjectOperatorPerLineSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideCorrectCases()
+     */
+    public function testCorrectCases(string $file): void
     {
-        $this->runSniffTestForDirectory(OneObjectOperatorPerLineSniff::class, __DIR__);
+        $this->doTestCorrectFile($file);
+    }
+
+    public function provideCorrectCases(): Iterator
+    {
+        yield [__DIR__ . '/correct/correct.php.inc'];
+    }
+
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
+    {
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        yield [__DIR__ . '/wrong/wrong2.php.inc'];
+        yield [__DIR__ . '/wrong/wrong3.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }

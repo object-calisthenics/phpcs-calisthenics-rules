@@ -2,13 +2,26 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics\MethodPerClassLimit;
 
-use ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
+use Iterator;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
-final class MethodPerClassLimitSniffTest extends AbstractSniffTestCase
+final class MethodPerClassLimitSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
     {
-        $this->runSniffTestForDirectory(MethodPerClassLimitSniff::class, __DIR__);
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }

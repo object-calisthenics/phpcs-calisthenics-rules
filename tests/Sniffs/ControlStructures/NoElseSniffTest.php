@@ -2,13 +2,32 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\ControlStructures;
 
+use Iterator;
 use ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
-final class NoElseSniffTest extends AbstractSniffTestCase
+/**
+ * @see NoElseSniff
+ */
+final class NoElseSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
     {
-        $this->runSniffTestForDirectory(NoElseSniff::class, __DIR__);
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        yield [__DIR__ . '/wrong/wrong2.php.inc'];
+        yield [__DIR__ . '/wrong/wrong3.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }

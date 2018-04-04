@@ -64,10 +64,7 @@ final class ClassAnalyzer
 
         if (! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT], true)) {
             throw new NonClassTypeTokenTypeException(
-                sprintf(
-                    'Must be class, interface or trait. "%s" given.',
-                    ltrim($token['type'], 'T_')
-                )
+                sprintf('Must be class, interface or trait. "%s" given.', ltrim($token['type'], 'T_'))
             );
         }
     }

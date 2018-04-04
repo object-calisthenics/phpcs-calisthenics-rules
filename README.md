@@ -76,7 +76,7 @@ private function ensureIsAllInstanceOf(array $objects, string $type)
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L4-L6)
+- [in EasyCodingStandard NEON](/easy-coding-standard.yml#L4-L6)
 
 ---
 
@@ -135,7 +135,7 @@ $containerBuilder->addDefinition(SniffRunner::class);
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L11-L15)
+- [in EasyCodingStandard NEON](/easy-coding-standard.yml#L11-L15)
 
 ---
 
@@ -170,7 +170,7 @@ class EntityMailer
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L17-L20)
+- [in EasyCodingStandard NEON](/easy-coding-standard.yml#L17-L20)
 
 ---
 
@@ -264,7 +264,7 @@ class SomeClass
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
-- [in EasyCodingStandard NEON](/easy-coding-standard.neon#L22-L30)
+- [in EasyCodingStandard NEON](/easy-coding-standard.yml#L22-L30)
 
 ---
 
