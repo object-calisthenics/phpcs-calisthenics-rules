@@ -2,13 +2,31 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files\FunctionLengthSniff;
 
+use Iterator;
 use ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
-final class FunctionLengthSniffTest extends AbstractSniffTestCase
+/**
+ * @see FunctionLengthSniff
+ */
+final class FunctionLengthSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
     {
-        $this->runSniffTestForDirectory(FunctionLengthSniff::class, __DIR__);
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        yield [__DIR__ . '/wrong/wrong2.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }

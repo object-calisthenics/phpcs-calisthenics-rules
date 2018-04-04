@@ -63,7 +63,10 @@ parameters:
         SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
             - '*src/ObjectCalisthenics/Sniffs/*/*Sniff.php'
 
+        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff.Found: ~
+
     exclude_checkers:
+        - 'Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff'
         # Symfony ruleset
         - 'PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer'
         - 'PhpCsFixer\Fixer\Operator\NewWithBracesFixer'

@@ -3,9 +3,8 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics\MethodPerClassLimit;
 
 use ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
 
-final class MethodPerClassLimitSniffTest extends AbstractSniffTestCase
+final class MethodPerClassLimitSniffTest extends AbstractCheckerTestCase
 {
     public function test(): void
     {

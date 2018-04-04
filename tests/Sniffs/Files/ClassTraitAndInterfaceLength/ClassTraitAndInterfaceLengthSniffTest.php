@@ -3,9 +3,8 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Files\ClassTraitAndInterfaceLength;
 
 use ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
 
-final class ClassTraitAndInterfaceLengthSniffTest extends AbstractSniffTestCase
+final class ClassTraitAndInterfaceLengthSniffTest extends AbstractCheckerTestCase
 {
     public function test(): void
     {

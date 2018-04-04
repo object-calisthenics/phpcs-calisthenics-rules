@@ -2,13 +2,43 @@
 
 namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
 
+use Iterator;
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
-use ObjectCalisthenics\Tests\Sniffs\AbstractSniffTestCase;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
-final class NoSetterSniffTest extends AbstractSniffTestCase
+/**
+ * @see NoSetterSniff
+ */
+final class NoSetterSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideCorrectCases()
+     */
+    public function testCorrectCases(string $file): void
     {
-        $this->runSniffTestForDirectory(NoSetterSniff::class, __DIR__);
+        $this->doTestCorrectFile($file);
+    }
+
+    public function provideCorrectCases(): Iterator
+    {
+        yield [__DIR__ . '/correct/correct.php.inc'];
+    }
+
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
+    {
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }
