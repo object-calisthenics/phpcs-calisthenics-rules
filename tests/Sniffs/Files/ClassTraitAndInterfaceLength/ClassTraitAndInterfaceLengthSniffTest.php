@@ -2,12 +2,27 @@
 
 namespace ObjectCalisthenics\Tests\Sniffs\Files\ClassTraitAndInterfaceLength;
 
-use ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff;
+use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
 
 final class ClassTraitAndInterfaceLengthSniffTest extends AbstractCheckerTestCase
 {
-    public function test(): void
+    /**
+     * @dataProvider provideWrongCases()
+     */
+    public function testWrongToFixed(string $wrongFile): void
     {
-        $this->runSniffTestForDirectory(ClassTraitAndInterfaceLengthSniff::class, __DIR__);
+        $this->doTestWrongFile($wrongFile);
+    }
+
+    public function provideWrongCases(): \Iterator
+    {
+        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        yield [__DIR__ . '/wrong/wrong2.php.inc'];
+        yield [__DIR__ . '/wrong/wrong3.php.inc'];
+    }
+
+    protected function provideConfig(): string
+    {
+        return __DIR__ . '/config.yml';
     }
 }

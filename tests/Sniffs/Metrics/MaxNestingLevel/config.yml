@@ -1,2 +1,2 @@
 services:
-    :
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff: ~
