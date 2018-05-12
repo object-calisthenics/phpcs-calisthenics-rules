@@ -1,0 +1,34 @@
+services:
+    # All rules with default values
+
+    # Rule 1: Only X indentation level per function/method (with default values)
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff:
+        maxNestingLevel: 2
+
+    # Rule 2: There is no "else"
+    ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
+
+    # Rule 5: Only one object operator (->) per line (with default values)
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+        variablesHoldingAFluentInterface: ["$queryBuilder", "$containerBuilder"]
+        methodsStartingAFluentInterface: ["createQueryBuilder"]
+        methodsEndingAFluentInterface: ["execute", "getQuery"]
+
+    # Rule 6: Do not abbreviate  (with default values)
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
+        minLength: 3
+        allowedShortNames: ["i", "id", "to", "up"]
+
+    # Rule 7: Keep your classes small (with default values)
+    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+        maxLength: 200
+    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
+        maxLength: 20
+    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
+        maxCount: 10
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
+        maxCount: 10
+
+    # Rule 9: Do not Use Getters and Setters
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
+    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
