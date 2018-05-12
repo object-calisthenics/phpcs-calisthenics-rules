@@ -15,24 +15,17 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     /**
      * @var string[]
      */
-    public $variablesHoldingAFluentInterface = [
-        '$queryBuilder',
-        '$containerBuilder',
-    ];
+    public $variablesHoldingAFluentInterface = ['$queryBuilder', '$containerBuilder'];
 
     /**
      * @var string[]
      */
-    public $methodsStartingAFluentInterface = [
-        'createQueryBuilder',
-    ];
+    public $methodsStartingAFluentInterface = ['createQueryBuilder'];
 
     /**
      * @var string[]
      */
-    public $methodsEndingAFluentInterface = [
-        'execute', 'getQuery',
-    ];
+    public $methodsEndingAFluentInterface = ['execute', 'getQuery'];
 
     /**
      * @var File
