@@ -76,7 +76,7 @@ private function ensureIsAllInstanceOf(array $objects, string $type)
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
-- [in EasyCodingStandard YAML](/easy-coding-standard.yml#L12-L14)
+- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L12-L14)
 
 ---
 
@@ -135,7 +135,7 @@ $containerBuilder->addDefinition(SniffRunner::class);
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
-- [in EasyCodingStandard YAML](/easy-coding-standard.yml#L19-L23)
+- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L19-L23)
 
 ---
 
@@ -170,7 +170,7 @@ class EntityMailer
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
-- [in EasyCodingStandard YAML](/easy-coding-standard.yml#L25-L28)
+- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L25-L28)
 
 ---
 
@@ -264,7 +264,7 @@ class SomeClass
 #### :wrench: Configurable
 
 - [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
-- [in EasyCodingStandard YAML](/easy-coding-standard.yml#L30-L38)
+- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L30-L38)
 
 ---
 
