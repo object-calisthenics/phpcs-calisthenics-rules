@@ -20,19 +20,33 @@ composer require object-calisthenics/phpcs-calisthenics-rules
 
 ## Usage
 
-### Via CLI
+### In PHP_CodeSniffer
 
 ```bash
 vendor/bin/phpcs src tests -sp \
 --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
 ```
 
-### The Best to Start With: Single Sniff via CLI
+or
 
 ```bash
 vendor/bin/phpcs src tests -sp \
 --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml \
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
+```
+
+### In EasyCodingStandard
+
+```bash
+vendor/bin/ecs check src --config vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml
+```
+
+or
+
+```yml
+# easy-coding-standard.yml
+imports:
+    - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
 ```
 
 ---
@@ -67,10 +81,16 @@ private function ensureIsAllInstanceOf(array $objects, string $type)
 }
 ```
 
-#### Apply in CLI?
+#### Use Just This One?
 
 ```bash
 --sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff: ~
 ```
 
 #### :wrench: Configurable
@@ -103,10 +123,16 @@ if ($status === self::DONE) {
 $this->advance();
 ```
 
-#### Apply in CLI?
+#### Use Just This One?
 
 ```
 --sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
 ```
 
 ---
@@ -126,10 +152,16 @@ $containerBuilder = $this->getContainerBuilder();
 $containerBuilder->addDefinition(SniffRunner::class);
 ```
 
-#### Apply in CLI?
+#### Use Just This One?
 
 ```bash
 --sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff: ~
 ```
 
 #### :wrench: Configurable
@@ -161,10 +193,16 @@ class EntityMailer
 }
 ```
 
-#### Apply in CLI?
+#### Use Just This One?
 
 ```bash
 --sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~
 ```
 
 #### :wrench: Configurable
@@ -255,10 +293,19 @@ class SomeClass
 ```
 
 
-#### Apply in CLI?
+#### Use Just These Ones?
 
 ```bash
 --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff: ~
+    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff: ~
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff: ~
+    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff: ~
 ```
 
 #### :wrench: Configurable
@@ -309,10 +356,17 @@ class ImmutableBankAccount
 }
 ```
 
-#### Apply in CLI?
+#### Use Just These Ones?
 
 ```bash
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter
+```
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
+    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
 ```
 
 ---
