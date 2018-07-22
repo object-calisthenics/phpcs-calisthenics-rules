@@ -9,7 +9,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-## Unreleased
+## [v3.3.0] - 2018-07-22
+
+### Added
+
+- [#80] Add `allowedClasses` to `NoSetterSniff`, Thanks to [@TomasVotruba]
+
+### Changed
 
 - [#79] Bump composer versions, Thanks to [@TomasVotruba]
 
@@ -91,3 +97,4 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [@UFOMelkor]: https://github.com/UFOMelkor
 [@TomasVotruba]: https://github.com/TomasVotruba
 [@GaryJones]: https://github.com/GaryJones
+[#80]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/80
