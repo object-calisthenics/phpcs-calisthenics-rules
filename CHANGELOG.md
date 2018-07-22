@@ -38,7 +38,7 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 ### Added
 
 - [#64] [tests] use AbstractSniffRunner, no custom; bump to CodeSniffer 3.0, Thanks to [@TomasVotruba]
-- [#58] Easy coding standard enabled + simplify and unite sniff structure + move rule [#8] , Thanks to [@TomasVotruba]
+- [#58] Easy coding standard enabled + simplify and unite sniff structure + move rule 8 , Thanks to [@TomasVotruba]
 - [#51] Add minimal OneObjectOperatorPerLine config example, Thanks to [@UFOMelkor]
 - [#50] Add few tests, Thanks to [@TomasVotruba]
 - [#47] Make more sniff classes configurable, Thanks to [@TomasVotruba]
@@ -98,3 +98,7 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [@TomasVotruba]: https://github.com/TomasVotruba
 [@GaryJones]: https://github.com/GaryJones
 [#80]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/80
+[v3.3.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.2.1...v3.3.0
+[v3.2.1]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.2.0...v3.2.1
+[v3.2.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.1.0...v3.2.0
+[v3.1.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.0.0...v3.1.0
