@@ -4,7 +4,7 @@
     colors="true"
     verbose="true"
 >
-    <testsuite>
+    <testsuite name="main">
         <directory>tests</directory>
     </testsuite>
     <filter>
