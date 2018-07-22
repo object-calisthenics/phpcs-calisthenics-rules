@@ -369,6 +369,16 @@ services:
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
 ```
 
+#### :wrench: Configurable
+
+```yml
+# easy-coding-standard.yml
+services:
+    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
+        allowedClasses: 
+            - '*\DataObject'
+```
+
 ---
 
 ### Not Implemented Rules - Too Strict, Vague or Annoying

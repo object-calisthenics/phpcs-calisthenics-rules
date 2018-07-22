@@ -2,8 +2,10 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
+use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use SlevomatCodingStandard\Helpers\ClassHelper;
 
 final class NoSetterSniff implements Sniff
 {
@@ -16,7 +18,12 @@ final class NoSetterSniff implements Sniff
     /**
      * @var string
      */
-    private const SETTER_REGEX = '/^set[A-Z0-9]/';
+    private const SETTER_REGEX = '#^set[A-Z0-9]#';
+
+    /**
+     * @var string[]
+     */
+    public $allowedClasses = [];
 
     /**
      * @return int[]
@@ -31,19 +38,50 @@ final class NoSetterSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $declarationName = $file->getDeclarationName($position);
-        if ($declarationName === null) {
+        $methodName = $file->getDeclarationName($position);
+        if ($methodName === null) {
             return;
         }
 
-        if ($this->methodNameStartsWithSet($declarationName)) {
-            $file->addError(self::ERROR_MESSAGE, $position, self::class);
+        $className = $this->getClassName($file);
+        if ($this->shouldSkip($methodName, $className)) {
+            return;
         }
+
+        if (! (bool) Strings::match($methodName, self::SETTER_REGEX)) {
+            return;
+        }
+
+        $file->addError(self::ERROR_MESSAGE, $position, self::class);
     }
 
-    private function methodNameStartsWithSet(string $methodName): bool
+    private function getClassName(File $file): string
     {
-        return $methodName !== 'setUp'
-            && preg_match(self::SETTER_REGEX, $methodName) === 1;
+        $classTokenPosition = $file->findNext(T_CLASS, 0);
+
+        // anonymous class
+        if (! is_integer($classTokenPosition)) {
+            return 'anonymous';
+        }
+
+        $className = ClassHelper::getFullyQualifiedName($file, $classTokenPosition);
+
+        return ltrim($className, '\\');
+    }
+
+    private function shouldSkip(string $methodName, string $className): bool
+    {
+        // not really a setter, but usually test "setup" method
+        if ($methodName === 'setUp') {
+            return true;
+        }
+
+        foreach ($this->allowedClasses as $allowedClass) {
+            if (fnmatch($allowedClass, $className, FNM_NOESCAPE)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
