@@ -14,7 +14,8 @@
         "phpstan/phpstan": "^0.10.1",
         "symplify/easy-coding-standard-tester": "^4.5",
         "symplify/coding-standard": "^4.5",
-        "tracy/tracy": "^2.5"
+        "tracy/tracy": "^2.5",
+        "symplify/changelog-linker": "^4.5"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +31,8 @@
         "complete-check": ["@phpstan", "@check-cs", "phpunit"],
         "phpstan": "phpstan analyze src --level max",
         "check-cs": "ecs check src tests",
-        "fix-cs": "ecs check src tests --fix"
+        "fix-cs": "ecs check src tests --fix",
+        "changelog": "changelog-linker dump-merges --in-categories"
     },
     "extra": {
         "branch-alias": {
