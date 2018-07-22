@@ -156,7 +156,7 @@ $this->advance();
 In PHP_CodeSniffer:
 
 ```bash
-vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.ControlStructures.NoElse
 ```
 
 In ECS:
@@ -381,7 +381,7 @@ class SomeClass
 In PHP_CodeSniffer:
 
 ```bash
-vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLength,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimit
 ```
 
 In ECS:
