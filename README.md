@@ -10,6 +10,7 @@ Object Calisthenics are **set of rules in object-oriented code, that focuses of 
 
 [Read post by *William Durand*](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [check presentation by *Guilherme Blanco*](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php).
 
+
 ## Install
 
 ```sh
@@ -17,6 +18,15 @@ composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ```
 
 ## Usage
+
+If you know what you want, jump right to the specific rule:
+
+- [1. Only X Level of Indentation per Method](#1-only-x-level-of-indentation-per-method)
+- [2. Do Not Use "else" Keyword](#2-do-not-use-else-keyword)
+- [5. Use Only One Object Operator (->) per Line](#5-use-only-one-object-operator---per-line)
+- [6. Do not Abbreviate](#6-do-not-abbreviate)
+- [7. Keep Your Classes Small](#7-keep-your-classes-small)
+- [9. Do not Use Getters and Setters](#9-do-not-use-getters-and-setters)
 
 ### In [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
