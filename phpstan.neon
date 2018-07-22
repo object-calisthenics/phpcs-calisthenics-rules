@@ -4,3 +4,8 @@ parameters:
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
     excludes_analyse:
         - **/ObjectCalisthenics/Helper/Slevomat/**
+
+    ignoreErrors:
+        # false float positive
+        - '#Parameter \#1 \$start of method ObjectCalisthenics\\Sniffs\\CodeAnalysis\\OneObjectOperatorPerLineSniff::ignoreWhitespace\(\) expects int, float\|int given#'
+        - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::subtractFunctionNestingLevel\(\) should return int but returns float\|int#'

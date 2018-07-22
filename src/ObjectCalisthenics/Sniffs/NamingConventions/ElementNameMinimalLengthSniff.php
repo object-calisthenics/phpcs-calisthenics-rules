@@ -37,7 +37,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
     public function process(File $file, $position): void
     {
         $elementName = Naming::getElementName($file, $position);
-        $elementNameLength = mb_strlen($elementName);
+        $elementNameLength = (int) mb_strlen($elementName);
 
         if ($this->shouldBeSkipped($elementNameLength, $elementName)) {
             return;

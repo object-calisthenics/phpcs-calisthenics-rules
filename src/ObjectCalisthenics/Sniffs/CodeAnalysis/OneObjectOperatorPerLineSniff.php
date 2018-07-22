@@ -146,7 +146,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
             return in_array($token['token']['content'], $methods, true);
         });
         if (count($calls) > 0) {
-            return array_search(end($calls), $this->callerTokens, true);
+            return (int) array_search(end($calls), $this->callerTokens, true);
         }
 
         return -2;
