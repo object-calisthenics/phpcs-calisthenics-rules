@@ -15,7 +15,7 @@ Object Calisthenics are **set of rules in object-oriented code, that focuses of 
 ## Install
 
 ```sh
-composer require object-calisthenics/phpcs-calisthenics-rules
+composer require object-calisthenics/phpcs-calisthenics-rules --dev
 ```
 
 ## Usage
