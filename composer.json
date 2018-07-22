@@ -30,5 +30,10 @@
         "phpstan": "phpstan analyze src --level max",
         "check-cs": "ecs check src tests",
         "fix-cs": "ecs check src tests --fix"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.3-dev"
+        }
     }
 }
