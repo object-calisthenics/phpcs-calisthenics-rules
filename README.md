@@ -6,11 +6,9 @@
 
 Object Calisthenics are **set of rules in object-oriented code, that focuses of maintainability, readability, testability and comprehensibility**. We're **pragmatic first** - they are easy to use all together or one by one.
 
-
 ### Why Should You Use This in Your Project?
 
 [Read post by *William Durand*](http://williamdurand.fr/2013/06/03/object-calisthenics/) or [check presentation by *Guilherme Blanco*](https://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php).
-
 
 ## Install
 
@@ -20,14 +18,16 @@ composer require object-calisthenics/phpcs-calisthenics-rules --dev
 
 ## Usage
 
-### In PHP_CodeSniffer
+### In [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+
+Check all rules
 
 ```bash
 vendor/bin/phpcs src tests -sp \
 --standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
 ```
 
-or
+or just one rule (more often the case)
 
 ```bash
 vendor/bin/phpcs src tests -sp \
@@ -35,7 +35,7 @@ vendor/bin/phpcs src tests -sp \
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
 ```
 
-### In EasyCodingStandard
+### In [EasyCodingStandard](https://github.com/symplify/easyCodingStandard/)
 
 ```bash
 vendor/bin/ecs check src --config vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml
@@ -44,9 +44,15 @@ vendor/bin/ecs check src --config vendor/object-calisthenics/phpcs-calisthenics-
 or
 
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 imports:
     - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
+```
+
+then
+
+```bash
+vendor/bin/ecs check src
 ```
 
 ---
@@ -81,22 +87,44 @@ private function ensureIsAllInstanceOf(array $objects, string $type)
 }
 ```
 
-#### Use Just This One?
+#### Use Only This Rule?
+
+In PHP_CodeSniffer:
 
 ```bash
---sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
 ```
 
+In ECS:
+
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff: ~
 ```
 
 #### :wrench: Configurable
 
-- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L3-L8)
-- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L12-L14)
+In PHP_CodeSniffer:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="my-project">
+    <rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel">
+        <properties>
+            <property name="maxNestingLevel" value="2"/>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+In ECS:
+
+```yaml
+services:
+    ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff:
+        maxNestingLevel: 2
+```
 
 ---
 
@@ -123,14 +151,18 @@ if ($status === self::DONE) {
 $this->advance();
 ```
 
-#### Use Just This One?
+#### Use Only This Rule?
 
+In PHP_CodeSniffer:
+
+```bash
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
 ```
---sniffs=ObjectCalisthenics.ControlStructures.NoElseSniff
-```
+
+In ECS:
 
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
 ```
@@ -152,22 +184,48 @@ $containerBuilder = $this->getContainerBuilder();
 $containerBuilder->addDefinition(SniffRunner::class);
 ```
 
-#### Use Just This One?
+#### Use Only This Rule?
+
+In PHP_CodeSniffer:
 
 ```bash
---sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
 ```
 
+In ECS:
+
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff: ~
 ```
 
 #### :wrench: Configurable
 
-- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L13-L20)
-- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L19-L23)
+In PHP_CodeSniffer:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="my-project">
+    <rule ref="ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine">
+        <properties>
+            <property name="variablesHoldingAFluentInterface" type="array" value="$queryBuilder,$containerBuilder"/>
+            <property name="methodsStartingAFluentInterface" type="array" value="createQueryBuilder"/>
+            <property name="methodsEndingAFluentInterface" type="array" value="execute,getQuery"/>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+In ECS:
+
+```yaml
+services:
+    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+        variablesHoldingAFluentInterface: ["$queryBuilder", "$containerBuilder"]
+        methodsStartingAFluentInterface: ["createQueryBuilder"]
+        methodsEndingAFluentInterface: ["execute", "getQuery"]
+```
 
 ---
 
@@ -193,22 +251,47 @@ class EntityMailer
 }
 ```
 
-#### Use Just This One?
+#### Use Only This Rule?
+
+In PHP_CodeSniffer:
 
 ```bash
---sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.NamingConventions.ElementNameMinimalLength
 ```
 
+In ECS:
+
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~
 ```
 
 #### :wrench: Configurable
 
-- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L22-L28)
-- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L25-L28)
+In PHP_CodeSniffer:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="my-project">
+    <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength">
+        <properties>
+            <property name="minLength" value="3"/>
+            <property name="allowedShortNames" type="array" value="i,id,to,up"/>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+In ECS:
+
+```yaml
+# ecs.yml
+services:
+    ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
+        minLength: 3
+        allowedShortNames: ["i", "id", "to", "up"]
+```
 
 ---
 
@@ -293,14 +376,18 @@ class SomeClass
 ```
 
 
-#### Use Just These Ones?
+#### Use Only This Rule?
+
+In PHP_CodeSniffer:
 
 ```bash
---sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLength,ObjectCalisthenics.Files.FunctionLengthSniff,ObjectCalisthenics.Metrics.MethodPerClassLimit,ObjectCalisthenics.Metrics.PropertyPerClassLimitSniff
 ```
 
+In ECS:
+
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff: ~
     ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff: ~
@@ -310,8 +397,48 @@ services:
 
 #### :wrench: Configurable
 
-- [in CodeSniffer XML](/src/ObjectCalisthenics/ruleset.xml#L30-L50)
-- [in EasyCodingStandard YAML](/config/object-calisthenics.yml#L30-L38)
+In PHP_CodeSniffer:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="my-project">
+    <rule ref="ObjectCalisthenics.Files.ClassTraitAndInterfaceLength">
+        <properties>
+            <property name="maxLength" value="200"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Files.FunctionLength">
+        <properties>
+            <property name="maxLength" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
+        <properties>
+            <property name="maxCount" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+        <properties>
+            <property name="maxCount" value="10"/>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+In ECS:
+
+```yaml
+# ecs.yml
+services:
+    ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+        maxLength: 200
+    ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
+        maxLength: 20
+    ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
+        maxCount: 10
+    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
+        maxCount: 10
+```
 
 ---
 
@@ -356,14 +483,18 @@ class ImmutableBankAccount
 }
 ```
 
-#### Use Just These Ones?
+#### Use Only This Rule?
+
+In PHP_CodeSniffer:
 
 ```bash
---sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter
+vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty,ObjectCalisthenics.NamingConventions.NoSetter
 ```
 
+In ECS:
+
 ```yml
-# easy-coding-standard.yml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
@@ -371,8 +502,23 @@ services:
 
 #### :wrench: Configurable
 
-```yml
-# easy-coding-standard.yml
+In PHP_CodeSniffer:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="my-project">
+    <rule ref="ObjectCalisthenics.NamingConventions.NoSetter">
+        <properties>
+            <property name="allowedClasses" type="array" value="*\DataObject"/>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+In ECS:
+
+```yaml
+# ecs.yml
 services:
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
         allowedClasses: 
