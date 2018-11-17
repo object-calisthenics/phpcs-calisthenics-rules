@@ -18,11 +18,6 @@ final class MaxNestingLevelSniff implements Sniff
     public $maxNestingLevel = 2;
 
     /**
-     * @var File
-     */
-    private $file;
-
-    /**
      * @var int
      */
     private $position;
@@ -33,14 +28,19 @@ final class MaxNestingLevelSniff implements Sniff
     private $nestingLevel;
 
     /**
+     * @var int
+     */
+    private $currentPtr;
+
+    /**
      * @var mixed[]
      */
     private $ignoredScopeStack = [];
 
     /**
-     * @var int
+     * @var File
      */
-    private $currentPtr;
+    private $file;
 
     /**
      * @return int[]|string[]
@@ -74,17 +74,6 @@ final class MaxNestingLevelSniff implements Sniff
         $this->handleNestingLevel($this->nestingLevel);
     }
 
-    private function handleNestingLevel(int $nestingLevel): void
-    {
-        if ($nestingLevel > $this->maxNestingLevel) {
-            $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
-
-            $error = sprintf(self::ERROR_MESSAGE, $this->maxNestingLevel, $levelPluralization, $nestingLevel);
-
-            $this->file->addError($error, $this->position, self::class);
-        }
-    }
-
     /**
      * @param mixed[] $tokens
      */
@@ -97,6 +86,25 @@ final class MaxNestingLevelSniff implements Sniff
             $nestedToken = $tokens[$this->currentPtr];
 
             $this->handleToken($nestedToken);
+        }
+    }
+
+    /**
+     * @param mixed[] $token
+     */
+    private function subtractFunctionNestingLevel(array $token): int
+    {
+        return $this->nestingLevel - $token['level'] - 1;
+    }
+
+    private function handleNestingLevel(int $nestingLevel): void
+    {
+        if ($nestingLevel > $this->maxNestingLevel) {
+            $levelPluralization = $this->maxNestingLevel > 1 ? 's' : '';
+
+            $error = sprintf(self::ERROR_MESSAGE, $this->maxNestingLevel, $levelPluralization, $nestingLevel);
+
+            $this->file->addError($error, $this->position, self::class);
         }
     }
 
@@ -116,14 +124,6 @@ final class MaxNestingLevelSniff implements Sniff
         if ($this->nestingLevel < $level) {
             $this->nestingLevel = $level;
         }
-    }
-
-    /**
-     * @param mixed[] $token
-     */
-    private function subtractFunctionNestingLevel(array $token): int
-    {
-        return $this->nestingLevel - $token['level'] - 1;
     }
 
     /**
