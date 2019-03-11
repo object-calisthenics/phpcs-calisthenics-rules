@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
-use ObjectCalisthenics\Helper\Naming;
+use ObjectCalisthenics\Helper\NamingHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
@@ -36,14 +36,14 @@ final class ElementNameMinimalLengthSniff implements Sniff
      */
     public function process(File $file, $position): void
     {
-        $elementName = Naming::getElementName($file, $position);
+        $elementName = NamingHelper::getElementName($file, $position);
         $elementNameLength = mb_strlen($elementName);
 
         if ($this->shouldBeSkipped($elementNameLength, $elementName)) {
             return;
         }
 
-        $typeName = Naming::getTypeName($file, $position);
+        $typeName = NamingHelper::getTypeName($file, $position);
         $message = sprintf(self::ERROR_MESSAGE, $typeName, $elementName, $elementNameLength, $this->minLength);
         $file->addError($message, $position, self::class);
     }

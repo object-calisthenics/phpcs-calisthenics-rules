@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Tests\Helper;
 
-use ObjectCalisthenics\Helper\Naming;
+use ObjectCalisthenics\Helper\NamingHelper;
 use ObjectCalisthenics\Tests\FileFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -37,13 +37,13 @@ final class NamingTest extends TestCase
     {
         $file = $this->fileFactory->createFile(__DIR__ . '/NamingSource/SomeFile.php.inc');
 
-        $name = Naming::getElementName($file, self::CLASS_POSITION);
+        $name = NamingHelper::getElementName($file, self::CLASS_POSITION);
         $this->assertSame('SomeClass', $name);
 
-        $name = Naming::getElementName($file, self::CONSTANT_POSITION);
+        $name = NamingHelper::getElementName($file, self::CONSTANT_POSITION);
         $this->assertSame('SOME_CONSTANT', $name);
 
-        $name = Naming::getElementName($file, self::PROPERTY_POSITION);
+        $name = NamingHelper::getElementName($file, self::PROPERTY_POSITION);
         $this->assertSame('someProperty', $name);
     }
 }

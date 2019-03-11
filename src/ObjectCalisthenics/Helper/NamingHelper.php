@@ -5,7 +5,7 @@ namespace ObjectCalisthenics\Helper;
 use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
 
-final class Naming
+final class NamingHelper
 {
     /**
      * @var string[]
