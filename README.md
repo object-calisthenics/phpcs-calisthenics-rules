@@ -28,16 +28,11 @@ If you know what you want, jump right to the specific rule:
 - [7. Keep Your Classes Small](#7-keep-your-classes-small)
 - [9. Do not Use Getters and Setters](#9-do-not-use-getters-and-setters)
 
-### In [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
-Check all rules
 
-```bash
-vendor/bin/phpcs src tests -sp \
---standard=vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics/ruleset.xml
-```
+## How to quickly check 1 rule?
 
-or just one rule (more often the case)
+In [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 ```bash
 vendor/bin/phpcs src tests -sp \
@@ -45,18 +40,12 @@ vendor/bin/phpcs src tests -sp \
 --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
 ```
 
-### In [EasyCodingStandard](https://github.com/symplify/easyCodingStandard/)
-
-```bash
-vendor/bin/ecs check src --config vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml
-```
-
-or
+In [EasyCodingStandard](https://github.com/symplify/easyCodingStandard/)
 
 ```yml
-# ecs.yml
-imports:
-    - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
+# ecs.yaml
+services:
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
 ```
 
 then
