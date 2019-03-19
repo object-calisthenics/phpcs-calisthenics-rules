@@ -9,6 +9,23 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+## [v3.5.0] - 2019-03-19
+
+### Added
+
+- [#88] Add PHP 7.3 to Travis, Thanks to [@jeroennoten]
+
+### Changed
+
+- [#87] Update slevomat/coding-standard to version 5.0, Thanks to [@jeroennoten]
+
+## [v3.4.0] - 2018-11-17
+
+### Changed
+
+- [#84] Bump dependencies, Thanks to [@TomasVotruba]
+- [#81] README: put examples with code right into README to prevent jumping to miss-located config anchors, Thanks to [@TomasVotruba]
+
 ## [v3.3.0] - 2018-07-22
 
 ### Added
@@ -102,3 +119,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [v3.2.1]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.2.0...v3.2.1
 [v3.2.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.0.0...v3.1.0
+[#88]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/88
+[#87]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/87
+[#84]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/84
+[#81]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/81
+[@jeroennoten]: https://github.com/jeroennoten
