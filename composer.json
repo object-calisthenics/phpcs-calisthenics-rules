@@ -10,12 +10,12 @@
         "slevomat/coding-standard": "^5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^7.5|^8.0",
         "phpstan/phpstan": "^0.11.4",
         "symplify/easy-coding-standard-tester": "^5.4",
         "symplify/coding-standard": "^5.4",
-        "tracy/tracy": "^2.5",
-        "symplify/changelog-linker": "^5.4"
+        "symplify/changelog-linker": "^5.4",
+        "tracy/tracy": "^2.5"
     },
     "autoload": {
         "psr-4": {
