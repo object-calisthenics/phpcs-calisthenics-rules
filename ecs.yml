@@ -32,12 +32,11 @@ parameters:
 
         PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff.FoundInWhileCondition: ~
 
-    exclude_checkers:
-        - 'Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff'
+        Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff: ~
         # Symfony ruleset
-        - 'PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer'
-        - 'PhpCsFixer\Fixer\Operator\NewWithBracesFixer'
-        - 'PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer'
+        PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer: ~
+        PhpCsFixer\Fixer\Operator\NewWithBracesFixer: ~
+        PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
         # mutually excluded
-        - 'SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff'
-        - 'PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer'
+        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff: ~
+        PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer: ~
