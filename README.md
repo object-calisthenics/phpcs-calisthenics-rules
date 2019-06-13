@@ -23,7 +23,7 @@ If you know what you want, jump right to the specific rule:
 
 - [1. Only X Level of Indentation per Method](#1-only-x-level-of-indentation-per-method)
 - [2. Do Not Use "else" Keyword](#2-do-not-use-else-keyword)
-- [5. Use Only One Object Operator (->) per Line](#5-use-only-one-object-operator---per-line)
+- [5. Use Only One Object Operator (->) per Statement](#5-use-only-one-object-operator---per-line)
 - [6. Do not Abbreviate](#6-do-not-abbreviate)
 - [7. Keep Your Classes Small](#7-keep-your-classes-small)
 - [9. Do not Use Getters and Setters](#9-do-not-use-getters-and-setters)
@@ -168,7 +168,7 @@ services:
 
 ---
 
-### 5. [Use Only One Object Operator (`->`) per Line](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
+### 5. [Use Only One Object Operator (`->`) per Statement](http://williamdurand.fr/2013/06/03/object-calisthenics/#5-one-dot-per-line)
 
 :x:
 
