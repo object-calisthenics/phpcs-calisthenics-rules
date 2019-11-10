@@ -28,8 +28,6 @@ If you know what you want, jump right to the specific rule:
 - [7. Keep Your Classes Small](#7-keep-your-classes-small)
 - [9. Do not Use Getters and Setters](#9-do-not-use-getters-and-setters)
 
-
-
 ## How to quickly check 1 rule?
 
 In [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
@@ -97,7 +95,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Metrics.MaxNestingLevel
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff: ~
 ```
@@ -161,7 +159,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.ControlStructures.NoElse
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
 ```
@@ -194,7 +192,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.CodeAnalysis.OneObjectOperatorP
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff: ~
 ```
@@ -261,7 +259,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.NamingConventions.ElementNameMi
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~
 ```
@@ -285,7 +283,7 @@ In PHP_CodeSniffer:
 In ECS:
 
 ```yaml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff:
         minLength: 3
@@ -386,7 +384,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Files.ClassTraitAndInterfaceLen
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff: ~
     ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff: ~
@@ -427,7 +425,7 @@ In PHP_CodeSniffer:
 In ECS:
 
 ```yaml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
         maxLength: 200
@@ -493,7 +491,7 @@ vendor/bin/phpcs ... --sniffs=ObjectCalisthenics.Classes.ForbiddenPublicProperty
 In ECS:
 
 ```yml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
@@ -517,7 +515,7 @@ In PHP_CodeSniffer:
 In ECS:
 
 ```yaml
-# ecs.yml
+# ecs.yaml
 services:
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
         allowedClasses: 

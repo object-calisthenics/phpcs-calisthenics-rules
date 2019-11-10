@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions\NoSetter;
 
 use Iterator;
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
@@ -39,6 +39,6 @@ final class NoSetterSniffTest extends AbstractCheckerTestCase
 
     protected function provideConfig(): string
     {
-        return __DIR__ . '/config.yml';
+        return __DIR__ . '/config.yaml';
     }
 }

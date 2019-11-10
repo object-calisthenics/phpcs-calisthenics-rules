@@ -1,10 +1,11 @@
 imports:
-    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/php70.yml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/php71.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/symfony.yaml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/php70.yaml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/php71.yaml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/psr12.yaml' }
     # custom
-    - { resource: 'vendor/symplify/easy-coding-standard/config/common.yml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/symplify.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/common.yaml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/set/symplify.yaml' }
     - { resource: 'config/object-calisthenics.yml' }
 
 services:
