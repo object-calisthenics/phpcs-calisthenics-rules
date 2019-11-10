@@ -15,7 +15,8 @@
         "symplify/easy-coding-standard-tester": "^6.1",
         "symplify/coding-standard": "^6.1",
         "symplify/changelog-linker": "^6.1",
-        "tracy/tracy": "^2.7"
+        "tracy/tracy": "^2.7",
+        "rector/rector": "^0.5.21"
     },
     "autoload": {
         "psr-4": {
