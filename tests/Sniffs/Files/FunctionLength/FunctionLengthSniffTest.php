@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ObjectCalisthenics\Tests\Sniffs\Files\FunctionLengthSniff;
+namespace ObjectCalisthenics\Tests\Sniffs\Files\FunctionLength;
 
 use Iterator;
 use ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff;

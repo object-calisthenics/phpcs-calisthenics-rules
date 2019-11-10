@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ObjectCalisthenics\tests\Sniffs\NamingConventions;
+namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions\NoSetter;
 
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
@@ -18,6 +18,6 @@ final class ConfiguredTest extends AbstractCheckerTestCase
 
     protected function provideConfig(): string
     {
-        return __DIR__ . '/skipping-config.yml';
+        return __DIR__ . '/skipping-config.yaml';
     }
 }

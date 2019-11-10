@@ -2,6 +2,7 @@
 
 namespace ObjectCalisthenics\Tests;
 
+use Nette\Utils\FileSystem;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Ruleset;
@@ -30,29 +31,10 @@ final class FileFactory
         $ruleset = new Ruleset($config);
 
         $file = new File($filePath, $ruleset, $config);
-        $file->setContent(file_get_contents($filePath));
+        $fileContent = FileSystem::read($filePath);
+        $file->setContent($fileContent);
         $file->parse();
 
         return $file;
-    }
-
-    public function createFileWithSniffClass(string $filePath, string $sniffClass): File
-    {
-        $config = new Config;
-        $ruleset = $this->createRulesetWithConfigAndSniffClass($sniffClass, $config);
-
-        $file = new File($filePath, $ruleset, $config);
-        $file->setContent(file_get_contents($filePath));
-        $file->parse();
-
-        return $file;
-    }
-
-    private function createRulesetWithConfigAndSniffClass(string $sniffClass, Config $config): Ruleset
-    {
-        $config->sniffs = [$sniffClass];
-        $config->standards = ['ObjectCalisthenics'];
-
-        return new Ruleset($config);
     }
 }
