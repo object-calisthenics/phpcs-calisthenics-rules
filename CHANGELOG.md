@@ -9,15 +9,19 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+## [v3.6.0]
+
+- [#94] Bump to PHP 7.2, Thanks to [@TomasVotruba]
+- [#92] Per Line -> Per Statement, Thanks to [@afilina]
+
+## [v3.5.1] - 2019-05-15
+
+- [#89] Allow the usage of nette/utils ^3.0, Thanks to [@jeromegamez]
+
 ## [v3.5.0] - 2019-03-19
 
-### Added
-
-- [#88] Add PHP 7.3 to Travis, Thanks to [@jeroennoten]
-
-### Changed
-
 - [#87] Update slevomat/coding-standard to version 5.0, Thanks to [@jeroennoten]
+- [#88] Add PHP 7.3 to Travis, Thanks to [@jeroennoten]
 
 ## [v3.4.0] - 2018-11-17
 
@@ -124,3 +128,10 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#84]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/84
 [#81]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/81
 [@jeroennoten]: https://github.com/jeroennoten
+[#94]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/94
+[#92]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/92
+[#89]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/pull/89
+[v3.6.0]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.5.1...v3.6.0
+[v3.5.1]: https://github.com/object-calisthenics/phpcs-calisthenics-rules/compare/v3.5.0...v3.5.1
+[@jeromegamez]: https://github.com/jeromegamez
+[@afilina]: https://github.com/afilina
