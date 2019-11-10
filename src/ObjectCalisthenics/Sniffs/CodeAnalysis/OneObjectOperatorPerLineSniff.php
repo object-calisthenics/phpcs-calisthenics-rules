@@ -186,7 +186,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
      */
     private function computeLastCallOfAnyFrom(array $methods): int
     {
-        $calls = array_filter($this->callerTokens, function (array $token) use ($methods) {
+        $calls = array_filter($this->callerTokens, function (array $token) use ($methods): bool {
             return in_array($token['token']['content'], $methods, true);
         });
         if (count($calls) > 0) {

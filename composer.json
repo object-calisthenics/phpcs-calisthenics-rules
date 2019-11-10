@@ -16,7 +16,8 @@
         "symplify/coding-standard": "^6.1",
         "symplify/changelog-linker": "^6.1",
         "tracy/tracy": "^2.7",
-        "rector/rector": "^0.5.21"
+        "rector/rector": "^0.5.21",
+        "symplify/phpstan-extensions": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +31,7 @@
     },
     "scripts": {
         "complete-check": ["@phpstan", "@check-cs", "phpunit"],
-        "phpstan": "phpstan analyze src --level max",
+        "phpstan": "phpstan analyze src tests --error-format symplify",
         "check-cs": "ecs check src tests",
         "fix-cs": "ecs check src tests --fix",
         "changelog": "changelog-linker dump-merges --in-categories"

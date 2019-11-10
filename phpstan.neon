@@ -1,4 +1,11 @@
+includes:
+    - 'vendor/symplify/phpstan-extensions/config/config.neon'
+
 parameters:
+    # to allow installing with various phsptan versions without reporting old errors here
+    reportUnmatchedIgnoredErrors: false
+    level: max
+
     autoload_files:
         - %currentWorkingDirectory%/tests/bootstrap.php
         - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
@@ -7,5 +14,4 @@ parameters:
 
     ignoreErrors:
         # false float positive
-        - '#Parameter \#1 \$start of method ObjectCalisthenics\\Sniffs\\CodeAnalysis\\OneObjectOperatorPerLineSniff::ignoreWhitespace\(\) expects int, float\|int given#'
         - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::subtractFunctionNestingLevel\(\) should return int but returns float\|int#'
