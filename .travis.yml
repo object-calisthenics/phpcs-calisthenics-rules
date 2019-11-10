@@ -57,6 +57,9 @@ jobs:
                 - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
                 - php php-coveralls.phar --verbose
 
+    allow_failures:
+        - php: '7.4snapshot'
+
 matrix:
     fast_finish: true
 
