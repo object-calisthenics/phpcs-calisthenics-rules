@@ -7,10 +7,7 @@ parameters:
     level: max
 
     autoload_files:
-        - %currentWorkingDirectory%/tests/bootstrap.php
-        - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
-    excludes_analyse:
-        - **/ObjectCalisthenics/Helper/Slevomat/**
+        - 'tests/bootstrap.php'
 
     ignoreErrors:
         # false float positive
