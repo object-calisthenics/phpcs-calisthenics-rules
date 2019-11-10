@@ -1,11 +1,9 @@
 language: php
 
-sudo: false
-
 php:
-  - 7.1
   - 7.2
   - 7.3
+  - '7.4snapshot'
 
 install:
   # install composer dependencies
@@ -14,12 +12,16 @@ install:
 script:
   # run tests
   - vendor/bin/phpunit --coverage-clover coverage.xml
+
   # turn off XDebug
   - phpenv config-rm xdebug.ini || return 0
+
   # check coding standard (defined in composer.json "scripts" section)
   - composer check-cs
+
   # check with phpstan (defined in composer.json "scripts" section)
   - composer phpstan
+
   # run PHP_CodeSniffer with ruleset
   - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php
 
@@ -31,5 +33,5 @@ after_script:
 
 # do not send success notifications, they have no value
 notifications:
-  email:
-    on_success: never
+    email:
+        on_success: never
