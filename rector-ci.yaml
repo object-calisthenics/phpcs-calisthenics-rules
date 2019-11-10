@@ -1,3 +1,6 @@
 parameters:
     sets:
         - 'dead-code'
+
+    autoload_paths:
+        - 'tests/bootstrap.php'

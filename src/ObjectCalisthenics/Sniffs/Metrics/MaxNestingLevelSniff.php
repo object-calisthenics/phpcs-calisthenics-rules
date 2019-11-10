@@ -79,8 +79,6 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private function iterateTokens(int $start, int $end, array $tokens): void
     {
-        $this->currentPtr = $start + 1;
-
         // Find the maximum nesting level of any token in the function.
         for ($this->currentPtr = ($start + 1); $this->currentPtr < $end; ++$this->currentPtr) {
             $nestedToken = $tokens[$this->currentPtr];
