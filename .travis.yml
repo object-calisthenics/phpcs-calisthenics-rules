@@ -1,3 +1,4 @@
+os: linux
 language: php
 
 php:
@@ -5,31 +6,63 @@ php:
   - 7.3
   - '7.4snapshot'
 
+before_install:
+    # turn off XDebug
+    - phpenv config-rm xdebug.ini || return 0
+
 install:
-  # install composer dependencies
-  - composer install
+    - composer install --no-progress
 
-script:
-  # run tests
-  - vendor/bin/phpunit --coverage-clover coverage.xml
+jobs:
+    include:
+        -
+            stage: test
+            name: ECS
+            php: 7.3
+            script:
+                - composer check-cs
 
-  # turn off XDebug
-  - phpenv config-rm xdebug.ini || return 0
+        -
+            name: PHPStan
+            php: 7.3
+            script:
+                - composer phpstan
 
-  # check coding standard (defined in composer.json "scripts" section)
-  - composer check-cs
+        -
+            name: Rector
+            php: 7.3
+            script:
+                - vendor/bin/rector process src tests --dry-run --config rector-ci.yaml
 
-  # check with phpstan (defined in composer.json "scripts" section)
-  - composer phpstan
+        -
+            name: 'Unit Tests'
+            script:
+                - vendor/bin/phpunit
 
-  # run PHP_CodeSniffer with ruleset
-  - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php
+        -
+            name: 'Run PHP_CodeSniffer'
+            php: 7.3
+            script:
+                - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php
 
-after_script:
-  # upload coverage.xml file to Coveralls to analyze it
-  - |
-    wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-    php php-coveralls.phar --verbose
+        -
+            stage: coverage
+            name: 'Test Coverage'
+            if: branch = master AND type = push
+            before_install:
+                - echo "keep xdebug"
+            script:
+                - vendor/bin/phpunit --coverage-clover coverage.xml
+                # upload coverage.xml file to Coveralls to analyze it
+                - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+                - php php-coveralls.phar --verbose
+
+matrix:
+    fast_finish: true
+
+cache:
+    directories:
+        - $HOME/.composer/cache
 
 # do not send success notifications, they have no value
 notifications:
