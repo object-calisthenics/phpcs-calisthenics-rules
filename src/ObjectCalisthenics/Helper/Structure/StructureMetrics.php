@@ -12,7 +12,7 @@ final class StructureMetrics
         $token = $tokens[$position];
 
         // Skip function without body.
-        if (isset($token['scope_opener']) === false) {
+        if (! isset($token['scope_opener'])) {
             return 0;
         }
 

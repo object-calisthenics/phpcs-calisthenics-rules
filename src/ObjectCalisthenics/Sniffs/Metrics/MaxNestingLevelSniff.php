@@ -64,7 +64,7 @@ final class MaxNestingLevelSniff implements Sniff
         $token = $tokens[$position];
 
         // Ignore abstract methods.
-        if (isset($token['scope_opener']) === false) {
+        if (! isset($token['scope_opener'])) {
             return;
         }
 

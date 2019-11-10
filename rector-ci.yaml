@@ -1,6 +1,7 @@
 parameters:
     sets:
         - 'dead-code'
+        - 'code-quality'
 
     autoload_paths:
         - 'tests/bootstrap.php'

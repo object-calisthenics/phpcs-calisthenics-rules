@@ -54,11 +54,7 @@ final class ElementNameMinimalLengthSniff implements Sniff
             return true;
         }
 
-        if ($this->isShortNameAllowed($elementName)) {
-            return true;
-        }
-
-        return false;
+        return $this->isShortNameAllowed($elementName);
     }
 
     private function isShortNameAllowed(string $variableName): bool
