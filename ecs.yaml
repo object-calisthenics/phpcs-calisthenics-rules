@@ -34,6 +34,8 @@ parameters:
         PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff.FoundInWhileCondition: ~
 
         Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff: ~
+        Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
+            - '*src/ObjectCalisthenics/Sniffs/CodeAnalysis/OneObjectOperatorPerLineSniff.php'
         # Symfony ruleset
         PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer: ~
         PhpCsFixer\Fixer\Operator\NewWithBracesFixer: ~
