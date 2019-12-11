@@ -1,11 +1,4 @@
 imports:
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/symfony.yaml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/php70.yaml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/php71.yaml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/psr12.yaml' }
-    # custom
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/common.yaml' }
-    - { resource: 'vendor/symplify/easy-coding-standard/config/set/symplify.yaml' }
     - { resource: 'config/object-calisthenics.yml' }
 
 services:
@@ -23,14 +16,18 @@ services:
     # Slevomat
     SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff: ~
     SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff: ~
-    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        enableEachParameterAndReturnInspection: true
 
 parameters:
-    skip:
-        SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-            - '*src/ObjectCalisthenics/Sniffs/*/*Sniff.php'
+    sets:
+        - 'symfony'
+        - 'php70'
+        - 'php71'
+        - 'psr12'
+        # custom
+        - 'common'
+        - 'symplify'
 
+    skip:
         PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff.FoundInWhileCondition: ~
 
         Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff: ~
