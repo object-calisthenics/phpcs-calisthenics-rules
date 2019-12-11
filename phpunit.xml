@@ -3,6 +3,7 @@
     bootstrap="tests/bootstrap.php"
     colors="true"
     verbose="true"
+    convertDeprecationsToExceptions="false"
 >
     <testsuite name="main">
         <directory>tests</directory>
