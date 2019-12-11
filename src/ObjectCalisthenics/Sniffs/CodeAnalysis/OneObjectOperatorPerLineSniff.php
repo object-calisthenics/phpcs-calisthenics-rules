@@ -141,11 +141,13 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
         $memberTokenCount = count($this->callerTokens);
         $memberToken = end($this->callerTokens);
-        $memberTokenType = $memberToken['type'];
+        if ($memberToken === false) {
+            return;
+        }
 
-        if (($memberTokenType === 'property' && $tmpTokenType === 'property')
-            || ($memberTokenType === 'method' && $tmpTokenType === 'property')
-            || ($memberTokenType === 'method' && $tmpTokenType === 'method'
+        if (($memberToken['type'] === 'property' && $tmpTokenType === 'property')
+            || ($memberToken['type'] === 'method' && $tmpTokenType === 'property')
+            || ($memberToken['type'] === 'method' && $tmpTokenType === 'method'
             && $memberTokenCount > 1 && $tmpToken['content'] !== $memberToken['token']['content']
             && ! $this->isInFluentInterfaceMode())
         ) {
