@@ -12,3 +12,5 @@ parameters:
     ignoreErrors:
         # false float positive
         - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::subtractFunctionNestingLevel\(\) should return int but returns float\|int#'
+        # iterables
+        - '#has no value type specified in iterable type Iterator#'
