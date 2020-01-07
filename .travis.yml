@@ -17,25 +17,6 @@ install:
 jobs:
     include:
         -
-            stage: test
-            name: ECS
-            php: 7.3
-            script:
-                - composer check-cs
-
-        -
-            name: PHPStan
-            php: 7.3
-            script:
-                - composer phpstan
-
-        -
-            name: Rector
-            php: 7.3
-            script:
-                - vendor/bin/rector process src tests --dry-run --config rector-ci.yaml
-
-        -
             name: 'Unit Tests'
             script:
                 - vendor/bin/phpunit
@@ -47,9 +28,8 @@ jobs:
                 - vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php
 
         -
-            stage: coverage
             name: 'Test Coverage'
-            if: branch = master AND type = push
+            php: 7.3
             script:
                 - phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-clover coverage.xml
                 # upload coverage.xml file to Coveralls to analyze it

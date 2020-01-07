@@ -1,0 +1,80 @@
+name: Code_Checks
+
+on:
+    - pull_request
+
+jobs:
+    ecs:
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: 7.3
+                    coverage: none
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run:
+                    composer check-cs
+
+    phpstan:
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: 7.3
+                    coverage: none
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run:
+                    composer phpstan
+
+    rector:
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: 7.3
+                    coverage: none
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run:
+                    composer rector

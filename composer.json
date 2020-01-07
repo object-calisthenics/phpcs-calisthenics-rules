@@ -34,6 +34,7 @@
         "phpstan": "phpstan analyze src tests --error-format symplify",
         "check-cs": "ecs check src tests",
         "fix-cs": "ecs check src tests --fix",
-        "changelog": "changelog-linker dump-merges"
+        "changelog": "changelog-linker dump-merges",
+        "rector": "rector process src tests --dry-run --config rector-ci.yaml --ansi"
     }
 }
