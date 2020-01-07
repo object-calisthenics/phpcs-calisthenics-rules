@@ -78,3 +78,89 @@ jobs:
                 name: Run
                 run:
                     composer rector
+
+    unit_tests:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php: ['7.2', '7.3', '7.4']
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: ${{ matrix.php }}
+                    coverage: none # default is xdebug
+                    extensions: mbstring # needed by phpunit
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run:
+                    vendor/bin/phpunit
+
+    test_coverage:
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: '7.3'
+                    coverage: none # default is xdebug
+                    extensions: mbstring # needed by phpunit
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run: |
+                    phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-clover coverage.xml
+                    # upload coverage.xml file to Coveralls to analyze it
+                    wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+                    php php-coveralls.phar --verbose
+                env:
+                    COVERALLS_REPO_TOKEN: 'SF1yYBjzJXjuKpjaST9stiMgypdzQHMzM'
+
+    code_sniffer_set_run:
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: '7.3'
+                    coverage: none # default is xdebug
+
+            -
+                name: Install
+                run:
+                    composer install --no-progress
+
+            -
+                name: Run
+                run: |
+                    vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php

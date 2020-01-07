@@ -1,6 +1,5 @@
 # Object Calisthenics rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
-[![Build Status Travis CI](https://img.shields.io/travis/object-calisthenics/phpcs-calisthenics-rules/master.svg?style=flat-square)](https://travis-ci.org/object-calisthenics/phpcs-calisthenics-rules)
 [![Build Status Github Actions](https://img.shields.io/github/workflow/status/object-calisthenics/phpcs-calisthenics-rules/Code_Checks?style=flat-square)](https://github.com/object-calisthenics/phpcs-calisthenics-rules/actions)
 [![Coverage Status](https://img.shields.io/coveralls/object-calisthenics/phpcs-calisthenics-rules/master.svg?style=flat-square)](https://coveralls.io/github/object-calisthenics/phpcs-calisthenics-rules)
 [![Downloads](https://img.shields.io/packagist/dt/object-calisthenics/phpcs-calisthenics-rules.svg?style=flat-square)](https://packagist.org/packages/object-calisthenics/phpcs-calisthenics-rules)
