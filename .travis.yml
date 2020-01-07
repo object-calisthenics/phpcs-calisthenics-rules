@@ -1,14 +1,15 @@
 os: linux
+
 language: php
 
 php:
   - '7.2'
   - '7.3'
-  - '7.4snapshot'
+  - '7.4'
 
 before_install:
     # turn off XDebug
-    - phpenv config-rm xdebug.ini || return 0
+    - phpenv config-rm xdebug.ini
 
 install:
     - composer install --no-progress
@@ -49,19 +50,11 @@ jobs:
             stage: coverage
             name: 'Test Coverage'
             if: branch = master AND type = push
-            before_install:
-                - echo "keep xdebug"
             script:
-                - vendor/bin/phpunit --coverage-clover coverage.xml
+                - phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-clover coverage.xml
                 # upload coverage.xml file to Coveralls to analyze it
                 - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
                 - php php-coveralls.phar --verbose
-
-    allow_failures:
-        - php: '7.4snapshot'
-
-matrix:
-    fast_finish: true
 
 cache:
     directories:
