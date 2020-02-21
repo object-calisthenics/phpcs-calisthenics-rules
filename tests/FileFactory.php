@@ -33,7 +33,7 @@ final class FileFactory
         $file = new File($filePath, $ruleset, $config);
 
         $fileContent = @file_get_contents($file);
-        if (false === $fileContent) {
+        if ($fileContent === false) {
             throw new Exception("Unable to read file '$file'. ");
         }
 

@@ -39,7 +39,7 @@ final class NamingHelper
     {
         $name = $file->getTokens()[$position]['content'];
 
-        if (0 === strncmp($name, '$', strlen('$'))) {
+        if (strncmp($name, '$', strlen('$')) === 0) {
             return trim($name, '$');
         }
 

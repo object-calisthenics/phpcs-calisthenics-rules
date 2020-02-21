@@ -4,7 +4,6 @@ namespace ObjectCalisthenics\Sniffs\NamingConventions;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use SlevomatCodingStandard\Helpers\ClassHelper;
 
 final class NoSetterSniff implements Sniff
 {
@@ -29,13 +28,17 @@ final class NoSetterSniff implements Sniff
      */
     public $allowedClasses = [];
 
-    /** @var (int|string)[] */
+    /**
+     * @var (int|string)[]
+     */
     public static $nameTokenCodes = [
         T_NS_SEPARATOR,
         T_STRING,
     ];
 
-    /** @var (int|string)[] */
+    /**
+     * @var (int|string)[]
+     */
     public static $ineffectiveTokenCodes = [
         T_WHITESPACE,
         T_COMMENT,
@@ -97,6 +100,22 @@ final class NoSetterSniff implements Sniff
         return ltrim($className, '\\');
     }
 
+    private function shouldSkip(string $methodName, string $className)
+    {
+        // not really a setter, but usually test "setup" method
+        if ($methodName === 'setUp') {
+            return true;
+        }
+
+        foreach ($this->allowedClasses as $allowedClass) {
+            if (fnmatch($allowedClass, $className, FNM_NOESCAPE)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private function getFullyQualifiedName(File $phpcsFile, int $classPointer)
     {
         $className = $this->getName($phpcsFile, $classPointer);
@@ -119,7 +138,34 @@ final class NoSetterSniff implements Sniff
             return 'class@anonymous';
         }
 
-        return $tokens[$this->findNext($phpcsFile, T_STRING, $classPointer + 1, $tokens[$classPointer]['scope_opener'])]['content'];
+        return $tokens[$this->findNext(
+            $phpcsFile,
+            T_STRING,
+            $classPointer + 1,
+            $tokens[$classPointer]['scope_opener']
+        )]['content'];
+    }
+
+    private function findCurrentNamespaceName(File $phpcsFile, int $anyPointer)
+    {
+        $namespacePointer = $this->findPrevious($phpcsFile, T_NAMESPACE, $anyPointer);
+        if ($namespacePointer === null) {
+            return null;
+        }
+
+        /** @var int $namespaceNameStartPointer */
+        $namespaceNameStartPointer = $this->findNextEffective(
+            $phpcsFile,
+            $namespacePointer + 1
+        );
+
+        $namespaceNameEndPointer = $this->findNextExcluding(
+            $phpcsFile,
+            self::$nameTokenCodes,
+            $namespaceNameStartPointer + 1
+        ) - 1;
+
+        return $this->getContent($phpcsFile, $namespaceNameStartPointer, $namespaceNameEndPointer);
     }
 
     private function findNext(File $phpcsFile, $types, int $startPointer, ?int $endPointer = null): ?int
@@ -127,19 +173,6 @@ final class NoSetterSniff implements Sniff
         /** @var int|false $token */
         $token = $phpcsFile->findNext($types, $startPointer, $endPointer, false);
         return $token === false ? null : $token;
-    }
-
-    private function findCurrentNamespaceName(File $phpcsFile, int $anyPointer) {
-        $namespacePointer = $this->findPrevious($phpcsFile, T_NAMESPACE, $anyPointer);
-        if ($namespacePointer === null) {
-            return null;
-        }
-
-        /** @var int $namespaceNameStartPointer */
-        $namespaceNameStartPointer = $this->findNextEffective($phpcsFile, $namespacePointer + 1);
-        $namespaceNameEndPointer = $this->findNextExcluding($phpcsFile, self::$nameTokenCodes, $namespaceNameStartPointer + 1) - 1;
-
-        return $this->getContent($phpcsFile, $namespaceNameStartPointer, $namespaceNameEndPointer);
     }
 
     private function findPrevious(File $phpcsFile, $types, int $startPointer, ?int $endPointer = null): ?int
@@ -154,7 +187,8 @@ final class NoSetterSniff implements Sniff
         return self::findNextExcluding($phpcsFile, self::$ineffectiveTokenCodes, $startPointer, $endPointer);
     }
 
-    private function findNextExcluding(File $phpcsFile, $types, int $startPointer, ?int $endPointer = null) {
+    private function findNextExcluding(File $phpcsFile, $types, int $startPointer, ?int $endPointer = null)
+    {
         /** @var int|false $token */
         $token = $phpcsFile->findNext($types, $startPointer, $endPointer, true);
         return $token === false ? null : $token;
@@ -166,7 +200,7 @@ final class NoSetterSniff implements Sniff
         $endPointer = $endPointer ?? $this->getLastTokenPointer($phpcsFile);
 
         $content = '';
-        for ($i = $startPointer; $i <= $endPointer; $i++) {
+        for ($i = $startPointer; $i <= $endPointer; ++$i) {
             $content .= $tokens[$i]['content'];
         }
 
@@ -180,21 +214,5 @@ final class NoSetterSniff implements Sniff
             throw new Exception($phpcsFile->getFilename());
         }
         return $tokenCount - 1;
-    }
-
-    private function shouldSkip(string $methodName, string $className)
-    {
-        // not really a setter, but usually test "setup" method
-        if ($methodName === 'setUp') {
-            return true;
-        }
-
-        foreach ($this->allowedClasses as $allowedClass) {
-            if (fnmatch($allowedClass, $className, FNM_NOESCAPE)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
