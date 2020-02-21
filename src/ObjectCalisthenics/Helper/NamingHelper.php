@@ -2,7 +2,6 @@
 
 namespace ObjectCalisthenics\Helper;
 
-use Nette\Utils\Strings;
 use PHP_CodeSniffer\Files\File;
 
 final class NamingHelper
@@ -40,7 +39,7 @@ final class NamingHelper
     {
         $name = $file->getTokens()[$position]['content'];
 
-        if (Strings::startsWith($name, '$')) {
+        if (0 === strncmp($name, '$', strlen('$'))) {
             return trim($name, '$');
         }
 

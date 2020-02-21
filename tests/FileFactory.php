@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Tests;
 
-use Nette\Utils\FileSystem;
+use Exception;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Ruleset;
@@ -31,7 +31,12 @@ final class FileFactory
         $ruleset = new Ruleset($config);
 
         $file = new File($filePath, $ruleset, $config);
-        $fileContent = FileSystem::read($filePath);
+
+        $fileContent = @file_get_contents($file);
+        if (false === $fileContent) {
+            throw new Exception("Unable to read file '$file'. ");
+        }
+
         $file->setContent($fileContent);
         $file->parse();
 

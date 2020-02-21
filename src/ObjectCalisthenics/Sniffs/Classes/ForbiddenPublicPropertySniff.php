@@ -2,7 +2,6 @@
 
 namespace ObjectCalisthenics\Sniffs\Classes;
 
-use Nette\Utils\Strings;
 use ObjectCalisthenics\Helper\PropertyHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -50,7 +49,7 @@ final class ForbiddenPublicPropertySniff implements Sniff
 
         $classNameToken = $file->getTokens()[$classNameTokenPosition];
 
-        return Strings::endsWith($classNameToken['content'], 'Sniff');
+        return substr($classNameToken['content'], -strlen('Sniff')) === 'Sniff';
     }
 
     /**
