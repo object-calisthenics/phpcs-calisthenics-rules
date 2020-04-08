@@ -5,19 +5,19 @@
     "type": "phpcodesniffer-standard",
     "require": {
         "php": "^7.2",
-        "squizlabs/php_codesniffer": "^3.5",
-        "nette/utils": "^3.0",
-        "slevomat/coding-standard": "^6.0"
+        "nette/utils": "^3.1",
+        "slevomat/coding-standard": "^6.2",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "require-dev": {
+        "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^8.5|^9.0",
-        "phpstan/phpstan": "^0.12.4",
-        "symplify/easy-coding-standard-tester": "^7.2",
-        "symplify/coding-standard": "^7.2",
+        "rector/rector": "^0.7.9",
         "symplify/changelog-linker": "^7.2",
-        "tracy/tracy": "^2.7",
-        "rector/rector": "^0.7.8",
-        "symplify/phpstan-extensions": "^7.2"
+        "symplify/coding-standard": "^7.2",
+        "symplify/easy-coding-standard-tester": "^7.2",
+        "symplify/phpstan-extensions": "^7.2",
+        "tracy/tracy": "^2.7"
     },
     "autoload": {
         "psr-4": {

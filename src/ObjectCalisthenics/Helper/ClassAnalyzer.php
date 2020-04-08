@@ -2,7 +2,7 @@
 
 namespace ObjectCalisthenics\Helper;
 
-use ObjectCalisthenics\Exception\Helper\NonClassTypeTokenTypeException;
+use ObjectCalisthenics\Exception\NonClassTypeTokenTypeException;
 use PHP_CodeSniffer\Files\File;
 
 final class ClassAnalyzer
@@ -62,10 +62,17 @@ final class ClassAnalyzer
     {
         $token = $file->getTokens()[$position];
 
-        if (! in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT], true)) {
-            throw new NonClassTypeTokenTypeException(
-                sprintf('Must be class, interface or trait. "%s" given.', ltrim($token['type'], 'T_'))
-            );
+        self::ensureIsClassLikeToken($token);
+    }
+
+    private static function ensureIsClassLikeToken(array $token): void
+    {
+        if (in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT], true)) {
+            return;
         }
+
+        throw new NonClassTypeTokenTypeException(
+            sprintf('Must be class, interface or trait. "%s" given.', ltrim($token['type'], 'T_'))
+        );
     }
 }

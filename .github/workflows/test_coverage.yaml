@@ -9,7 +9,6 @@ on:
 jobs:
     test_coverage:
         runs-on: ubuntu-latest
-
         steps:
             -   uses: actions/checkout@v2
             -   uses: shivammathur/setup-php@v1

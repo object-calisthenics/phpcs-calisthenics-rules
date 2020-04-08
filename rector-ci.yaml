@@ -7,6 +7,9 @@ parameters:
         - 'dead-code'
         - 'code-quality'
         - 'coding-style'
+        - 'nette-utils-code-quality'
+        - 'privatization'
+        - 'solid'
 
     autoload_paths:
         - 'tests/bootstrap.php'

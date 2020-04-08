@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ObjectCalisthenics\Exception\Helper;
+namespace ObjectCalisthenics\Exception;
 
 use Exception;
 

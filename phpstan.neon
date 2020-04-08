@@ -14,7 +14,8 @@ parameters:
         - 'tests/bootstrap.php'
 
     ignoreErrors:
-        # false float positive
-        - '#Method ObjectCalisthenics\\Sniffs\\Metrics\\MaxNestingLevelSniff::subtractFunctionNestingLevel\(\) should return int but returns float\|int#'
         # iterables
         - '#has no value type specified in iterable type Iterator#'
+
+        # mixed
+        - '#Method ObjectCalisthenics\\Helper\\ClassAnalyzer\:\:ensureIsClassLikeToken\(\) has parameter \$token with no value type specified in iterable type array#'
