@@ -6,7 +6,7 @@ services:
         maxNestingLevel: 2
 
     # Rule 2: There is no "else"
-    ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
+    ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: null
 
     # Rule 5: Only one object operator (->) per line (with default values)
     ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
@@ -22,13 +22,17 @@ services:
     # Rule 7: Keep your classes small (with default values)
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
         maxLength: 200
+
     ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
         maxLength: 20
+
     ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
         maxCount: 10
+
     ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
         maxCount: 10
 
     # Rule 9: Do not Use Getters and Setters
-    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
-    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: ~
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: null
+
+    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff: null
