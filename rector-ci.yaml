@@ -9,6 +9,7 @@ parameters:
         - 'coding-style'
         - 'nette-utils-code-quality'
         - 'privatization'
+        - 'solid'
 
     autoload_paths:
         - 'tests/bootstrap.php'

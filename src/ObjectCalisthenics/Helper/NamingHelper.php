@@ -10,7 +10,7 @@ final class NamingHelper
     /**
      * @var string[]
      */
-    private static $codeToTypeNameMap = [
+    private const CODE_TO_TYPE_NAME_MAP = [
         T_CONST => 'Constant',
         T_CLASS => 'Class',
         T_FUNCTION => 'Function',
@@ -21,8 +21,8 @@ final class NamingHelper
     {
         $token = $file->getTokens()[$position];
         $tokenCode = $token['code'];
-        if (isset(self::$codeToTypeNameMap[$tokenCode])) {
-            return self::$codeToTypeNameMap[$tokenCode];
+        if (isset(self::CODE_TO_TYPE_NAME_MAP[$tokenCode])) {
+            return self::CODE_TO_TYPE_NAME_MAP[$tokenCode];
         }
 
         if ($token['code'] === T_VARIABLE) {
