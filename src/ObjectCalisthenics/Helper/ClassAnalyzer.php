@@ -65,7 +65,7 @@ final class ClassAnalyzer
         self::ensureIsClassLikeToken($token);
     }
 
-    private static function ensureIsClassLikeToken($token): void
+    private static function ensureIsClassLikeToken(array $token): void
     {
         if (in_array($token['code'], [T_CLASS, T_INTERFACE, T_TRAIT], true)) {
             return;
