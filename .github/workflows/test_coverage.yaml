@@ -1,0 +1,30 @@
+name: Test Coverage
+
+on:
+    pull_request: null
+    push:
+        branches:
+            - master
+
+jobs:
+    test_coverage:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: shivammathur/setup-php@v1
+                with:
+                    php-version: '7.3'
+                    coverage: none # default is xdebug
+                    extensions: mbstring # needed by phpunit
+
+            -   run: composer install --no-progress
+
+            -
+                run: |
+                    phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-clover coverage.xml
+                    # upload coverage.xml file to Coveralls to analyze it
+                    wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+                    php php-coveralls.phar --verbose
+                env:
+                    COVERALLS_REPO_TOKEN: 'SF1yYBjzJXjuKpjaST9stiMgypdzQHMzM'

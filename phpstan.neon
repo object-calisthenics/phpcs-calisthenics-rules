@@ -6,6 +6,10 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     level: max
 
+    paths:
+        - src
+        - tests
+
     autoload_files:
         - 'tests/bootstrap.php'
 

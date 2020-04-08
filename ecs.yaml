@@ -18,6 +18,10 @@ services:
     SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff: ~
 
 parameters:
+    paths:
+        - 'src'
+        - 'tests'
+
     sets:
         - 'symfony'
         - 'php70'
