@@ -13,6 +13,11 @@ final class MaxNestingLevelSniff implements Sniff
     private const ERROR_MESSAGE = 'Only %d indentation level%s per function/method. Found %s levels.';
 
     /**
+     * @var string
+     */
+    private const SCOPE_CLOSER = 'scope_closer';
+
+    /**
      * @var int
      */
     public $maxNestingLevel = 2;
@@ -68,7 +73,7 @@ final class MaxNestingLevelSniff implements Sniff
             return;
         }
 
-        $this->iterateTokens($token['scope_opener'], $token['scope_closer'], $tokens);
+        $this->iterateTokens($token['scope_opener'], $token[self::SCOPE_CLOSER], $tokens);
 
         $this->nestingLevel = $this->subtractFunctionNestingLevel($token);
         $this->handleNestingLevel($this->nestingLevel);
@@ -132,7 +137,7 @@ final class MaxNestingLevelSniff implements Sniff
         if ($nestedToken['code'] === T_CLOSURE) {
             // Move index pointer in case we found a lambda function
             // (another call process will deal with its check later).
-            $this->currentPtr = $nestedToken['scope_closer'];
+            $this->currentPtr = $nestedToken[self::SCOPE_CLOSER];
 
             return;
         }
@@ -164,7 +169,7 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private function unsetScopeIfNotCurrent(int $key, array $ignoredScope): void
     {
-        if ($ignoredScope['scope_closer'] !== $this->currentPtr) {
+        if ($ignoredScope[self::SCOPE_CLOSER] !== $this->currentPtr) {
             return;
         }
 

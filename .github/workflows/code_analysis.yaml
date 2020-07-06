@@ -26,7 +26,7 @@ jobs:
 
                     -
                         name: 'Code Sniffer Set Run'
-                        run: 'vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php'
+                        run: 'vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php --colors'
 
         runs-on: ubuntu-latest
 
