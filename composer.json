@@ -10,7 +10,7 @@
         "squizlabs/php_codesniffer": "^3.5"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12.18",
+        "phpstan/phpstan": "^0.12.32",
         "phpunit/phpunit": "^8.5|^9.0",
         "rector/rector": "^0.7.43",
         "symplify/changelog-linker": "^8.1",
