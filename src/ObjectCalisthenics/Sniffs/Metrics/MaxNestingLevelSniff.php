@@ -17,35 +17,23 @@ final class MaxNestingLevelSniff implements Sniff
      */
     private const SCOPE_CLOSER = 'scope_closer';
 
-    /**
-     * @var int
-     */
-    public $maxNestingLevel = 2;
+    public int $maxNestingLevel = 2;
 
-    /**
-     * @var int
-     */
-    private $position;
+    private int $position;
 
     /**
      * @var int
      */
     private $nestingLevel;
 
-    /**
-     * @var int
-     */
-    private $currentPtr;
+    private int $currentPtr;
 
     /**
      * @var mixed[]
      */
-    private $ignoredScopeStack = [];
+    private array $ignoredScopeStack = [];
 
-    /**
-     * @var File
-     */
-    private $file;
+    private File $file;
 
     /**
      * @return int[]|string[]

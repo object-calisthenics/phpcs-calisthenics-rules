@@ -23,7 +23,7 @@ final class NoSetterSniff implements Sniff
     /**
      * @var string[]
      */
-    public $allowedClasses = [];
+    public array $allowedClasses = [];
 
     /**
      * @return int[]

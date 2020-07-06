@@ -13,10 +13,7 @@ final class ClassTraitAndInterfaceLengthSniff implements Sniff
      */
     private const ERROR_MESSAGE = 'Your class is too long. Currently using %d lines. Can be up to %d lines.';
 
-    /**
-     * @var int
-     */
-    public $maxLength = 200;
+    public int $maxLength = 200;
 
     /**
      * @return int[]

@@ -13,10 +13,7 @@ final class FunctionLengthSniff implements Sniff
      */
     private const ERROR_MESSAGE = 'Your function is too long. Currently using %d lines. Can be up to %d lines.';
 
-    /**
-     * @var int
-     */
-    public $maxLength = 20;
+    public int $maxLength = 20;
 
     /**
      * @return int[]

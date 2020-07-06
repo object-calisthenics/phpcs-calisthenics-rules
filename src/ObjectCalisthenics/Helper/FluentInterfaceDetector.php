@@ -41,9 +41,10 @@ final class FluentInterfaceDetector
      */
     private function computeLastCallOfAnyFrom(array $methods, array $callerTokens): int
     {
-        $calls = array_filter($callerTokens, function (array $token) use ($methods): bool {
-            return in_array($token[TokenKey::TOKEN][TokenKey::CONTENT], $methods, true);
-        });
+        $calls = array_filter(
+            $callerTokens,
+            fn (array $token): bool => in_array($token[TokenKey::TOKEN][TokenKey::CONTENT], $methods, true)
+        );
 
         if (count($calls) > 0) {
             return (int) array_search(end($calls), $callerTokens, true);
