@@ -2,6 +2,8 @@
 
 namespace ObjectCalisthenics\Sniffs\CodeAnalysis;
 
+use ObjectCalisthenics\Helper\FluentInterfaceDetector;
+use ObjectCalisthenics\ValueObject\TokenKey;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
@@ -11,26 +13,6 @@ final class OneObjectOperatorPerLineSniff implements Sniff
      * @var string
      */
     private const ERROR_MESSAGE = 'Only one object operator per line.';
-
-    /**
-     * @var string
-     */
-    private const CONTENT = 'content';
-
-    /**
-     * @var string
-     */
-    private const CODE = 'code';
-
-    /**
-     * @var string
-     */
-    private const TOKEN = 'token';
-
-    /**
-     * @var string
-     */
-    private const TYPE = 'type';
 
     /**
      * @var string
@@ -102,10 +84,10 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         $this->callerTokens = [];
 
         $pointer = $this->ignoreWhitespace($position + 1);
-        $this->variableName = $this->tokens[$this->position][self::CONTENT];
+        $this->variableName = $this->tokens[$this->position][TokenKey::CONTENT];
 
         $token = $this->tokens[$position];
-        $isOwnCall = ($token[self::CONTENT] === '$this');
+        $isOwnCall = ($token[TokenKey::CONTENT] === '$this');
 
         $this->handleObjectOperators($pointer, $isOwnCall);
     }
@@ -114,7 +96,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
     {
         $pointer = $start;
 
-        while ($this->tokens[$pointer][self::CODE] === T_WHITESPACE) {
+        while ($this->tokens[$pointer][TokenKey::CODE] === T_WHITESPACE) {
             ++$pointer;
         }
 
@@ -123,7 +105,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
     private function handleObjectOperators(int $pointer, bool $isOwnCall): void
     {
-        while ($this->tokens[$pointer][self::CODE] === T_OBJECT_OPERATOR) {
+        while ($this->tokens[$pointer][TokenKey::CODE] === T_OBJECT_OPERATOR) {
             $tmpToken = $this->tokens[++$pointer];
             $pointer = $this->ignoreWhitespace($pointer + 1);
             $tmpTokenType = $this->getTokenType($this->tokens[$pointer]);
@@ -133,8 +115,8 @@ final class OneObjectOperatorPerLineSniff implements Sniff
             $this->handleExcludedFluentInterfaces($tmpToken, $tmpTokenType, $isOwnCall);
 
             $this->callerTokens[] = [
-                self::TOKEN => $tmpToken,
-                self::TYPE => $tmpTokenType,
+                TokenKey::TOKEN => $tmpToken,
+                TokenKey::TYPE => $tmpTokenType,
             ];
 
             $pointer = $this->movePointerToNextObject($pointer);
@@ -146,7 +128,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
      */
     private function getTokenType(array $token): string
     {
-        if ($token[self::CODE] === T_OPEN_PARENTHESIS) {
+        if ($token[TokenKey::CODE] === T_OPEN_PARENTHESIS) {
             return self::METHOD;
         }
 
@@ -175,10 +157,10 @@ final class OneObjectOperatorPerLineSniff implements Sniff
             return;
         }
 
-        if (($memberToken[self::TYPE] === self::PROPERTY && $tmpTokenType === self::PROPERTY)
-            || ($memberToken[self::TYPE] === self::METHOD && $tmpTokenType === self::PROPERTY)
-            || ($memberToken[self::TYPE] === self::METHOD && $tmpTokenType === self::METHOD
-            && $memberTokenCount > 1 && $tmpToken[self::CONTENT] !== $memberToken[self::TOKEN][self::CONTENT]
+        if (($memberToken[TokenKey::TYPE] === self::PROPERTY && $tmpTokenType === self::PROPERTY)
+            || ($memberToken[TokenKey::TYPE] === self::METHOD && $tmpTokenType === self::PROPERTY)
+            || ($memberToken[TokenKey::TYPE] === self::METHOD && $tmpTokenType === self::METHOD
+            && $memberTokenCount > 1 && $tmpToken[TokenKey::CONTENT] !== $memberToken[TokenKey::TOKEN][TokenKey::CONTENT]
             && ! $this->isInFluentInterfaceMode())
         ) {
             $this->file->addError(self::ERROR_MESSAGE, $this->position, self::class);
@@ -190,7 +172,7 @@ final class OneObjectOperatorPerLineSniff implements Sniff
         $token = $this->tokens[$pointer];
 
         // Ignore "(" ... ")" in a method call by moving pointer after close parenthesis token
-        if ($token[self::CODE] === T_OPEN_PARENTHESIS) {
+        if ($token[TokenKey::CODE] === T_OPEN_PARENTHESIS) {
             $pointer = $token['parenthesis_closer'] + 1;
         }
 
@@ -199,32 +181,14 @@ final class OneObjectOperatorPerLineSniff implements Sniff
 
     private function isInFluentInterfaceMode(): bool
     {
-        $lastEndPoint = $this->computeLastCallOfAnyFrom($this->methodsEndingAFluentInterface);
-        $lastStartPoint = $this->computeLastCallOfAnyFrom($this->methodsStartingAFluentInterface);
+        $fluentInterfaceDetector = new FluentInterfaceDetector();
 
-        if (in_array($this->variableName, $this->variablesHoldingAFluentInterface, true)) {
-            $lastStartPoint = max($lastStartPoint, -1);
-        }
-
-        return $lastStartPoint > -2
-            && $lastStartPoint > $lastEndPoint;
-    }
-
-    /**
-     * @param string[] $methods
-     *
-     * @return int The last position of the method calls within the callerTokens
-     *             or -2 if none of the methods has been called
-     */
-    private function computeLastCallOfAnyFrom(array $methods): int
-    {
-        $calls = array_filter($this->callerTokens, function (array $token) use ($methods): bool {
-            return in_array($token[self::TOKEN][self::CONTENT], $methods, true);
-        });
-        if (count($calls) > 0) {
-            return (int) array_search(end($calls), $this->callerTokens, true);
-        }
-
-        return -2;
+        return $fluentInterfaceDetector->isInFluentInterfaceMode(
+            $this->methodsEndingAFluentInterface,
+            $this->methodsStartingAFluentInterface,
+            $this->variableName,
+            $this->variablesHoldingAFluentInterface,
+            $this->callerTokens
+        );
     }
 }
