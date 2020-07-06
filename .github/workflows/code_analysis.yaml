@@ -28,6 +28,15 @@ jobs:
                         name: 'Code Sniffer Set Run'
                         run: 'vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php --colors'
 
+                    -
+                        run: |
+                            vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+                            # upload coverage.xml file to Coveralls to analyze it
+                            wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+                            php php-coveralls.phar --verbose
+                        env:
+                            COVERALLS_REPO_TOKEN: 'SF1yYBjzJXjuKpjaST9stiMgypdzQHMzM'
+
         runs-on: ubuntu-latest
 
         steps:
@@ -36,7 +45,7 @@ jobs:
             -   uses: shivammathur/setup-php@v1
                 with:
                     php-version: 7.4
-                    coverage: none
+                    coverage: pcov
 
             -   run: composer install --no-progress
 
