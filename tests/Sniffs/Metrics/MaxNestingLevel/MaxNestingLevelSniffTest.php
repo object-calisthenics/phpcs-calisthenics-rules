@@ -5,27 +5,26 @@ namespace ObjectCalisthenics\Tests\Sniffs\Metrics\MaxNestingLevel;
 use Iterator;
 use ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see MaxNestingLevelSniff
- */
 final class MaxNestingLevelSniffTest extends AbstractCheckerTestCase
 {
     /**
-     * @dataProvider provideWrongCases()
+     * @dataProvider provideData()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function test(SmartFileInfo $fileInfo): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($fileInfo, 1);
     }
 
-    public function provideWrongCases(): Iterator
+    public function provideData(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return MaxNestingLevelSniff::class;
     }
 }

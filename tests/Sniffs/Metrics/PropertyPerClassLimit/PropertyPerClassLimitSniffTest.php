@@ -3,7 +3,9 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Metrics\PropertyPerClassLimit;
 
 use Iterator;
+use ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
 final class PropertyPerClassLimitSniffTest extends AbstractCheckerTestCase
 {
@@ -12,7 +14,8 @@ final class PropertyPerClassLimitSniffTest extends AbstractCheckerTestCase
      */
     public function testCorrectCases(string $file): void
     {
-        $this->doTestCorrectFile($file);
+        $fileInfo = new SmartFileInfo($file);
+        $this->doTestFileInfo($fileInfo);
     }
 
     public function provideCorrectCases(): Iterator
@@ -20,21 +23,14 @@ final class PropertyPerClassLimitSniffTest extends AbstractCheckerTestCase
         yield [__DIR__ . '/correct/correct.php.inc'];
     }
 
-    /**
-     * @dataProvider provideWrongCases()
-     */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $fileInfo = new SmartFileInfo(__DIR__ . '/wrong/wrong.php.inc');
+        $this->doTestFileInfoWithErrorCountOf($fileInfo, 1);
     }
 
-    public function provideWrongCases(): Iterator
+    protected function getCheckerClass(): string
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-    }
-
-    protected function provideConfig(): string
-    {
-        return __DIR__ . '/config.yml';
+        return PropertyPerClassLimitSniff::class;
     }
 }

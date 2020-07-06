@@ -10,7 +10,7 @@ parameters:
         - src
         - tests
 
-    autoload_files:
+    bootstrapFiles:
         - 'tests/bootstrap.php'
 
     ignoreErrors:

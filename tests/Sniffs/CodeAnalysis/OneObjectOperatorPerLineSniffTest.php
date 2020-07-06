@@ -5,10 +5,9 @@ namespace ObjectCalisthenics\Tests\Sniffs\CodeAnalysis;
 use Iterator;
 use ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see OneObjectOperatorPerLineSniff
- */
 final class OneObjectOperatorPerLineSniffTest extends AbstractCheckerTestCase
 {
     /**
@@ -16,7 +15,8 @@ final class OneObjectOperatorPerLineSniffTest extends AbstractCheckerTestCase
      */
     public function testCorrectCases(string $file): void
     {
-        $this->doTestCorrectFile($file);
+        $fileInfo = new SmartFileInfo($file);
+        $this->doTestFileInfo($fileInfo);
     }
 
     public function provideCorrectCases(): Iterator
@@ -27,20 +27,18 @@ final class OneObjectOperatorPerLineSniffTest extends AbstractCheckerTestCase
     /**
      * @dataProvider provideWrongCases()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(SmartFileInfo $wrongFileInfo): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($wrongFileInfo, 1);
     }
 
     public function provideWrongCases(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-        yield [__DIR__ . '/wrong/wrong2.php.inc'];
-        yield [__DIR__ . '/wrong/wrong3.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return OneObjectOperatorPerLineSniff::class;
     }
 }

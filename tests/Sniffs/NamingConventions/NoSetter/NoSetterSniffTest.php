@@ -5,10 +5,8 @@ namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions\NoSetter;
 use Iterator;
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see NoSetterSniff
- */
 final class NoSetterSniffTest extends AbstractCheckerTestCase
 {
     /**
@@ -16,7 +14,7 @@ final class NoSetterSniffTest extends AbstractCheckerTestCase
      */
     public function testCorrectCases(string $file): void
     {
-        $this->doTestCorrectFile($file);
+        $this->doTestFileInfo(new SmartFileInfo($file));
     }
 
     public function provideCorrectCases(): Iterator
@@ -24,21 +22,14 @@ final class NoSetterSniffTest extends AbstractCheckerTestCase
         yield [__DIR__ . '/correct/correct.php.inc'];
     }
 
-    /**
-     * @dataProvider provideWrongCases()
-     */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $wrongFileInfo = new SmartFileInfo(__DIR__ . '/wrong/wrong.php.inc');
+        $this->doTestFileInfoWithErrorCountOf($wrongFileInfo, 1);
     }
 
-    public function provideWrongCases(): Iterator
+    protected function getCheckerClass(): string
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-    }
-
-    protected function provideConfig(): string
-    {
-        return __DIR__ . '/config.yaml';
+        return NoSetterSniff::class;
     }
 }

@@ -3,27 +3,28 @@
 namespace ObjectCalisthenics\Tests\Sniffs\Files\ClassTraitAndInterfaceLength;
 
 use Iterator;
+use ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
 final class ClassTraitAndInterfaceLengthSniffTest extends AbstractCheckerTestCase
 {
     /**
      * @dataProvider provideWrongCases()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(SmartFileInfo $wrongFileInfo): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($wrongFileInfo, 1);
     }
 
     public function provideWrongCases(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-        yield [__DIR__ . '/wrong/wrong2.php.inc'];
-        yield [__DIR__ . '/wrong/wrong3.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return ClassTraitAndInterfaceLengthSniff::class;
     }
 }

@@ -5,10 +5,9 @@ namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions\ElementNameMinimalLe
 use Iterator;
 use ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see ElementNameMinimalLengthSniff
- */
 final class ElementNameMinimalLengthSniffTest extends AbstractCheckerTestCase
 {
     /**
@@ -16,7 +15,8 @@ final class ElementNameMinimalLengthSniffTest extends AbstractCheckerTestCase
      */
     public function testCorrectCases(string $file): void
     {
-        $this->doTestCorrectFile($file);
+        $fileInfo = new SmartFileInfo($file);
+        $this->doTestFileInfo($fileInfo);
     }
 
     public function provideCorrectCases(): Iterator
@@ -29,26 +29,18 @@ final class ElementNameMinimalLengthSniffTest extends AbstractCheckerTestCase
     /**
      * @dataProvider provideWrongCases()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(SmartFileInfo $wrongFileInfo): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($wrongFileInfo, 1);
     }
 
     public function provideWrongCases(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-        yield [__DIR__ . '/wrong/wrong2.php.inc'];
-        yield [__DIR__ . '/wrong/wrong3.php.inc'];
-        yield [__DIR__ . '/wrong/wrong4.php.inc'];
-        yield [__DIR__ . '/wrong/wrong5.php.inc'];
-        yield [__DIR__ . '/wrong/wrong6.php.inc'];
-        yield [__DIR__ . '/wrong/wrong7.php.inc'];
-        yield [__DIR__ . '/wrong/wrong8.php.inc'];
-        yield [__DIR__ . '/wrong/wrong9.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return ElementNameMinimalLengthSniff::class;
     }
 }
