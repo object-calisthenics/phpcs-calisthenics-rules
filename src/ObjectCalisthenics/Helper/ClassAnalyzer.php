@@ -10,7 +10,7 @@ final class ClassAnalyzer
     /**
      * @var mixed[]
      */
-    private static $propertyList = [];
+    private static array $propertyList = [];
 
     public static function getClassMethodCount(File $file, int $position): int
     {

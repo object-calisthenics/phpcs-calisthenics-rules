@@ -29,6 +29,7 @@ jobs:
                         run: 'vendor/bin/phpcs src tests -sp --standard=src/ObjectCalisthenics/ruleset.xml --extensions=php --colors'
 
         runs-on: ubuntu-latest
+        name: ${{ matrix.actions.name }}
 
         steps:
             -   uses: actions/checkout@v2
@@ -37,9 +38,8 @@ jobs:
                 with:
                     php-version: 7.4
                     coverage: none
+                    extensions: mbstring # needed by phpunit
 
             -   run: composer install --no-progress
 
-            -
-                name: ${{ matrix.actions.name }}
-                run: ${{ matrix.actions.run }}
+            -   run: ${{ matrix.actions.run }}

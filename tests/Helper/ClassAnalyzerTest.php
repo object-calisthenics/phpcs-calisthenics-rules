@@ -14,10 +14,7 @@ final class ClassAnalyzerTest extends TestCase
      */
     private const CLASS_POSITION = 3;
 
-    /**
-     * @var File
-     */
-    private $file;
+    private File $file;
 
     protected function setUp(): void
     {

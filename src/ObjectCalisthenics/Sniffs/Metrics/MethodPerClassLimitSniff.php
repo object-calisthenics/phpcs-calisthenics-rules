@@ -14,10 +14,7 @@ final class MethodPerClassLimitSniff implements Sniff
      */
     private const ERROR_MESSAGE = '%s has too many methods: %d. Can be up to %d methods.';
 
-    /**
-     * @var int
-     */
-    public $maxCount = 10;
+    public int $maxCount = 10;
 
     /**
      * @return int[]

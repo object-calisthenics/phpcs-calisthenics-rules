@@ -18,10 +18,7 @@ final class StructureMetricsTest extends TestCase
      */
     private const METHOD_POSITION = 12;
 
-    /**
-     * @var FileFactory
-     */
-    private $fileFactory;
+    private FileFactory $fileFactory;
 
     protected function setUp(): void
     {

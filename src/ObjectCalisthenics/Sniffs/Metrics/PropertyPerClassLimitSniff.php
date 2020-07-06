@@ -13,10 +13,7 @@ final class PropertyPerClassLimitSniff implements Sniff
      */
     private const ERROR_MESSAGE = '"%s" has too many properties: %d. Can be up to %d properties.';
 
-    /**
-     * @var int
-     */
-    public $maxCount = 10;
+    public int $maxCount = 10;
 
     /**
      * @return int[]

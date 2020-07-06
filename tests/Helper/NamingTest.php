@@ -23,10 +23,7 @@ final class NamingTest extends TestCase
      */
     private const PROPERTY_POSITION = 25;
 
-    /**
-     * @var FileFactory
-     */
-    private $fileFactory;
+    private FileFactory $fileFactory;
 
     protected function setUp(): void
     {

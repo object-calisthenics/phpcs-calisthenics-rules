@@ -13,15 +13,12 @@ final class ElementNameMinimalLengthSniff implements Sniff
      */
     private const ERROR_MESSAGE = '%s name "%s" is only %d chars long. Must be at least %d.';
 
-    /**
-     * @var int
-     */
-    public $minLength = 3;
+    public int $minLength = 3;
 
     /**
      * @var string[]
      */
-    public $allowedShortNames = ['i', 'id', 'to', 'up'];
+    public array $allowedShortNames = ['i', 'id', 'to', 'up'];
 
     /**
      * @return int[]
