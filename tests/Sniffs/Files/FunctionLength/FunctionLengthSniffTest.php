@@ -5,28 +5,26 @@ namespace ObjectCalisthenics\Tests\Sniffs\Files\FunctionLength;
 use Iterator;
 use ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see FunctionLengthSniff
- */
 final class FunctionLengthSniffTest extends AbstractCheckerTestCase
 {
     /**
-     * @dataProvider provideWrongCases()
+     * @dataProvider provideData()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function test(SmartFileInfo $wrongFileInfo): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($wrongFileInfo, 1);
     }
 
-    public function provideWrongCases(): Iterator
+    public function provideData(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
-        yield [__DIR__ . '/wrong/wrong2.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return FunctionLengthSniff::class;
     }
 }

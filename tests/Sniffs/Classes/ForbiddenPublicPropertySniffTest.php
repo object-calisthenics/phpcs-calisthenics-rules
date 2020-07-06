@@ -5,10 +5,9 @@ namespace ObjectCalisthenics\Tests\Sniffs\Classes;
 use Iterator;
 use ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
-/**
- * @see ForbiddenPublicPropertySniff
- */
 final class ForbiddenPublicPropertySniffTest extends AbstractCheckerTestCase
 {
     /**
@@ -16,7 +15,8 @@ final class ForbiddenPublicPropertySniffTest extends AbstractCheckerTestCase
      */
     public function testCorrectCases(string $file): void
     {
-        $this->doTestCorrectFile($file);
+        $fileInfo = new SmartFileInfo($file);
+        $this->doTestFileInfo($fileInfo);
     }
 
     public function provideCorrectCases(): Iterator
@@ -27,18 +27,18 @@ final class ForbiddenPublicPropertySniffTest extends AbstractCheckerTestCase
     /**
      * @dataProvider provideWrongCases()
      */
-    public function testWrongToFixed(string $wrongFile): void
+    public function testWrongToFixed(SmartFileInfo $wrongFile): void
     {
-        $this->doTestWrongFile($wrongFile);
+        $this->doTestFileInfoWithErrorCountOf($wrongFile, 1);
     }
 
     public function provideWrongCases(): Iterator
     {
-        yield [__DIR__ . '/wrong/wrong.php.inc'];
+        return StaticFixtureFinder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
-    protected function provideConfig(): string
+    protected function getCheckerClass(): string
     {
-        return __DIR__ . '/config.yml';
+        return ForbiddenPublicPropertySniff::class;
     }
 }

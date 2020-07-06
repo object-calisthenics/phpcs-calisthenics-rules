@@ -4,16 +4,20 @@ namespace ObjectCalisthenics\Tests\Sniffs\NamingConventions\NoSetter;
 
 use ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff;
 use Symplify\EasyCodingStandardTester\Testing\AbstractCheckerTestCase;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
 /**
  * @see NoSetterSniff
  */
 final class ConfiguredTest extends AbstractCheckerTestCase
 {
-    public function testCorrectCases(): void
+    public function test(): void
     {
-        $this->doTestCorrectFile(__DIR__ . '/correct/correct2.php.inc');
-        $this->doTestCorrectFile(__DIR__ . '/correct/correct3.php.inc');
+        $fileInfo = new SmartFileInfo(__DIR__ . '/correct/correct2.php.inc');
+        $this->doTestFileInfo($fileInfo);
+
+        $fileInfo = new SmartFileInfo(__DIR__ . '/correct/correct3.php.inc');
+        $this->doTestFileInfo($fileInfo);
     }
 
     protected function provideConfig(): string
