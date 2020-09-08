@@ -1,7 +1,0 @@
-parameters:
-    paths:
-        - 'src'
-        - 'tests'
-
-    autoload_paths:
-        - 'tests/bootstrap.php'

@@ -71,8 +71,7 @@ final class ClassAnalyzer
             return;
         }
 
-        throw new NonClassTypeTokenTypeException(
-            sprintf('Must be class, interface or trait. "%s" given.', ltrim($token['type'], 'T_'))
-        );
+        $message = sprintf('Must be class, interface or trait. "%s" given.', ltrim($token['type'], 'T_'));
+        throw new NonClassTypeTokenTypeException($message);
     }
 }
