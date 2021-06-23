@@ -3,7 +3,13 @@
 
 **DEPRECATED: PHP_CodeSniffer is great for handling spaces and char positions. Yet these rules are about code architecture and structure. In 2020, there is tool that suits this perfectly - [PHPStan](github.com/phpstan/phpstan)**.
 
-**Saying that, [object calisthenics were implemented as PHPStan rules](https://github.com/symplify/coding-standard/blob/master/docs/phpstan_rules_object_calisthenics.md) in a  `symplify/coding-standard` package. Use it instead.**
+**Saying that, [object calisthenics were implemented as PHPStan rules](https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nochainmethodcallrule) in a  `symplify/phpstan-rules` package. Use it instead 👇**
+
+```
+includes:
+    - vendor/symplify/phpstan-rules/packages/object-calisthenics/config/object-calisthenics-rules.neon
+    - vendor/symplify/phpstan-rules/packages/object-calisthenics/config/object-calisthenics-services.neon
+```
 
 <br>
 <br>
